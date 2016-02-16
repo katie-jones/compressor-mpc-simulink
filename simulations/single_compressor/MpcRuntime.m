@@ -62,39 +62,31 @@ global xinit H A B C M ysize xsize usize p LB UB Ga Gb Gc Ain b upast m
 y=u(1:2);
 yref=u(3:4);
 
-% Yref = repmat(yref',p,1);
-Yref = zeros(p*ysize,1);
-for i=1:p
-    Yref(1+(i-1)*ysize:i*ysize,1) = yref;
-end
-
 % estimate the state information
 xinit  = xinit + M*(y(:) - C*xinit);
 
 % upper/lower bounds wrt past input
-Upast = zeros(m*usize,1);
-for i=1:m
-    Upast(1+(i-1)*usize:i*usize,1) = upast;
-end
-% Upast = repmat(upast,m,1);
+Upast = repmat(upast,m,1);
 
 LBa = LB - Upast;
 UBa = UB - Upast;
 
+% Reference output vector
+Yref = repmat(yref,p,1);
+
 % define f vector for qp
 f = xinit' * Gb + Upast'*Gc - Yref' * Ga;
 
-
-
 % solve qp
-% usol = qpOASES(H,f',Ain,LBa,UBa,[],b);
-usol = qpOASES(H,f',LBa,UBa);
-
-% update next control move
-upast = upast + usol(1:usize,1);
+usol = qpOASES(H,f',Ain,LBa,UBa,[],b);
+next = usol(1:usize,1);
 
 % update state estimate
-xinit= A*xinit + B*(upast);
+xinit= A*xinit + B*(upast+next);
+
+% update next control move
+upast = upast + next;
+
 
 sys=upast;
  

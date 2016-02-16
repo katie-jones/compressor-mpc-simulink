@@ -7,7 +7,7 @@ global xinit H A B C M ysize xsize usize p LB UB Ga Gb Gc Ain b upast m
 load sys.mat
 
 Ts = 50e-3; % 50 ms sampling time
-n_delay = [1;20]; % delay as multiple of sampling time
+n_delay = [1;21]; % delay as multiple of sampling time
 % n_delay = 0;
 
 xsize = length(A);

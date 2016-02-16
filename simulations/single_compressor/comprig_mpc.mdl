@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.59"
+    ComputedModelVersion    "1.61"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -54,10 +54,10 @@ Model {
 	$ClassName		"Simulink.EditorInfo"
 	IsActive		[1]
 	ViewObjType		"SimulinkSubsys"
-	LoadSaveID		"155"
+	LoadSaveID		"35"
 	Extents			[1246.0, 866.0]
 	ZoomFactor		[1.0]
-	Offset			[1.0, 0.0]
+	Offset			[0.0, 0.0]
       }
     }
   }
@@ -67,9 +67,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Feb 16 12:50:16 2016"
-  RTWModifiedTimeStamp	  377527809
-  ModelVersionFormat	  "1.%<AutoIncrement:59>"
+  LastModifiedDate	  "Tue Feb 16 14:40:27 2016"
+  RTWModifiedTimeStamp	  377534426
+  ModelVersionFormat	  "1.%<AutoIncrement:61>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -983,7 +983,7 @@ Model {
       System {
 	Name			"MPC"
 	Location		[1272, 0, 2568, 1040]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1095,7 +1095,7 @@ Model {
       "rtiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1"
       "),'TimeRangeSamples','200','TimeRangeFrames','200'),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtS"
       "top',false,'PreviousZoomMode','ZoomX'),extmgr.Configuration('Tools','Measurements',true,'Version','2015b')),'Ver"
-      "sion','2015b','Location',[602 615 926 854],'VisibleAtModelOpen','on')"
+      "sion','2015b','Location',[602 615 926 854])"
     }
     Block {
       BlockType		      SubSystem
@@ -1109,7 +1109,7 @@ Model {
       System {
 	Name			"Sim Model"
 	Location		[1272, 0, 2568, 1040]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2074,7 +2074,7 @@ Model {
       "esCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',{{[]}},'ShowContent',true,'Placement',1),'"
       "TimeRangeSamples','300','TimeRangeFrames','300'),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop"
       "',false,'PreviousZoomMode','ZoomY'),extmgr.Configuration('Tools','Measurements',true,'Version','2015b')),'Versio"
-      "n','2015b','Location',[33 609 357 848],'VisibleAtModelOpen','on')"
+      "n','2015b','Location',[33 609 357 848])"
     }
     Block {
       BlockType		      ToWorkspace
@@ -2129,7 +2129,7 @@ Model {
       "63],'Title','%<SignalLabel>','LinePropertiesCache',{{}},'UserDefinedChannelNames',{{}},'NumLines',0,'LineNames',"
       "{{[]}},'ShowContent',true,'Placement',1),'TimeRangeSamples','300','TimeRangeFrames','300'),extmgr.Configuration("
       "'Tools','Plot Navigation',true,'OnceAtStop',false),extmgr.Configuration('Tools','Measurements',true,'Version','2"
-      "015b')),'Version','2015b','Location',[607 183 931 422],'VisibleAtModelOpen','on')"
+      "015b')),'Version','2015b','Location',[607 183 931 422])"
     }
     Block {
       BlockType		      Step
@@ -2174,7 +2174,7 @@ Model {
       "35294117647 1 1;1 0.0745098039215686 0.650980392156863],'Title','%<SignalLabel>'),'TimeRangeSamples','300','Time"
       "RangeFrames','300'),extmgr.Configuration('Tools','Plot Navigation',true,'OnceAtStop',false,'PreviousZoomMode','Z"
       "oomX'),extmgr.Configuration('Tools','Measurements',true,'Version','2015b')),'Version','2015b','Location',[41 190"
-      " 365 429],'VisibleAtModelOpen','on')"
+      " 365 429])"
     }
     Line {
       ZOrder		      1
