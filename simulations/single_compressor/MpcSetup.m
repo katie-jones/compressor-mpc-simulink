@@ -1,5 +1,5 @@
 % Tuning parameters for MPC controller
-clear all
+% clear all
 addpath('..\qpoases\interfaces\matlab\')
 
 global xinit H A B C M ysize xsize usize p LB UB Ga Gb Gc Ain b upast m
@@ -7,8 +7,7 @@ global xinit H A B C M ysize xsize usize p LB UB Ga Gb Gc Ain b upast m
 load sys.mat
 
 Ts = 50e-3; % 50 ms sampling time
-n_delay = 20; % delay as multiple of sampling time
-
+n_delay = [1;20]; % delay as multiple of sampling time
 % n_delay = 0;
 
 xsize = length(A);
@@ -18,7 +17,7 @@ dsize = 2; % number of disturbances
 
 
 
-p = 100; % prediction horizon
+p = 200; % prediction horizon
 m = 8; % control horizon
 
 
@@ -26,21 +25,35 @@ m = 8; % control horizon
 %% Define augmented system
 % delay of n_delay time steps in 2nd component of u
 % constant output disturbance
-Adelay = [zeros(n_delay-1,1), eye(n_delay-1); zeros(1,n_delay)]; % delay component of A
+
+Adelay1 = [zeros(n_delay(1)-1,1), eye(n_delay(1)-1); zeros(1,n_delay(1))]; % delay component of A
+Adelay2 = [zeros(n_delay(2)-1,1), eye(n_delay(2)-1); zeros(1,n_delay(2))]; % delay component of A
 Adist = eye(dsize); % disturbance component of A
 
-Aaug = [A, B(:,2), zeros(xsize,n_delay-1), zeros(xsize,dsize);
-    zeros(n_delay,xsize), Adelay, zeros(n_delay,dsize);
-    zeros(dsize,xsize), zeros(dsize,n_delay), eye(dsize)];
+if (n_delay(1)==0)
+    Aaug = [A, B(:,2), zeros(xsize,n_delay(2)-1), zeros(xsize,dsize);
+        zeros(n_delay(2),xsize), Adelay2, zeros(n_delay(2),dsize);
+        zeros(dsize,xsize), zeros(dsize,n_delay(2)), Adist];
 
-Baug = [B(:,1), zeros(xsize,1);
-    zeros(n_delay,1), [zeros(n_delay-1,1);1];
-    zeros(dsize,2)];
+    Baug = [B(:,1), zeros(xsize,1);
+        zeros(n_delay(2),1), [zeros(n_delay(2)-1,1);1];
+        zeros(dsize,2)];
+else
+    Aaug = [A, B(:,1), zeros(xsize,n_delay(1)-1), B(:,2), zeros(xsize,n_delay(2)-1), zeros(xsize,dsize);
+        zeros(n_delay(1),xsize), Adelay1, zeros(n_delay(1),n_delay(2)), zeros(n_delay(1),dsize);
+        zeros(n_delay(2),xsize), zeros(n_delay(2),n_delay(1)), Adelay2, zeros(n_delay(2),dsize);
+        zeros(dsize,xsize), zeros(dsize,n_delay(1)), zeros(dsize,n_delay(2)), Adist];
+
+    Baug = [zeros(xsize,usize);
+        [zeros(n_delay(1)-1,1); 1], zeros(n_delay(1),1);
+        zeros(n_delay(2),1), [zeros(n_delay(2)-1,1); 1];
+        zeros(dsize,usize)];
+end
 
 % disturbance to output matrix
 Cd = eye(ysize,dsize); 
 
-Caug = [C, zeros(ysize,n_delay), Cd];
+Caug = [C, zeros(ysize,sum(n_delay)), Cd];
 
 Daug = 0;
 
@@ -126,10 +139,10 @@ ub = [0.3; 1];
 LB = repmat(lb,m,1);
 UB = repmat(ub,m,1);
 
-lb_rate = [0.1; 0.1];
-ub_rate = [0.1; 1];
-% lb_rate = [0.05;0.001];
-% ub_rate = [0.05;0.5];
+% lb_rate = [0.1; 0.1];
+% ub_rate = [0.1; 1];
+lb_rate = [0.05;0.001];
+ub_rate = [0.05;0.5];
 LBrate = repmat(lb_rate,m,1);
 UBrate = repmat(ub_rate,m,1);
 

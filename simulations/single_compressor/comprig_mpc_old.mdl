@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.38"
+    ComputedModelVersion    "1.39"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -21,6 +21,7 @@ Model {
   FPTRunName		  "Run 1"
   MaxMDLFileLineLength	  120
   InitFcn		  "Mpcparam_goodTuning"
+  StartFcn		  "Mpcparam_goodTuning"
   Object {
     $PropName		    "BdWindowsInfo"
     $ObjectID		    1
@@ -78,9 +79,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Feb 16 10:25:31 2016"
-  RTWModifiedTimeStamp	  377519128
-  ModelVersionFormat	  "1.%<AutoIncrement:38>"
+  LastModifiedDate	  "Tue Feb 16 14:19:11 2016"
+  RTWModifiedTimeStamp	  377533149
+  ModelVersionFormat	  "1.%<AutoIncrement:39>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off

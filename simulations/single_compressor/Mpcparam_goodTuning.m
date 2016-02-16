@@ -17,7 +17,7 @@ sys = ss(A,B,C,D,Ts);
 [ysize dmmy]=size(C);
 
 MaxDelay = 40;% max delay as a multiple of sampling time
-MaxDelay = 3;
+% MaxDelay = 3;
 
 Isize = usize*MaxDelay;
 
@@ -26,7 +26,7 @@ Adelay = [zeros(usize,Isize+usize);eye(Isize) zeros(Isize,usize)];
 Bdelay = [eye(usize,usize);zeros(Isize,usize)];
 
 IDM = [0;20]; % input to state delay array (or matrix) as a multiple of sampling time 
-IDM = [0;2];
+% IDM = [0;2];
 Edelay = zeros(xsize,Isize+usize);
 
 % Additional for loop needed to individualy insert input to state delay
@@ -120,7 +120,7 @@ ysize=size(C,1);
 % prediction and move horizons
 
 p=200;
-m=2;
+m=8;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
