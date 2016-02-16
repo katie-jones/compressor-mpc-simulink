@@ -1,0 +1,50 @@
+\documentclass[doubleheaders,onlytitle,titlepage,oneside,openright,12pt]{epflthesis}
+
+\input{head/pkgs.tex}
+
+\usepackage[a4paper,textheight=22cm,includehead,head=20pt]{geometry}
+
+% Set correct margin ratio for two-sided
+\makeatletter
+\if@twoside
+\geometry{hmarginratio=3:2}
+\fi
+\makeatother
+
+
+% Setting variables
+\author{Kathleen Jones}
+\advisor{Alireza Karimi (EPFL)\\
+Andrea Cortinovis (ABB) \\
+Mehmet Mercangöz (ABB)}
+\title{Model predictive control of parallel compressors}
+\submitdate{12 August 2016}
+\school{Ecole polytechnique fédérale de Lausanne}
+\dept{Mechanical Engineering}
+\departmentprefix{Department of }
+\logo{head/ABB_logo_small.png}
+
+
+\abstract{\input head/abstract} %read from file abstract.tex
+
+%\acknowledgements{\input head/acknowledgements}
+
+\numberwithin{equation}{chapter}
+
+\includeonly{litreview/litreview}
+
+\begin{document}
+
+\include{intro/intro}
+
+\include{litreview/litreview}
+
+\include{conclusion/conclusion}
+
+
+%\bibliographystyle{ieeetr}
+%\bibliography{/Users/katie/school/Bibliographies/MasterThesis}
+
+
+
+\end{document}
