@@ -1,13 +1,19 @@
 \chapter{Literature Review}
 Compressor control using advanced techniques such as MPC is an active field of research. 
 A non-exhaustive summary of the work that has been done is presented here.
-It is divided into four areas: the development of compressor models used for control and simulation, MPC controller development for individual compressors, load-sharing approaches for networks of compressors and implementation of MPC controllers on embedded systems. 
+It is divided into five areas: the development of compressor models used for control and simulation, MPC theory and stability analysis, MPC controller development for individual compressors, anti-surge and performance control approaches for networks of compressors and implementation of MPC controllers on embedded systems. 
 
 \section{Compressor Models}
 
-The underlying model used as the basis for most compressor control applications was developed by Greitzer \cite{Greitzer1976} and expanded by Moore and Greitzer \cite{Moore1985}.
+Two different modelling approaches are used in industry: black box and gray box. Black box models fit experimental date to a pre-defined model type (e.g. ARX, state space, neural network), whose order is then chosen to give a good fit !!! references. 
+Grey-box modelling uses on a first principles approach, assuming a model structure based on the underlying physics of the system. 
+The parameters of the model are then determined for the specific structure and order given. 
+Here, grey-box models are considered, however black-box models are also commonly used in industry.
+
+The underlying grey-box model used as the basis for most compressor control applications was developed by Greitzer \cite{Greitzer1976} and expanded by Moore and Greitzer \cite{Moore1985}.
 They model a system consisting of a compressor, plenum and throttle for an inviscid, incompressible flow with constant time-averaged flow around the annulus. 
 The equations are then developed to predict both surge and rotating stall.
+The models are based on the use of compressor maps to characterize the behavior of each individual compressor, as well as parameters describing the up- and downstream processes !!!.
 The Greitzer model was developed for axial compressors, however it has been shown to be also applicable to centrifugal compressors by Hansen et al. \cite{Hansen1981} 
 
 The Moore-Greitzer model was expanded by Gravdahl and Egeland to include both a close-coupled valve and a non-constant compressor speed for axial and centrifugal compressors \cite{Gravdahl1999}. 
@@ -28,7 +34,9 @@ Using these coordinate systems allows the surge conditions to be represented as 
 %Galindo2007\\
 %Li2014
 
-\section{MPC for individual compressors}
+\section{MPC Theory}
+
+\section{MPC for compressors}
 MPC has been used in several cases to combine process and surge control -- traditionally performed by two independent controllers -- resulting in increased performance and better surge avoidance during disturbances compared to traditional PID controllers \cite{Cortinovis2015,Budinis2015}.
 
 Cortinovis et al. showed that combined process and surge control using MPC led to a reduced distance to surge and a reduced settling time for process control in a centrifugal compressor in experiments compared to PID control. 
@@ -56,7 +64,7 @@ Bentaleb et al. also demonstrated that an MPC controller manipulating both drive
   %\item Zhou2015
 %\end{itemize}
 
-\section{Load Sharing}
+\section{Control of Compressor Networks}
 
 An MPC controller for two compressors arranged in parallel was developed by Smeulers and Bouman who considered a single controller combining load-sharing for the two compressors as well as performance and anti-surge criteria for each compressor individually \cite{Smeulers1999}. 
 The controller was implemented using linear MPC, where the non-linear model was linearized at each time step to characterize the compressors' non-linear behavior more accurately.
