@@ -1,6 +1,8 @@
 % Tuning parameters for MPC controller
 % clear all
-addpath('..\qpoases\interfaces\matlab\')
+% addpath('..\qpoases\interfaces\matlab\')
+addpath('call_qpoases_m')
+addpath('call_qpoases_m/qpoases3/interfaces/matlab')
 
 global xinit H A B C M ysize xsize usize p LB UB Ga Gb Gc Ain b upast m
 
@@ -132,10 +134,10 @@ Gc = Su'*YWT*Su;
 
 %% Define upper/lower bounds
 
-lb = [-0.3; 0];
-ub = [0.3; 1];
 % lb = [-0.3; 0];
-% ub = [0.65; 1];
+% ub = [0.3; 1];
+lb = [-0.1; 0];
+ub = [0.1; 1];
 LB = repmat(lb,m,1);
 UB = repmat(ub,m,1);
 
