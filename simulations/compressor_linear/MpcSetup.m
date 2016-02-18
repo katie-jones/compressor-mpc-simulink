@@ -1,8 +1,8 @@
 % Tuning parameters for MPC controller
-% clear all
+clear all
 % addpath('..\qpoases\interfaces\matlab\')
-addpath('call_qpoases_m')
-addpath('call_qpoases_m/qpoases3/interfaces/matlab')
+addpath('../call_qpoases_m')
+addpath('../call_qpoases_m/qpoases3/interfaces/matlab')
 
 global xinit H A B C M ysize xsize usize p LB UB Ga Gb Gc Ain b upast m
 
