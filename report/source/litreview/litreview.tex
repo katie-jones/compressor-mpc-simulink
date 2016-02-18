@@ -19,7 +19,7 @@ The Greitzer model was developed for axial compressors, however it has been show
 The Moore-Greitzer model was expanded by Gravdahl and Egeland to include both a close-coupled valve and a non-constant compressor speed for axial and centrifugal compressors \cite{Gravdahl1999}. 
 This updated model was used to study surge during compressor acceleration for a variable-speed compressor.
 
-Aaslid developed the Gravdahl and Greitzer model into a Simulink model, which was then validated against test data from a gas processing plant for use in surge control \cite{Aaslid2009}. 
+Aaslid developed the Gravdahl and Greitzer model into a Simulink model, which was then validated against test data from a gas processing plant for use in anti-surge control (ASC) \cite{Aaslid2009}. 
 
 Galindo et al. developed a compressor map extending into the surge region was developed and experimentally validated. The model obtained was found to be accurate even during operation in the surge regime \cite{Galindo2008}.
 
@@ -37,15 +37,17 @@ Using these coordinate systems allows the surge conditions to be represented as 
 \section{MPC Theory}
 
 \section{MPC for compressors}
-MPC has been used in several cases to combine process and surge control -- traditionally performed by two independent controllers -- resulting in increased performance and better surge avoidance during disturbances compared to traditional PID controllers \cite{Cortinovis2015,Budinis2015}.
+MPC has been used in several cases to combine process and anti-surge control (ASC) -- traditionally performed by two independent controllers -- resulting in increased performance and better surge avoidance during disturbances compared to traditional PID controllers \cite{Cortinovis2015,Budinis2015}.
 
-Cortinovis et al. showed that combined process and surge control using MPC led to a reduced distance to surge and a reduced settling time for process control in a centrifugal compressor in experiments compared to PID control. 
+Cortinovis et al. showed that combined process and ASC using MPC led to a reduced distance to surge and a reduced settling time for process control in a centrifugal compressor in experiments compared to the current state-of-the-art. 
 Both a discharge valve disturbance and a combined disturbance on both the discharge and the suction valve were considered \cite{Cortinovis2015}. 
 The controller was implemented using linear MPC by linearizing the system at each time step. 
 
-Similarly, Budinis and Thornhill found that a combined process/surge MPC controller better handled disturbances on the inlet and outlet valves as well as changes in load pattern compared to a PID controller in simulation \cite{Budinis2015}.
+Similarly, Budinis and Thornhill found that a combined process/anti-surge MPC controller better handled disturbances on the inlet and outlet valves as well as changes in load pattern compared to a PID controller in simulation \cite{Budinis2015}.
 
-Bentaleb et al. also demonstrated that an MPC controller manipulating both driver speed and the inlet guide vanes could achieve better performance than a PID controller manipulating only the driver speed, though they did not integrate surge control \cite{Bentaleb2014}.
+Bentaleb et al. also demonstrated that an MPC controller manipulating both driver speed and the inlet guide vanes could achieve better performance than a PID controller manipulating only the driver speed, though they did not integrate anti-surge control \cite{Bentaleb2014}.
+
+!!! Add Bentaleb thesis + other refs
 
 %\begin{itemize}
   %\item Bentaleb2014
@@ -65,6 +67,7 @@ Bentaleb et al. also demonstrated that an MPC controller manipulating both drive
 %\end{itemize}
 
 \section{Control of Compressor Networks}
+!!! don't talk about load sharing
 
 An MPC controller for two compressors arranged in parallel was developed by Smeulers and Bouman who considered a single controller combining load-sharing for the two compressors as well as performance and anti-surge criteria for each compressor individually \cite{Smeulers1999}. 
 The controller was implemented using linear MPC, where the non-linear model was linearized at each time step to characterize the compressors' non-linear behavior more accurately.
