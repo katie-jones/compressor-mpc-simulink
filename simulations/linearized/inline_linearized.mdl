@@ -1,12 +1,12 @@
 Model {
-  Name			  "inline_linear"
+  Name			  "inline_linearized"
   Version		  7.4
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.2"
+    ComputedModelVersion    "1.20"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Feb 18 15:03:00 2016"
-  RTWModifiedTimeStamp	  377708577
-  ModelVersionFormat	  "1.%<AutoIncrement:2>"
+  LastModifiedDate	  "Fri Feb 19 16:01:20 2016"
+  RTWModifiedTimeStamp	  377798081
+  ModelVersionFormat	  "1.%<AutoIncrement:20>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "300"
+	  StopTime		  "10"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
@@ -765,8 +765,8 @@ Model {
     }
   }
   System {
-    Name		    "inline_linear"
-    Location		    [409, 172, 1524, 733]
+    Name		    "inline_linearized"
+    Location		    [1266, 135, 2381, 696]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -800,14 +800,14 @@ Model {
       Ports		      [1]
       Position		      [890, 124, 920, 156]
       Floating		      off
-      Location		      [934, 707, 1275, 980]
+      Location		      [288, 332, 629, 605]
       Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "300"
+      TimeRange		      "10"
       YMin		      "-0.3"
       YMax		      "0.1"
       SaveName		      "ScopeData14"
@@ -878,7 +878,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Sim Model"
-	Location		[9, 93, 1463, 889]
+	Location		[1282, 74, 2558, 986]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -927,7 +927,7 @@ Model {
 	  MaskIconUnits		  "autoscale"
 	  System {
 	    Name		    "Compresion plant"
-	    Location		    [7, 93, 1905, 1006]
+	    Location		    [637, 82, 2535, 995]
 	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
@@ -1872,7 +1872,7 @@ Model {
       Position		      [295, 234, 325, 266]
       Floating		      off
       Location		      [567, 718, 908, 991]
-      Open		      on
+      Open		      off
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
@@ -1903,7 +1903,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[508, 231, 1125, 630]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1949,6 +1949,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -1997,7 +2002,7 @@ Model {
 	      BlockType		      "S-Function"
 	      Name		      " SFunction "
 	      SID		      6
-	      Tag		      "Stateflow S-Function inline_linear 2"
+	      Tag		      "Stateflow S-Function inline_linearized 2"
 	      Ports		      [1, 4]
 	      Position		      [180, 121, 230, 329]
 	      FunctionName	      "sf_sfun"
@@ -2235,14 +2240,14 @@ Model {
       Ports		      [1]
       Position		      [840, 59, 870, 91]
       Floating		      off
-      Location		      [934, 716, 1275, 989]
+      Location		      [748, 390, 1089, 663]
       Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "300"
+      TimeRange		      "10"
       YMin		      "-0.05"
       YMax		      "0.225"
       SaveName		      "ScopeData3"
@@ -2258,7 +2263,7 @@ Model {
       Position		      [195, 234, 225, 266]
       Floating		      off
       Location		      [208, 714, 532, 990]
-      Open		      on
+      Open		      off
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
@@ -2387,10 +2392,12 @@ Model {
 Stateflow {
   machine {
     id			    1
-    name		    "inline_linear"
+    name		    "inline_linearized"
     created		    "18-Feb-2016 14:48:53"
     isLibrary		    0
     firstTarget		    11
+    debug {
+    }
     sfVersion		    71014000.00001
   }
   chart {
@@ -2428,27 +2435,28 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function [u_new,exitflag_out,it_out]  = fcn(u)\n%#eml\npersistent C_new M LB UB Ga Gb Gc H Ain b "
-      "A B upast xinit\neml.extrinsic('disp');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');"
-      "\neml.extrinsic('keyboard');\n\np=200;\nm=8;\n% p = 100;\n% m = 10;\n\nif isempty(M)\n    tic\n    option = 1;\n"
-      "    [H,C_new,M,UB,LB,b,Ain,Ga,Gb,Gc,xinit,upast] = get_matrices(option);\n%     xinit(1:4,1) = [0.8980 1.1260 0."
-      "1500 439.5000]';\n    [A,B] = get_matAB(option);\n    \n    time = toc;\n    disp(['Preparation time: ' num2str("
-      "time)]);\nend\n\n% tic\n\nH_star = H;\n% H_star = (H+H')/2;\nAin_star = Ain;\nb_star = b;\n\ny=u(1:2);\nyref=u(3"
-      ":4);\n\n\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n\n% estimate the state information\n\n\n"
-      "xinit  = xinit + M*(y - C_new*xinit);\n\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n% upper a"
-      "nd lower bounds wrt past input\nUpast = zeros(m*2,1);\n\nfor i=1:m\n    Upast(1+(i-1)*2:i*2,1)=upast;\nend\n\nLB"
-      "a=LB-Upast;\nUBa=UB-Upast;\n\n\n\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n% generate the o"
-      "utput reference vector\n\nR = zeros(p*2,1);\n\nfor i=1:p\n    R(1+(i-1)*2:i*2,1)=yref;\nend\n\n% generate the gr"
-      "adient vector\n\nf = xinit'*Gb+Upast'*Gc-R'*Ga;\n\n% xinit1 = xinit;\n% upast1 = upast;\n\nlbA = [-inf(size(Ain_"
-      "star,1),1)];\nubA = [b_star];\n[usol,cost,exitflag,it,lambda] = call_qpoases_m(H_star,f,Ain_star,LBa,UBa,lbA,ubA"
-      ");\nexitflag_out = exitflag(1,1);\nit_out = it(1,1);\ndunext=usol(1:2,1);\n\nxinit= A*xinit + B*(dunext+upast);\n"
-      "\nu_new=dunext+upast;\n\nupast = u_new;\n\n% time2 = toc;\n% disp(['Normal Execution Time: ' num2str(time2)]);\n"
-      "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n\n% solve the QP\n\n% usol=quadprog(H_qp,f,Ain,b,["
-      "],[],LBa,UBa);\n% \n% \n% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% \n% % extract the co"
-      "ntrol moves for next time step\n% \n% \n% dunext=usol(1:2,1);\n% \n% \n% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-      "%%%%%%%%%%%%%%%%%%%\n% \n% \n% % initial conditions are updated\n% \n% \n% xinit= A*xinit + B*(dunext+upast);\n%"
-      " \n% \n% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% % control moves are sent to the plant"
-      "\n% \n% upast=dunext+upast;\n% \n% sys=upast;\n"
+      script		      "function [u_new,exitflag_out,it_out]  = fcn(u)\n%#eml\n% persistent C_new M LB UB Ga Gb Gc H Ain "
+      "b A B upast xinit\npersistent M LB UB Ain b upast xinit deltax C\neml.extrinsic('disp');\neml.extrinsic('toc');\n"
+      "eml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\n\np=200;\nm=8;\n% p = 100;\n% m = "
+      "10;\n\nif isempty(M)\n    tic\n    option = 1;\n%     [H,C_new,M,UB,LB,b,Ain,Ga,Gb,Gc,xinit,upast] = get_matrice"
+      "s(option);\n    [C,M,UB,LB,b,Ain,xinit,upast,deltax] = get_constant_matrices();\n%     xinit(1:4,1) = [0.8980 1."
+      "1260 0.1500 439.5000]';\n    time = toc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\n% tic\n\ny=u(1"
+      ":2);\nyref=u(3:4);\n\n\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n\n% estimate the state inf"
+      "ormation\n\n\n% xinit  = xinit + M*(y - C_new*xinit);\ndeltax = deltax + M*(y - C*deltax);\nxinit = deltax + xin"
+      "it;\n\n[A,B,C,H,Ga,Gb,Gc] = get_qp_matrices(xinit,upast);\n\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+      "%%%%%%%\n\n\n\n% upper and lower bounds wrt past input\nUpast = zeros(m*2,1);\n\nfor i=1:m\n    Upast(1+(i-1)*2:"
+      "i*2,1)=upast;\nend\n\nLBa=LB-Upast;\nUBa=UB-Upast;\n\n\n\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+      "%%%%\n\n% generate the output reference vector\n\nR = zeros(p*2,1);\n\nfor i=1:p\n    R(1+(i-1)*2:i*2,1)=yref - "
+      "y;\nend\n\n% generate the gradient vector\n\nf = deltax'*Gb+Upast'*Gc-R'*Ga;\n\n% xinit1 = xinit;\n% upast1 = up"
+      "ast;\n\nlbA = -inf(size(Ain,1),1);\nubA = b;\n[usol,cost,exitflag,it,lambda] = call_qpoases_m(H,f,Ain,LBa,UBa,lb"
+      "A,ubA);\nexitflag_out = exitflag(1,1);\nit_out = it(1,1);\ndunext=usol(1:2,1);\n\ndeltax= A*deltax + B*(dunext+u"
+      "past);\n\nu_new = dunext + upast;\n\nupast = u_new;\n\n% time2 = toc;\n% disp(['Normal Execution Time: ' num2str"
+      "(time2)]);\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n\n% solve the QP\n\n% usol=quadprog(H_"
+      "qp,f,Ain,b,[],[],LBa,UBa);\n% \n% \n% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% \n% % ex"
+      "tract the control moves for next time step\n% \n% \n% dunext=usol(1:2,1);\n% \n% \n% %%%%%%%%%%%%%%%%%%%%%%%%%%%"
+      "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% \n% % initial conditions are updated\n% \n% \n% xinit= A*xinit + B*(dunex"
+      "t+upast);\n% \n% \n% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% % control moves are sent "
+      "to the plant\n% \n% upast=dunext+upast;\n% \n% sys=upast;\n"
       editorLayout	      "100 M4x1[10 5 750 500]"
     }
   }
