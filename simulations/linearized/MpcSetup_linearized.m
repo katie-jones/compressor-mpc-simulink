@@ -4,12 +4,12 @@ clear all
 addpath('../call_qpoases_m')
 addpath('../call_qpoases_m/qpoases3/interfaces/matlab')
 
-global xinit H A B C M ysize xsize usize p LB UB Ga Gb Gc Ain b upast m
+global xinit A B C M ysize xsize usize p LB UB Ain b upast m
 
 load sys.mat
 
 Ts = 50e-3; % 50 ms sampling time
-n_delay = [1;21]; % delay as multiple of sampling time
+n_delay = [0;40]; % delay as multiple of sampling time
 % n_delay = 0;
 
 xsize = length(A);
@@ -70,19 +70,10 @@ xsize = length(Aaug);
 
 %% Design observer
 % expectation of output disturbance
-% Qn = eye(orig_xsize+dsize);
-% Qn = [eye(orig_xsize), zeros(orig_xsize,dsize);
-%     zeros(dsize,orig_xsize), 1*eye(dsize)];
-% Rn = zeros(dsize);
-
 Qn = eye(orig_xsize);
 Rn = eye(dsize);
 
 % state disturbance to state matrix
-% G = [eye(orig_xsize),zeros(orig_xsize,dsize);
-%     zeros(n_delay,orig_xsize+dsize);
-%     zeros(dsize,orig_xsize), eye(dsize)];
-
 G = [zeros(xsize-dsize,orig_xsize);
     zeros(dsize,1), eye(dsize)*10, zeros(dsize,orig_xsize-dsize-1)];
 
@@ -94,50 +85,21 @@ sys_kalman = ss(A,[B G], C, [D Hkalman], Ts);
 
 %% Define QP matrices
 
-YW=diag([1e1 1e3]');
-UW=diag([50 1]');
-% UW = diag([50 100]');
-% YW = diag([1e4 1e5]');
+% YW=diag([1e1 1e3]');
+% UW=diag([50 1]');
+UW = diag([50 100]');
+YW = diag([1e4 1e5]');
 
 YWT = kron(eye(p),YW);
 UWT = kron(eye(m),UW);
 
-% Y = Su*U + Sx*X
-Su = zeros(ysize*p,usize*m);
-
-for i=1:p
-    for j=1:i
-        % for first m inputs, make new columns
-        if j<=m
-            Su(1+(i-1)*ysize:i*ysize,1+(j-1)*usize:j*usize) = C*A^(i-j)*B;
-            
-        % m+1:p inputs are the same as input m
-        else
-            Su(1+(i-1)*ysize:i*ysize,1+(m-1)*usize:m*usize) = Su(1+(i-1)*ysize:i*ysize,1+(m-1)*usize:m*usize) +  C*A^(i-j)*B;
-        end
-    end
-end
-
-
-Sx = zeros(ysize*p,xsize);
-
-for i=1:p
-    Sx(1+(i-1)*ysize:i*ysize,:) = C*A^i;
-end
-
-H = Su'*YWT*Su + UWT;
-
-Ga = YWT*Su;
-Gb = Sx'*YWT*Su;
-Gc = Su'*YWT*Su;
-
-
 %% Define upper/lower bounds
-
 % lb = [-0.3; 0];
 % ub = [0.3; 1];
-lb = [-0.1; 0];
-ub = [0.1; 1];
+% lb = [-0.1; 0];
+% ub = [0.1; 1];
+lb = [0;0];
+ub = [0;1];
 LB = repmat(lb,m,1);
 UB = repmat(ub,m,1);
 
@@ -164,12 +126,14 @@ x_init_lin = [0.898
       0.15
       439.5
       0];
-  
-xinit = zeros(xsize,1); 
+
+xinit = [x_init_lin;
+        zeros(xsize-orig_xsize,1)];
 upast = zeros(usize,1);
+deltax = zeros(xsize,1);
 
 disp('MPC Problem Formulated!');
 
-generate_file_v3m;
+generate_file_linearized;
 
 disp('Embedded files generated.')
