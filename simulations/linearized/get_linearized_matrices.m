@@ -18,7 +18,7 @@ m_comp = x(3);
 omega_comp = x(4);
 m_rec = x(5);
 
-torque_drive = u(1)+0.304;
+torque_drive_in = u(1)+0.304;
 Recycle_opening = u(2);
 Inflow_opening = 0.405;
 Outflow_opening = 0.393;
@@ -100,7 +100,7 @@ dqcdot = [ AdivL*(p_ratio*1e5),...
          ];
 
 % Partial derivatives of omegac
-domegacdot = [ 0, 0, -1.0/J * 47.4222669576423, 0, 0];
+domegacdot = [ 0, 0, -1.0/J * 47.4222669576423, -1.0/J*torque_drive_in*15000/omega_comp^2, 0];
 
 % Partial derivatives of qr
 dqrdot = [ -tauRecycle * (0.0047 * 1/2 * Recycle_opening / sqrt(p2*1e5 - p1*1e5) * 1e5),...
@@ -124,12 +124,14 @@ A = [dp1dot;
 B = [0, 0;
     0, 0;
     0, 0;
-    1.0/J, 0;
+    1.0/J*15000/omega_comp, 0;
     0, tauRecycle*0.0047 * sqrt(p2*1e5 - p1*1e5)];
 
 % Linearized C matrix
 C = [0, 1, 0, 0, 0;
     p2/(5.55*p1^2), -1/(5.55*p1), 1, 0, 0];
+
+C(2,:) = 100*C(2,:); % SD output is multiplied by factor 100
 
 
 
