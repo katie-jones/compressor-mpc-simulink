@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.19"
+    ComputedModelVersion    "1.44"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Feb 22 11:19:23 2016"
-  RTWModifiedTimeStamp	  378040665
-  ModelVersionFormat	  "1.%<AutoIncrement:19>"
+  LastModifiedDate	  "Tue Feb 23 14:50:08 2016"
+  RTWModifiedTimeStamp	  378139742
+  ModelVersionFormat	  "1.%<AutoIncrement:44>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -112,7 +112,7 @@ Model {
 	  StartTime		  "0.0"
 	  StopTime		  "10"
 	  AbsTol		  "auto"
-	  FixedStep		  "auto"
+	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
 	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
@@ -694,15 +694,6 @@ Model {
       SampleTime	      "-1"
     }
     Block {
-      BlockType		      Step
-      Time		      "1"
-      Before		      "0"
-      After		      "1"
-      SampleTime	      "-1"
-      VectorParams1D	      on
-      ZeroCross		      on
-    }
-    Block {
       BlockType		      SubSystem
       ShowPortLabels	      "FromPortIcon"
       Permissions	      "ReadWrite"
@@ -770,7 +761,7 @@ Model {
   }
   System {
     Name		    "compressor"
-    Location		    [1282, 74, 2541, 1003]
+    Location		    [2, 74, 1261, 946]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -784,7 +775,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    84
+    SIDHighWatermark	    88
     Block {
       BlockType		      SubSystem
       Name		      "Compresion plant"
@@ -868,6 +859,7 @@ Model {
       Position		      [260, 635, 525, 855]
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
+      SystemSampleTime	      ".05"
       RTWSystemCode	      "Auto"
       FunctionWithSeparateData off
       Opaque		      off
@@ -1074,6 +1066,17 @@ Model {
       DisplayOption	      "bar"
     }
     Block {
+      BlockType		      Mux
+      Name		      "Mux3"
+      SID		      86
+      Ports		      [5, 1]
+      Position		      [1205, 114, 1210, 496]
+      BackgroundColor	      "black"
+      ShowName		      off
+      Inputs		      "5"
+      DisplayOption	      "bar"
+    }
+    Block {
       BlockType		      Reference
       Name		      "Signal From\nWorkspace"
       SID		      49
@@ -1091,7 +1094,7 @@ Model {
       RTWMemSecDataInternal   "Inherit from model"
       RTWMemSecDataParameters "Inherit from model"
       X			      "Td"
-      Ts		      "1"
+      Ts		      "Ts"
       nsamps		      "1"
       OutputAfterFinalValue   "Holding final value"
       ignoreOrWarnInputAndFrameLengths off
@@ -1114,7 +1117,7 @@ Model {
       RTWMemSecDataInternal   "Inherit from model"
       RTWMemSecDataParameters "Inherit from model"
       X			      "rec_open"
-      Ts		      "1"
+      Ts		      "Ts"
       nsamps		      "1"
       OutputAfterFinalValue   "Holding final value"
       ignoreOrWarnInputAndFrameLengths off
@@ -1124,7 +1127,7 @@ Model {
       Name		      "Signal To\nWorkspace1"
       SID		      48
       Ports		      [1]
-      Position		      [1070, 438, 1125, 472]
+      Position		      [1065, 578, 1120, 612]
       LibraryVersion	      "1.449"
       FontName		      "Arial"
       SourceBlock	      "dspsnks4/Signal To\nWorkspace"
@@ -1168,24 +1171,6 @@ Model {
       FixptAsFi		      off
     }
     Block {
-      BlockType		      Step
-      Name		      "Step"
-      SID		      11
-      Position		      [155, 355, 185, 385]
-      Time		      "50"
-      After		      "-0.1"
-      SampleTime	      "0"
-    }
-    Block {
-      BlockType		      Step
-      Name		      "Step1"
-      SID		      12
-      Position		      [100, 280, 130, 310]
-      Time		      "100"
-      After		      "0"
-      SampleTime	      "0"
-    }
-    Block {
       BlockType		      Sum
       Name		      "Sum1"
       SID		      61
@@ -1208,20 +1193,6 @@ Model {
       ShowName		      off
       IconShape		      "round"
       Inputs		      "|++"
-      InputSameDT	      off
-      OutDataTypeMode	      "Inherit via internal rule"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
-    }
-    Block {
-      BlockType		      Sum
-      Name		      "Sum2"
-      SID		      14
-      Ports		      [3, 1]
-      Position		      [195, 325, 215, 345]
-      ShowName		      off
-      IconShape		      "round"
-      Inputs		      "+++"
       InputSameDT	      off
       OutDataTypeMode	      "Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
@@ -1379,7 +1350,7 @@ Model {
       Name		      "To Workspace"
       SID		      51
       Ports		      [1]
-      Position		      [1070, 125, 1130, 155]
+      Position		      [1110, 80, 1170, 110]
       VariableName	      "p_out"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
@@ -1392,6 +1363,17 @@ Model {
       Ports		      [1]
       Position		      [1070, 795, 1130, 825]
       VariableName	      "p_out1"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace2"
+      SID		      88
+      Ports		      [1]
+      Position		      [1240, 290, 1300, 320]
+      VariableName	      "x_out"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
       SaveFormat	      "Structure With Time"
@@ -2005,19 +1987,6 @@ Model {
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Sum2"
-      SrcPort		      1
-      DstBlock		      "Mux1"
-      DstPort		      3
-    }
-    Line {
-      SrcBlock		      "Step"
-      SrcPort		      1
-      Points		      [15, 0]
-      DstBlock		      "Sum2"
-      DstPort		      3
-    }
-    Line {
       SrcBlock		      "Transport\nDelay"
       SrcPort		      1
       DstBlock		      "Sum9"
@@ -2039,24 +2008,24 @@ Model {
 	DstPort			1
       }
       Branch {
-	Points			[5, 0; 0, -55]
-	DstBlock		"Sum8"
-	DstPort			1
+	Points			[5, 0]
+	Branch {
+	  Points		  [0, -55]
+	  DstBlock		  "Sum8"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, 15]
+	  DstBlock		  "Signal To\nWorkspace1"
+	  DstPort		  1
+	}
       }
     }
     Line {
       SrcBlock		      "Gain1"
       SrcPort		      1
-      Points		      [5, 0]
-      Branch {
-	DstBlock		"dist"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, -70]
-	DstBlock		"Signal To\nWorkspace1"
-	DstPort			1
-      }
+      DstBlock		      "dist"
+      DstPort		      1
     }
     Line {
       SrcBlock		      "Signal From\nWorkspace"
@@ -2081,15 +2050,9 @@ Model {
     Line {
       SrcBlock		      "Gain"
       SrcPort		      1
-      Points		      [20, 0; 0, 0]
-      Branch {
-	DstBlock		"p_out"
-	DstPort			1
-      }
-      Branch {
-	DstBlock		"To Workspace"
-	DstPort			1
-      }
+      Points		      [20, 0]
+      DstBlock		      "p_out"
+      DstPort		      1
     }
     Line {
       SrcBlock		      "nom1"
@@ -2115,12 +2078,20 @@ Model {
       SrcPort		      5
       Points		      [55, 0]
       Branch {
-	DstBlock		"omega"
+	DstBlock		"Terminator1"
 	DstPort			1
       }
       Branch {
-	DstBlock		"Terminator1"
-	DstPort			1
+	Points			[65, 0]
+	Branch {
+	  DstBlock		  "omega"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, 75]
+	  DstBlock		  "Mux3"
+	  DstPort		  4
+	}
       }
     }
     Line {
@@ -2130,12 +2101,20 @@ Model {
       SrcPort		      1
       Points		      [35, 0]
       Branch {
-	DstBlock		"p_in"
+	DstBlock		"Terminator"
 	DstPort			1
       }
       Branch {
-	DstBlock		"Terminator"
-	DstPort			1
+	Points			[0, -5]
+	Branch {
+	  DstBlock		  "p_in"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, 75]
+	  DstBlock		  "Mux3"
+	  DstPort		  1
+	}
       }
     }
     Line {
@@ -2143,14 +2122,27 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Demux2"
       SrcPort		      2
-      Points		      [190, 0]
+      Points		      [130, 0]
       Branch {
-	Points			[0, -100]
-	DstBlock		"p_out1"
-	DstPort			1
+	Points			[60, 0]
+	Branch {
+	  Points		  [0, -100]
+	  DstBlock		  "p_out1"
+	  DstPort		  1
+	}
+	Branch {
+	  DstBlock		  "Sum10"
+	  DstPort		  1
+	}
       }
       Branch {
-	DstBlock		"Sum10"
+	Points			[0, 90]
+	DstBlock		"Mux3"
+	DstPort			2
+      }
+      Branch {
+	Points			[0, -25; 390, 0]
+	DstBlock		"To Workspace"
 	DstPort			1
       }
     }
@@ -2208,8 +2200,8 @@ Model {
     Line {
       SrcBlock		      "u_out"
       SrcPort		      1
-      DstBlock		      "Sum2"
-      DstPort		      2
+      DstBlock		      "Mux1"
+      DstPort		      3
     }
     Line {
       SrcBlock		      "Demux2"
@@ -2229,12 +2221,20 @@ Model {
       SrcPort		      8
       Points		      [20, 0]
       Branch {
-	DstBlock		"m_rec"
+	DstBlock		"Terminator5"
 	DstPort			1
       }
       Branch {
-	DstBlock		"Terminator5"
-	DstPort			1
+	Points			[80, 0]
+	Branch {
+	  DstBlock		  "m_rec"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, -15]
+	  DstBlock		  "Mux3"
+	  DstPort		  5
+	}
       }
     }
     Line {
@@ -2261,8 +2261,16 @@ Model {
       Labels		      [0, 0]
       SrcBlock		      "Demux2"
       SrcPort		      3
-      DstBlock		      "m_comp"
-      DstPort		      1
+      Points		      [55, 0]
+      Branch {
+	DstBlock		"m_comp"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 45; 560, 0]
+	DstBlock		"Mux3"
+	DstPort			3
+      }
     }
     Line {
       SrcBlock		      "Mux1"
@@ -2290,13 +2298,6 @@ Model {
       SrcBlock		      "Compresion plant"
       SrcPort		      1
       DstBlock		      "Demux2"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Step1"
-      SrcPort		      1
-      Points		      [70, 0]
-      DstBlock		      "Sum2"
       DstPort		      1
     }
     Line {
@@ -2492,6 +2493,12 @@ Model {
       Points		      [-190, 0; 0, -170]
       DstBlock		      "Mux2"
       DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Mux3"
+      SrcPort		      1
+      DstBlock		      "To Workspace2"
+      DstPort		      1
     }
     Annotation {
       Position		      [42, 373]

@@ -1,7 +1,7 @@
 % Discretize system given by A,B,C using 4th order runge kutta
-function [Ad,Bd,Cd] = discretize_rk4(A,B,C)
+function [Ad,Bd,Cd] = discretize_rk4(A,B,C,Ts)
 %#eml
-Ts = 0.05;
+% Ts = 0.05;
 xsize = 5;
 
 A2 = A^2;
