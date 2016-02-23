@@ -1,4 +1,4 @@
-function [A,B,C,H,Ga,Gb,Gc] = get_qp_matrices(xinit,upast)
+function [A,B,C,H,Ga,Gb,Gc,dx] = get_qp_matrices(xinit,upast)
 %#eml
 %% Constants
 % p = 200;
@@ -6,10 +6,14 @@ function [A,B,C,H,Ga,Gb,Gc] = get_qp_matrices(xinit,upast)
 p = 100;
 m = 2;
 Ts = 0.05;
+Inflow_opening = 0.405;
+Outflow_opening = 0.393;
 
 %% Linearized system
 [Ac,Bc,Cc] = get_linearized_matrices(xinit,upast);
-[Ainit,Binit,Cinit] = discretize_rk4(Ac,Bc,Cc);
+f = get_comp_deriv(xinit(1:5),[0.304+upast(1),Inflow_opening,Outflow_opening,upast(2)]);
+[Ainit,Binit,Cinit,dx2] = discretize_rk4(Ac,Bc,Cc,f,Ts);
+
 % Ainit = [
 %     0.9351    0.0189   -0.0440   -0.0000    0.0449
 %     0.0466    0.9200    0.0866    0.0000   -0.0884
@@ -80,6 +84,8 @@ C = [Cinit, zeros(ysize,sum(n_delay)), Cd];
 xsize = length(A);
 % xsize = 29;
 
+dx = [dx2; zeros(xsize-5,1)];
+
 %% Define weight matrices
 
 YW=diag([1e1 1e3]');
@@ -93,7 +99,9 @@ UWT = kron(eye(m),UW);
 %% Define system matrices
 
 % Y = Su*U + Sx*X
+
 Su = zeros(ysize*p,usize*m);
+
 
 for i=1:p
     for j=1:i
@@ -120,9 +128,9 @@ end
 
 
 Sx = zeros(ysize*p,xsize);
-Sx(1:ysize,:) = C*A;
+Sx(1:ysize,:) = C;
 for i=2:p
-    toadd2 = C*A^i;
+    toadd2 = C*A^(i-1);
     for j=1:ysize
         Sx(j+(i-1)*ysize,:) = Sx(j+(i-2)*ysize,:) + toadd2(j,:);
     end

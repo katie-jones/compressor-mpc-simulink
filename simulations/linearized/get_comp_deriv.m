@@ -1,5 +1,5 @@
 function f = get_comp_deriv(x, u)
-
+%#eml
 % Inputs
 torque_drive = u(1);  
 Inflow_opening = u(2);
@@ -137,7 +137,7 @@ T_ss_model = T_ss_model + 0.6218;
 % if omega_comp > 2*pi*50
 %         T_ss_model = T_ss_model * (2 * pi * 50 / omega_comp);
 % end
-
+f = zeros(5,1);
 f(1) = SpeedSound * SpeedSound / VolumeT1 * (m_in + m_rec - m_comp) * 1e-5; % p1
 f(2) = SpeedSound * SpeedSound / VolumeT2 * (m_comp - m_rec - m_out) * 1e-5;  % p2
 f(3) = AdivL * (p_ratio * p1*1e5 - p2*1e5 ); % m_c

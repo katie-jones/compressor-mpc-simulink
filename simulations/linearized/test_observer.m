@@ -128,18 +128,20 @@ Caug_init = Caug;
 yt(:,1) = yr(:,1);
 
 for i=2:length(t)-1
-    x(:,i) = x(:,i) + M*(yr(:,i)-yr(:,1) - Caug*(x(:,i)-x(:,i-1)));
+    x(:,i) = x(:,i) + M*(yr(:,i)-yr(:,i-1) - Caug*(x(:,i)-x(:,i-1)));
     
     yt(:,i) = Caug*(x(:,i)-x(:,i-1))+yt(:,i-1);
     ydiff(:,i) = Caug*(x(:,i)-x(:,i-1))-(yr(:,i)-yr(:,i-1));
     
     [Ac,Bc,Cc] = get_linearized_matrices(x(1:5,i),u(:,i-1));
-    [A,B,C] = discretize_rk4(Ac,Bc,Cc,Ts);
+    f = get_comp_deriv(x(1:5,i),[0.304+u(1,i-1),Inflow_opening,Outflow_opening,u(2,i-1)])';
+    [A,B,C,fd] = discretize_rk4(Ac,Bc,Cc,f,Ts);
+    
     [Aaug,Baug,Caug] = get_augmented_matrices(A,B,C,n_delay);
-    f = get_comp_deriv(x(1:5,i),[0.304+u(1,i-1),Inflow_opening,Outflow_opening,u(2,i-1)]);
 
-    dx(1:5,i) = ((Ts*eye(size(Ac)) + Ts^2/2*Ac + Ts^3/6*Ac^2 + Ts^4/24*Ac^3)*f');
+%     dx(1:5,i) = ((Ts*eye(size(Ac)) + Ts^2/2*Ac + Ts^3/6*Ac^2 + Ts^4/24*Ac^3)*f');
 %     dx(:,i) = x(:,i)-x(:,i-1);
+    dx(1:5,i) = fd;
     
     x(:,i+1) = x(:,i) + Baug*(u(:,i)-u(:,i-1)) + dx(:,i);
 end
