@@ -193,31 +193,35 @@ sys(10) = SD;
 
 
 function sys = mdlDerivatives(t,x,u,Param)
-% global x_old u_old
-% 
+global x_old u_old
+
 % if ~(exist('x_old','var'))
-%     x_old = x;
-%     u_old = zeros(5,1);
-% end
+if (isempty(x_old))
+    fprintf('x empty\n')
+    x_old = x;
+    u_old = zeros(5,1);
+end
 
-u_old = [    
-    0.3040
-%     0
-    0.4050
-    0.3930
-         0
-         0];
-x_old = [ 0.8980
-    1.1260
-    0.1500
-  439.5000
-         0];
+% u_old = [    
+%     0.3040
+% %     0
+%     0.4050
+%     0.3930
+%          0
+%          0];
+% x_old = [ 0.8980
+%     1.1260
+%     0.1500
+%   439.5000
+%          0];
 
-f = get_comp_deriv(x_old,u_old(1:4))';
-[A,B,C] = get_linearized_matrices(x_old,u_old([1,4],1));
+% f = get_comp_deriv(x_old,u_old(1:4))';
+% [A,B,C] = get_linearized_matrices(x_old,u_old([1,4],1));
+f = get_comp_deriv(x,u_old(1:4))';
+[A,B,C] = get_linearized_matrices(x,u_old([1,4],1));
 
 du = (u-u_old);
-xdot = A*(x-x_old) + B*(du([1,4],1)) + f;
+xdot = A*(x-x) + B*(du([1,4],1)) + f;
 sys = xdot;
 
 x_old = x;
