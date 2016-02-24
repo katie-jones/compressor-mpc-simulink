@@ -4,23 +4,25 @@ clear all
 addpath('../call_qpoases_m')
 addpath('../call_qpoases_m/qpoases3/interfaces/matlab')
 
-global xinit A B C M ysize xsize usize p LB UB Ain b upast m
+% global xinit A B C M ysize xsize usize p LB UB Ain b upast m
 
 load sys.mat
 
-Ts = 50e-3; % 50 ms sampling time
-n_delay = [0;40]; % delay as multiple of sampling time
-% n_delay = 0;
+[xsizea,ysize,dsize,usize,n_delay,xsize,Ts,p,m] = constants();
 
-xsize = length(A);
-usize = size(B,2);
-ysize = size(C,1);
-dsize = 2; % number of disturbances
-
-
-
-p = 100; % prediction horizon
-m = 2; % control horizon
+% Ts = 50e-3; % 50 ms sampling time
+% n_delay = [0;20]; % delay as multiple of sampling time
+% % n_delay = 0;
+% 
+% xsize = length(A);
+% usize = size(B,2);
+% ysize = size(C,1);
+% dsize = 2; % number of disturbances
+% 
+% 
+% 
+% p = 100; % prediction horizon
+% m = 2; % control horizon
 
 
 
@@ -33,20 +35,20 @@ Adelay2 = [zeros(n_delay(2)-1,1), eye(n_delay(2)-1); zeros(1,n_delay(2))]; % del
 Adist = eye(dsize); % disturbance component of A
 
 if (n_delay(1)==0)
-    Aaug = [A, B(:,2), zeros(xsize,n_delay(2)-1), zeros(xsize,dsize);
-        zeros(n_delay(2),xsize), Adelay2, zeros(n_delay(2),dsize);
-        zeros(dsize,xsize), zeros(dsize,n_delay(2)), Adist];
+    Aaug = [A, B(:,2), zeros(xsizea,n_delay(2)-1), zeros(xsizea,dsize);
+        zeros(n_delay(2),xsizea), Adelay2, zeros(n_delay(2),dsize);
+        zeros(dsize,xsizea), zeros(dsize,n_delay(2)), Adist];
 
-    Baug = [B(:,1), zeros(xsize,1);
+    Baug = [B(:,1), zeros(xsizea,1);
         zeros(n_delay(2),1), [zeros(n_delay(2)-1,1);1];
         zeros(dsize,2)];
 else
-    Aaug = [A, B(:,1), zeros(xsize,n_delay(1)-1), B(:,2), zeros(xsize,n_delay(2)-1), zeros(xsize,dsize);
-        zeros(n_delay(1),xsize), Adelay1, zeros(n_delay(1),n_delay(2)), zeros(n_delay(1),dsize);
-        zeros(n_delay(2),xsize), zeros(n_delay(2),n_delay(1)), Adelay2, zeros(n_delay(2),dsize);
-        zeros(dsize,xsize), zeros(dsize,n_delay(1)), zeros(dsize,n_delay(2)), Adist];
+    Aaug = [A, B(:,1), zeros(xsizea,n_delay(1)-1), B(:,2), zeros(xsizea,n_delay(2)-1), zeros(xsizea,dsize);
+        zeros(n_delay(1),xsizea), Adelay1, zeros(n_delay(1),n_delay(2)), zeros(n_delay(1),dsize);
+        zeros(n_delay(2),xsizea), zeros(n_delay(2),n_delay(1)), Adelay2, zeros(n_delay(2),dsize);
+        zeros(dsize,xsizea), zeros(dsize,n_delay(1)), zeros(dsize,n_delay(2)), Adist];
 
-    Baug = [zeros(xsize,usize);
+    Baug = [zeros(xsizea,usize);
         [zeros(n_delay(1)-1,1); 1], zeros(n_delay(1),1);
         zeros(n_delay(2),1), [zeros(n_delay(2)-1,1); 1];
         zeros(dsize,usize)];
@@ -65,8 +67,8 @@ sys = ss(Aaug,Baug,Caug,Daug,Ts);
 A = Aaug;
 B = Baug;
 C = Caug;
-orig_xsize = xsize;
-xsize = length(Aaug);
+orig_xsize = xsizea;
+% xsize = length(Aaug);
 
 %% Design observer
 % expectation of output disturbance

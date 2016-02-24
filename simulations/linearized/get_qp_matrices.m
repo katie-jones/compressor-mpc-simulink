@@ -3,15 +3,32 @@ function [A,B,C,H,Ga,Gb,Gc,dx] = get_qp_matrices(xinit,upast)
 %% Constants
 % p = 200;
 % m = 8;
-p = 100;
-m = 2;
-Ts = 0.05;
+% p = 100;
+% m = 2;
+% Ts = 0.05;
 Inflow_opening = 0.405;
 Outflow_opening = 0.393;
 
+% n_delay = [0;40]; % delay as multiple of sampling time
+% 
+% xsize = 5;
+% usize = 2;
+% ysize = 2;
+% dsize = 2; % number of disturbances
+[xsize,ysize,dsize,usize,n_delay,xsize_full,Ts,p,m] = constants();
+
 %% Linearized system
 [Ac,Bc,Cc] = get_linearized_matrices(xinit,upast);
+
+% if n_delay(1)==0
+%     % use delayed input to calculate derivatives
+%     f = get_comp_deriv(xinit(1:5),[0.304+upast(1),Inflow_opening,Outflow_opening,xinit(xsize+1)]);
+% else
+%     f = get_comp_deriv(xinit(1:5),[0.304+xinit(xsize+1),Inflow_opening,Outflow_opening,xinit(xsize+n_delay(1)+1)]);
+% end
+
 f = get_comp_deriv(xinit(1:5),[0.304+upast(1),Inflow_opening,Outflow_opening,upast(2)]);
+
 [Ainit,Binit,Cinit,dx2] = discretize_rk4(Ac,Bc,Cc,f,Ts);
 
 % Ainit = [
@@ -34,17 +51,13 @@ f = get_comp_deriv(xinit(1:5),[0.304+upast(1),Inflow_opening,Outflow_opening,upa
 %    25.1590  -20.0646  100.0000         0         0
 %    ];
 
-n_delay = [0;40]; % delay as multiple of sampling time
 % n_delay = 0;
 % 
 % xsize = length(Ainit);
 % usize = size(Binit,2);
 % ysize = size(Cinit,1);
 
-xsize = 5;
-usize = 2;
-ysize = 2;
-dsize = 2; % number of disturbances
+
 
 %% Define augmented system
 % delay of n_delay time steps in 2nd component of u
@@ -81,8 +94,9 @@ Cd = eye(ysize,dsize);
 C = [Cinit, zeros(ysize,sum(n_delay)), Cd];
 
 %% Define correct global variables
-xsize = length(A);
+% xsize = length(A);
 % xsize = 29;
+xsize = xsize_full;
 
 dx = [dx2; zeros(xsize-5,1)];
 
