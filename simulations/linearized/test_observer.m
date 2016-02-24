@@ -129,12 +129,14 @@ Caug_init = Caug;
 yt(:,1) = yr(:,1);
 
 xaug = dx;
+dxaug = dx;
 % udele = zeros(xsize-5,length(t));
+xaug = zeros(5,length(t));
 xaug(1:5,1) = x_init_lin;
 xaug(1:5,2) = x_init_lin;
 
 for i=2:length(t)-1
-    xaug(:,i) = xaug(:,i) + M*(yr(:,i)-yr(:,i-1) - Caug*(xaug(:,i)-xaug(:,i-1)));
+    dxaug(:,i) = dxaug(:,i) + M*(yr(:,i)-yr(:,i-1) - Caug*(dxaug(:,i)));
 %     x(:,i) = x(:,i) + M*(yr(:,i) - Caug*(x(:,i)-x(:,i-1)));
 %     dx(:,i) = dx(:,i) + M*(yr(:,i) - yr(:,i-1) - Caug*dx(:,i));
 %     x(:,i) = x(:,i-1) + dx(1:5,i);
@@ -142,35 +144,25 @@ for i=2:length(t)-1
 %     yt(:,i) = Caug*(x(:,i)-x(:,i-1))+yt(:,i-1);
 %     ydiff(:,i) = Caug*(x(:,i)-x(:,i-1))-(yr(:,i)-yr(:,i-1));
     
-    [Ac,Bc,Cc] = get_linearized_matrices(xaug(1:5,i),[u(1,i-1); xaug(6,i)]);
-    f = get_comp_deriv(xaug(1:5,i),[0.304+u(1,i-1),Inflow_opening,Outflow_opening,xaug(6,i)])';
+    [Ac,Bc,Cc] = get_linearized_matrices(xaug(1:5,i),[u(1,i-1); dxaug(6,i)]);
+    f = get_comp_deriv(xaug(1:5,i),[0.304+u(1,i-1),Inflow_opening,Outflow_opening,dxaug(6,i)])';
     [A,B,C,fd] = discretize_rk4(Ac,Bc,Cc,f,Ts);
     
     [Aaug,Baug,Caug] = get_augmented_matrices(A,B,C,n_delay);
     
-    xaug(:,i+1) = Baug*([u(1,i)-u(1,i-1); u(2,i)]);
-%     xaug(1:5,i+1) = xaug(1:5,i+1)+xaug(1:5,i)+fd;
-    xaug(1:5,i+1) = xaug(1:5,i+1)+xaug(1:5,i)+fd;
-    xaug(6:end,i+1) = xaug(6:end,i+1)+Aaug(6:end,6:end)*xaug(6:end,i);
-    
-%     xaug(1:5,i+1) = xaug(1:5,i) + fd + Baug(1:5,:)*([u(1,i)-u(1,i-1); u(2,i)]);
-%     xaug(6:end,i+1) = Aaug(6:end,6:end)*xaug(6:end,i) + Baug(6:end,:)*([u(1,i)-u(1,i-1); u(2,i)]);
-    
-%     dx(1:5,i) = ((Ts*eye(size(Ac)) + Ts^2/2*Ac + Ts^3/6*Ac^2 + Ts^4/24*Ac^3)*f');
-%     dx(:,i) = x(:,i)-x(:,i-1);
-%     dx(1:5,i) = fd;
-%     dx(6:5+n_delay(1)) = x(7:6+n_delay(1));
-%     dx(6+n_delay(1)) = -x(6+n_delay(1));
-    
-%     x(:,i+1) = Baug*(u(:,i)-u(:,i-1));
-%     x(1:5,i+1) = x(1:5,i+1) + f + x(1:5,i);
-%     x(6:end,i+1) = x(6:end,i+1) + Aaug(6:end,6:end)*x(6:end,i);
-    
-%     x(:,i+1) = x(:,i) +  Baug*(u(:,i)-u(:,i-1)) + dx(:,i);
-%     x(:,i+1) = Aaug*(x(:,i)-x(:,i-1)) + Baug*(u(:,i));
+%     Baug(6,2) = -1;
 
-%     dx(:,i+1) = Aaug*dx(:,i) + Baug*[u(1,i); u(2,i)-u(2,i-1)];
-%     x(:,i+1) = dx(:,i+1) + [x(1:5,i)+f(:); zeros(length(Aaug)-5,1)];
+    xlin = dxaug(:,i);
+    xlin(7:end) = 0;
+    
+    dxaug(:,i+1) = Baug*([u(1,i)-u(1,i-1); u(2,i)]) + Aaug*(dxaug(:,i)-xlin) + [fd; zeros(size(dxaug,1)-5,1)];
+%     xaug(1:5,i+1) = xaug(1:5,i+1)+xaug(1:5,i)+fd;
+%     dxaug(1:5,i+1) = dxaug(1:5,i+1)+fd;%+Aaug(1:5,6)*xaug(6,i+1);
+%     dxaug(6:end,i+1) = dxaug(6:end,i+1)+Aaug(6:end,6:end)*dxaug(6:end,i);
+    
+    
+    xaug(:,i+1) = xaug(:,i) + dxaug(1:5,i+1);
+
 
 end
 
