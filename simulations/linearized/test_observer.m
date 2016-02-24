@@ -62,7 +62,8 @@
 %%
 clear all
 N = 200;
-rec_open = zeros(N,1);
+% rec_open = zeros(N,1);
+rec_open = 0.1*ones(N,1);
 % Td = 0.03*ones(N,1);
 Td = [linspace(0,0.01,N/2),linspace(0.01,0,N/2)]';
 % Td = rec_open;
@@ -89,7 +90,7 @@ yr = interp1(p_out.time,y,t)';
 
 u = [Td,rec_open]';
 
-n_delay = [0;20];
+n_delay = [0;19];
 
 % [Ac,Bc,Cc] = get_linearized_matrices(x_init_lin,u(:,1));
 % [A,B,C] = discretize_rk4(Ac,Bc,Cc,Ts);
@@ -103,9 +104,9 @@ ysize = 2;
 usize = 2;
 xsize = length(Aaug);
 
-x = zeros(xsize,length(t));
-dx = x;
-xhat = x;
+x = zeros(5,length(t));
+dx = zeros(xsize,length(t));
+xhat = dx;
 x(1:5,1) = x_init_lin;
 x(1:5,2) = x_init_lin;
 
@@ -127,23 +128,50 @@ Caug_init = Caug;
 
 yt(:,1) = yr(:,1);
 
+xaug = dx;
+% udele = zeros(xsize-5,length(t));
+xaug(1:5,1) = x_init_lin;
+xaug(1:5,2) = x_init_lin;
+
 for i=2:length(t)-1
-    x(:,i) = x(:,i) + M*(yr(:,i)-yr(:,i-1) - Caug*(x(:,i)-x(:,i-1)));
+    xaug(:,i) = xaug(:,i) + M*(yr(:,i)-yr(:,i-1) - Caug*(xaug(:,i)-xaug(:,i-1)));
+%     x(:,i) = x(:,i) + M*(yr(:,i) - Caug*(x(:,i)-x(:,i-1)));
+%     dx(:,i) = dx(:,i) + M*(yr(:,i) - yr(:,i-1) - Caug*dx(:,i));
+%     x(:,i) = x(:,i-1) + dx(1:5,i);
     
-    yt(:,i) = Caug*(x(:,i)-x(:,i-1))+yt(:,i-1);
-    ydiff(:,i) = Caug*(x(:,i)-x(:,i-1))-(yr(:,i)-yr(:,i-1));
+%     yt(:,i) = Caug*(x(:,i)-x(:,i-1))+yt(:,i-1);
+%     ydiff(:,i) = Caug*(x(:,i)-x(:,i-1))-(yr(:,i)-yr(:,i-1));
     
-    [Ac,Bc,Cc] = get_linearized_matrices(x(1:5,i),u(:,i-1));
-    f = get_comp_deriv(x(1:5,i),[0.304+u(1,i-1),Inflow_opening,Outflow_opening,u(2,i-1)])';
+    [Ac,Bc,Cc] = get_linearized_matrices(xaug(1:5,i),[u(1,i-1); xaug(6,i)]);
+    f = get_comp_deriv(xaug(1:5,i),[0.304+u(1,i-1),Inflow_opening,Outflow_opening,xaug(6,i)])';
     [A,B,C,fd] = discretize_rk4(Ac,Bc,Cc,f,Ts);
     
     [Aaug,Baug,Caug] = get_augmented_matrices(A,B,C,n_delay);
-
+    
+    xaug(:,i+1) = Baug*([u(1,i)-u(1,i-1); u(2,i)]);
+%     xaug(1:5,i+1) = xaug(1:5,i+1)+xaug(1:5,i)+fd;
+    xaug(1:5,i+1) = xaug(1:5,i+1)+xaug(1:5,i)+fd;
+    xaug(6:end,i+1) = xaug(6:end,i+1)+Aaug(6:end,6:end)*xaug(6:end,i);
+    
+%     xaug(1:5,i+1) = xaug(1:5,i) + fd + Baug(1:5,:)*([u(1,i)-u(1,i-1); u(2,i)]);
+%     xaug(6:end,i+1) = Aaug(6:end,6:end)*xaug(6:end,i) + Baug(6:end,:)*([u(1,i)-u(1,i-1); u(2,i)]);
+    
 %     dx(1:5,i) = ((Ts*eye(size(Ac)) + Ts^2/2*Ac + Ts^3/6*Ac^2 + Ts^4/24*Ac^3)*f');
 %     dx(:,i) = x(:,i)-x(:,i-1);
-    dx(1:5,i) = fd;
+%     dx(1:5,i) = fd;
+%     dx(6:5+n_delay(1)) = x(7:6+n_delay(1));
+%     dx(6+n_delay(1)) = -x(6+n_delay(1));
     
-    x(:,i+1) = x(:,i) + Baug*(u(:,i)-u(:,i-1)) + dx(:,i);
+%     x(:,i+1) = Baug*(u(:,i)-u(:,i-1));
+%     x(1:5,i+1) = x(1:5,i+1) + f + x(1:5,i);
+%     x(6:end,i+1) = x(6:end,i+1) + Aaug(6:end,6:end)*x(6:end,i);
+    
+%     x(:,i+1) = x(:,i) +  Baug*(u(:,i)-u(:,i-1)) + dx(:,i);
+%     x(:,i+1) = Aaug*(x(:,i)-x(:,i-1)) + Baug*(u(:,i));
+
+%     dx(:,i+1) = Aaug*dx(:,i) + Baug*[u(1,i); u(2,i)-u(2,i-1)];
+%     x(:,i+1) = dx(:,i+1) + [x(1:5,i)+f(:); zeros(length(Aaug)-5,1)];
+
 end
 
 % 

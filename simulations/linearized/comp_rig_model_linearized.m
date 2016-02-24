@@ -221,7 +221,7 @@ f = get_comp_deriv(x,u_old(1:4))';
 [A,B,C] = get_linearized_matrices(x,u_old([1,4],1));
 
 du = (u-u_old);
-xdot = A*(x-x) + B*(du([1,4],1)) + f;
+xdot = A*(x-x) + B*(du([1,4],1)) + f';
 sys = xdot;
 
 x_old = x;

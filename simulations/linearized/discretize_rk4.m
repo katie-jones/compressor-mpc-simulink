@@ -16,6 +16,6 @@ Acom = Ts*eye(xsize) + Ts^2/2*A + Ts^3/6*A2 + Ts^4/24*A3;
 Ad = eye(xsize) + Acom*A;
 Bd = Acom*B;
 Cd = C;
-fd = Acom*f;
+fd = Acom*f(:);
 
 end
