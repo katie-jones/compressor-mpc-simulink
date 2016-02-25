@@ -89,7 +89,8 @@ sys_kalman = ss(A,[B G], C, [D Hkalman], Ts);
 
 % YW=diag([1e1 1e3]');
 % UW=diag([50 1]');
-UW = diag([50 100]');
+% UW = diag([50 100]');
+UW = diag([0 0]');
 YW = diag([1e4 1e5]');
 
 YWT = kron(eye(p),YW);
@@ -98,10 +99,10 @@ UWT = kron(eye(m),UW);
 %% Define upper/lower bounds
 % lb = [-0.3; 0];
 % ub = [0.3; 1];
-% lb = [-0.1; 0];
-% ub = [0.1; 1];
-lb = [0;0];
-ub = [0;1];
+lb = [-0.1; 0];
+ub = [0.1; 1];
+% lb = [0;0];
+% ub = [0;1];
 LB = repmat(lb,m,1);
 UB = repmat(ub,m,1);
 

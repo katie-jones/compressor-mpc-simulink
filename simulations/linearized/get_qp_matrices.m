@@ -102,10 +102,10 @@ dx = [dx2; zeros(xsize-5,1)];
 
 %% Define weight matrices
 
-YW=diag([1e1 1e3]');
-UW=diag([50 1]');
-% UW = diag([50 100]');
-% YW = diag([1e4 1e5]');
+% YW=diag([1e1 1e3]');
+% UW=diag([50 1]');
+UW = diag([50 100]');
+YW = diag([1e4 1e5]');
 
 YWT = kron(eye(p),YW);
 UWT = kron(eye(m),UW);
@@ -142,14 +142,18 @@ end
 
 
 Sx = zeros(ysize*p,xsize);
-Sx(1:ysize,:) = C;
+Sf = Sx;
+Sx(1:ysize,:) = C*A;
 for i=2:p
-    toadd2 = C*A^(i-1);
+    toadd2 = C*A^i;
     for j=1:ysize
         Sx(j+(i-1)*ysize,:) = Sx(j+(i-2)*ysize,:) + toadd2(j,:);
     end
 %     Sx(1+(i-1)*ysize:i*ysize,:) = Sx(1+(i-2)*ysize:(i-1)*ysize,:) + C*A^i;
 end
+Sf(1:ysize,:) = C;
+Sf(ysize+1:p*ysize,:) = Sx(1:(p-1)*ysize,:);
+
 
 %% Calculate QP matrices
 
@@ -157,6 +161,8 @@ H = Su'*YWT*Su + UWT;
 
 Ga = YWT*Su;
 Gb = Sx'*YWT*Su;
-Gc = Su'*YWT*Su;
+% Gc = Su'*YWT*Su;
+% Gc = UWT;
+Gc = Sf'*YWT*Su;
 
 end

@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.102"
+    ComputedModelVersion    "1.146"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Feb 24 13:22:22 2016"
-  RTWModifiedTimeStamp	  378220930
-  ModelVersionFormat	  "1.%<AutoIncrement:102>"
+  LastModifiedDate	  "Thu Feb 25 13:14:15 2016"
+  RTWModifiedTimeStamp	  378306415
+  ModelVersionFormat	  "1.%<AutoIncrement:146>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "5"
+	  StopTime		  "20"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -788,7 +788,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    73
+    SIDHighWatermark	    75
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -808,8 +808,8 @@ Model {
       Ports		      [1]
       Position		      [890, 124, 920, 156]
       Floating		      off
-      Location		      [1436, 193, 1777, 466]
-      Open		      off
+      Location		      [2077, 550, 2418, 823]
+      Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
       List {
@@ -817,8 +817,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "10"
-      YMin		      "0.4"
-      YMax		      "0.7"
+      YMin		      "0.62"
+      YMax		      "0.6425"
       SaveToWorkspace	      on
       SaveName		      "SD"
       DataFormat	      "Array"
@@ -888,8 +888,8 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Sim Model"
-	Location		[2, 82, 1278, 954]
-	Open			on
+	Location		[2, 74, 1278, 946]
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1401,7 +1401,7 @@ Model {
 	  Position		  [715, 459, 745, 491]
 	  Floating		  off
 	  Location		  [182, 618, 534, 863]
-	  Open			  on
+	  Open			  off
 	  NumInputPorts		  "1"
 	  List {
 	    ListType		    AxesTitles
@@ -1559,6 +1559,20 @@ Model {
 	  Name			  "u_rec"
 	  SID			  52
 	  Position		  [45, 482, 100, 508]
+	  Value			  "0"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "u_rec1"
+	  SID			  74
+	  Position		  [15, 352, 70, 378]
+	  Value			  "0"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "u_rec2"
+	  SID			  75
+	  Position		  [25, 107, 80, 133]
 	  Value			  "0"
 	}
 	Block {
@@ -1890,9 +1904,9 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "In2"
+	  SrcBlock		  "Mux2"
 	  SrcPort		  1
-	  DstBlock		  "Transport\nDelay"
+	  DstBlock		  "To Workspace"
 	  DstPort		  1
 	}
 	Line {
@@ -1902,9 +1916,9 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "Mux2"
+	  SrcBlock		  "In2"
 	  SrcPort		  1
-	  DstBlock		  "To Workspace"
+	  DstBlock		  "Transport\nDelay"
 	  DstPort		  1
 	}
 	Annotation {
@@ -1949,16 +1963,16 @@ Model {
       Ports		      [1]
       Position		      [295, 234, 325, 266]
       Floating		      off
-      Location		      [2198, 56, 2539, 329]
-      Open		      off
+      Location		      [2058, 191, 2399, 464]
+      Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "10              "
-      YMin		      "0.055"
-      YMax		      "0.1025"
+      YMin		      "0.089"
+      YMax		      "0.097"
       SaveName		      "ScopeData17"
       DataFormat	      "StructureWithTime"
       LimitDataPoints	      off
@@ -2362,16 +2376,16 @@ Model {
       Ports		      [1]
       Position		      [880, 524, 910, 556]
       Floating		      off
-      Location		      [1510, 538, 1851, 811]
-      Open		      off
+      Location		      [1321, 166, 1662, 439]
+      Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "10"
-      YMin		      "-8.67362e-019"
-      YMax		      "0.0325"
+      YMin		      "0.01755"
+      YMax		      "0.01785"
       SaveToWorkspace	      on
       SaveName		      "p_out"
       DataFormat	      "Array"
@@ -2385,16 +2399,16 @@ Model {
       Ports		      [1]
       Position		      [195, 234, 225, 266]
       Floating		      off
-      Location		      [820, 287, 1144, 563]
-      Open		      off
+      Location		      [1685, 528, 2009, 802]
+      Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "10"
-      YMin		      "-1e-012"
-      YMax		      "1.75e-012"
+      YMin		      "-1"
+      YMax		      "1"
       DataFormat	      "StructureWithTime"
       LimitDataPoints	      off
       SampleTime	      "0"
@@ -2560,42 +2574,48 @@ Stateflow {
     eml {
       isEML		      1
       script		      "function [u_new,exitflag_out,it_out,x_out]  = fcn(u)\n%#eml\n% persistent C_new M LB UB Ga Gb Gc "
-      "H Ain b A B upast xinit\npersistent M LB UB Ain b upast xinit x_old y_old C %x_init_lin\neml.extrinsic('disp');\n"
+      "H Ain b A B upast xinit\npersistent M LB UB Ain b upast xinit dxaug y_old C %x_init_lin\neml.extrinsic('disp');\n"
       "eml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\n\np = 100;\n"
       "m = 2;\n\nif isempty(M)\n    tic\n    option = 1;\n%     [H,C_new,M,UB,LB,b,Ain,Ga,Gb,Gc,xinit,upast] = get_matr"
-      "ices(option);\n    [C,M,UB,LB,b,Ain,xinit,upast,deltax] = get_constant_matrices();\n    x_old = xinit;\n    y_ol"
-      "d = [0; 0];\n    time = toc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\ny = u(1:2);\n\n% correct f"
-      "or normalization in compressor model\nyref = u(3:4);\nyref(1) = yref(1) + 1.126;\nyref(2) = yref(2) + 4.3;\n\n% "
-      "Estimate state info\nxinit = xinit + M*(y - y_old - C*(xinit-x_old));\n\n\n% Get matrices\n[A,B,C,H,Ga,Gb,Gc,dx]"
-      " = get_qp_matrices(xinit,upast);\n\n% Get reference and input vector\nysize = 2;\nusize = 2;\nYref = zeros(p*ysi"
-      "ze,1);\nUpast = zeros(m*usize,1);\nfor i=1:p\n    Yref(1+(i-1)*ysize:i*ysize,1) = yref - y;\nend\nfor i=1:m\n   "
-      " Upast(1+(i-1)*usize:i*usize,1) = upast;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - Upast;\n\n% Grad"
-      "ient vector\nf = dx'*Gb - Yref'*Ga;\n\n% Solve QP\nlbA = -inf(size(Ain,1),1);\n[usol,cost,exitflag,it,lambda] = "
-      "call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_out = exitflag(1,1);\nit_out = it(1,1);\n\n% Apply next input\n"
-      "delta_u = usol(1:usize,1);\nu_new = upast + delta_u;\n\nxinit = xinit + B*delta_u + dx;\n\nx_out = xinit;\n\n\nu"
-      "past = u_new;\n\n\n\n% % p=200;\n% % m=8;\n% p = 100;\n% m = 2;\n% \n% if isempty(M)\n%     tic\n%     option = "
-      "1;\n% %     [H,C_new,M,UB,LB,b,Ain,Ga,Gb,Gc,xinit,upast] = get_matrices(option);\n%     [C,M,UB,LB,b,Ain,xinit,u"
-      "past,deltax] = get_constant_matrices();\n% %     x_init_lin = [0.8980 1.1260 0.1500 439.5000 0]';\n%     time = "
-      "toc;\n%     disp(['Preparation time: ' num2str(time)]);\n% end\n% \n% % tic\n% \n% y=u(1:2);\n% yref=u(3:4);\n% "
-      "\n% \n% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% \n% % estimate the state information\n"
-      "% \n% \n% % xinit  = xinit + M*(y - C_new*xinit);\n% deltax = deltax + M*(y - C*deltax);\n% xinit = deltax + xin"
-      "it;\n% x_out = xinit;\n% \n% [A,B,C,H,Ga,Gb,Gc] = get_qp_matrices(xinit,upast);\n% \n% %%%%%%%%%%%%%%%%%%%%%%%%%"
-      "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% \n% \n% % upper and lower bounds wrt past input\n% Upast = zeros(m*2,1)"
-      ";\n% \n% for i=1:m\n%     Upast(1+(i-1)*2:i*2,1)=upast;\n% end\n% \n% LBa=LB-Upast;\n% UBa=UB-Upast;\n% \n% \n% "
-      "\n% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% % generate the output reference vector\n% "
-      "\n% R = zeros(p*2,1);\n% \n% for i=1:p\n% %     R(1+(i-1)*2:i*2,1)=yref - y;\n%     R(1+(i-1)*2:i*2,1)=y - yref;"
-      "\n% end\n% \n% % generate the gradient vector\n% \n% % f = deltax'*Gb+Upast'*Gc-R'*Ga;\n% f = deltax'*Gb-R'*Ga;\n"
-      "% \n% % xinit1 = xinit;\n% % upast1 = upast;\n% \n% lbA = -inf(size(Ain,1),1);\n% ubA = b;\n% [usol,cost,exitfla"
-      "g,it,lambda] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,ubA);\n% exitflag_out = exitflag(1,1);\n% it_out = it(1,1);\n%"
-      " dunext=usol(1:2,1);\n% \n% deltax= A*deltax + B*(dunext);\n% \n% u_new = dunext + upast;\n% % u_new = zeros(2,1"
-      ");\n% \n% upast = u_new;\n\n% time2 = toc;\n% disp(['Normal Execution Time: ' num2str(time2)]);\n%%%%%%%%%%%%%%%"
-      "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n\n% solve the QP\n\n% usol=quadprog(H_qp,f,Ain,b,[],[],LBa,UBa);\n"
-      "% \n% \n% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% \n% % extract the control moves for "
-      "next time step\n% \n% \n% dunext=usol(1:2,1);\n% \n% \n% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
-      "%%%\n% \n% \n% % initial conditions are updated\n% \n% \n% xinit= A*xinit + B*(dunext+upast);\n% \n% \n% %%%%%%%"
-      "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% % control moves are sent to the plant\n% \n% upast=du"
-      "next+upast;\n% \n% sys=upast;\n"
-      editorLayout	      "100 M4x1[10 5 1296 1000]"
+      "ices(option);\n    [C,M,UB,LB,b,Ain,xinit,upast] = get_constant_matrices();\n    dxaug = zeros(size(xinit));\n  "
+      "  y_old = [0; 0];\n    time = toc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\ny = u(1:2);\ny(1) = "
+      "y(1) + 1.126;\ny(2) = y(2) + 4.3;\n\n% correct for normalization in compressor model\nyref = u(3:4);\nyref(1) = "
+      "yref(1) + 1.126;\nyref(2) = yref(2) + 4.3;\n\n% Estimate state info\n% dxaug = dxaug + M*(y - y_old - C*(dxaug))"
+      ";\nxinit(1:5) = xinit(1:5) + dxaug(1:5);\nxinit(6:end) = dxaug(6:end);\nx_out = xinit;\n\n% Get matrices - linea"
+      "rize about delayed rec.open input\n% [A,B,C,H,Ga,Gb,Gc,dx] = get_qp_matrices(xinit,[upast(1); dxaug(6)]);\n[A,B,"
+      "C,H,Ga,Gb,Gc,df0] = get_qp_matrices(xinit,upast);\n\n% Get reference and input vector\nysize = 2;\nusize = 2;\nY"
+      "ref = zeros(p*ysize,1);\nUpast = zeros(m*usize,1);\nfor i=1:p\n    Yref(1+(i-1)*ysize:i*ysize,1) = yref - y;\nen"
+      "d\nfor i=1:m\n    % use delayed recycle opening as reference input\n    Upast(1+(i-1)*usize,1) = upast(1);\n    "
+      "Upast(i*usize,1) = upast(2);\n%     Upast(i*usize,1) = xinit(6);\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa"
+      " = UB - Upast;\n\n% Calculate initial state\ndx0 = [zeros(5,1); xinit(6:end-2)-upast(2); xinit(end-1:end)];\n\n%"
+      " Gradient vector\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;\n\n% Solve QP\nlbA = -inf(size(Ain,1),1);\n[usol,cost,exitfl"
+      "ag,it,lambda] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_out = exitflag(1,1);\nit_out = it(1,1);\n\n% Ap"
+      "ply next input\ndelta_u = usol(1:usize,1);\n% u_new = [upast(1); dxaug(6)] + delta_u;\nu_new = upast + delta_u;\n"
+      "\nif abs(u_new(2)) > 0\n    u_new(2) = 0;\nend\n\n% value of x about which we linearized\nxlin = dxaug;\nxlin(6)"
+      " = upast(2);\nxlin(7:end) = 0;\n\ndxaug = B*[u_new(1)-upast(1);u_new(2)] + A*(dxaug-xlin) + df0;\n\nupast = u_ne"
+      "w;\n\n\n% % p=200;\n% % m=8;\n% p = 100;\n% m = 2;\n% \n% if isempty(M)\n%     tic\n%     option = 1;\n% %     ["
+      "H,C_new,M,UB,LB,b,Ain,Ga,Gb,Gc,xinit,upast] = get_matrices(option);\n%     [C,M,UB,LB,b,Ain,xinit,upast,deltax] "
+      "= get_constant_matrices();\n% %     x_init_lin = [0.8980 1.1260 0.1500 439.5000 0]';\n%     time = toc;\n%     d"
+      "isp(['Preparation time: ' num2str(time)]);\n% end\n% \n% % tic\n% \n% y=u(1:2);\n% yref=u(3:4);\n% \n% \n% %%%%%"
+      "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% \n% % estimate the state information\n% \n% \n% % x"
+      "init  = xinit + M*(y - C_new*xinit);\n% deltax = deltax + M*(y - C*deltax);\n% xinit = deltax + xinit;\n% x_out "
+      "= xinit;\n% \n% [A,B,C,H,Ga,Gb,Gc] = get_qp_matrices(xinit,upast);\n% \n% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+      "%%%%%%%%%%%%%%%%%%%%\n% \n% \n% \n% % upper and lower bounds wrt past input\n% Upast = zeros(m*2,1);\n% \n% for "
+      "i=1:m\n%     Upast(1+(i-1)*2:i*2,1)=upast;\n% end\n% \n% LBa=LB-Upast;\n% UBa=UB-Upast;\n% \n% \n% \n% %%%%%%%%%"
+      "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% % generate the output reference vector\n% \n% R = zeros"
+      "(p*2,1);\n% \n% for i=1:p\n% %     R(1+(i-1)*2:i*2,1)=yref - y;\n%     R(1+(i-1)*2:i*2,1)=y - yref;\n% end\n% \n"
+      "% % generate the gradient vector\n% \n% % f = deltax'*Gb+Upast'*Gc-R'*Ga;\n% f = deltax'*Gb-R'*Ga;\n% \n% % xini"
+      "t1 = xinit;\n% % upast1 = upast;\n% \n% lbA = -inf(size(Ain,1),1);\n% ubA = b;\n% [usol,cost,exitflag,it,lambda]"
+      " = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,ubA);\n% exitflag_out = exitflag(1,1);\n% it_out = it(1,1);\n% dunext=usol"
+      "(1:2,1);\n% \n% deltax= A*deltax + B*(dunext);\n% \n% u_new = dunext + upast;\n% % u_new = zeros(2,1);\n% \n% up"
+      "ast = u_new;\n\n% time2 = toc;\n% disp(['Normal Execution Time: ' num2str(time2)]);\n%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+      "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\n\n% solve the QP\n\n% usol=quadprog(H_qp,f,Ain,b,[],[],LBa,UBa);\n% \n% \n% %"
+      "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% \n% % extract the control moves for next time s"
+      "tep\n% \n% \n% dunext=usol(1:2,1);\n% \n% \n% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% "
+      "\n% % initial conditions are updated\n% \n% \n% xinit= A*xinit + B*(dunext+upast);\n% \n% \n% %%%%%%%%%%%%%%%%%%"
+      "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% % control moves are sent to the plant\n% \n% upast=dunext+upast;"
+      "\n% \n% sys=upast;\n"
+      editorLayout	      "100 M4x1[10 5 750 500]"
     }
   }
   junction {

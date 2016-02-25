@@ -61,12 +61,12 @@
 
 %%
 clear all
-N = 200;
-% rec_open = zeros(N,1);
-rec_open = 0.1*ones(N,1);
+N = 1000;
+rec_open = zeros(N,1);
+% rec_open = 0.1*ones(N,1);
 % Td = 0.03*ones(N,1);
-Td = [linspace(0,0.01,N/2),linspace(0.01,0,N/2)]';
-% Td = rec_open;
+% Td = [linspace(0,0.01,N/2),linspace(0.01,0,N/2)]';
+Td = rec_open;
 Inflow_opening = 0.405;
 Outflow_opening = 0.393;
 
@@ -137,31 +137,35 @@ xaug(1:5,2) = x_init_lin;
 
 for i=2:length(t)-1
     dxaug(:,i) = dxaug(:,i) + M*(yr(:,i)-yr(:,i-1) - Caug*(dxaug(:,i)));
+    xaug(:,i) = xaug(:,i-1) + dxaug(1:5,i);
 %     x(:,i) = x(:,i) + M*(yr(:,i) - Caug*(x(:,i)-x(:,i-1)));
 %     dx(:,i) = dx(:,i) + M*(yr(:,i) - yr(:,i-1) - Caug*dx(:,i));
 %     x(:,i) = x(:,i-1) + dx(1:5,i);
     
 %     yt(:,i) = Caug*(x(:,i)-x(:,i-1))+yt(:,i-1);
 %     ydiff(:,i) = Caug*(x(:,i)-x(:,i-1))-(yr(:,i)-yr(:,i-1));
-    
-    [Ac,Bc,Cc] = get_linearized_matrices(xaug(1:5,i),[u(1,i-1); dxaug(6,i)]);
-    f = get_comp_deriv(xaug(1:5,i),[0.304+u(1,i-1),Inflow_opening,Outflow_opening,dxaug(6,i)])';
+%     
+%     [Ac,Bc,Cc] = get_linearized_matrices(xaug(1:5,i),[u(1,i-1); dxaug(6,i)]);
+%     f = get_comp_deriv(xaug(1:5,i),[0.304+u(1,i-1),Inflow_opening,Outflow_opening,dxaug(6,i)])';
+
+    [Ac,Bc,Cc] = get_linearized_matrices(xaug(1:5,i),[u(1,i-1); u(2,i-1)]);
+    f = get_comp_deriv(xaug(1:5,i),[0.304+u(1,i-1),Inflow_opening,Outflow_opening,u(2,i-1)])';
     [A,B,C,fd] = discretize_rk4(Ac,Bc,Cc,f,Ts);
     
     [Aaug,Baug,Caug] = get_augmented_matrices(A,B,C,n_delay);
     
-%     Baug(6,2) = -1;
-
     xlin = dxaug(:,i);
+    xlin(6) = u(2,i-1);
     xlin(7:end) = 0;
     
     dxaug(:,i+1) = Baug*([u(1,i)-u(1,i-1); u(2,i)]) + Aaug*(dxaug(:,i)-xlin) + [fd; zeros(size(dxaug,1)-5,1)];
+%     dxaug(1:5,i) - fd
 %     xaug(1:5,i+1) = xaug(1:5,i+1)+xaug(1:5,i)+fd;
 %     dxaug(1:5,i+1) = dxaug(1:5,i+1)+fd;%+Aaug(1:5,6)*xaug(6,i+1);
 %     dxaug(6:end,i+1) = dxaug(6:end,i+1)+Aaug(6:end,6:end)*dxaug(6:end,i);
     
     
-    xaug(:,i+1) = xaug(:,i) + dxaug(1:5,i+1);
+    
 
 
 end
