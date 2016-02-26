@@ -1,4 +1,4 @@
-function [A,B,C,H,Ga,Gb,Gc,dx] = get_qp_matrices(xinit,upast)
+function [A,B,C,H,Ga,Gb,Gc,dx,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,upast)
 %#eml
 %% Constants
 % p = 200;
@@ -104,6 +104,8 @@ dx = [dx2; zeros(xsize-5,1)];
 
 % YW=diag([1e1 1e3]');
 % UW=diag([50 1]');
+% UW = diag([50 100]');
+% UW = diag([0 1]');
 UW = diag([50 100]');
 YW = diag([1e4 1e5]');
 

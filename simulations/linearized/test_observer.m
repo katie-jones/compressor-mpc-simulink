@@ -60,13 +60,13 @@
 % end
 
 %%
-clear all
+% clear all
 N = 1000;
 rec_open = zeros(N,1);
-% rec_open = 0.1*ones(N,1);
+rec_open = 0.5*ones(N,1);
 % Td = 0.03*ones(N,1);
 % Td = [linspace(0,0.01,N/2),linspace(0.01,0,N/2)]';
-Td = rec_open;
+Td = 0.1*ones(N,1);
 Inflow_opening = 0.405;
 Outflow_opening = 0.393;
 
@@ -77,6 +77,14 @@ x_init_lin = [0.898
       0.15
       439.5
       0];
+%   load config.mat
+%   
+% rec_open = u_apply(2,:)';
+% Td = u_apply(1,:)';
+% N = length(rec_open);
+% x_init_lin = x_init;
+  
+% x_init_lin = [0.899; 1.125; 0.1512; 440.7; 0];
 
 u_init = [0.304+Td(1),Inflow_opening,Outflow_opening,rec_open(1)]';
 
