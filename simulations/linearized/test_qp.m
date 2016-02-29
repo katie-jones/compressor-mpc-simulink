@@ -41,19 +41,23 @@ x_init_lin = [0.898; 1.126; 0.15; 439.5; 0];
 % x_init_lin = [0.899; 1.125; 0.1512; 440.7; 0];
 
 [C,~,UB,LB,b,Ain] = get_constant_matrices();
+
 [orig_xsize,ysize,dsize,usize,n_delay,xsize,Ts,p,m] = constants();
+
 
 if ~(exist('upast','var'))
     upast = [0; 0];
     xinit = [x_init_lin; upast(2)*ones(n_delay(2),1); zeros(2,1)];
     dxaug = zeros(xsize,1);
 end
+xinit(2) = xinit(2) + 0.02;
 % yref = [1.126; 4.3];
 % y = [1.126;4.3];
 yref = [0;0];
-y = [0;0];
+% y = [0;0];
+y = C(:,1:5)*(xinit(1:5)-x_init_lin);
 
-N = 100;
+N = 200;
 t = 0:Ts:(N-1)*Ts;
 
 for k=1:N
@@ -121,3 +125,21 @@ if k==50
 end
 
 end
+
+%%
+[orig_xsize,ysize,dsize,usize,n_delay,xsize,Ts,p,m] = constants();
+
+C = get_constant_matrices();
+
+x_init_lin = [0.898; 1.126; 0.15; 439.5; 0];
+
+xinit = x_init_lin + [0; 0.2; 0; 0; 0];
+
+upast = [0;0];
+
+y = C(:,1:5)*(xinit-x_init_lin);
+
+yref = [0;0];
+
+usol = run_qp([xinit; zeros(xsize-orig_xsize,1)],upast,y,yref)
+

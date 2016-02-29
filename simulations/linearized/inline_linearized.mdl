@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.197"
+    ComputedModelVersion    "1.217"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -19,15 +19,16 @@ Model {
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
   MaxMDLFileLineLength	  120
+  InitFcn		  "MpcSetup_linearized\n"
   Created		  "Thu Feb 18 14:48:34 2016"
   Creator		  "chkajon"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Feb 29 11:22:13 2016"
-  RTWModifiedTimeStamp	  378645275
-  ModelVersionFormat	  "1.%<AutoIncrement:197>"
+  LastModifiedDate	  "Mon Feb 29 15:49:46 2016"
+  RTWModifiedTimeStamp	  378661784
+  ModelVersionFormat	  "1.%<AutoIncrement:217>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +111,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "20"
+	  StopTime		  "30"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -774,7 +775,7 @@ Model {
   }
   System {
     Name		    "inline_linearized"
-    Location		    [127, 224, 1151, 821]
+    Location		    [289, 343, 1313, 940]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -808,7 +809,7 @@ Model {
       Ports		      [1]
       Position		      [890, 124, 920, 156]
       Floating		      off
-      Location		      [70, 400, 411, 673]
+      Location		      [492, 76, 830, 349]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -816,9 +817,9 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "20"
-      YMin		      "-0.5"
-      YMax		      "8"
+      TimeRange		      "30              "
+      YMin		      "-1"
+      YMax		      "14"
       SaveToWorkspace	      on
       SaveName		      "SD"
       DataFormat	      "Array"
@@ -1076,7 +1077,7 @@ Model {
 	  Name			  "Step"
 	  SID			  19
 	  Position		  [155, 360, 185, 390]
-	  Time			  "50"
+	  Time			  "10"
 	  After			  "-0.1"
 	  SampleTime		  "0"
 	}
@@ -1963,16 +1964,16 @@ Model {
       Ports		      [1]
       Position		      [295, 234, 325, 266]
       Floating		      off
-      Location		      [204, 57, 545, 330]
+      Location		      [766, 102, 1107, 375]
       Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "20"
-      YMin		      "-1"
-      YMax		      "1"
+      TimeRange		      "30              "
+      YMin		      "-0.325"
+      YMax		      "0.025"
       SaveName		      "ScopeData17"
       DataFormat	      "StructureWithTime"
       LimitDataPoints	      off
@@ -1995,7 +1996,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[702, 194, 1319, 593]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2374,18 +2375,18 @@ Model {
       Name		      "p_out"
       SID		      67
       Ports		      [1]
-      Position		      [880, 524, 910, 556]
+      Position		      [885, 524, 915, 556]
       Floating		      off
-      Location		      [1706, 86, 2047, 359]
+      Location		      [569, 473, 910, 746]
       Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "20"
-      YMin		      "-0.01"
-      YMax		      "0.1"
+      TimeRange		      "20              "
+      YMin		      "-0.1125"
+      YMax		      "-0.0875"
       SaveToWorkspace	      on
       SaveName		      "p_out"
       DataFormat	      "Array"
@@ -2399,16 +2400,16 @@ Model {
       Ports		      [1]
       Position		      [195, 234, 225, 266]
       Floating		      off
-      Location		      [812, 82, 1136, 356]
+      Location		      [132, 74, 456, 356]
       Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "20"
-      YMin		      "-0.75"
-      YMax		      "3.5"
+      TimeRange		      "30              "
+      YMin		      "-0.1"
+      YMax		      "1.1"
       DataFormat	      "StructureWithTime"
       LimitDataPoints	      off
       SampleTime	      "0"
@@ -2508,7 +2509,7 @@ Model {
       SrcPort		      1
       Points		      [190, 0]
       Branch {
-	Points			[85, 0]
+	Points			[90, 0]
 	DstBlock		"p_out"
 	DstPort			1
       }
@@ -2618,8 +2619,8 @@ Stateflow {
       "% \n% % initial conditions are updated\n% \n% \n% xinit= A*xinit + B*(dunext+upast);\n% \n% \n% %%%%%%%%%%%%%%%%"
       "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% % control moves are sent to the plant\n% \n% upast=dunext+upas"
       "t;\n% \n% sys=upast;\n"
-      editorLayout	      "100 M4x1[10 5 750 500]"
-      breakpoints	      "100 M1x3[78 81 86]"
+      editorLayout	      "100 M4x1[10 5 1296 1000]"
+      breakpoints	      "100 M1x2[78 87]"
     }
   }
   junction {

@@ -15,7 +15,7 @@ Outflow_opening = 0.393;
 % usize = 2;
 % ysize = 2;
 % dsize = 2; % number of disturbances
-[xsize,ysize,dsize,usize,n_delay,xsize_full,Ts,p,m] = constants();
+[xsize,ysize,dsize,usize,n_delay,xsize_full,Ts,p,m,UWT,YWT] = constants();
 
 %% Linearized system
 [Ac,Bc,Cc] = get_linearized_matrices(xinit,upast);
@@ -100,17 +100,6 @@ xsize = xsize_full;
 
 dx = [dx2; zeros(xsize-5,1)];
 
-%% Define weight matrices
-
-% YW=diag([1e1 1e3]');
-% UW=diag([50 1]');
-% UW = diag([50 100]');
-% UW = diag([0 1]');
-UW = diag([50 100]');
-YW = diag([1e4 1e5]');
-
-YWT = kron(eye(p),YW);
-UWT = kron(eye(m),UW);
 
 %% Define system matrices
 
@@ -167,4 +156,6 @@ Gb = Sx'*YWT*Su;
 % Gc = UWT;
 Gc = Sf'*YWT*Su;
 
+
 end
+

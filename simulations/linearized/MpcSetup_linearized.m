@@ -8,7 +8,8 @@ addpath('../call_qpoases_m/qpoases3/interfaces/matlab')
 
 load sys.mat
 
-[xsizea,ysize,dsize,usize,n_delay,xsize,Ts,p,m] = constants();
+[xsizea,ysize,dsize,usize,n_delay,xsize,Ts,p,m,UWT,YWT] = constants();
+
 
 % Ts = 50e-3; % 50 ms sampling time
 % n_delay = [0;20]; % delay as multiple of sampling time
@@ -85,16 +86,6 @@ sys_kalman = ss(A,[B G], C, [D Hkalman], Ts);
 
 [KEST,L,P,M,Z] = kalman(sys_kalman,Qn,Rn); % get observer values
 
-%% Define QP matrices
-
-% YW=diag([1e1 1e3]');
-% UW=diag([50 1]');
-UW = diag([50 100]');
-% UW = diag([0 0]');
-YW = diag([1e4 1e5]');
-
-YWT = kron(eye(p),YW);
-UWT = kron(eye(m),UW);
 
 %% Define upper/lower bounds
 lb = [-0.3; 0];
