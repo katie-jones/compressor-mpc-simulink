@@ -60,7 +60,7 @@
 % end
 
 %%
-% clear all
+clear all
 N = 1000;
 rec_open = zeros(N,1);
 rec_open = 0.5*ones(N,1);

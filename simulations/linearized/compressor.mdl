@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.45"
+    ComputedModelVersion    "1.47"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Feb 25 11:06:42 2016"
-  RTWModifiedTimeStamp	  378299201
-  ModelVersionFormat	  "1.%<AutoIncrement:45>"
+  LastModifiedDate	  "Mon Feb 29 09:46:27 2016"
+  RTWModifiedTimeStamp	  378639985
+  ModelVersionFormat	  "1.%<AutoIncrement:47>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -761,7 +761,7 @@ Model {
   }
   System {
     Name		    "compressor"
-    Location		    [1255, 131, 2514, 1003]
+    Location		    [2, 82, 1261, 954]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -2008,24 +2008,24 @@ Model {
 	DstPort			1
       }
       Branch {
-	Points			[5, 0]
-	Branch {
-	  Points		  [0, -55]
-	  DstBlock		  "Sum8"
-	  DstPort		  1
-	}
-	Branch {
-	  Points		  [0, 15]
-	  DstBlock		  "Signal To\nWorkspace1"
-	  DstPort		  1
-	}
+	Points			[5, 0; 0, -55]
+	DstBlock		"Sum8"
+	DstPort			1
       }
     }
     Line {
       SrcBlock		      "Gain1"
       SrcPort		      1
-      DstBlock		      "dist"
-      DstPort		      1
+      Points		      [25, 0]
+      Branch {
+	DstBlock		"dist"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 70]
+	DstBlock		"Signal To\nWorkspace1"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Signal From\nWorkspace"
@@ -2050,9 +2050,15 @@ Model {
     Line {
       SrcBlock		      "Gain"
       SrcPort		      1
-      Points		      [20, 0]
-      DstBlock		      "p_out"
-      DstPort		      1
+      Points		      [20, 0; 0, -45]
+      Branch {
+	DstBlock		"p_out"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"To Workspace"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "nom1"
@@ -2139,11 +2145,6 @@ Model {
 	Points			[0, 90]
 	DstBlock		"Mux3"
 	DstPort			2
-      }
-      Branch {
-	Points			[0, -25; 390, 0]
-	DstBlock		"To Workspace"
-	DstPort			1
       }
     }
     Line {
