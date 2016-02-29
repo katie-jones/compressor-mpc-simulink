@@ -16,14 +16,16 @@ m = 2;
 
 % YW=diag([1e1 1e3]');
 % UW=diag([50 1]');
-YW = diag([1e4 1e5]');
-UW = diag([50 100]');
+% YW = diag([1e4 1e5]');
+% UW = diag([50 100]');
+YW = diag([1 1]');
+UW = diag([1e4 1e5]');
 
 YWT = kron(eye(p),YW);
 UWT = kron(eye(m),UW);
 
 % add weights for keeping last input for p-m iterations
-% UWT(end-usize+1:end,end-usize+1:end) = (p-m+1)*UW;
+UWT(end-usize+1:end,end-usize+1:end) = (p-m+1)*UW;
 
 
 end
