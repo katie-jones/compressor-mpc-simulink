@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.220"
+    ComputedModelVersion    "1.222"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -26,9 +26,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Feb 29 16:16:20 2016"
+  LastModifiedDate	  "Mon Feb 29 16:41:33 2016"
   RTWModifiedTimeStamp	  378662568
-  ModelVersionFormat	  "1.%<AutoIncrement:220>"
+  ModelVersionFormat	  "1.%<AutoIncrement:222>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -775,7 +775,7 @@ Model {
   }
   System {
     Name		    "inline_linearized"
-    Location		    [289, 343, 1313, 940]
+    Location		    [125, 196, 1149, 793]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -818,8 +818,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "30              "
-      YMin		      "-6.5e+034"
-      YMax		      "5e+033"
+      YMin		      "1"
+      YMax		      "15"
       SaveToWorkspace	      on
       SaveName		      "SD"
       DataFormat	      "Array"
@@ -1972,7 +1972,7 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "30              "
-      YMin		      "-0.3"
+      YMin		      "-0.35"
       YMax		      "0.35"
       SaveName		      "ScopeData17"
       DataFormat	      "StructureWithTime"
@@ -1996,7 +1996,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[702, 194, 1319, 593]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2385,8 +2385,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "20              "
-      YMin		      "0.045"
-      YMax		      "0.085"
+      YMin		      "0.146"
+      YMax		      "0.158"
       SaveToWorkspace	      on
       SaveName		      "p_out"
       DataFormat	      "Array"
@@ -2408,8 +2408,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "30              "
-      YMin		      "-0.05"
-      YMax		      "0.6"
+      YMin		      "-0.1"
+      YMax		      "1.1"
       DataFormat	      "StructureWithTime"
       LimitDataPoints	      off
       SampleTime	      "0"

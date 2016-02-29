@@ -6,7 +6,7 @@ ysize = 2;
 dsize = 2;
 usize = 2;
 
-n_delay = [0; 40];
+n_delay = [0; 21];
 xsize = orig_xsize+dsize+n_delay(1)+n_delay(2);
 
 Ts = 0.05;
@@ -18,8 +18,8 @@ m = 2;
 % UW=diag([50 1]');
 % YW = diag([1e4 1e5]');
 % UW = diag([50 100]');
-YW = diag([1 1]');
-UW = diag([1e4 1e5]');
+YW = diag([1e5 1e6]');
+UW = diag([1e3 1e5]');
 
 YWT = kron(eye(p),YW);
 UWT = kron(eye(m),UW);
