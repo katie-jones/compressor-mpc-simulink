@@ -58,6 +58,10 @@ tss = [0,0];	              % sample time: [period, offset].
 
 function [sys] = mdlOutputs(t,x,u,Param)
 global P_D
+
+Out_pres = P_D;
+% Out_pres = 1.0;
+
 % Inputs
 torque_drive = u(1);  
 Inflow_opening = u(2);
@@ -88,7 +92,7 @@ torque_drive = torque_drive * 15000 / (2 * pi * 50);
 SpeedSound = 340;     % speed of sound
 In_pres    = 1.0;  % input pressure
 % Out_pres   = 1.0; % output pressure
-Out_pres = P_D;
+
 
 
 
@@ -197,6 +201,9 @@ sys(10) = SD;
 function sys = mdlDerivatives(t,x,u,Param)
 global P_D
 
+Out_pres = P_D;
+% Out_pres = 1.0;
+
 % Inputs
 torque_drive = u(1);  
 Inflow_opening = u(2);
@@ -228,7 +235,7 @@ torque_drive = torque_drive * 15000 / (2 * pi * 50);
 SpeedSound = 340;     % speed of sound
 In_pres    = 1.0;  % input pressure
 % Out_pres   = 1.0; % output pressure
-Out_pres = P_D;
+
 
 % Valve_in_gain = 1 / 270; % 420.0 / 3600 / sqrt(9789 / 11.82);   % opening gain
 % Valve_rec_gain = 420.0 / 3600 / sqrt(9789 / 11.82); %0.01; % opening gain
