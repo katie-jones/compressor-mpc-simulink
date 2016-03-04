@@ -88,10 +88,10 @@ sys_kalman = ss(A,[B G], C, [D Hkalman], Ts);
 
 
 %% Define upper/lower bounds
-lb = [-0.3; 0];
-ub = [0.3; 1];
-% lb = [-0.1; 0];
-% ub = [0.1; 1];
+% lb = [-0.3; 0];
+% ub = [0.3; 1];
+lb = [-0.1; 0];
+ub = [0.1; 1];
 % lb = [0;0];
 % ub = [0;1];
 LB = repmat(lb,m,1);

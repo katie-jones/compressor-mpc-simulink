@@ -61,9 +61,9 @@
 
 %%
 clear all
-N = 1000;
+N = 200;
 rec_open = zeros(N,1);
-rec_open = 0.5*ones(N,1);
+rec_open = 0.5 *ones(N,1);
 % Td = 0.03*ones(N,1);
 % Td = [linspace(0,0.01,N/2),linspace(0.01,0,N/2)]';
 Td = 0.1*ones(N,1);
@@ -92,17 +92,17 @@ if ~(exist('p_out','var'))
     sim('compressor.mdl')
 end
 % t = p_out.time;
-t = 0:Ts:N*Ts;
+t = 0:Ts:(N-1)*Ts;
 y = [p_out.signals.values,SD];
 yr = interp1(p_out.time,y,t)';
 
 u = [Td,rec_open]';
 
-n_delay = [0;19];
+n_delay = [0;20];
 
 % [Ac,Bc,Cc] = get_linearized_matrices(x_init_lin,u(:,1));
 % [A,B,C] = discretize_rk4(Ac,Bc,Cc,Ts);
-load ../compressor_linear/sys.mat
+load sys.mat
 
 [Aaug,Baug,Caug] = get_augmented_matrices(A,B,C,n_delay);
 
@@ -143,7 +143,7 @@ xaug = zeros(5,length(t));
 xaug(1:5,1) = x_init_lin;
 xaug(1:5,2) = x_init_lin;
 
-for i=2:length(t)-1
+for i=2:length(t)
     dxaug(:,i) = dxaug(:,i) + M*(yr(:,i)-yr(:,i-1) - Caug*(dxaug(:,i)));
     xaug(:,i) = xaug(:,i-1) + dxaug(1:5,i);
 %     x(:,i) = x(:,i) + M*(yr(:,i) - Caug*(x(:,i)-x(:,i-1)));
