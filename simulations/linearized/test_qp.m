@@ -40,7 +40,7 @@ addpath('../call_qpoases_m/qpoases3/interfaces/matlab/')
 x_init_lin = [0.898; 1.126; 0.15; 439.5; 0];
 % x_init_lin = [0.899; 1.125; 0.1512; 440.7; 0];
 
-[C,~,UB,LB,b,Ain] = get_constant_matrices();
+[C,M,UB,LB,b,Ain] = get_constant_matrices();
 
 [orig_xsize,ysize,dsize,usize,n_delay,xsize,Ts,p,m] = constants();
 
@@ -51,24 +51,31 @@ if ~(exist('upast','var'))
     dxaug = zeros(xsize,1);
 end
 xinit(2) = xinit(2) + 0.02;
+% xinit(end) = 0.1;
 % yref = [1.126; 4.3];
 % y = [1.126;4.3];
 yref = [0;0];
 % y = [0;0];
-y = C(:,1:5)*(xinit(1:5)-x_init_lin);
+y = C(:,1:5)*(xinit(1:5)-x_init_lin);% + [0; 0.1];
 
-N = 200;
+y_old = y;% - [0; 0.1];
+
+N = 400;
 t = 0:Ts:(N-1)*Ts;
 
 for k=1:N
+
+
+y = y + C*(dxaug) + 0.05*(rand(1,1)-0.5)*[0;1];
+
+dxaug = dxaug +  M*(y - y_old - C*dxaug);
+
+y_old = y;
 
 xinit(1:5) = xinit(1:5) + dxaug(1:5);
 xinit(6:end) = dxaug(6:end);
 
 x_out(:,k) = xinit;
-
-y = y + C*(dxaug);
-
 y_out(:,k) = y;
 
 
@@ -81,17 +88,21 @@ end
 for i=1:m
     Upast(1+(i-1)*usize,1) = upast(1);
 %     Upast(i*usize,1) = upast(2);
-    Upast(i*usize,1) = xinit(6);
+%     Upast(i*usize,1) = xinit(6);
+    Upast(i*usize,1) = 0;
 end
 
 % Update bounds
 LBa = LB - Upast;
 UBa = UB - Upast;
 
-[A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,[upast(1); xinit(6)]);
+% [A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,[upast(1); xinit(6)]);
+[A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,[upast(1); 0]);
 
 % Calculate initial state
-dx0 = [zeros(6,1); xinit(7:end-2)-xinit(6); xinit(end-1:end)];
+% dx0 = [zeros(6,1); xinit(7:end-2)-xinit(6); xinit(end-1:end)];
+% dx0 = [zeros(5,1); xinit(6:end-2); xinit(end-1:end)];
+dx0 = [zeros(5,1); xinit(6:end-2); zeros(2,1)];
 
 % Gradient vector
 f = df0'*Gc - Yref'*Ga + dx0'*Gb + Upast'*UWT;
@@ -110,11 +121,13 @@ it_out = it(1,1);
 % Apply next input
 delta_u = usol(1:usize,1);
 % u_new = [upast(1); dxaug(6)] + delta_u;
-u_new(:,k) = [upast(1); dxaug(6)] +delta_u;
+% u_new(:,k) = [upast(1); dxaug(6)] +delta_u;
+u_new(:,k) = [upast(1); 0] +delta_u;
 
 % value of x about which we linearized
 xlin = dxaug;
 % xlin(6) = upast(2);
+xlin(6) = 0;
 xlin(7:end) = 0;
 
 dxaug = B*[delta_u(1); u_new(2,k)] + A*(dxaug-xlin) + df0;
@@ -127,19 +140,19 @@ end
 end
 
 %%
-[orig_xsize,ysize,dsize,usize,n_delay,xsize,Ts,p,m] = constants();
-
-C = get_constant_matrices();
-
-x_init_lin = [0.898; 1.126; 0.15; 439.5; 0];
-
-xinit = x_init_lin + [0; 0.2; 0; 0; 0];
-
-upast = [0;0];
-
-y = C(:,1:5)*(xinit-x_init_lin);
-
-yref = [0;0];
-
-usol = run_qp([xinit; zeros(xsize-orig_xsize,1)],upast,y,yref)
+% [orig_xsize,ysize,dsize,usize,n_delay,xsize,Ts,p,m] = constants();
+% 
+% C = get_constant_matrices();
+% 
+% x_init_lin = [0.898; 1.126; 0.15; 439.5; 0];
+% 
+% xinit = x_init_lin + [0; 0.2; 0; 0; 0];
+% 
+% upast = [0;0];
+% 
+% y = C(:,1:5)*(xinit-x_init_lin);
+% 
+% yref = [0;0];
+% 
+% usol = run_qp([xinit; zeros(xsize-orig_xsize,1)],upast,y,yref)
 
