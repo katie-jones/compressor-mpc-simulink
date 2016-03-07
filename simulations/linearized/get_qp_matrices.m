@@ -137,13 +137,29 @@ Sf = Sx;
 Sx(1:ysize,:) = C*A;
 for i=2:p
     toadd2 = C*A^i;
+    
+%     toadd2(end-1:end,end-1:end) = 0;
+    
     for j=1:ysize
-        Sx(j+(i-1)*ysize,:) = Sx(j+(i-2)*ysize,:) + toadd2(j,:);
+%         Sx(j+(i-1)*ysize,:) = Sx(j+(i-2)*ysize,:) + toadd2(j,:);
+        Sx(j+(i-1)*ysize,:) = toadd2(j,:);
     end
 %     Sx(1+(i-1)*ysize:i*ysize,:) = Sx(1+(i-2)*ysize:(i-1)*ysize,:) + C*A^i;
 end
+
+
 Sf(1:ysize,:) = C;
-Sf(ysize+1:p*ysize,:) = Sx(1:(p-1)*ysize,:);
+for i=2:p
+    toadd2 = C*A^(i-1);
+    
+%     toadd2(end-1:end,end-1:end) = 0;
+    
+    for j=1:ysize
+        Sf(j+(i-1)*ysize,:) = Sf(j+(i-2)*ysize,:) + toadd2(j,:);
+%         Sx(j+(i-1)*ysize,:) = toadd2(j,:);
+    end
+%     Sx(1+(i-1)*ysize:i*ysize,:) = Sx(1+(i-2)*ysize:(i-1)*ysize,:) + C*A^i;
+end
 
 
 %% Calculate QP matrices
