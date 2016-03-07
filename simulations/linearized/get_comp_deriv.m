@@ -79,7 +79,7 @@ m_in = C * M3 + 0.0051; % Inflow valve
 % else
 %     m_rec_ss = 0;
 % end
-m_rec_ss = ((0.0047) * sqrt(p2*1e5 - p1*1e5) * Recycle_opening  + 0.0263 ) * ~(Recycle_opening<1e-2);
+m_rec_ss = ((0.0047) * sqrt(p2*1e5 - p1*1e5) * Recycle_opening);%  + 0.0263 ) * ~(Recycle_opening<1e-2);
 
 
 % D = [    0.021182190468223
@@ -146,3 +146,4 @@ f(4) = 1.0 / J * (torque_drive - T_ss_model); % omega
 f(5) = tauRecycle * (m_rec_ss - m_rec); % rec flow
 % sys(7) = tauIn * (m_in_ss - m_in); % inflow
 % sys(8) = tauOut * (m_out_ss - m_out); % outflow
+

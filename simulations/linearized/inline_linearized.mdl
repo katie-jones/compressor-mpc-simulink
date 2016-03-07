@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.330"
+    ComputedModelVersion    "1.334"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -26,9 +26,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Mar 07 15:33:59 2016"
-  RTWModifiedTimeStamp	  379265610
-  ModelVersionFormat	  "1.%<AutoIncrement:330>"
+  LastModifiedDate	  "Mon Mar 07 16:44:25 2016"
+  RTWModifiedTimeStamp	  379267164
+  ModelVersionFormat	  "1.%<AutoIncrement:334>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -775,7 +775,7 @@ Model {
   }
   System {
     Name		    "inline_linearized"
-    Location		    [187, 324, 1211, 921]
+    Location		    [139, 205, 1163, 802]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -809,7 +809,7 @@ Model {
       Ports		      [1]
       Position		      [890, 124, 920, 156]
       Floating		      off
-      Location		      [1389, 117, 1727, 390]
+      Location		      [1658, 157, 1996, 430]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -818,8 +818,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "20"
-      YMin		      "-0.7"
-      YMax		      "1.1"
+      YMin		      "-0.375"
+      YMax		      "0.1"
       SaveToWorkspace	      on
       SaveName		      "SD"
       DataFormat	      "Array"
@@ -1086,8 +1086,8 @@ Model {
 	  Name			  "Step1"
 	  SID			  20
 	  Position		  [100, 285, 130, 315]
-	  Time			  "100"
-	  After			  "0"
+	  Time			  "50"
+	  After			  "-0.1"
 	  SampleTime		  "0"
 	}
 	Block {
@@ -1963,15 +1963,15 @@ Model {
       Ports		      [1]
       Position		      [295, 234, 325, 266]
       Floating		      off
-      Location		      [1392, 520, 1733, 793]
+      Location		      [2093, 532, 2434, 805]
       Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "30              "
-      YMin		      "-0.25"
+      TimeRange		      "100"
+      YMin		      "-0.35"
       YMax		      "0.35"
       SaveName		      "ScopeData17"
       DataFormat	      "StructureWithTime"
@@ -1994,8 +1994,8 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"controller"
-	Location		[653, 194, 1270, 593]
-	Open			on
+	Location		[651, 162, 1272, 614]
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2375,16 +2375,16 @@ Model {
       Ports		      [1]
       Position		      [885, 524, 915, 556]
       Floating		      off
-      Location		      [1851, 133, 2192, 406]
+      Location		      [2093, 166, 2434, 439]
       Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "20"
-      YMin		      "-0.014"
-      YMax		      "0"
+      TimeRange		      "100"
+      YMin		      "-0.015"
+      YMax		      "0.08"
       SaveToWorkspace	      on
       SaveName		      "p_out"
       DataFormat	      "Array"
@@ -2398,16 +2398,16 @@ Model {
       Ports		      [1]
       Position		      [195, 309, 225, 341]
       Floating		      off
-      Location		      [1894, 523, 2218, 805]
+      Location		      [1650, 526, 1974, 808]
       Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "20"
-      YMin		      "-0.1"
-      YMax		      "1.1"
+      TimeRange		      "100"
+      YMin		      "-0.01"
+      YMax		      "0.13"
       DataFormat	      "StructureWithTime"
       LimitDataPoints	      off
       SampleTime	      "0"
@@ -2620,7 +2620,7 @@ Stateflow {
       "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% \n% % initial conditions are updated\n% \n% \n% xinit= A*xinit "
       "+ B*(dunext+upast);\n% \n% \n% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n% \n% % control moves"
       " are sent to the plant\n% \n% upast=dunext+upast;\n% \n% sys=upast;\n"
-      editorLayout	      "100 M4x1[10 5 750 500]"
+      editorLayout	      "100 M4x1[10 5 1296 1000]"
       breakpoints	      "100 M1x3[91 92 93]"
     }
   }
