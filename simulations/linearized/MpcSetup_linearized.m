@@ -11,21 +11,6 @@ load sys.mat
 [xsizea,ysize,dsize,usize,n_delay,xsize,Ts,p,m,UWT,YWT] = constants();
 
 
-% Ts = 50e-3; % 50 ms sampling time
-% n_delay = [0;20]; % delay as multiple of sampling time
-% % n_delay = 0;
-% 
-% xsize = length(A);
-% usize = size(B,2);
-% ysize = size(C,1);
-% dsize = 2; % number of disturbances
-% 
-% 
-% 
-% p = 100; % prediction horizon
-% m = 2; % control horizon
-
-
 
 %% Define augmented system
 % delay of n_delay time steps in 2nd component of u

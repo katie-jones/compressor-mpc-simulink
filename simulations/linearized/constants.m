@@ -14,14 +14,15 @@ Ts = 0.05;
 p = 100;
 m = 2;
 
-% YW=diag([1e1 1e3]');
-% UW=diag([50 1]');
+% YW=diag([1 200]');
+% UW=diag([200 400]');
 % YW = diag([1e4 1e3]');
-UW = diag([50 100]');
-YW = diag([1e4 1e5]');
+UW = diag([50 1]');
+YW = diag([1e1 1e3]');
 % UW = diag([1e3 1e5]');
-% UW = diag([1 1]');
-% YW = diag([1 1]');
+% UW = diag([20 30]');
+% YW = diag([100 1000]');
+
 
 YWT = kron(eye(p),YW);
 UWT = kron(eye(m),UW);
