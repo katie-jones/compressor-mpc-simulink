@@ -82,10 +82,10 @@ ub = [0.3; 1];
 LB = repmat(lb,m,1);
 UB = repmat(ub,m,1);
 
-lb_rate = [0.1; 0.1];
-ub_rate = [0.1; 1];
-% lb_rate = [0.05;0.001];
-% ub_rate = [0.05;0.5];
+% lb_rate = [0.1; 0.1];
+% ub_rate = [0.1; 1];
+lb_rate = [0.05;0.001];
+ub_rate = [0.05;0.5];
 LBrate = repmat(lb_rate,m,1);
 UBrate = repmat(ub_rate,m,1);
 
