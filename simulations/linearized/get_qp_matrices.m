@@ -1,63 +1,17 @@
 function [A,B,C,H,Ga,Gb,Gc,dx,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,upast)
 %#eml
 %% Constants
-% p = 200;
-% m = 8;
-% p = 100;
-% m = 2;
-% Ts = 0.05;
 Inflow_opening = 0.405;
 Outflow_opening = 0.393;
 
-% n_delay = [0;40]; % delay as multiple of sampling time
-% 
-% xsize = 5;
-% usize = 2;
-% ysize = 2;
-% dsize = 2; % number of disturbances
 [xsize,ysize,dsize,usize,n_delay,xsize_full,Ts,p,m,UWT,YWT] = constants();
 
 %% Linearized system
 [Ac,Bc,Cc] = get_linearized_matrices(xinit,upast);
 
-% if n_delay(1)==0
-%     % use delayed input to calculate derivatives
-%     f = get_comp_deriv(xinit(1:5),[0.304+upast(1),Inflow_opening,Outflow_opening,xinit(xsize+1)]);
-% else
-%     f = get_comp_deriv(xinit(1:5),[0.304+xinit(xsize+1),Inflow_opening,Outflow_opening,xinit(xsize+n_delay(1)+1)]);
-% end
-
 f = get_comp_deriv(xinit(1:5),[0.304+upast(1),Inflow_opening,Outflow_opening,upast(2)]);
 
 [Ainit,Binit,Cinit,dx2] = discretize_rk4(Ac,Bc,Cc,f,Ts);
-
-% Ainit = [
-%     0.9351    0.0189   -0.0440   -0.0000    0.0449
-%     0.0466    0.9200    0.0866    0.0000   -0.0884
-%     0.9348   -0.7471    0.8074    0.0009    0.0598
-%    -4.7533    3.8001   -8.8848    0.9907   -0.2001
-%          0         0         0         0    0.9048];
-%      
-% Binit = [
-%        -0.0001    0.0017
-%     0.0001   -0.0032
-%     0.0032    0.0015
-%     7.0008   -0.0036
-%          0    0.0675
-%          ];
-%      
-% Cinit = [
-%              0    1.0000         0         0         0
-%    25.1590  -20.0646  100.0000         0         0
-%    ];
-
-% n_delay = 0;
-% 
-% xsize = length(Ainit);
-% usize = size(Binit,2);
-% ysize = size(Cinit,1);
-
-
 
 %% Define augmented system
 % delay of n_delay time steps in 2nd component of u
@@ -94,8 +48,6 @@ Cd = eye(ysize,dsize);
 C = [Cinit, zeros(ysize,sum(n_delay)), Cd];
 
 %% Define correct global variables
-% xsize = length(A);
-% xsize = 29;
 xsize = xsize_full;
 
 dx = [dx2; zeros(xsize-5,1)];
@@ -105,6 +57,13 @@ dx = [dx2; zeros(xsize-5,1)];
 
 % Y = Su*U + Sx*X
 
+% Pre-compute multiples of C*A^(i-1)
+CxA = zeros(ysize,xsize,p+1);
+CxA(:,:,1) = C;
+for i=2:p+1
+    CxA(:,:,i) = CxA(:,:,i-1)*A;
+end
+
 Su = zeros(ysize*p,usize*m);
 
 
@@ -112,53 +71,33 @@ for i=1:p
     for j=1:i
         % for first m inputs, make new columns
         if j<=m
-            Su(1+(i-1)*ysize:i*ysize,1+(j-1)*usize:j*usize) = C*A^(i-j)*B;
+            Su(1+(i-1)*ysize:i*ysize,1+(j-1)*usize:j*usize) = CxA(:,:,i-j+1)*B;
             
         % m+1:p inputs are the same as input m
         else
-            toadd = C*A^(i-j)*B;
+            toadd = CxA(:,:,i-j+1)*B;
             for k=1:ysize
                 Su(k+(i-1)*ysize,1+(m-1)*usize:m*usize) = Su(k+(i-1)*ysize,1+(m-1)*usize:m*usize) + toadd(k,:);
             end
-%             Su(1+(i-1)*ysize:i*ysize,1+(m-1)*usize:m*usize) = Su(1+(i-1)*ysize:i*ysize,1+(m-1)*usize:m*usize) +  C*A^(i-j)*B;
-%             Su(1+(i-1)*2:i*2,1+(8-1)*2:8*2) = Su(1+(i-1)*2:i*2,1+(8-1)*2:8*2) +  C(1:2,1:29)*A(1:29,1:29)^(i-j)*B(1:29,1:2);
         end
     end
 end
 
-% for i=m+1:p
-%     offset = (i-1)*usize;
-%     Su(:,1+(m-1)*usize:m*usize) = Su(:,1+(m-1)*usize:m*usize) + Su(:,1+offset:offset+usize);
-% end
-
 
 Sx = zeros(ysize*p,xsize);
 Sf = Sx;
-Sx(1:ysize,:) = C*A;
-for i=2:p
-    toadd2 = C*A^i;
-    
-%     toadd2(end-1:end,end-1:end) = 0;
-    
+for i=1:p
     for j=1:ysize
-%         Sx(j+(i-1)*ysize,:) = Sx(j+(i-2)*ysize,:) + toadd2(j,:);
-        Sx(j+(i-1)*ysize,:) = toadd2(j,:);
+        Sx(j+(i-1)*ysize,:) = CxA(j,:,i+1);
     end
-%     Sx(1+(i-1)*ysize:i*ysize,:) = Sx(1+(i-2)*ysize:(i-1)*ysize,:) + C*A^i;
 end
 
 
 Sf(1:ysize,:) = C;
 for i=2:p
-    toadd2 = C*A^(i-1);
-    
-%     toadd2(end-1:end,end-1:end) = 0;
-    
     for j=1:ysize
-        Sf(j+(i-1)*ysize,:) = Sf(j+(i-2)*ysize,:) + toadd2(j,:);
-%         Sx(j+(i-1)*ysize,:) = toadd2(j,:);
+        Sf(j+(i-1)*ysize,:) = Sf(j+(i-2)*ysize,:) + CxA(j,:,i);
     end
-%     Sx(1+(i-1)*ysize:i*ysize,:) = Sx(1+(i-2)*ysize:(i-1)*ysize,:) + C*A^i;
 end
 
 
@@ -168,10 +107,26 @@ H = Su'*YWT*Su + UWT;
 
 Ga = YWT*Su;
 Gb = Sx'*YWT*Su;
-% Gc = Su'*YWT*Su;
-% Gc = UWT;
 Gc = Sf'*YWT*Su;
 
 
 end
 
+
+
+% Discretize system given by A,B,C using 4th order runge kutta
+function [Ad,Bd,Cd,fd] = discretize_rk4(A,B,C,f,Ts)
+%#eml
+xsize = 5;
+
+A2 = A*A;
+A3 = A2*A;
+
+Acom = Ts*eye(xsize) + Ts^2/2*A + Ts^3/6*A2 + Ts^4/24*A3;
+
+Ad = eye(xsize) + Acom*A;
+Bd = Acom*B;
+Cd = C;
+fd = Acom*f(:);
+
+end

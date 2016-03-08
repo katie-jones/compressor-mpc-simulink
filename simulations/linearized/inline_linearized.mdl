@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.334"
+    ComputedModelVersion    "1.335"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -26,9 +26,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Mar 07 16:44:25 2016"
+  LastModifiedDate	  "Mon Mar 07 16:55:40 2016"
   RTWModifiedTimeStamp	  379267164
-  ModelVersionFormat	  "1.%<AutoIncrement:334>"
+  ModelVersionFormat	  "1.%<AutoIncrement:335>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -775,7 +775,7 @@ Model {
   }
   System {
     Name		    "inline_linearized"
-    Location		    [139, 205, 1163, 802]
+    Location		    [144, 485, 1168, 1082]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -817,9 +817,9 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "20"
-      YMin		      "-0.375"
-      YMax		      "0.1"
+      TimeRange		      "100"
+      YMin		      "-3.5"
+      YMax		      "2.5"
       SaveToWorkspace	      on
       SaveName		      "SD"
       DataFormat	      "Array"
