@@ -1,4 +1,4 @@
-function [sys,x0,str,tss]=comp_rig_model_version2(t,x,u,flag,Param,X_ss)
+function [sys,x0,str,tss]=comp_rig_tank(t,x,u,flag,Param,X_ss)
 
 switch flag,
 
@@ -66,11 +66,8 @@ P_D = x(1);
 m_in = u(1);
 Outflow_opening = u(2);
 
-SpeedSound = 340;     % speed of sound
-Out_pres = 1.0; % atmospheric pressure
+[Out_pres,~,D2,m_out_c] = tank_params();
 
-
-D2 = [-0.0083454 -0.0094965 0.16826 -0.032215 -0.61199 0.94175 -0.48522 0.10369];
 dp_sqrt2 = sqrt(abs(P_D*100 - Out_pres*100)) * sign(P_D*100 - Out_pres*100);      
 % M4 = [dp_sqrt2.^2.*u_out.^3 dp_sqrt2.^2.*u_out.^2 dp_sqrt2.^2.*u_out dp_sqrt2.^2 ...
 %       dp_sqrt2.*u_out.^3 dp_sqrt2.*u_out.^2 dp_sqrt2.*u_out dp_sqrt2 ...
@@ -78,7 +75,7 @@ dp_sqrt2 = sqrt(abs(P_D*100 - Out_pres*100)) * sign(P_D*100 - Out_pres*100);
 M5 = [dp_sqrt2*Outflow_opening^3 dp_sqrt2*Outflow_opening^2 dp_sqrt2*Outflow_opening dp_sqrt2 ...
        Outflow_opening^3 Outflow_opening^2 Outflow_opening 1]';
 % m_out = D * M4 + 0.05;
-m_out = D2 * M5 + 0.0170;
+m_out = D2 * M5 + m_out_c;
 
 sys(1) = m_out; % p1
 sys(2) = P_D; % p2
@@ -99,12 +96,11 @@ P_D = x(1);
 m_in = u(1);
 Outflow_opening = u(2);
 
-SpeedSound = 340;     % speed of sound
-Out_pres = 1.0; % atmospheric pressure
+[Out_pres,VolumeT,D2,m_out_c] = tank_params();
 
-VolumeT =  pi * (0.60 / 2)^2 * 2 + pi * (0.08 / 2)^2 * 5.940; % volume, tank
+SpeedSound = flow_params();
 
-D2 = [-0.0083454 -0.0094965 0.16826 -0.032215 -0.61199 0.94175 -0.48522 0.10369];
+
 dp_sqrt2 = sqrt(abs(P_D*100 - Out_pres*100)) * sign(P_D*100 - Out_pres*100);      
 % M4 = [dp_sqrt2.^2.*u_out.^3 dp_sqrt2.^2.*u_out.^2 dp_sqrt2.^2.*u_out dp_sqrt2.^2 ...
 %       dp_sqrt2.*u_out.^3 dp_sqrt2.*u_out.^2 dp_sqrt2.*u_out dp_sqrt2 ...
@@ -112,7 +108,7 @@ dp_sqrt2 = sqrt(abs(P_D*100 - Out_pres*100)) * sign(P_D*100 - Out_pres*100);
 M5 = [dp_sqrt2*Outflow_opening^3 dp_sqrt2*Outflow_opening^2 dp_sqrt2*Outflow_opening dp_sqrt2 ...
        Outflow_opening^3 Outflow_opening^2 Outflow_opening 1]';
 % m_out = D * M4 + 0.05;
-m_out = D2 * M5 + 0.0170;
+m_out = D2 * M5 + m_out_c;
 
 sys(1) = SpeedSound * SpeedSound / VolumeT * (m_in - m_out) * 1e-5; % p1
 
