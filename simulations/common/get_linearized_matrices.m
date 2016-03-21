@@ -18,13 +18,13 @@ m_comp = x(3);
 omega_comp = x(4);
 % m_rec = x(5);
 
-torque_drive_in = u(1)+0.304;
-Recycle_opening = u(2);
-Inflow_opening = 0.405;
-Outflow_opening = 0.393;
-% Inflow_opening = u(2);
-% Outflow_opening = u(3); 
-% Recycle_opening = u(4);
+torque_drive_in = u(1);
+% Inflow_opening = 0.405;
+% Outflow_opening = 0.393;
+Inflow_opening = u(2);
+Outflow_opening = u(3); 
+Recycle_opening = u(4);
+
 
 % torque_drive = torque_drive * 15000 / (2 * pi * 50);
 % torque_drive = torque_drive * (2 * pi * 50 / omega_comp);

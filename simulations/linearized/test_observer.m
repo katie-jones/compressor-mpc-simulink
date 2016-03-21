@@ -156,7 +156,7 @@ for i=2:length(t)
 %     [Ac,Bc,Cc] = get_linearized_matrices(xaug(1:5,i),[u(1,i-1); dxaug(6,i)]);
 %     f = get_comp_deriv(xaug(1:5,i),[0.304+u(1,i-1),Inflow_opening,Outflow_opening,dxaug(6,i)])';
 
-    [Ac,Bc,Cc] = get_linearized_matrices(xaug(1:5,i),[u(1,i-1); u(2,i-1)]);
+    [Ac,Bc,Cc] = get_linearized_matrices(xaug(1:5,i),[0.304+u(1,i-1),Inflow_opening,Outflow_opening,u(2,i-1)]);
     f = get_comp_deriv(xaug(1:5,i),[0.304+u(1,i-1),Inflow_opening,Outflow_opening,u(2,i-1)])';
     [A,B,C,fd] = discretize_rk4(Ac,Bc,Cc,f,Ts);
     

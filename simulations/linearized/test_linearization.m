@@ -14,7 +14,7 @@ x_init_lin = [0.898
 u_init = [0.304,Inflow_opening,Outflow_opening,1]';
   
 x = x_init_lin;
-[Ac,Bc,Cc] = get_linearized_matrices(x, u_init([1,4])-[0.304,0]');
+[Ac,Bc,Cc] = get_linearized_matrices(x, u_init);
 f_initc = get_comp_deriv(x,u_init)';% - [0;0;0;0;2*0.0263]';
 [A,B,C,f_init] = discretize_rk4(Ac,Bc,Cc,f_initc,Ts);
 
