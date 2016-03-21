@@ -153,7 +153,6 @@ global x_old u_old
 
 % if ~(exist('x_old','var'))
 if (isempty(x_old))
-    fprintf('x empty\n')
     x_old = x;
     u_old = zeros(5,1);
 end

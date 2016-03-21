@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.403"
+    ComputedModelVersion    "1.404"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -26,9 +26,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Mar 21 13:19:40 2016"
-  RTWModifiedTimeStamp	  380467178
-  ModelVersionFormat	  "1.%<AutoIncrement:403>"
+  LastModifiedDate	  "Mon Mar 21 13:35:21 2016"
+  RTWModifiedTimeStamp	  380468119
+  ModelVersionFormat	  "1.%<AutoIncrement:404>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -889,7 +889,7 @@ Model {
       System {
 	Name			"Sim Model"
 	Location		[99, 110, 1375, 982]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -938,7 +938,7 @@ Model {
 	  System {
 	    Name		    "Compresion plant"
 	    Location		    [637, 82, 2535, 995]
-	    Open		    off
+	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -963,7 +963,7 @@ Model {
 	      SID		      13
 	      Ports		      [1, 1]
 	      Position		      [160, 34, 315, 66]
-	      FunctionName	      "comp_rig_model_version2"
+	      FunctionName	      "comp_rig_model"
 	      Parameters	      "[], x_init_lin"
 	      EnableBusSupport	      off
 	    }

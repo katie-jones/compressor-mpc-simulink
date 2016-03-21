@@ -1,4 +1,4 @@
-function [sys,x0,str,tss]=comp_rig_model_version2(t,x,u,flag,Param,X_ss)
+function [sys,x0,str,tss]=comp_rig_model(t,x,u,flag,Param,X_ss)
 
 switch flag,
 
@@ -112,8 +112,8 @@ m_in = C * M3 + m_in_c; % Inflow valve
 
 dp_sqrt2 = sqrt(abs(p2*100 - Out_pres*100)) * sign(p2*100 - Out_pres*100);      
 
-M5 = [dp_sqrt2*Outflow_opening^3 dp_sqrt2*Outflow_opening^2 dp_sqrt2*Outflow_opening dp_sqrt2 ...
-       Outflow_opening^3 Outflow_opening^2 Outflow_opening 1]';
+M5 = [dp_sqrt2*Outflow_opening^3, dp_sqrt2*Outflow_opening^2, dp_sqrt2*Outflow_opening, dp_sqrt2, ...
+       Outflow_opening^3, Outflow_opening^2, Outflow_opening, 1]';
 
 m_out = D2 * M5 + m_out_c;
 

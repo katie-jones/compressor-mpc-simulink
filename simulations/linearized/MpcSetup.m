@@ -3,12 +3,13 @@ clear all
 % addpath('..\qpoases\interfaces\matlab\')
 addpath('../call_qpoases_m')
 addpath('../call_qpoases_m/qpoases3/interfaces/matlab')
+addpath('../common')
 
 % global xinit A B C M ysize xsize usize p LB UB Ain b upast m
 
 load sys.mat
 
-[xsizea,ysize,dsize,usize,n_delay,xsize,Ts,p,m,UWT,YWT] = constants();
+[xsizea,ysize,dsize,usize,n_delay,xsize,Ts,p,m,UWT,YWT] = mpc_constants();
 
 
 
