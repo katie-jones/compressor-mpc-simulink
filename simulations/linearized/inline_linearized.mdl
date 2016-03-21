@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.391"
+    ComputedModelVersion    "1.394"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -26,9 +26,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Mar 08 12:51:14 2016"
-  RTWModifiedTimeStamp	  379342273
-  ModelVersionFormat	  "1.%<AutoIncrement:391>"
+  LastModifiedDate	  "Mon Mar 21 10:38:11 2016"
+  RTWModifiedTimeStamp	  380457489
+  ModelVersionFormat	  "1.%<AutoIncrement:394>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -111,7 +111,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "200"
+	  StopTime		  "300"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -809,7 +809,7 @@ Model {
       Ports		      [1]
       Position		      [890, 124, 920, 156]
       Floating		      off
-      Location		      [2161, 86, 2499, 359]
+      Location		      [1478, 126, 1816, 399]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -818,8 +818,7 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-4"
-      YMax		      "3"
+      YMax		      "2"
       SaveToWorkspace	      on
       SaveName		      "SD"
       DataFormat	      "Array"
@@ -889,8 +888,8 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Sim Model"
-	Location		[518, 164, 1794, 1036]
-	Open			off
+	Location		[99, 110, 1375, 982]
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1086,7 +1085,7 @@ Model {
 	  Name			  "Step1"
 	  SID			  20
 	  Position		  [100, 285, 130, 315]
-	  Time			  "80"
+	  Time			  "100"
 	  After			  "-0.1"
 	  SampleTime		  "0"
 	}
@@ -1599,12 +1598,6 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "Sum2"
-	  SrcPort		  1
-	  DstBlock		  "Mux1"
-	  DstPort		  3
-	}
-	Line {
 	  SrcBlock		  "Step"
 	  SrcPort		  1
 	  Points		  [20, 0]
@@ -1809,12 +1802,6 @@ Model {
 	  }
 	}
 	Line {
-	  SrcBlock		  "u_out"
-	  SrcPort		  1
-	  DstBlock		  "Sum2"
-	  DstPort		  2
-	}
-	Line {
 	  SrcBlock		  "Demux2"
 	  SrcPort		  7
 	  Points		  [40, 0]
@@ -1860,12 +1847,6 @@ Model {
 	    DstBlock		    "Terminator3"
 	    DstPort		    1
 	  }
-	}
-	Line {
-	  SrcBlock		  "u_in"
-	  SrcPort		  1
-	  DstBlock		  "Mux1"
-	  DstPort		  2
 	}
 	Line {
 	  Name			  "m_comp"
@@ -1921,6 +1902,24 @@ Model {
 	  DstBlock		  "Transport\nDelay"
 	  DstPort		  1
 	}
+	Line {
+	  SrcBlock		  "u_in"
+	  SrcPort		  1
+	  DstBlock		  "Mux1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Sum2"
+	  SrcPort		  1
+	  DstBlock		  "Mux1"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "u_out"
+	  SrcPort		  1
+	  DstBlock		  "Sum2"
+	  DstPort		  2
+	}
 	Annotation {
 	  Position		  [42, 378]
 	}
@@ -1963,7 +1962,7 @@ Model {
       Ports		      [1]
       Position		      [295, 234, 325, 266]
       Floating		      off
-      Location		      [2145, 512, 2486, 785]
+      Location		      [1477, 579, 1818, 852]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1996,7 +1995,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[651, 162, 1272, 614]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2376,7 +2375,7 @@ Model {
       Ports		      [1]
       Position		      [885, 524, 915, 556]
       Floating		      off
-      Location		      [1656, 485, 1997, 758]
+      Location		      [1926, 583, 2267, 856]
       Open		      on
       NumInputPorts	      "1"
       List {
@@ -2384,7 +2383,7 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-0.05"
+      YMin		      "-0.15"
       YMax		      "0.5"
       SaveToWorkspace	      on
       SaveName		      "p_out"
@@ -2399,7 +2398,7 @@ Model {
       Ports		      [1]
       Position		      [195, 309, 225, 341]
       Floating		      off
-      Location		      [1726, 88, 2050, 370]
+      Location		      [1935, 108, 2259, 390]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
