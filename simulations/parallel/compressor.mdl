@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.28"
+    ComputedModelVersion    "1.47"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Mar 21 14:06:09 2016"
-  RTWModifiedTimeStamp	  380469168
-  ModelVersionFormat	  "1.%<AutoIncrement:28>"
+  LastModifiedDate	  "Mon Mar 21 14:33:53 2016"
+  RTWModifiedTimeStamp	  380471630
+  ModelVersionFormat	  "1.%<AutoIncrement:47>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -769,7 +769,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    277
+    SIDHighWatermark	    279
     Block {
       BlockType		      SubSystem
       Name		      "Compressor1"
@@ -2728,6 +2728,8 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
+      YMin		      "-2.5"
+      YMax		      "0"
       SaveName		      "ScopeData1"
       DataFormat	      "StructureWithTime"
       SampleTime	      "0"
@@ -2764,7 +2766,7 @@ Model {
       System {
 	Name			"Tank"
 	Location		[580, 163, 1078, 459]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2822,7 +2824,7 @@ Model {
 	  Ports			  [1, 1]
 	  Position		  [185, 164, 340, 196]
 	  FunctionName		  "comp_rig_tank"
-	  Parameters		  "[], 1.3"
+	  Parameters		  "[], P_D"
 	  EnableBusSupport	  off
 	}
 	Block {
@@ -2904,9 +2906,9 @@ Model {
       RTWMemSecDataInternal   "Inherit from model"
       RTWMemSecDataParameters "Inherit from model"
       X			      "Td"
-      Ts		      "0.05"
+      Ts		      "Ts"
       nsamps		      "1"
-      OutputAfterFinalValue   "Setting to zero"
+      OutputAfterFinalValue   "Holding final value"
       ignoreOrWarnInputAndFrameLengths off
     }
     Block {
@@ -2919,6 +2921,7 @@ Model {
       Location		      [469, 138, 793, 377]
       Open		      on
       NumInputPorts	      "1"
+      ZoomMode		      "xonly"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
@@ -2954,7 +2957,7 @@ Model {
       Ports		      [1]
       Position		      [705, 34, 735, 66]
       Floating		      off
-      Location		      [712, 68, 1036, 307]
+      Location		      [571, 60, 895, 299]
       Open		      on
       NumInputPorts	      "1"
       List {
@@ -2965,21 +2968,50 @@ Model {
       SampleTime	      "0"
     }
     Block {
-      BlockType		      Constant
-      Name		      "u_D"
-      SID		      276
-      Position		      [675, 230, 705, 260]
-      OutDataType	      "fixdt(1, 16)"
-      OutScaling	      "2^0"
+      BlockType		      Reference
+      Name		      "u_d"
+      SID		      279
+      Ports		      [0, 1]
+      Position		      [645, 228, 700, 262]
+      LibraryVersion	      "1.673"
+      SourceBlock	      "dspsrcs4/Signal From\nWorkspace"
+      SourceType	      "Signal From Workspace"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      X			      "u_d"
+      Ts		      "Ts"
+      nsamps		      "1"
+      OutputAfterFinalValue   "Holding final value"
+      ignoreOrWarnInputAndFrameLengths off
     }
     Block {
-      BlockType		      Constant
+      BlockType		      Reference
       Name		      "u_rec"
-      SID		      274
-      Position		      [105, 275, 135, 305]
-      Value		      "0.1"
-      OutDataType	      "fixdt(1, 16)"
-      OutScaling	      "2^0"
+      SID		      278
+      Ports		      [0, 1]
+      Position		      [85, 273, 140, 307]
+      LibraryVersion	      "1.673"
+      SourceBlock	      "dspsrcs4/Signal From\nWorkspace"
+      SourceType	      "Signal From Workspace"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      X			      "u_rec"
+      Ts		      "Ts"
+      nsamps		      "1"
+      OutputAfterFinalValue   "Holding final value"
+      ignoreOrWarnInputAndFrameLengths off
     }
     Line {
       SrcBlock		      "Compressor1"
@@ -3052,7 +3084,7 @@ Model {
     Line {
       SrcBlock		      "u_rec"
       SrcPort		      1
-      Points		      [95, 0]
+      Points		      [90, 0]
       Branch {
 	Points			[0, -140]
 	DstBlock		"Compressor1"
@@ -3065,7 +3097,7 @@ Model {
       }
     }
     Line {
-      SrcBlock		      "u_D"
+      SrcBlock		      "u_d"
       SrcPort		      1
       DstBlock		      "Tank"
       DstPort		      2

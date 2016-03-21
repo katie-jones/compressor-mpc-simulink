@@ -1,4 +1,4 @@
-function [a,Pin,Ptank,V1,V2,AdivL] = flow_params()
+function [a,Pin,Ptank,V1,V2,AdivL,ud1,ud2] = flow_params()
 global P_D
 
 a = 340; % speed of sound
@@ -10,5 +10,8 @@ V1 = pi * (0.60 / 2)^2 * 2 + pi * (0.08 / 2)^2 * 8.191; % volume of the inlet pi
 V2 =  pi * (0.60 / 2)^2 * 2 + pi * (0.08 / 2)^2 * 5.940; % volume, tank
 
 AdivL =     pi * (0.08 / 2)^2 / 3 * 0.1;  % Duct cross section divided by length
+
+ud1 = 0.393; % setting of discharge valve 1
+ud2 = 0.393; % setting of discharge valve 2
 
 end
