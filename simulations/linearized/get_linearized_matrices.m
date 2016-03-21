@@ -32,8 +32,8 @@ Outflow_opening = 0.393;
 %-------------------------------------------------------------------------%
 %----------------------------- CONSTANTS ---------------------------------%
 %-------------------------------------------------------------------------%
-[SpeedSound,In_pres,Out_pres,VolumeT1,VolumeT2,AdivL,J,tauRecycle,A_coeff,C_coeff,~,m_rec_ss_c,D2,~,T_ss_c,SD_c,torque_drive_c] = comp_coeffs();
-
+[J,tauRecycle,A_coeff,C_coeff,~,m_rec_ss_c,D2,~,T_ss_c,SD_c,torque_drive_c] = comp_coeffs();
+[SpeedSound,In_pres,Out_pres,VolumeT1,VolumeT2,AdivL] = flow_params();
 
 %-------------------------------------------------------------------------%
 %---------------------------- DERIVATIVES --------------------------------%

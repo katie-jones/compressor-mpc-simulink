@@ -71,8 +71,8 @@ m_comp = x(3);%
 omega_comp = x(4);%
 m_rec = x(5);%
 
-[~,In_pres,Out_pres,~,~,~,~,~,A,C,m_in_c,~,D2,m_out_c,T_ss_c,SD_c,torque_drive_c] = comp_coeffs();
-
+[~,~,A,C,m_in_c,~,D2,m_out_c,T_ss_c,SD_c,torque_drive_c] = comp_coeffs();
+[~,In_pres,Out_pres,~,~,~] = flow_params();
 
 torque_drive = torque_drive * torque_drive_c / (2 * pi * 50);
 % if omega_comp > 2*pi*50

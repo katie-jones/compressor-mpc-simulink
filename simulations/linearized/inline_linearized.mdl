@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.402"
+    ComputedModelVersion    "1.403"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -19,16 +19,16 @@ Model {
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
   MaxMDLFileLineLength	  120
-  InitFcn		  "MpcSetup_linearized\n"
+  InitFcn		  "MpcSetup\n"
   Created		  "Thu Feb 18 14:48:34 2016"
   Creator		  "chkajon"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Mar 21 10:46:57 2016"
-  RTWModifiedTimeStamp	  380458015
-  ModelVersionFormat	  "1.%<AutoIncrement:402>"
+  LastModifiedDate	  "Mon Mar 21 13:19:40 2016"
+  RTWModifiedTimeStamp	  380467178
+  ModelVersionFormat	  "1.%<AutoIncrement:403>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1995,7 +1995,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[651, 162, 1272, 614]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"

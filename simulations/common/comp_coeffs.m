@@ -1,13 +1,5 @@
-function [a,Pin,Pout,V1,V2,AdivL,J,tau_r,A,C,m_in_c,m_rec_ss_c,D,m_out_c,T_ss_c,SD_c,torque_drive_c] = comp_coeffs()
+function [J,tau_r,A,C,m_in_c,m_rec_ss_c,D,m_out_c,T_ss_c,SD_c,torque_drive_c] = comp_coeffs()
 %#eml
-a = 340;
-Pin = 1;
-Pout = 1;
-
-V1 = 2*pi * (0.60 / 2)^2 * 2 + pi * (0.08 / 2)^2 * 8.191; % volume of the inlet pipe, 6m
-V2 =  pi * (0.60 / 2)^2 * 2 + pi * (0.08 / 2)^2 * 5.940; % volume, tank
-AdivL =     pi * (0.08 / 2)^2 / 3 * 0.1;  % Duct cross section divided by length
-
 
 J          = (0.4 + 0.2070) *0.4; % 0.8;  % shaft inertia: compressor and rotor
 tau_r =   1/0.5 * 1;     % time constant of the recycle valve

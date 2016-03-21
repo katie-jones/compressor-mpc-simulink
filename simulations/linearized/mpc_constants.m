@@ -1,5 +1,5 @@
 % Constants for compressor simulation
-function [orig_xsize,ysize,dsize,usize,n_delay,xsize,Ts,p,m,UWT,YWT] = constants()
+function [orig_xsize,ysize,dsize,usize,n_delay,xsize,Ts,p,m,UWT,YWT] = mpc_constants()
 %#eml
 orig_xsize = 5;
 ysize = 2;
@@ -27,9 +27,6 @@ YW = diag([0.1 1]');
 YWT = kron(eye(p),YW);
 UWT = kron(eye(m),UW);
 
-
-% add weights for keeping last input for p-m iterations
-% UWT(end-usize+1:end,end-usize+1:end) = (p-m+1)*UW;
 
 
 end
