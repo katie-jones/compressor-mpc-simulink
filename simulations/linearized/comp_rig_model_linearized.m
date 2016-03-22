@@ -159,7 +159,7 @@ end
 
 
 
-f = get_comp_deriv(x,u_old(1:4))';
+f = get_comp_deriv(x,u_old(1:4),1)';
 
 [A,B,C] = get_linearized_matrices(x,u_old(1:4));
 
