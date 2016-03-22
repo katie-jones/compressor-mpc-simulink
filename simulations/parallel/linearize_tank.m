@@ -8,6 +8,7 @@ udt = u(end);
 
 xsize = 5;
 usize = 2;
+ysize = 2;
 
 x1 = x(1:xsize);
 x2 = x(xsize+1:2*xsize);
@@ -62,9 +63,12 @@ B = [B1, zeros(xsize,usize);
     zeros(1,2*usize)];
 
 % Outputs: SD1, SD2, p21-p22, pd
-C = [C1(2,:), zeros(1,xsize), 0;
-    zeros(1,xsize), C2(2,:), 0;
-    C1(1,:), -C2(1,:), 0;
+% C = [C1(2,:), zeros(1,xsize), 0;
+%     zeros(1,xsize), C2(2,:), 0;
+%     C1(1,:), -C2(1,:), 0;
+%     zeros(1,2*xsize), 1];
+C = [C1, zeros(ysize,xsize), zeros(ysize,1);
+    zeros(ysize,xsize), C2, zeros(ysize,1);
     zeros(1,2*xsize), 1];
 
 
