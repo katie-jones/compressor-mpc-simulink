@@ -15,7 +15,7 @@ xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
 %% Initial state
 global P_D
 
-P_D = 1.3;
+P_D = 1.07;
 x_init_lin = [0.912; 1.17; 0.14; 465; 0];
 xinit = [x_init_lin; x_init_lin; P_D];
 
@@ -43,8 +43,10 @@ sys_kalman = ss(A, [B G], C, [D Hkalman], Ts);
 [KEST, L, P, M, Z] = kalman(sys_kalman, Qn, Rn);
 
 %% Define upper/lower bounds
-lb = [-0.3; 0];
-ub = [0.3; 1];
+% lb = [-0.3; 0];
+% ub = [0.3; 1];
+lb = [0;0];
+ub = [0;0];
 
 lb_rate = [0.1; 0.1];
 ub_rate = [0.1; 1];

@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.50"
+    ComputedModelVersion    "1.55"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Mar 22 09:56:42 2016"
-  RTWModifiedTimeStamp	  380541401
-  ModelVersionFormat	  "1.%<AutoIncrement:50>"
+  LastModifiedDate	  "Tue Mar 22 16:22:44 2016"
+  RTWModifiedTimeStamp	  380564562
+  ModelVersionFormat	  "1.%<AutoIncrement:55>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -640,6 +640,15 @@ Model {
       Interpolate	      on
     }
     Block {
+      BlockType		      Memory
+      X0		      "0"
+      InheritSampleTime	      off
+      LinearizeMemory	      off
+      LinearizeAsDelay	      off
+      StateMustResolveToSignalObject off
+      RTWStateStorageClass    "Auto"
+    }
+    Block {
       BlockType		      Mux
       Inputs		      "4"
       DisplayOption	      "none"
@@ -763,7 +772,7 @@ Model {
   }
   System {
     Name		    "compressor"
-    Location		    [1377, 250, 2543, 773]
+    Location		    [57, 250, 1223, 773]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -777,12 +786,12 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    283
+    SIDHighWatermark	    335
     Block {
       BlockType		      SubSystem
       Name		      "Compressor1"
       SID		      62
-      Ports		      [2, 3]
+      Ports		      [3, 3]
       Position		      [305, 73, 405, 177]
       LibraryVersion	      "1.762"
       MinAlgLoopOccurrences   off
@@ -822,6 +831,16 @@ Model {
 	  SID			  161
 	  Position		  [40, 403, 70, 417]
 	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "fixdt(1, 16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "p_d"
+	  SID			  284
+	  Position		  [185, 478, 215, 492]
+	  Port			  "3"
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
 	  OutScaling		  "2^0"
@@ -1208,13 +1227,6 @@ Model {
 	  SampleTime		  "0"
 	}
 	Block {
-	  BlockType		  Constant
-	  Name			  "dummy"
-	  SID			  96
-	  Position		  [180, 472, 235, 498]
-	  Value			  "0"
-	}
-	Block {
 	  BlockType		  Scope
 	  Name			  "m_comp"
 	  SID			  97
@@ -1506,7 +1518,7 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "dummy"
+	  SrcBlock		  "p_d"
 	  SrcPort		  1
 	  DstBlock		  "Mux1"
 	  DstPort		  5
@@ -1789,7 +1801,7 @@ Model {
       BlockType		      SubSystem
       Name		      "Compressor2"
       SID		      210
-      Ports		      [2, 3]
+      Ports		      [3, 3]
       Position		      [305, 288, 405, 392]
       LibraryVersion	      "1.762"
       MinAlgLoopOccurrences   off
@@ -1829,6 +1841,16 @@ Model {
 	  SID			  212
 	  Position		  [40, 403, 70, 417]
 	  Port			  "2"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "fixdt(1, 16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "p_d"
+	  SID			  334
+	  Position		  [200, 478, 230, 492]
+	  Port			  "3"
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
 	  OutScaling		  "2^0"
@@ -2169,13 +2191,6 @@ Model {
 	  DataFormat		  "StructureWithTime"
 	  LimitDataPoints	  off
 	  SampleTime		  "0"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "dummy"
-	  SID			  240
-	  Position		  [180, 472, 235, 498]
-	  Value			  "0"
 	}
 	Block {
 	  BlockType		  Scope
@@ -2659,7 +2674,7 @@ Model {
 	  }
 	}
 	Line {
-	  SrcBlock		  "dummy"
+	  SrcBlock		  "p_d"
 	  SrcPort		  1
 	  DstBlock		  "Mux1"
 	  DstPort		  5
@@ -2701,6 +2716,15 @@ Model {
 	  Position		  [42, 373]
 	}
       }
+    }
+    Block {
+      BlockType		      Memory
+      Name		      "Memory"
+      SID		      335
+      Position		      [360, 455, 390, 485]
+      BlockMirror	      on
+      ShowName		      off
+      X0		      "P_D"
     }
     Block {
       BlockType		      Mux
@@ -2981,6 +3005,7 @@ Model {
       Location		      [936, 98, 1260, 337]
       Open		      on
       NumInputPorts	      "1"
+      ZoomMode		      "xonly"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
@@ -3083,8 +3108,15 @@ Model {
       }
       Branch {
 	Points			[0, 90]
-	DstBlock		"To Workspace2"
-	DstPort			1
+	Branch {
+	  DstBlock		  "To Workspace2"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, 135]
+	  DstBlock		  "Memory"
+	  DstPort		  1
+	}
       }
     }
     Line {
@@ -3120,12 +3152,12 @@ Model {
       SrcPort		      1
       Points		      [20, 0]
       Branch {
-	Points			[35, 0; 0, -20]
+	Points			[35, 0; 0, -30]
 	DstBlock		"Compressor1"
 	DstPort			1
       }
       Branch {
-	Points			[0, 195]
+	Points			[0, 185]
 	DstBlock		"Compressor2"
 	DstPort			1
       }
@@ -3135,12 +3167,12 @@ Model {
       SrcPort		      1
       Points		      [90, 0]
       Branch {
-	Points			[0, -140]
+	Points			[0, -165]
 	DstBlock		"Compressor1"
 	DstPort			2
       }
       Branch {
-	Points			[0, 75]
+	Points			[0, 50]
 	DstBlock		"Compressor2"
 	DstPort			2
       }
@@ -3183,6 +3215,20 @@ Model {
 	Points			[0, 60]
 	DstBlock		"To Workspace3"
 	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Memory"
+      SrcPort		      1
+      Points		      [-70, 0; 0, -95]
+      Branch {
+	Points			[0, -215]
+	DstBlock		"Compressor1"
+	DstPort			3
+      }
+      Branch {
+	DstBlock		"Compressor2"
+	DstPort			3
       }
     }
   }

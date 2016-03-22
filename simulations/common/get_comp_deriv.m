@@ -5,7 +5,7 @@ torque_drive = u(1);
 Inflow_opening = u(2);
 Outflow_opening = u(3); 
 Recycle_opening = u(4);
-% dummy = u(5); 
+dummy = u(5); 
 
 
 % States
@@ -19,8 +19,8 @@ m_rec = x(5);
 [SpeedSound,In_pres,Out_pres,VolumeT1,VolumeT2,AdivL] = const_flow();
 
 % For parallel simulation w/ non-constant output pressure
-if length(u)>5
-    Out_pres = u(6);
+if dummy>0
+    Out_pres = dummy;
 end
 
 torque_drive = torque_drive * torque_drive_c / (2 * pi * 50);
