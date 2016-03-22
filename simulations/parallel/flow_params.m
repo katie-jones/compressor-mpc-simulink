@@ -14,7 +14,7 @@ AdivL =     pi * (0.08 / 2)^2 / 3 * 0.1;  % Duct cross section divided by length
 ud1 = 0.393; % setting of discharge valve 1
 ud2 = 0.393; % setting of discharge valve 2
 
-uoff1 = [0.304, 0.405, ud1, 0]; % offset applied to calculated inputs
-uoff2 = [0.304, 0.405, ud2, 0];
+uoff1 = [0.304, 0.405, ud1, 0, 0]'; % offset applied to calculated inputs
+uoff2 = [0.304, 0.405, ud2, 0, 0]';
 
 end
