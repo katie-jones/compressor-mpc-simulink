@@ -1,4 +1,4 @@
-function f = get_comp_deriv(x, u)
+function f = get_comp_deriv(x, u, flag)
 %#eml
 % Inputs
 torque_drive = u(1);  
@@ -44,7 +44,14 @@ M3 = [dp_sqrt*Inflow_opening^3 dp_sqrt*Inflow_opening^2 dp_sqrt*Inflow_opening d
 
 m_in = C * M3 + m_in_c; % Inflow valve
 
-m_rec_ss = (m_rec_ss_c(1) * sqrt(p2*1e5 - p1*1e5) * Recycle_opening);%  + m_rec_ss_c(2) ) * ~(Recycle_opening<1e-2);
+
+% If using for simulation, have dead zone on recycle opening
+% If using for MPC, remove dead zone (better results)
+if flag==1
+    m_rec_ss = (m_rec_ss_c(1) * sqrt(p2*1e5 - p1*1e5) * Recycle_opening  + m_rec_ss_c(2) ) * ~(Recycle_opening<1e-2);
+else
+    m_rec_ss = (m_rec_ss_c(1) * sqrt(p2*1e5 - p1*1e5) * Recycle_opening);
+end
 
 
 
