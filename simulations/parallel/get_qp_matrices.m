@@ -53,7 +53,7 @@ for i=2:p+1
     CxA(:,:,i) = CxA(:,:,i-1)*A;
 end
 
-Su = zeros(ysize*p,usize*m);
+Su = zeros(ysize*p,2*usize*m);
 
 
 for i=1:p

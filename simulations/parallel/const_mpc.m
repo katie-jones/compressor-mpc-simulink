@@ -1,4 +1,6 @@
 function [Ts,comp_xsize,xsize,total_xsize,comp_usize,comp_ysize] = const_mpc()
+%#eml
+
 Ts = 0.05;
 
 comp_xsize = 5;

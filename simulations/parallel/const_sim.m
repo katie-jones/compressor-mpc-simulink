@@ -1,4 +1,5 @@
 function [xsize_comp, xsize, usize_comp, usize, ysize_comp, ysize, uoff1, uoff2, ud] = const_sim()
+%#eml
 
 xsize_comp = 5;
 xsize = 2*xsize_comp + 1;

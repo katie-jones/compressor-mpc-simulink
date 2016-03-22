@@ -1,6 +1,7 @@
 % Function to linearize discharge tank about point xbar, ubar
 
 function [A, B, C] = linearize_tank(x,u)
+%#eml
 
 %% Constants
 pd = x(end);
@@ -49,11 +50,9 @@ Atc2 = get_Atc(x2,ud2,pd,SpeedSound,V2,D2);
 
 
 %% Output system
-A = [A1, zeros(xsize);
+A = [ [A1, zeros(xsize);
     zeros(xsize), A2;
-    Ac1t, Ac2t];
-
-A = [A, [Atc1; Atc2; Att]];
+    Ac1t, Ac2t], [Atc1; Atc2; Att] ];
 
 B = [B1, zeros(xsize,2);
     zeros(xsize,2), B2;

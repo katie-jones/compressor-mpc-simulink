@@ -3,9 +3,9 @@ clear all
 global P_D 
 addpath('../common')
 
-Td = 0.1; % torque input
-u_rec = 0.1; % recycle opening
-u_d = 0.9; % discharge valve opening
+Td = 0.0; % torque input
+u_rec = 0.0; % recycle opening
+u_d = 1.0; % discharge valve opening
 
 P_D = 1.07; % initialize tank pressure
 
