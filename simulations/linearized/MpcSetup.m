@@ -9,7 +9,7 @@ addpath('../common')
 
 load sys.mat
 
-[xsizea,ysize,dsize,usize,n_delay,xsize,Ts,p,m,UWT,YWT] = mpc_constants();
+[xsizea,ysize,dsize,usize,n_delay,xsize,Ts,p,m,UWT,YWT] = const_mpc();
 
 
 

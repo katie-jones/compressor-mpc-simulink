@@ -1,5 +1,5 @@
 % Constants for compressor simulation
-function [orig_xsize,ysize,dsize,usize,n_delay,xsize,Ts,p,m,UWT,YWT] = mpc_constants()
+function [orig_xsize,ysize,dsize,usize,n_delay,xsize,Ts,p,m,UWT,YWT] = const_mpc()
 %#eml
 orig_xsize = 5;
 ysize = 2;

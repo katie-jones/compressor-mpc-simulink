@@ -16,10 +16,10 @@ x2 = x(xsize+1:2*xsize);
 u1 = u(1:usize);
 u2 = u(usize+1:2*usize);
 
-[Out_pres_t,VolumeT,D2_t] = tank_params();
+[Out_pres_t,VolumeT,D2_t] = const_tank();
 [~,~,~,~,~,~,D2] = comp_coeffs();
 
-[SpeedSound,~,~,V1,V2] = flow_params();
+[SpeedSound,~,~,V1,V2] = const_flow();
 
 ud1 = u1(3);
 ud2 = u2(3);

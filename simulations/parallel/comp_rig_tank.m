@@ -66,7 +66,7 @@ P_D = x(1);
 m_in = u(1);
 Outflow_opening = u(2);
 
-[Out_pres,~,D2,m_out_c] = tank_params();
+[Out_pres,~,D2,m_out_c] = const_tank();
 
 dp_sqrt2 = sqrt(abs(P_D*100 - Out_pres*100)) * sign(P_D*100 - Out_pres*100);      
 % M4 = [dp_sqrt2.^2.*u_out.^3 dp_sqrt2.^2.*u_out.^2 dp_sqrt2.^2.*u_out dp_sqrt2.^2 ...
@@ -96,9 +96,9 @@ P_D = x(1);
 m_in = u(1);
 Outflow_opening = u(2);
 
-[Out_pres,VolumeT,D2,m_out_c] = tank_params();
+[Out_pres,VolumeT,D2,m_out_c] = const_tank();
 
-SpeedSound = flow_params();
+SpeedSound = const_flow();
 
 
 dp_sqrt2 = sqrt(abs(P_D*100 - Out_pres*100)) * sign(P_D*100 - Out_pres*100);      

@@ -4,7 +4,7 @@ function [A,B,C,H,Ga,Gb,Gc,dx,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,upast)
 Inflow_opening = 0.405;
 Outflow_opening = 0.393;
 
-[xsize,ysize,dsize,usize,n_delay,xsize_full,Ts,p,m,UWT,YWT] = mpc_constants();
+[xsize,ysize,dsize,usize,n_delay,xsize_full,Ts,p,m,UWT,YWT] = const_mpc();
 
 %% Linearized system
 u = [0.304+upast(1),Inflow_opening,Outflow_opening,upast(2)]; % include inflow/outflow openings

@@ -62,7 +62,7 @@ end
 function [sys] = mdlOutputs(t,x,u,Param)
 global P_D
 
-[~,xsize,~,~,usize] = mpc_constants;
+[~,xsize,~,~,usize] = const_mpc;
 
 x1 = x(1:xsize);
 x2 = x(xsize+1:2*xsize);
@@ -94,7 +94,7 @@ omega_comp = x(4);%
 m_rec = x(5);%
 
 [~,~,A,C,m_in_c,~,D2,m_out_c,T_ss_c,SD_c,torque_drive_c] = comp_coeffs();
-[~,In_pres,Out_pres,~,~,~] = flow_params();
+[~,In_pres,Out_pres,~,~,~] = const_flow();
 
 torque_drive = torque_drive * torque_drive_c / (2 * pi * 50);
 % if omega_comp > 2*pi*50
@@ -175,7 +175,7 @@ global u_old P_D
 
 P_D = x(end);
 
-[~,xsize,~,~,usize] = mpc_constants;
+[~,xsize,~,~,usize] = const_mpc;
 
 if (isempty(u_old))
     u_old = zeros(2*usize+1,1);

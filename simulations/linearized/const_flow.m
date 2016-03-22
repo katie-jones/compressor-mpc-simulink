@@ -1,4 +1,4 @@
-function [a,Pin,Pout,V1,V2,AdivL] = flow_params()
+function [a,Pin,Pout,V1,V2,AdivL] = const_flow()
 %#eml
 
 a = 340; % speed of sound

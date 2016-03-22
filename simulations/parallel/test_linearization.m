@@ -18,7 +18,7 @@ xsize = 5;
 
 % linearization point
 x_init_lin = [0.912; 1.17; 0.14; 465; 0];
-[~,~,~,~,~,~,uoff] = flow_params();
+[~,~,~,~,~,~,uoff] = const_flow();
 u = [uoff; uoff; 0] + [Td(1); 0; 0; u_rec(1); 0; Td(2); 0; 0; u_rec(2); 0; u_d];
 x = [x_init_lin; x_init_lin; P_D];
 

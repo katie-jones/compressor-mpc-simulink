@@ -1,4 +1,4 @@
-function [Ts,comp_xsize,xsize,total_xsize,comp_usize,comp_ysize] = mpc_constants()
+function [Ts,comp_xsize,xsize,total_xsize,comp_usize,comp_ysize] = const_mpc()
 Ts = 0.05;
 
 comp_xsize = 5;

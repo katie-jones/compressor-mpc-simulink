@@ -1,4 +1,4 @@
-function [a,Pin,Ptank,V1,V2,AdivL,uoff1,uoff2] = flow_params()
+function [a,Pin,Ptank,V1,V2,AdivL,uoff1,uoff2] = const_flow()
 global P_D
 
 a = 340; % speed of sound

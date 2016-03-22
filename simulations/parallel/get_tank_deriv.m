@@ -1,6 +1,6 @@
 function pdot = get_tank_deriv(x,u)
 
-[~,xsize] = mpc_constants();
+[~,xsize] = const_mpc();
 
 % States
 P_D = x(end);
@@ -13,7 +13,7 @@ u_d = u(end);
 
 [~,~,~,~,~,~,D2,m_out_c] = comp_coeffs();
 
-[SpeedSound,~,~,~,~,~,uoff1,uoff2] = flow_params();
+[SpeedSound,~,~,~,~,~,uoff1,uoff2] = const_flow();
 
 % Outlet opening
 ud1 = uoff1(3);
@@ -37,7 +37,7 @@ m_out2 = get_mass_flow(p2,P_D,ud2,D2,m_out_c);
 
 % Calculate m_out from large tank
 
-[Out_pres,VolumeT,D2,m_out_c] = tank_params();
+[Out_pres,VolumeT,D2,m_out_c] = const_tank();
 m_out_tank = get_mass_flow(P_D,Out_pres,u_d,D2,m_out_c);
 
 
