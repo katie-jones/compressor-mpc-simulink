@@ -1,17 +1,23 @@
-function pdot = get_tank_deriv(x,u_d)
+function pdot = get_tank_deriv(x,u)
 
-xsize = 5;
+xsize = mpc_constants();
 
 % States
 P_D = x(end);
 
 x1 = x(1:xsize);
-x2 = x(xsize+1:end-1);
+x2 = x(xsize+1:2*xsize);
+
+u_d = u(end);
 
 
 [~,~,~,~,~,~,D2,m_out_c] = comp_coeffs();
 
-[SpeedSound,~,~,~,~,~,ud1,ud2] = flow_params();
+[SpeedSound,~,~,~,~,~,uoff1,uoff2] = flow_params();
+
+% Outlet opening
+ud1 = uoff1(3);
+ud2 = uoff2(3);
 
 
 % Calculate m_out1 from tank of compressor 1
