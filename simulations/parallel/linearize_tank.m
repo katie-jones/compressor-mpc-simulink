@@ -7,25 +7,22 @@ pd = x(end);
 udt = u(end);
 
 xsize = 5;
-usize = 2;
+usize = 5;
 ysize = 2;
 
 x1 = x(1:xsize);
 x2 = x(xsize+1:2*xsize);
 
-uin1 = u(1:usize);
-uin2 = u(usize+1:2*usize);
+u1 = u(1:usize);
+u2 = u(usize+1:2*usize);
 
 [Out_pres_t,VolumeT,D2_t] = tank_params();
 [~,~,~,~,~,~,D2] = comp_coeffs();
 
-[SpeedSound,~,~,V1,V2,~,uoffset1,uoffset2] = flow_params();
+[SpeedSound,~,~,V1,V2] = flow_params();
 
-ud1 = uoffset1(3);
-ud2 = uoffset2(3);
-
-u1 = [uin1(1),0,0,uin1(2)] + uoffset1;
-u2 = [uin2(1),0,0,uin2(2)] + uoffset2;
+ud1 = u1(3);
+ud2 = u2(3);
 
 
 
@@ -58,9 +55,9 @@ A = [A1, zeros(xsize);
 
 A = [A, [Atc1; Atc2; Att]];
 
-B = [B1, zeros(xsize,usize);
-    zeros(xsize,usize), B2;
-    zeros(1,2*usize)];
+B = [B1, zeros(xsize,2);
+    zeros(xsize,2), B2;
+    zeros(1,2*2)];
 
 % Outputs: SD1, SD2, p21-p22, pd
 % C = [C1(2,:), zeros(1,xsize), 0;

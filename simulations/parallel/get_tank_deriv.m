@@ -1,6 +1,6 @@
 function pdot = get_tank_deriv(x,u)
 
-xsize = mpc_constants();
+[~,xsize] = mpc_constants();
 
 % States
 P_D = x(end);
@@ -63,3 +63,4 @@ M5 = [dp_sqrt2*u_out^3 dp_sqrt2*u_out^2 dp_sqrt2*u_out dp_sqrt2 ...
 m_out = D2 * M5 + m_out_c;
 
 end
+

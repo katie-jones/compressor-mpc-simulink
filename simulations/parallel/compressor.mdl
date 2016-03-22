@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.47"
+    ComputedModelVersion    "1.50"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Mar 21 14:33:53 2016"
-  RTWModifiedTimeStamp	  380471630
-  ModelVersionFormat	  "1.%<AutoIncrement:47>"
+  LastModifiedDate	  "Tue Mar 22 09:56:42 2016"
+  RTWModifiedTimeStamp	  380541401
+  ModelVersionFormat	  "1.%<AutoIncrement:50>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -744,6 +744,14 @@ Model {
       BlockType		      Terminator
     }
     Block {
+      BlockType		      ToWorkspace
+      VariableName	      "simulink_output"
+      MaxDataPoints	      "1000"
+      Decimation	      "1"
+      SampleTime	      "0"
+      FixptAsFi		      off
+    }
+    Block {
       BlockType		      TransportDelay
       DelayTime		      "1"
       InitialOutput	      "0"
@@ -755,7 +763,7 @@ Model {
   }
   System {
     Name		    "compressor"
-    Location		    [75, 431, 1241, 954]
+    Location		    [1377, 250, 2543, 773]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -769,7 +777,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    279
+    SIDHighWatermark	    283
     Block {
       BlockType		      SubSystem
       Name		      "Compressor1"
@@ -786,7 +794,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Compressor1"
-	Location		[2, 82, 1278, 971]
+	Location		[2, 82, 1278, 995]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2722,7 +2730,7 @@ Model {
       Position		      [705, 334, 735, 366]
       Floating		      off
       Location		      [107, 135, 431, 374]
-      Open		      on
+      Open		      off
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
@@ -2766,7 +2774,7 @@ Model {
       System {
 	Name			"Tank"
 	Location		[580, 163, 1078, 459]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2912,6 +2920,39 @@ Model {
       ignoreOrWarnInputAndFrameLengths off
     }
     Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace1"
+      SID		      282
+      Ports		      [1]
+      Position		      [725, 405, 785, 435]
+      VariableName	      "SD"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace2"
+      SID		      283
+      Ports		      [1]
+      Position		      [910, 320, 970, 350]
+      VariableName	      "PD"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace3"
+      SID		      281
+      Ports		      [1]
+      Position		      [725, 95, 785, 125]
+      VariableName	      "pout"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
       BlockType		      Scope
       Name		      "m_out"
       SID		      272
@@ -3035,8 +3076,16 @@ Model {
     Line {
       SrcBlock		      "Tank"
       SrcPort		      2
-      DstBlock		      "p_D"
-      DstPort		      1
+      Points		      [10, 0]
+      Branch {
+	DstBlock		"p_D"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 90]
+	DstBlock		"To Workspace2"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Compressor1"
@@ -3111,14 +3160,30 @@ Model {
     Line {
       SrcBlock		      "Mux1"
       SrcPort		      1
-      DstBlock		      "SD"
-      DstPort		      1
+      Points		      [40, 0]
+      Branch {
+	DstBlock		"SD"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 70]
+	DstBlock		"To Workspace1"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Mux"
       SrcPort		      1
-      DstBlock		      "p_out"
-      DstPort		      1
+      Points		      [35, 0]
+      Branch {
+	DstBlock		"p_out"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 60]
+	DstBlock		"To Workspace3"
+	DstPort			1
+      }
     }
   }
 }
