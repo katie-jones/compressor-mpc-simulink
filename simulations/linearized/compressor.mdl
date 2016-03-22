@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.47"
+    ComputedModelVersion    "1.48"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Feb 29 09:46:27 2016"
-  RTWModifiedTimeStamp	  378639985
-  ModelVersionFormat	  "1.%<AutoIncrement:47>"
+  LastModifiedDate	  "Tue Mar 22 08:43:26 2016"
+  RTWModifiedTimeStamp	  380536997
+  ModelVersionFormat	  "1.%<AutoIncrement:48>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -751,17 +751,10 @@ Model {
       TransDelayFeedthrough   off
       PadeOrder		      "0"
     }
-    Block {
-      BlockType		      UnitDelay
-      X0		      "0"
-      SampleTime	      "1"
-      StateMustResolveToSignalObject off
-      RTWStateStorageClass    "Auto"
-    }
   }
   System {
     Name		    "compressor"
-    Location		    [2, 82, 1261, 954]
+    Location		    [1282, 74, 2541, 986]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -823,7 +816,7 @@ Model {
 	  SID			  5
 	  Ports			  [1, 1]
 	  Position		  [160, 34, 315, 66]
-	  FunctionName		  "comp_rig_model_version2"
+	  FunctionName		  "comp_rig_model"
 	  Parameters		  "[], x_init_lin"
 	  EnableBusSupport	  off
 	}
@@ -1052,17 +1045,6 @@ Model {
       BackgroundColor	      "black"
       ShowName		      off
       Inputs		      "5"
-      DisplayOption	      "bar"
-    }
-    Block {
-      BlockType		      Mux
-      Name		      "Mux2"
-      SID		      83
-      Ports		      [2, 1]
-      Position		      [205, 609, 210, 991]
-      BackgroundColor	      "black"
-      ShowName		      off
-      Inputs		      "2"
       DisplayOption	      "bar"
     }
     Block {
@@ -1384,14 +1366,6 @@ Model {
       SID		      25
       Position		      [110, 395, 140, 425]
       DelayTime		      "1.0"
-    }
-    Block {
-      BlockType		      UnitDelay
-      Name		      "Unit Delay"
-      SID		      84
-      Position		      [375, 1048, 410, 1082]
-      BlockMirror	      on
-      SampleTime	      "-1"
     }
     Block {
       BlockType		      Scope
@@ -2282,17 +2256,9 @@ Model {
 	DstPort			1
       }
       Branch {
-	Points			[0, 250; -20, 0]
-	Branch {
-	  Points		  [-50, 0]
-	  DstBlock		  "Mux2"
-	  DstPort		  1
-	}
-	Branch {
-	  Points		  [0, 160]
-	  DstBlock		  "Compresion plant1"
-	  DstPort		  1
-	}
+	Points			[0, 250; -20, 0; 0, 160]
+	DstBlock		"Compresion plant1"
+	DstPort			1
       }
     }
     Line {
@@ -2478,22 +2444,8 @@ Model {
       SrcBlock		      "Compresion plant1"
       SrcPort		      1
       Points		      [10, 0; 0, 260]
-      Branch {
-	DstBlock		"Demux1"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, 60]
-	DstBlock		"Unit Delay"
-	DstPort			1
-      }
-    }
-    Line {
-      SrcBlock		      "Unit Delay"
-      SrcPort		      1
-      Points		      [-190, 0; 0, -170]
-      DstBlock		      "Mux2"
-      DstPort		      2
+      DstBlock		      "Demux1"
+      DstPort		      1
     }
     Line {
       SrcBlock		      "Mux3"
