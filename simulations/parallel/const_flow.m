@@ -1,10 +1,9 @@
 function [a,Pin,Ptank,V1,V2,AdivL,uoff1,uoff2] = const_flow()
-global P_D
 
 a = 340; % speed of sound
 
 Pin = 1; % pressure at inlet
-Ptank = P_D; % pressure in tank
+Ptank = -1; % pressure in tank -- shouldn't use
 
 V1 = pi * (0.60 / 2)^2 * 2 + pi * (0.08 / 2)^2 * 8.191; % volume of the inlet pipe, 6m
 V2 =  pi * (0.60 / 2)^2 * 2 + pi * (0.08 / 2)^2 * 5.940; % volume, tank

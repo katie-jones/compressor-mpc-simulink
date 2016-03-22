@@ -196,8 +196,8 @@ x2 = x(xsize+1:2*xsize);
 
 % sys = B*du([1,4,1+usize,4+usize],1) + [f1; f2; ftank];
 
-f1 = get_comp_deriv(x1,u(1:usize),1);
-f2 = get_comp_deriv(x2,u(usize+1:2*usize),1);
+f1 = get_comp_deriv(x1,[u(1:usize);P_D],1);
+f2 = get_comp_deriv(x2,[u(usize+1:2*usize);P_D],1);
 ftank = get_tank_deriv(x,u);
 
 sys = [f1; f2; ftank];

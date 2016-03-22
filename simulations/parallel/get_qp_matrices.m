@@ -5,6 +5,7 @@ function [A,B,C,H,Ga,Gb,Gc,dx,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,upast)
 
 x1 = xinit(1:xsize_comp);
 x2 = xinit(xsize_comp+1:2*xsize_comp);
+pd = xinit(end);
 
 u1 = uoff1 + [upast(1); 0; 0; upast(2); 0];
 u2 = uoff2 + [upast(usize+1); 0; 0; upast(usize+2); 0];
@@ -13,8 +14,8 @@ u = [u1; u2; ud];
 
 [Ac,Bc,Cc] = linearize_tank(xinit,u);
 
-f1 = get_comp_deriv(x1,u1,0);
-f2 = get_comp_deriv(x2,u2,0);
+f1 = get_comp_deriv(x1,[u1; pd],0);
+f2 = get_comp_deriv(x2,[u2; pd],0);
 ftank = get_tank_deriv(xinit,u);
 
 [Ainit,Binit,Cinit,dx2] = discretize_rk4(Ac,Bc,Cc,[f1; f2; ftank],Ts);
