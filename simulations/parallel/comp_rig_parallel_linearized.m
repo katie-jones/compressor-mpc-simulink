@@ -184,21 +184,15 @@ end
 
 P_D = x(end);
 
-
 u1 = [u_old(1:usize-1);P_D];
 u2 = [u_old(usize+1:2*usize-1);P_D];
 
 x1 = x_old(1:xsize);
 x2 = x_old(xsize+1:2*xsize);
 
-% f1 = get_comp_deriv(x1,u1(1:4));
-% f2 = get_comp_deriv(x2,u2(1:4));
-% ftank = get_tank_deriv(x,u_old);
-
 [A,B] = linearize_tank(x_old,u_old);
-du = u - u_old;
 
-% sys = B*du([1,4,1+usize,4+usize],1) + [f1; f2; ftank];
+du = u - u_old;
 
 f1 = get_comp_deriv(x1,u1,1);
 f2 = get_comp_deriv(x2,u2,1);

@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.123"
+    ComputedModelVersion    "1.131"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -26,9 +26,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 23 13:09:59 2016"
-  RTWModifiedTimeStamp	  380639390
-  ModelVersionFormat	  "1.%<AutoIncrement:123>"
+  LastModifiedDate	  "Wed Mar 23 14:50:43 2016"
+  RTWModifiedTimeStamp	  380642003
+  ModelVersionFormat	  "1.%<AutoIncrement:131>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -793,7 +793,7 @@ Model {
   }
   System {
     Name		    "parallel_linearized"
-    Location		    [10, 82, 1270, 955]
+    Location		    [2, 74, 1278, 963]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -807,7 +807,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    659
+    SIDHighWatermark	    660
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -903,8 +903,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "85              "
-      YMin		      "1.015"
-      YMax		      "1.07"
+      YMin		      "1.08"
+      YMax		      "1.18"
       SaveToWorkspace	      on
       SaveName		      "SD1"
       DataFormat	      "Array"
@@ -3129,7 +3129,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [2061, 174, 2399, 447]
+      Location		      [2023, 146, 2361, 419]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -3138,8 +3138,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "85              "
-      YMin		      "0.20497"
-      YMax		      "0.20504"
+      YMin		      "0.6"
+      YMax		      "1.7"
       SaveToWorkspace	      on
       SaveName		      "SD3"
       DataFormat	      "Array"
@@ -3155,7 +3155,8 @@ Model {
       NamePlacement	      "alternate"
       ShowName		      off
       Time		      "0"
-      After		      "0"
+      Before		      "0.2"
+      After		      "0.2"
       SampleTime	      "0"
     }
     Block {
@@ -3179,7 +3180,8 @@ Model {
       NamePlacement	      "alternate"
       ShowName		      off
       Time		      "0"
-      After		      "0"
+      Before		      "0.2"
+      After		      "0.2"
       SampleTime	      "0"
     }
     Block {
@@ -3202,7 +3204,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [935, 84, 1273, 357]
+      Location		      [1344, 119, 1682, 392]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -3211,8 +3213,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "85              "
-      YMin		      "0"
-      YMax		      "0.11"
+      YMin		      "0.3"
+      YMax		      "0.3"
       SaveToWorkspace	      on
       SaveName		      "SD4"
       DataFormat	      "Array"
@@ -3646,7 +3648,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [1615, 173, 1953, 446]
+      Location		      [1934, 540, 2272, 813]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -3655,8 +3657,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "85              "
-      YMin		      "-0.002067"
-      YMax		      "-0.002055"
+      YMin		      "0.016"
+      YMax		      "0.036"
       SaveToWorkspace	      on
       SaveName		      "SD2"
       DataFormat	      "Array"
@@ -3671,7 +3673,31 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 658, 1275, 931]
+      Location		      [1864, 175, 2202, 448]
+      Open		      on
+      NumInputPorts	      "1"
+      ZoomMode		      "xonly"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+      }
+      TimeRange		      "85              "
+      YMin		      "-2.5e-019"
+      YMax		      "4.5e-019"
+      SaveToWorkspace	      on
+      SaveName		      "SD5"
+      DataFormat	      "Array"
+      LimitDataPoints	      off
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "x"
+      SID		      660
+      Ports		      [1]
+      Position		      [800, 279, 830, 311]
+      Floating		      off
+      Location		      [1601, 486, 1939, 736]
       Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -3680,10 +3706,10 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "85              "
-      YMin		      "-1"
-      YMax		      "1"
+      YMin		      "1.1125"
+      YMax		      "1.1141"
       SaveToWorkspace	      on
-      SaveName		      "SD5"
+      SaveName		      "SD6"
       DataFormat	      "Array"
       LimitDataPoints	      off
       SampleTime	      "0"
@@ -3906,9 +3932,17 @@ Model {
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      6
-      Points		      [0, 100; 225, 0; 0, 315; -315, 0]
-      DstBlock		      "controller"
-      DstPort		      3
+      Points		      [0, 100; 95, 0]
+      Branch {
+	Points			[130, 0; 0, 315; -315, 0]
+	DstBlock		"controller"
+	DstPort			3
+      }
+      Branch {
+	Points			[0, -50]
+	DstBlock		"x"
+	DstPort			1
+      }
     }
     Annotation {
       Position		      [881, 100]
@@ -3977,20 +4011,18 @@ Stateflow {
       " = u(1:ysize);\n\n% Estimate state info\n% dxaug = dxaug + M*(y - y_old - C*(dxaug));\n\n% Use state input info "
       "to calculate x, y\ndxaug(1:xsize) = 0.5*(xin - xinit(1:xsize) + dxaug(1:xsize));\n\nxinit(1:xsize) = xinit(1:xsi"
       "ze) + dxaug(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\nx_out = xinit;\n\ny_old = y;\n\nyref = u(ysize+"
-      "1:end);\n\n% Get matrices - linearize about delayed rec.open input\n[A,B,C,H,Ga,Gb,Gc,df0,~,~,~,~] = get_qp_matr"
-      "ices(xinit,upast);\n\n\n\n% Get reference and input vector\n\nYref = zeros(p*ysize,1);\nUpast = zeros(m*usize,1)"
-      ";\nfor i=1:p\n    Yref(1+(i-1)*ysize:i*ysize,1) = yref - y;\nend\nfor i=1:m\n    Upast(1+(i-1)*usize:i*usize,1) "
-      "= upast;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - Upast;\n\n% Calculate initial state\ndx0 = [zero"
-      "s(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(4); zer"
-      "os(2*dsize,1)];\n\n\n% Gradient vector\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*UWT;\n\n% Solve QP\nlbA = -i"
-      "nf(size(Ain,1),1);\n[usol,~,exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_out = exitflag(1,1);"
-      "\nit_out = it(1,1);\n\nif exitflag_out~=0\n    exitflag_out\n    usol = zeros(m*usize,1);\nend\nusol = zeros(m*u"
-      "size,1);\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);\nu_new = upast + delta_u;\n\n\n% value of x about w"
-      "hich we linearized\nxlin = dxaug;\nxlin(xsize+1:end) = 0;\nxlin(xsize+1) = upast(2);\nxlin(xsize+1+n_delay(2)) ="
-      " upast(4);\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n\nupast"
-      " = u_new;\n\n\n"
-      editorLayout	      "100 M4x1[10 5 750 500]"
-      breakpoints	      "100 M[42]"
+      "1:end);\n\n% Get matrices - linearize about delayed rec.open input\n[A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf,~] = get_qp_m"
+      "atrices(xinit,upast);\n\n\n\n% Get reference and input vector\n\nYref = zeros(p*ysize,1);\nUpast = zeros(m*usize"
+      ",1);\nfor i=1:p\n    Yref(1+(i-1)*ysize:i*ysize,1) = yref - y;\nend\nfor i=1:m\n    Upast(1+(i-1)*usize:i*usize,"
+      "1) = upast;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - Upast;\n\n% Calculate initial state\ndx0 = [z"
+      "eros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(4); "
+      "zeros(2*dsize,1)];\n\n\n% Gradient vector\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*UWT;\n\n% Solve QP\nlbA ="
+      " -inf(size(Ain,1),1);\n[usol,~,exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_out = exitflag(1,"
+      "1);\nit_out = it(1,1);\n\nif exitflag_out~=0\n    exitflag_out\n    usol = zeros(m*usize,1);\nend\n\n\n% Apply n"
+      "ext input\ndelta_u = usol(1:usize,1);\nu_new = upast + delta_u;\n\n\n% value of x about which we linearized\nxli"
+      "n = dxaug;\nxlin(xsize+1:end) = 0;\nxlin(xsize+1) = upast(2);\nxlin(xsize+1+n_delay(2)) = upast(4);\n\ndxaug = B"
+      "*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n\nupast = u_new;\n\n\n"
+      editorLayout	      "100 M4x1[302 152 677 676]"
     }
   }
   junction {

@@ -46,12 +46,12 @@ sys_kalman = ss(A, [B G], C, [D Hkalman], Ts);
 [KEST, L, P, M, Z] = kalman(sys_kalman, Qn, Rn);
 
 %% Define upper/lower bounds
-% lb = [-0.3; 0];
-% ub = [0.3; 1];
+lb = [-0.3; 0];
+ub = [0.3; 1];
 % lb = [-0.1; 0];
 % ub = [0.1; 1];
-lb = [0;0];
-ub = [0;0];
+% lb = [0;0];
+% ub = [0;0];
 
 
 lb_rate = [0.1; 0.1];

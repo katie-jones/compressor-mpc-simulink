@@ -32,7 +32,6 @@ ud2 = u2(3);
 Att = -SpeedSound * SpeedSound / VolumeT * 1e-5 * (1/2*100/sqrt(abs(pd*100-Out_pres_t*100))) * (D2_t(1)*udt^3 + D2_t(2)*udt^2 + D2_t(3)*udt + D2_t(4));
 
 
-
 %% Interaction between compressors and discharge tanks
 
 Ac1t = get_Act(x1,udt,pd,SpeedSound,VolumeT,D2_t);
@@ -80,7 +79,6 @@ Act = [0, ...
     SpeedSound*SpeedSound/VolumeT * 1e-5 * (1/2*100/sqrt(abs(p2*100-pd*100))) * (D2(1)*ud^3 + D2(2)*ud^2 + D2(3)*ud + D2(4)),...
     0, 0, 0
     ];
-
 
 end
 

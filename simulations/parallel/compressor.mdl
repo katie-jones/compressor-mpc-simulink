@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.63"
+    ComputedModelVersion    "1.64"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 23 09:54:52 2016"
-  RTWModifiedTimeStamp	  380627687
-  ModelVersionFormat	  "1.%<AutoIncrement:63>"
+  LastModifiedDate	  "Wed Mar 23 14:12:42 2016"
+  RTWModifiedTimeStamp	  380643083
+  ModelVersionFormat	  "1.%<AutoIncrement:64>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -596,6 +596,11 @@ Model {
       BusSelectionMode	      off
     }
     Block {
+      BlockType		      From
+      IconDisplay	      "Tag"
+      TagVisibility	      "local"
+    }
+    Block {
       BlockType		      Gain
       Gain		      "1"
       Multiplication	      "Element-wise(K.*u)"
@@ -616,6 +621,10 @@ Model {
       RndMeth		      "Floor"
       SaturateOnIntegerOverflow	on
       SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Goto
+      IconDisplay	      "Tag"
     }
     Block {
       BlockType		      Inport
@@ -772,7 +781,7 @@ Model {
   }
   System {
     Name		    "compressor"
-    Location		    [84, 367, 1250, 890]
+    Location		    [1317, 156, 2483, 679]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -786,13 +795,13 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    422
+    SIDHighWatermark	    510
     Block {
       BlockType		      SubSystem
       Name		      "Compressor1"
-      SID		      62
-      Ports		      [3, 3]
-      Position		      [305, 73, 405, 177]
+      SID		      423
+      Ports		      [3, 4]
+      Position		      [300, 70, 400, 175]
       LibraryVersion	      "1.762"
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -835,7 +844,7 @@ Model {
 	Block {
 	  BlockType		  Inport
 	  Name			  "Td"
-	  SID			  158
+	  SID			  424
 	  Position		  [50, 178, 80, 192]
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
@@ -844,7 +853,7 @@ Model {
 	Block {
 	  BlockType		  Inport
 	  Name			  "u_rec"
-	  SID			  161
+	  SID			  425
 	  Position		  [40, 403, 70, 417]
 	  Port			  "2"
 	  IconDisplay		  "Port number"
@@ -854,7 +863,7 @@ Model {
 	Block {
 	  BlockType		  Inport
 	  Name			  "p_d"
-	  SID			  284
+	  SID			  426
 	  Position		  [185, 478, 215, 492]
 	  Port			  "3"
 	  IconDisplay		  "Port number"
@@ -864,7 +873,7 @@ Model {
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Compresion plant"
-	  SID			  65
+	  SID			  427
 	  Ports			  [1, 1]
 	  Position		  [280, 225, 545, 445]
 	  MinAlgLoopOccurrences	  off
@@ -898,14 +907,14 @@ Model {
 	    Block {
 	      BlockType		      Inport
 	      Name		      "In1"
-	      SID		      66
+	      SID		      428
 	      Position		      [50, 43, 80, 57]
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      "S-Function"
 	      Name		      "S-Function1"
-	      SID		      67
+	      SID		      429
 	      Ports		      [1, 1]
 	      Position		      [160, 34, 315, 66]
 	      FunctionName	      "comp_rig_model"
@@ -915,7 +924,7 @@ Model {
 	    Block {
 	      BlockType		      Outport
 	      Name		      "Out1"
-	      SID		      68
+	      SID		      430
 	      Position		      [395, 43, 425, 57]
 	      IconDisplay	      "Port number"
 	    }
@@ -939,7 +948,7 @@ Model {
 	Block {
 	  BlockType		  Demux
 	  Name			  "Demux2"
-	  SID			  69
+	  SID			  431
 	  Ports			  [1, 10]
 	  Position		  [565, 50, 570, 615]
 	  BackgroundColor	  "black"
@@ -974,7 +983,7 @@ Model {
 	Block {
 	  BlockType		  Gain
 	  Name			  "Gain"
-	  SID			  70
+	  SID			  432
 	  Position		  [865, 125, 970, 155]
 	  ParameterDataTypeMode	  "Inherit via internal rule"
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
@@ -985,7 +994,7 @@ Model {
 	Block {
 	  BlockType		  Gain
 	  Name			  "Gain1"
-	  SID			  71
+	  SID			  433
 	  Position		  [860, 509, 920, 541]
 	  Gain			  "1/0.01"
 	  ParameterDataTypeMode	  "Inherit via internal rule"
@@ -997,7 +1006,7 @@ Model {
 	Block {
 	  BlockType		  Mux
 	  Name			  "Mux1"
-	  SID			  72
+	  SID			  434
 	  Ports			  [5, 1]
 	  Position		  [260, 144, 265, 526]
 	  BackgroundColor	  "black"
@@ -1006,9 +1015,20 @@ Model {
 	  DisplayOption		  "bar"
 	}
 	Block {
+	  BlockType		  Mux
+	  Name			  "Mux2"
+	  SID			  435
+	  Ports			  [5, 1]
+	  Position		  [1020, 244, 1025, 366]
+	  BackgroundColor	  "black"
+	  ShowName		  off
+	  Inputs		  "5"
+	  DisplayOption		  "bar"
+	}
+	Block {
 	  BlockType		  Step
 	  Name			  "Step"
-	  SID			  76
+	  SID			  436
 	  Position		  [155, 355, 185, 385]
 	  Time			  "50"
 	  After			  "0"
@@ -1017,7 +1037,7 @@ Model {
 	Block {
 	  BlockType		  Step
 	  Name			  "Step1"
-	  SID			  77
+	  SID			  437
 	  Position		  [100, 280, 130, 310]
 	  Time			  "100"
 	  After			  "0"
@@ -1026,7 +1046,7 @@ Model {
 	Block {
 	  BlockType		  Sum
 	  Name			  "Sum10"
-	  SID			  78
+	  SID			  438
 	  Ports			  [2, 1]
 	  Position		  [805, 130, 825, 150]
 	  ShowName		  off
@@ -1040,7 +1060,7 @@ Model {
 	Block {
 	  BlockType		  Sum
 	  Name			  "Sum2"
-	  SID			  79
+	  SID			  439
 	  Ports			  [3, 1]
 	  Position		  [195, 325, 215, 345]
 	  ShowName		  off
@@ -1054,7 +1074,7 @@ Model {
 	Block {
 	  BlockType		  Sum
 	  Name			  "Sum7"
-	  SID			  80
+	  SID			  440
 	  Ports			  [2, 1]
 	  Position		  [130, 175, 150, 195]
 	  ShowName		  off
@@ -1074,7 +1094,7 @@ Model {
 	Block {
 	  BlockType		  Sum
 	  Name			  "Sum8"
-	  SID			  81
+	  SID			  441
 	  Ports			  [2, 1]
 	  Position		  [820, 515, 840, 535]
 	  ShowName		  off
@@ -1088,7 +1108,7 @@ Model {
 	Block {
 	  BlockType		  Sum
 	  Name			  "Sum9"
-	  SID			  82
+	  SID			  442
 	  Ports			  [2, 1]
 	  Position		  [155, 400, 175, 420]
 	  ShowName		  off
@@ -1108,104 +1128,104 @@ Model {
 	Block {
 	  BlockType		  Constant
 	  Name			  "T_dr"
-	  SID			  83
+	  SID			  443
 	  Position		  [25, 237, 80, 263]
 	  Value			  "Td_off"
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator"
-	  SID			  84
+	  SID			  444
 	  Position		  [630, 75, 650, 95]
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator1"
-	  SID			  85
+	  SID			  445
 	  Position		  [655, 295, 675, 315]
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator2"
-	  SID			  384
+	  SID			  446
 	  Position		  [655, 240, 675, 260]
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator3"
-	  SID			  86
+	  SID			  447
 	  Position		  [655, 350, 675, 370]
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator4"
-	  SID			  87
+	  SID			  448
 	  Position		  [655, 405, 675, 425]
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator5"
-	  SID			  88
+	  SID			  449
 	  Position		  [630, 460, 650, 480]
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator6"
-	  SID			  89
+	  SID			  450
 	  Position		  [630, 515, 650, 535]
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator7"
-	  SID			  385
+	  SID			  451
 	  Position		  [655, 185, 675, 205]
 	}
 	Block {
 	  BlockType		  TransportDelay
 	  Name			  "Transport\nDelay"
-	  SID			  91
+	  SID			  452
 	  Position		  [110, 395, 140, 425]
 	  DelayTime		  "t_delay"
 	}
 	Block {
 	  BlockType		  Constant
 	  Name			  "nom"
-	  SID			  101
+	  SID			  453
 	  Position		  [750, 542, 805, 568]
 	  Value			  "-0.043"
 	}
 	Block {
 	  BlockType		  Constant
 	  Name			  "nom1"
-	  SID			  102
+	  SID			  454
 	  Position		  [715, 157, 770, 183]
 	  Value			  "-1.126"
 	}
 	Block {
 	  BlockType		  Constant
 	  Name			  "u_in"
-	  SID			  108
+	  SID			  455
 	  Position		  [160, 247, 215, 273]
 	  Value			  "u_in"
 	}
 	Block {
 	  BlockType		  Constant
 	  Name			  "u_out"
-	  SID			  109
+	  SID			  456
 	  Position		  [100, 322, 155, 348]
 	  Value			  "u_out"
 	}
 	Block {
 	  BlockType		  Constant
 	  Name			  "u_rec_offset"
-	  SID			  110
+	  SID			  457
 	  Position		  [45, 477, 100, 503]
 	  Value			  "u_rec"
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "p_out"
-	  SID			  159
+	  SID			  458
 	  Position		  [1150, 133, 1180, 147]
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
@@ -1214,7 +1234,7 @@ Model {
 	Block {
 	  BlockType		  Outport
 	  Name			  "SD"
-	  SID			  160
+	  SID			  459
 	  Position		  [1055, 448, 1085, 462]
 	  Port			  "2"
 	  IconDisplay		  "Port number"
@@ -1224,12 +1244,28 @@ Model {
 	Block {
 	  BlockType		  Outport
 	  Name			  "m_out"
-	  SID			  209
+	  SID			  460
 	  Position		  [1060, 378, 1090, 392]
 	  Port			  "3"
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
 	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "x"
+	  SID			  461
+	  Position		  [1065, 298, 1095, 312]
+	  Port			  "4"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "fixdt(1, 16)"
+	  OutScaling		  "2^0"
+	}
+	Line {
+	  SrcBlock		  "Mux2"
+	  SrcPort		  1
+	  DstBlock		  "x"
+	  DstPort		  1
 	}
 	Line {
 	  Name			  "T-ss"
@@ -1320,24 +1356,48 @@ Model {
 	Line {
 	  SrcBlock		  "Demux2"
 	  SrcPort		  5
-	  DstBlock		  "Terminator1"
-	  DstPort		  1
+	  Points		  [45, 0]
+	  Branch {
+	    Points		    [0, 25]
+	    DstBlock		    "Mux2"
+	    DstPort		    4
+	  }
+	  Branch {
+	    DstBlock		    "Terminator1"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  Name			  "p_in"
 	  Labels		  [0, 0]
 	  SrcBlock		  "Demux2"
 	  SrcPort		  1
-	  DstBlock		  "Terminator"
-	  DstPort		  1
+	  Points		  [30, 0]
+	  Branch {
+	    Points		    [0, 25; 400, 0]
+	    DstBlock		    "Mux2"
+	    DstPort		    1
+	  }
+	  Branch {
+	    DstBlock		    "Terminator"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  Name			  "p_out"
 	  Labels		  [0, 0]
 	  SrcBlock		  "Demux2"
 	  SrcPort		  2
-	  DstBlock		  "Sum10"
-	  DstPort		  1
+	  Points		  [210, 0]
+	  Branch {
+	    Points		    [0, 140]
+	    DstBlock		    "Mux2"
+	    DstPort		    2
+	  }
+	  Branch {
+	    DstBlock		    "Sum10"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  SrcBlock		  "Sum8"
@@ -1397,8 +1457,16 @@ Model {
 	Line {
 	  SrcBlock		  "Demux2"
 	  SrcPort		  8
-	  DstBlock		  "Terminator5"
-	  DstPort		  1
+	  Points		  [30, 0]
+	  Branch {
+	    Points		    [0, -25; 400, 0]
+	    DstBlock		    "Mux2"
+	    DstPort		    5
+	  }
+	  Branch {
+	    DstBlock		    "Terminator5"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  SrcBlock		  "Demux2"
@@ -1437,8 +1505,16 @@ Model {
 	  Labels		  [0, 0]
 	  SrcBlock		  "Demux2"
 	  SrcPort		  3
-	  DstBlock		  "Terminator7"
-	  DstPort		  1
+	  Points		  [50, 0]
+	  Branch {
+	    Points		    [0, 35; 75, 0; 0, 75]
+	    DstBlock		    "Mux2"
+	    DstPort		    3
+	  }
+	  Branch {
+	    DstBlock		    "Terminator7"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  SrcBlock		  "Demux2"
@@ -1460,9 +1536,9 @@ Model {
     Block {
       BlockType		      SubSystem
       Name		      "Compressor2"
-      SID		      386
-      Ports		      [3, 3]
-      Position		      [305, 288, 405, 392]
+      SID		      462
+      Ports		      [3, 4]
+      Position		      [300, 285, 400, 390]
       LibraryVersion	      "1.762"
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -1505,7 +1581,7 @@ Model {
 	Block {
 	  BlockType		  Inport
 	  Name			  "Td"
-	  SID			  387
+	  SID			  463
 	  Position		  [50, 178, 80, 192]
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
@@ -1514,7 +1590,7 @@ Model {
 	Block {
 	  BlockType		  Inport
 	  Name			  "u_rec"
-	  SID			  388
+	  SID			  464
 	  Position		  [40, 403, 70, 417]
 	  Port			  "2"
 	  IconDisplay		  "Port number"
@@ -1524,7 +1600,7 @@ Model {
 	Block {
 	  BlockType		  Inport
 	  Name			  "p_d"
-	  SID			  389
+	  SID			  465
 	  Position		  [185, 478, 215, 492]
 	  Port			  "3"
 	  IconDisplay		  "Port number"
@@ -1534,7 +1610,7 @@ Model {
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Compresion plant"
-	  SID			  390
+	  SID			  466
 	  Ports			  [1, 1]
 	  Position		  [280, 225, 545, 445]
 	  MinAlgLoopOccurrences	  off
@@ -1568,14 +1644,14 @@ Model {
 	    Block {
 	      BlockType		      Inport
 	      Name		      "In1"
-	      SID		      391
+	      SID		      467
 	      Position		      [50, 43, 80, 57]
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      "S-Function"
 	      Name		      "S-Function1"
-	      SID		      392
+	      SID		      468
 	      Ports		      [1, 1]
 	      Position		      [160, 34, 315, 66]
 	      FunctionName	      "comp_rig_model"
@@ -1585,7 +1661,7 @@ Model {
 	    Block {
 	      BlockType		      Outport
 	      Name		      "Out1"
-	      SID		      393
+	      SID		      469
 	      Position		      [395, 43, 425, 57]
 	      IconDisplay	      "Port number"
 	    }
@@ -1609,7 +1685,7 @@ Model {
 	Block {
 	  BlockType		  Demux
 	  Name			  "Demux2"
-	  SID			  394
+	  SID			  470
 	  Ports			  [1, 10]
 	  Position		  [565, 50, 570, 615]
 	  BackgroundColor	  "black"
@@ -1644,7 +1720,7 @@ Model {
 	Block {
 	  BlockType		  Gain
 	  Name			  "Gain"
-	  SID			  395
+	  SID			  471
 	  Position		  [865, 125, 970, 155]
 	  ParameterDataTypeMode	  "Inherit via internal rule"
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
@@ -1655,7 +1731,7 @@ Model {
 	Block {
 	  BlockType		  Gain
 	  Name			  "Gain1"
-	  SID			  396
+	  SID			  472
 	  Position		  [860, 509, 920, 541]
 	  Gain			  "1/0.01"
 	  ParameterDataTypeMode	  "Inherit via internal rule"
@@ -1667,7 +1743,7 @@ Model {
 	Block {
 	  BlockType		  Mux
 	  Name			  "Mux1"
-	  SID			  397
+	  SID			  473
 	  Ports			  [5, 1]
 	  Position		  [260, 144, 265, 526]
 	  BackgroundColor	  "black"
@@ -1676,9 +1752,20 @@ Model {
 	  DisplayOption		  "bar"
 	}
 	Block {
+	  BlockType		  Mux
+	  Name			  "Mux2"
+	  SID			  474
+	  Ports			  [5, 1]
+	  Position		  [1020, 244, 1025, 366]
+	  BackgroundColor	  "black"
+	  ShowName		  off
+	  Inputs		  "5"
+	  DisplayOption		  "bar"
+	}
+	Block {
 	  BlockType		  Step
 	  Name			  "Step"
-	  SID			  398
+	  SID			  475
 	  Position		  [155, 355, 185, 385]
 	  Time			  "50"
 	  After			  "0"
@@ -1687,7 +1774,7 @@ Model {
 	Block {
 	  BlockType		  Step
 	  Name			  "Step1"
-	  SID			  399
+	  SID			  476
 	  Position		  [100, 280, 130, 310]
 	  Time			  "100"
 	  After			  "0"
@@ -1696,7 +1783,7 @@ Model {
 	Block {
 	  BlockType		  Sum
 	  Name			  "Sum10"
-	  SID			  400
+	  SID			  477
 	  Ports			  [2, 1]
 	  Position		  [805, 130, 825, 150]
 	  ShowName		  off
@@ -1710,7 +1797,7 @@ Model {
 	Block {
 	  BlockType		  Sum
 	  Name			  "Sum2"
-	  SID			  401
+	  SID			  478
 	  Ports			  [3, 1]
 	  Position		  [195, 325, 215, 345]
 	  ShowName		  off
@@ -1724,7 +1811,7 @@ Model {
 	Block {
 	  BlockType		  Sum
 	  Name			  "Sum7"
-	  SID			  402
+	  SID			  479
 	  Ports			  [2, 1]
 	  Position		  [130, 175, 150, 195]
 	  ShowName		  off
@@ -1744,7 +1831,7 @@ Model {
 	Block {
 	  BlockType		  Sum
 	  Name			  "Sum8"
-	  SID			  403
+	  SID			  480
 	  Ports			  [2, 1]
 	  Position		  [820, 515, 840, 535]
 	  ShowName		  off
@@ -1758,7 +1845,7 @@ Model {
 	Block {
 	  BlockType		  Sum
 	  Name			  "Sum9"
-	  SID			  404
+	  SID			  481
 	  Ports			  [2, 1]
 	  Position		  [155, 400, 175, 420]
 	  ShowName		  off
@@ -1778,104 +1865,104 @@ Model {
 	Block {
 	  BlockType		  Constant
 	  Name			  "T_dr"
-	  SID			  405
+	  SID			  482
 	  Position		  [25, 237, 80, 263]
 	  Value			  "Td_off"
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator"
-	  SID			  406
+	  SID			  483
 	  Position		  [630, 75, 650, 95]
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator1"
-	  SID			  407
+	  SID			  484
 	  Position		  [655, 295, 675, 315]
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator2"
-	  SID			  408
+	  SID			  485
 	  Position		  [655, 240, 675, 260]
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator3"
-	  SID			  409
+	  SID			  486
 	  Position		  [655, 350, 675, 370]
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator4"
-	  SID			  410
+	  SID			  487
 	  Position		  [655, 405, 675, 425]
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator5"
-	  SID			  411
+	  SID			  488
 	  Position		  [630, 460, 650, 480]
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator6"
-	  SID			  412
+	  SID			  489
 	  Position		  [630, 515, 650, 535]
 	}
 	Block {
 	  BlockType		  Terminator
 	  Name			  "Terminator7"
-	  SID			  413
+	  SID			  490
 	  Position		  [655, 185, 675, 205]
 	}
 	Block {
 	  BlockType		  TransportDelay
 	  Name			  "Transport\nDelay"
-	  SID			  414
+	  SID			  491
 	  Position		  [110, 395, 140, 425]
 	  DelayTime		  "t_delay"
 	}
 	Block {
 	  BlockType		  Constant
 	  Name			  "nom"
-	  SID			  415
+	  SID			  492
 	  Position		  [750, 542, 805, 568]
 	  Value			  "-0.043"
 	}
 	Block {
 	  BlockType		  Constant
 	  Name			  "nom1"
-	  SID			  416
+	  SID			  493
 	  Position		  [715, 157, 770, 183]
 	  Value			  "-1.126"
 	}
 	Block {
 	  BlockType		  Constant
 	  Name			  "u_in"
-	  SID			  417
+	  SID			  494
 	  Position		  [160, 247, 215, 273]
 	  Value			  "u_in"
 	}
 	Block {
 	  BlockType		  Constant
 	  Name			  "u_out"
-	  SID			  418
+	  SID			  495
 	  Position		  [100, 322, 155, 348]
 	  Value			  "u_out"
 	}
 	Block {
 	  BlockType		  Constant
 	  Name			  "u_rec_offset"
-	  SID			  419
+	  SID			  496
 	  Position		  [45, 477, 100, 503]
 	  Value			  "u_rec"
 	}
 	Block {
 	  BlockType		  Outport
 	  Name			  "p_out"
-	  SID			  420
+	  SID			  497
 	  Position		  [1150, 133, 1180, 147]
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
@@ -1884,7 +1971,7 @@ Model {
 	Block {
 	  BlockType		  Outport
 	  Name			  "SD"
-	  SID			  421
+	  SID			  498
 	  Position		  [1055, 448, 1085, 462]
 	  Port			  "2"
 	  IconDisplay		  "Port number"
@@ -1894,9 +1981,19 @@ Model {
 	Block {
 	  BlockType		  Outport
 	  Name			  "m_out"
-	  SID			  422
+	  SID			  499
 	  Position		  [1060, 378, 1090, 392]
 	  Port			  "3"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "fixdt(1, 16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "x"
+	  SID			  500
+	  Position		  [1065, 298, 1095, 312]
+	  Port			  "4"
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
 	  OutScaling		  "2^0"
@@ -1912,8 +2009,16 @@ Model {
 	  Labels		  [0, 0]
 	  SrcBlock		  "Demux2"
 	  SrcPort		  3
-	  DstBlock		  "Terminator7"
-	  DstPort		  1
+	  Points		  [50, 0]
+	  Branch {
+	    DstBlock		    "Terminator7"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 35; 75, 0; 0, 75]
+	    DstBlock		    "Mux2"
+	    DstPort		    3
+	  }
 	}
 	Line {
 	  SrcBlock		  "Step1"
@@ -1950,8 +2055,16 @@ Model {
 	Line {
 	  SrcBlock		  "Demux2"
 	  SrcPort		  8
-	  DstBlock		  "Terminator5"
-	  DstPort		  1
+	  Points		  [30, 0]
+	  Branch {
+	    DstBlock		    "Terminator5"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, -25; 400, 0]
+	    DstBlock		    "Mux2"
+	    DstPort		    5
+	  }
 	}
 	Line {
 	  SrcBlock		  "Demux2"
@@ -2013,22 +2126,46 @@ Model {
 	  Labels		  [0, 0]
 	  SrcBlock		  "Demux2"
 	  SrcPort		  2
-	  DstBlock		  "Sum10"
-	  DstPort		  1
+	  Points		  [210, 0]
+	  Branch {
+	    DstBlock		    "Sum10"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 140]
+	    DstBlock		    "Mux2"
+	    DstPort		    2
+	  }
 	}
 	Line {
 	  Name			  "p_in"
 	  Labels		  [0, 0]
 	  SrcBlock		  "Demux2"
 	  SrcPort		  1
-	  DstBlock		  "Terminator"
-	  DstPort		  1
+	  Points		  [30, 0]
+	  Branch {
+	    DstBlock		    "Terminator"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 25; 400, 0]
+	    DstBlock		    "Mux2"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  SrcBlock		  "Demux2"
 	  SrcPort		  5
-	  DstBlock		  "Terminator1"
-	  DstPort		  1
+	  Points		  [45, 0]
+	  Branch {
+	    DstBlock		    "Terminator1"
+	    DstPort		    1
+	  }
+	  Branch {
+	    Points		    [0, 25]
+	    DstBlock		    "Mux2"
+	    DstPort		    4
+	  }
 	}
 	Line {
 	  SrcBlock		  "Sum10"
@@ -2116,6 +2253,12 @@ Model {
 	  DstBlock		  "Terminator6"
 	  DstPort		  1
 	}
+	Line {
+	  SrcBlock		  "Mux2"
+	  SrcPort		  1
+	  DstBlock		  "x"
+	  DstPort		  1
+	}
 	Annotation {
 	  Position		  [144, 185]
 	}
@@ -2126,6 +2269,42 @@ Model {
 	  Position		  [42, 373]
 	}
       }
+    }
+    Block {
+      BlockType		      Demux
+      Name		      "Demux"
+      SID		      505
+      Ports		      [1, 5]
+      Position		      [1050, 102, 1055, 188]
+      ShowName		      off
+      Outputs		      "5"
+      DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      From
+      Name		      "From"
+      SID		      503
+      Position		      [980, 136, 1020, 154]
+      ShowName		      off
+      GotoTag		      "xout1"
+    }
+    Block {
+      BlockType		      Goto
+      Name		      "Goto"
+      SID		      501
+      Position		      [440, 145, 480, 175]
+      ShowName		      off
+      GotoTag		      "xout1"
+      TagVisibility	      "local"
+    }
+    Block {
+      BlockType		      Goto
+      Name		      "Goto1"
+      SID		      502
+      Position		      [440, 360, 480, 390]
+      ShowName		      off
+      GotoTag		      "xout2"
+      TagVisibility	      "local"
     }
     Block {
       BlockType		      Memory
@@ -2356,6 +2535,24 @@ Model {
       ignoreOrWarnInputAndFrameLengths off
     }
     Block {
+      BlockType		      Terminator
+      Name		      "Terminator"
+      SID		      508
+      Position		      [1125, 100, 1145, 120]
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator1"
+      SID		      509
+      Position		      [1115, 180, 1135, 200]
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator2"
+      SID		      510
+      Position		      [1115, 230, 1135, 250]
+    }
+    Block {
       BlockType		      ToWorkspace
       Name		      "To Workspace1"
       SID		      282
@@ -2404,6 +2601,44 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       SaveName		      "ScopeData2"
+      DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "mc"
+      SID		      507
+      Ports		      [1]
+      Position		      [1105, 129, 1135, 161]
+      Floating		      off
+      Location		      [738, 284, 1069, 581]
+      Open		      on
+      NumInputPorts	      "1"
+      ZoomMode		      "xonly"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+      }
+      SaveName		      "ScopeData5"
+      DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "p1"
+      SID		      506
+      Ports		      [1]
+      Position		      [1100, 49, 1130, 81]
+      Floating		      off
+      Location		      [759, 517, 1090, 814]
+      Open		      on
+      NumInputPorts	      "1"
+      ZoomMode		      "xonly"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+      }
+      SaveName		      "ScopeData4"
       DataFormat	      "StructureWithTime"
       SampleTime	      "0"
     }
@@ -2493,19 +2728,6 @@ Model {
       ignoreOrWarnInputAndFrameLengths off
     }
     Line {
-      SrcBlock		      "Compressor1"
-      SrcPort		      3
-      DstBlock		      "Sum"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Compressor2"
-      SrcPort		      3
-      Points		      [115, 0]
-      DstBlock		      "Sum"
-      DstPort		      2
-    }
-    Line {
       SrcBlock		      "Tank"
       SrcPort		      1
       DstBlock		      "m_out"
@@ -2535,29 +2757,22 @@ Model {
     Line {
       SrcBlock		      "Compressor1"
       SrcPort		      1
-      Points		      [100, 0; 0, -50]
+      Points		      [0, 5; 105, 0; 0, -50]
       DstBlock		      "Mux"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Compressor1"
       SrcPort		      2
-      Points		      [200, 0]
+      Points		      [0, 15; 205, 0]
       DstBlock		      "Mux1"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Compressor2"
       SrcPort		      1
-      Points		      [185, 0; 0, -245]
+      Points		      [0, 5; 190, 0; 0, -245]
       DstBlock		      "Mux"
-      DstPort		      2
-    }
-    Line {
-      SrcBlock		      "Compressor2"
-      SrcPort		      2
-      Points		      [195, 0; 0, 20]
-      DstBlock		      "Mux1"
       DstPort		      2
     }
     Line {
@@ -2635,7 +2850,6 @@ Model {
       SrcPort		      1
       Points		      [-70, 0; 0, -95]
       Branch {
-	Points			[0, -215]
 	DstBlock		"Compressor1"
 	DstPort			3
       }
@@ -2643,6 +2857,79 @@ Model {
 	DstBlock		"Compressor2"
 	DstPort			3
       }
+    }
+    Line {
+      SrcBlock		      "Compressor1"
+      SrcPort		      3
+      Points		      [120, 0]
+      DstBlock		      "Sum"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Compressor2"
+      SrcPort		      2
+      Points		      [100, 0; 0, 35]
+      DstBlock		      "Mux1"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Compressor2"
+      SrcPort		      3
+      Points		      [120, 0]
+      DstBlock		      "Sum"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "From"
+      SrcPort		      1
+      DstBlock		      "Demux"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Compressor1"
+      SrcPort		      4
+      DstBlock		      "Goto"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Compressor2"
+      SrcPort		      4
+      DstBlock		      "Goto1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux"
+      SrcPort		      1
+      Points		      [10, 0; 0, -50]
+      DstBlock		      "p1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux"
+      SrcPort		      3
+      DstBlock		      "mc"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux"
+      SrcPort		      2
+      Points		      [25, 0; 0, -20]
+      DstBlock		      "Terminator"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux"
+      SrcPort		      4
+      Points		      [20, 0; 0, 30]
+      DstBlock		      "Terminator1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Demux"
+      SrcPort		      5
+      Points		      [10, 0; 0, 65]
+      DstBlock		      "Terminator2"
+      DstPort		      1
     }
   }
 }

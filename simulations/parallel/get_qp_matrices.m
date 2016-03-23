@@ -38,7 +38,8 @@ B = [Binit(:,1), zeros(xsize,1), Binit(:,usize+1), zeros(xsize,1);
     zeros(n_delay(2),1), [zeros(n_delay(2)-1,1);1], zeros(n_delay(2),1), zeros(n_delay(2),1);
     zeros(n_delay(2),1), zeros(n_delay(2),1), zeros(n_delay(2),1), [zeros(n_delay(2)-1,1);1];
     zeros(2*dsize,2*usize)];
-    
+
+   
 Cdist = eye(ysize,2*dsize);
 C = [Cinit(1:ysize,:), zeros(ysize,2*sum(n_delay)), Cdist];
 

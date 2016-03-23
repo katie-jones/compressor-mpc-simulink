@@ -3,7 +3,7 @@ clear all
 global P_D 
 addpath('../common')
 
-Td = 0.0; % torque input
+Td = [zeros(100,1); 0.1]; % torque input
 u_rec = 0.0; % recycle opening
 u_d = 0.9; % discharge valve opening
 
