@@ -24,7 +24,7 @@ torque_drive_in = u(1);
 Inflow_opening = u(2);
 Outflow_opening = u(3); 
 Recycle_opening = u(4);
-
+dummy = u(5);
 
 % torque_drive = torque_drive * 15000 / (2 * pi * 50);
 % torque_drive = torque_drive * (2 * pi * 50 / omega_comp);
@@ -34,6 +34,10 @@ Recycle_opening = u(4);
 %-------------------------------------------------------------------------%
 [J,tauRecycle,A_coeff,C_coeff,~,m_rec_ss_c,D2,~,T_ss_c,SD_c,torque_drive_c] = comp_coeffs();
 [SpeedSound,In_pres,Out_pres,VolumeT1,VolumeT2,AdivL] = const_flow();
+
+if dummy > 0
+    Out_pres = dummy;
+end
 
 %-------------------------------------------------------------------------%
 %---------------------------- DERIVATIVES --------------------------------%
