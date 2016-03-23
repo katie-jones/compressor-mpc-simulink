@@ -171,38 +171,43 @@ end
 
 
 function sys = mdlDerivatives(t,x,u,Param)
-global u_old P_D
-
-P_D = x(end);
+global u_old x_old
 
 [~,xsize,~,~,usize] = const_mpc;
 
 if (isempty(u_old))
+    x_init_lin = [0.899; 1.126; 0.15; 440; 0];
+    x_old = [x_init_lin;x_init_lin;1.08];
     u_old = zeros(2*usize+1,1);
 end
 
-u1 = u_old(1:usize);
-u2 = u_old(usize+1:2*usize);
 
-x1 = x(1:xsize);
-x2 = x(xsize+1:2*xsize);
+P_D = x(end);
+
+
+u1 = [u_old(1:usize-1);P_D];
+u2 = [u_old(usize+1:2*usize-1);P_D];
+
+x1 = x_old(1:xsize);
+x2 = x_old(xsize+1:2*xsize);
 
 % f1 = get_comp_deriv(x1,u1(1:4));
 % f2 = get_comp_deriv(x2,u2(1:4));
 % ftank = get_tank_deriv(x,u_old);
 
-% [~,B] = linearize_tank(x,u_old);
-% du = u - u_old;
+[A,B] = linearize_tank(x_old,u_old);
+du = u - u_old;
 
 % sys = B*du([1,4,1+usize,4+usize],1) + [f1; f2; ftank];
 
-f1 = get_comp_deriv(x1,[u(1:usize);P_D],1);
-f2 = get_comp_deriv(x2,[u(usize+1:2*usize);P_D],1);
-ftank = get_tank_deriv(x,u);
+f1 = get_comp_deriv(x1,u1,1);
+f2 = get_comp_deriv(x2,u2,1);
+ftank = get_tank_deriv(x_old,u);
 
-sys = [f1; f2; ftank];
+sys = [f1; f2; ftank] + B*du([1,4,1+usize,4+usize]) + A*(x-x_old);
 
 u_old = u;
+x_old = x;
 
 end
 
