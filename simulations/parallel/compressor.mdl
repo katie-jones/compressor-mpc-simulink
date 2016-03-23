@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.55"
+    ComputedModelVersion    "1.59"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Mar 22 16:22:44 2016"
-  RTWModifiedTimeStamp	  380564562
-  ModelVersionFormat	  "1.%<AutoIncrement:55>"
+  LastModifiedDate	  "Wed Mar 23 09:25:14 2016"
+  RTWModifiedTimeStamp	  380625907
+  ModelVersionFormat	  "1.%<AutoIncrement:59>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -772,7 +772,7 @@ Model {
   }
   System {
     Name		    "compressor"
-    Location		    [57, 250, 1223, 773]
+    Location		    [84, 367, 1250, 890]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1300,7 +1300,7 @@ Model {
 	  Ports			  [1]
 	  Position		  [715, 454, 745, 486]
 	  Floating		  off
-	  Location		  [965, 360, 1317, 605]
+	  Location		  [923, 360, 1275, 605]
 	  Open			  off
 	  NumInputPorts		  "1"
 	  List {
@@ -1336,7 +1336,7 @@ Model {
 	  Ports			  [1]
 	  Position		  [715, 289, 745, 321]
 	  Floating		  off
-	  Location		  [965, 360, 1317, 605]
+	  Location		  [923, 360, 1275, 605]
 	  Open			  off
 	  NumInputPorts		  "1"
 	  List {
@@ -1358,9 +1358,10 @@ Model {
 	  Ports			  [1]
 	  Position		  [625, 14, 655, 46]
 	  Floating		  off
-	  Location		  [965, 360, 1317, 605]
-	  Open			  off
+	  Location		  [923, 360, 1275, 605]
+	  Open			  on
 	  NumInputPorts		  "1"
+	  ZoomMode		  "yonly"
 	  List {
 	    ListType		    AxesTitles
 	    axes1		    "%<SignalLabel>"
@@ -1402,8 +1403,8 @@ Model {
 	  Ports			  [1]
 	  Position		  [1010, 64, 1040, 96]
 	  Floating		  off
-	  Location		  [1067, 428, 1391, 667]
-	  Open			  off
+	  Location		  [951, 428, 1275, 667]
+	  Open			  on
 	  NumInputPorts		  "1"
 	  List {
 	    ListType		    AxesTitles
@@ -1452,7 +1453,7 @@ Model {
 	  Name			  "u_out"
 	  SID			  109
 	  Position		  [100, 322, 155, 348]
-	  Value			  "0.393"
+	  Value			  "u_out"
 	}
 	Block {
 	  BlockType		  Constant
@@ -2396,7 +2397,7 @@ Model {
 	  Name			  "u_out"
 	  SID			  253
 	  Position		  [100, 322, 155, 348]
-	  Value			  "0.393"
+	  Value			  "u_out"
 	}
 	Block {
 	  BlockType		  Constant
@@ -2725,6 +2726,7 @@ Model {
       BlockMirror	      on
       ShowName		      off
       X0		      "P_D"
+      LinearizeMemory	      on
     }
     Block {
       BlockType		      Mux
@@ -2753,9 +2755,10 @@ Model {
       Ports		      [1]
       Position		      [705, 334, 735, 366]
       Floating		      off
-      Location		      [107, 135, 431, 374]
-      Open		      off
+      Location		      [11, 60, 335, 299]
+      Open		      on
       NumInputPorts	      "1"
+      ZoomMode		      "yonly"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
@@ -2983,7 +2986,7 @@ Model {
       Ports		      [1]
       Position		      [910, 169, 940, 201]
       Floating		      off
-      Location		      [469, 138, 793, 377]
+      Location		      [789, 224, 1120, 521]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -3026,6 +3029,7 @@ Model {
       Location		      [571, 60, 895, 299]
       Open		      on
       NumInputPorts	      "1"
+      ZoomMode		      "yonly"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
