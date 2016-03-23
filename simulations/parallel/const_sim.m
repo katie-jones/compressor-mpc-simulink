@@ -10,8 +10,8 @@ usize = 2*usize_comp + 1;
 ysize_comp = 2;
 ysize = 2*ysize_comp;
 
-uoff1 = [0.304, 0.405, 0.393, 0, 0]'; % offset applied to calculated inputs
-uoff2 = [0.304, 0.405, 0.393, 0, 0]';
+uoff1 = [0.304, 0.405, 0.55, 0, 0]'; % offset applied to calculated inputs
+uoff2 = [0.304, 0.405, 0.55, 0, 0]';
 
 ud = 0.9;
 

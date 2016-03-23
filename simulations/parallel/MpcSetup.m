@@ -15,9 +15,12 @@ xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
 %% Initial state
 global P_D
 
-P_D = 1.07;
-x_init_lin = [0.912; 1.17; 0.14; 465; 0];
+P_D = 1.08;
+x_init_lin = [0.899; 1.126; 0.15; 440; 0];
 xinit = [x_init_lin; x_init_lin; P_D];
+
+u_out = uoff1(3);
+u_d = ud;
 
 u_init = zeros(2*ucontrolsize,1);
 
@@ -45,8 +48,11 @@ sys_kalman = ss(A, [B G], C, [D Hkalman], Ts);
 %% Define upper/lower bounds
 % lb = [-0.3; 0];
 % ub = [0.3; 1];
+% lb = [-0.1; 0];
+% ub = [0.1; 1];
 lb = [0;0];
 ub = [0;0];
+
 
 lb_rate = [0.1; 0.1];
 ub_rate = [0.1; 1];
@@ -67,7 +73,6 @@ xinit = [xinit; zeros(xtotalsize-xsize,1)];
 upast = u_init;
 deltax = zeros(xtotalsize,1);
 
-u_d = ud;
 
 disp('MPC Problem Formulated');
 
