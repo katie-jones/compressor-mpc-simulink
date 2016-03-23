@@ -5,7 +5,7 @@ function [A,B,C,H,Ga,Gb,Gc,dx,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,upast)
 
 x1 = xinit(1:xsize_comp);
 x2 = xinit(xsize_comp+1:2*xsize_comp);
-pd = xinit(end);
+pd = xinit(2*xsize_comp+1);
 
 u1 = uoff1 + [upast(1); 0; 0; upast(2); 0];
 u2 = uoff2 + [upast(usize+1); 0; 0; upast(usize+2); 0];
@@ -43,6 +43,8 @@ Cdist = eye(ysize,2*dsize);
 C = [Cinit(1:ysize,:), zeros(ysize,2*sum(n_delay)), Cdist];
 
 dx = [dx2; zeros(2*sum(n_delay)+2*dsize,1)];
+
+
 
 %% Define system matrices
 

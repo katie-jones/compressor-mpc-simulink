@@ -3,7 +3,7 @@ function pdot = get_tank_deriv(x,u)
 [~,xsize] = const_mpc();
 
 % States
-P_D = x(end);
+P_D = x(2*xsize+1);
 
 x1 = x(1:xsize);
 x2 = x(xsize+1:2*xsize);
