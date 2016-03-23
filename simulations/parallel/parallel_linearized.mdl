@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.110"
+    ComputedModelVersion    "1.123"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -26,9 +26,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 23 12:47:47 2016"
-  RTWModifiedTimeStamp	  380634517
-  ModelVersionFormat	  "1.%<AutoIncrement:110>"
+  LastModifiedDate	  "Wed Mar 23 13:09:59 2016"
+  RTWModifiedTimeStamp	  380639390
+  ModelVersionFormat	  "1.%<AutoIncrement:123>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -599,6 +599,11 @@ Model {
       BusSelectionMode	      off
     }
     Block {
+      BlockType		      From
+      IconDisplay	      "Tag"
+      TagVisibility	      "local"
+    }
+    Block {
       BlockType		      Gain
       Gain		      "1"
       Multiplication	      "Element-wise(K.*u)"
@@ -619,6 +624,10 @@ Model {
       RndMeth		      "Floor"
       SaturateOnIntegerOverflow	on
       SampleTime	      "-1"
+    }
+    Block {
+      BlockType		      Goto
+      IconDisplay	      "Tag"
     }
     Block {
       BlockType		      Inport
@@ -798,7 +807,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    610
+    SIDHighWatermark	    659
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -885,8 +894,8 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [1791, 556, 2129, 829]
-      Open		      off
+      Location		      [1601, 486, 1939, 736]
+      Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -906,8 +915,8 @@ Model {
       BlockType		      SubSystem
       Name		      "Parallel plant"
       SID		      284
-      Ports		      [4, 5]
-      Position		      [370, 110, 660, 250]
+      Ports		      [4, 6]
+      Position		      [370, 112, 660, 253]
       LibraryVersion	      "1.762"
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -974,8 +983,8 @@ Model {
 	  BlockType		  SubSystem
 	  Name			  "Compressor1"
 	  SID			  537
-	  Ports			  [3, 3]
-	  Position		  [300, 118, 400, 222]
+	  Ports			  [3, 4]
+	  Position		  [300, 120, 400, 225]
 	  LibraryVersion	  "1.762"
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
@@ -1183,6 +1192,17 @@ Model {
 	      SID		      548
 	      Ports		      [5, 1]
 	      Position		      [260, 144, 265, 526]
+	      BackgroundColor	      "black"
+	      ShowName		      off
+	      Inputs		      "5"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux2"
+	      SID		      612
+	      Ports		      [5, 1]
+	      Position		      [1020, 244, 1025, 366]
 	      BackgroundColor	      "black"
 	      ShowName		      off
 	      Inputs		      "5"
@@ -1414,6 +1434,16 @@ Model {
 	      OutDataType	      "fixdt(1, 16)"
 	      OutScaling	      "2^0"
 	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "x"
+	      SID		      611
+	      Position		      [1065, 298, 1095, 312]
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	    }
 	    Line {
 	      SrcBlock		      "Demux2"
 	      SrcPort		      4
@@ -1425,8 +1455,16 @@ Model {
 	      Labels		      [0, 0]
 	      SrcBlock		      "Demux2"
 	      SrcPort		      3
-	      DstBlock		      "Terminator7"
-	      DstPort		      1
+	      Points		      [50, 0]
+	      Branch {
+		DstBlock		"Terminator7"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 35; 75, 0; 0, 75]
+		DstBlock		"Mux2"
+		DstPort			3
+	      }
 	    }
 	    Line {
 	      SrcBlock		      "Step1"
@@ -1463,8 +1501,16 @@ Model {
 	    Line {
 	      SrcBlock		      "Demux2"
 	      SrcPort		      8
-	      DstBlock		      "Terminator5"
-	      DstPort		      1
+	      Points		      [30, 0]
+	      Branch {
+		DstBlock		"Terminator5"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, -25; 400, 0]
+		DstBlock		"Mux2"
+		DstPort			5
+	      }
 	    }
 	    Line {
 	      SrcBlock		      "Demux2"
@@ -1526,22 +1572,46 @@ Model {
 	      Labels		      [0, 0]
 	      SrcBlock		      "Demux2"
 	      SrcPort		      2
-	      DstBlock		      "Sum10"
-	      DstPort		      1
+	      Points		      [210, 0]
+	      Branch {
+		DstBlock		"Sum10"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 140]
+		DstBlock		"Mux2"
+		DstPort			2
+	      }
 	    }
 	    Line {
 	      Name		      "p_in"
 	      Labels		      [0, 0]
 	      SrcBlock		      "Demux2"
 	      SrcPort		      1
-	      DstBlock		      "Terminator"
-	      DstPort		      1
+	      Points		      [30, 0]
+	      Branch {
+		DstBlock		"Terminator"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 25; 400, 0]
+		DstBlock		"Mux2"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      SrcBlock		      "Demux2"
 	      SrcPort		      5
-	      DstBlock		      "Terminator1"
-	      DstPort		      1
+	      Points		      [45, 0]
+	      Branch {
+		DstBlock		"Terminator1"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 25]
+		DstBlock		"Mux2"
+		DstPort			4
+	      }
 	    }
 	    Line {
 	      SrcBlock		      "Sum10"
@@ -1629,6 +1699,12 @@ Model {
 	      DstBlock		      "Terminator6"
 	      DstPort		      1
 	    }
+	    Line {
+	      SrcBlock		      "Mux2"
+	      SrcPort		      1
+	      DstBlock		      "x"
+	      DstPort		      1
+	    }
 	    Annotation {
 	      Position		      [144, 185]
 	    }
@@ -1643,9 +1719,9 @@ Model {
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Compressor2"
-	  SID			  574
-	  Ports			  [3, 3]
-	  Position		  [300, 333, 400, 437]
+	  SID			  613
+	  Ports			  [3, 4]
+	  Position		  [300, 330, 400, 435]
 	  LibraryVersion	  "1.762"
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
@@ -1688,7 +1764,7 @@ Model {
 	    Block {
 	      BlockType		      Inport
 	      Name		      "Td"
-	      SID		      575
+	      SID		      614
 	      Position		      [50, 178, 80, 192]
 	      IconDisplay	      "Port number"
 	      OutDataType	      "fixdt(1, 16)"
@@ -1697,7 +1773,7 @@ Model {
 	    Block {
 	      BlockType		      Inport
 	      Name		      "u_rec"
-	      SID		      576
+	      SID		      615
 	      Position		      [40, 403, 70, 417]
 	      Port		      "2"
 	      IconDisplay	      "Port number"
@@ -1707,7 +1783,7 @@ Model {
 	    Block {
 	      BlockType		      Inport
 	      Name		      "p_d"
-	      SID		      577
+	      SID		      616
 	      Position		      [185, 478, 215, 492]
 	      Port		      "3"
 	      IconDisplay	      "Port number"
@@ -1717,7 +1793,7 @@ Model {
 	    Block {
 	      BlockType		      SubSystem
 	      Name		      "Compresion plant"
-	      SID		      578
+	      SID		      617
 	      Ports		      [1, 1]
 	      Position		      [280, 225, 545, 445]
 	      MinAlgLoopOccurrences   off
@@ -1751,14 +1827,14 @@ Model {
 		Block {
 		  BlockType		  Inport
 		  Name			  "In1"
-		  SID			  579
+		  SID			  618
 		  Position		  [50, 43, 80, 57]
 		  IconDisplay		  "Port number"
 		}
 		Block {
 		  BlockType		  "S-Function"
 		  Name			  "S-Function1"
-		  SID			  580
+		  SID			  619
 		  Ports			  [1, 1]
 		  Position		  [160, 34, 315, 66]
 		  FunctionName		  "comp_rig_model"
@@ -1768,7 +1844,7 @@ Model {
 		Block {
 		  BlockType		  Outport
 		  Name			  "Out1"
-		  SID			  581
+		  SID			  620
 		  Position		  [395, 43, 425, 57]
 		  IconDisplay		  "Port number"
 		}
@@ -1792,7 +1868,7 @@ Model {
 	    Block {
 	      BlockType		      Demux
 	      Name		      "Demux2"
-	      SID		      582
+	      SID		      621
 	      Ports		      [1, 10]
 	      Position		      [565, 50, 570, 615]
 	      BackgroundColor	      "black"
@@ -1827,7 +1903,7 @@ Model {
 	    Block {
 	      BlockType		      Gain
 	      Name		      "Gain"
-	      SID		      583
+	      SID		      622
 	      Position		      [865, 125, 970, 155]
 	      ParameterDataTypeMode   "Inherit via internal rule"
 	      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
@@ -1838,7 +1914,7 @@ Model {
 	    Block {
 	      BlockType		      Gain
 	      Name		      "Gain1"
-	      SID		      584
+	      SID		      623
 	      Position		      [860, 509, 920, 541]
 	      Gain		      "1/0.01"
 	      ParameterDataTypeMode   "Inherit via internal rule"
@@ -1850,7 +1926,7 @@ Model {
 	    Block {
 	      BlockType		      Mux
 	      Name		      "Mux1"
-	      SID		      585
+	      SID		      624
 	      Ports		      [5, 1]
 	      Position		      [260, 144, 265, 526]
 	      BackgroundColor	      "black"
@@ -1859,9 +1935,20 @@ Model {
 	      DisplayOption	      "bar"
 	    }
 	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux2"
+	      SID		      625
+	      Ports		      [5, 1]
+	      Position		      [1020, 244, 1025, 366]
+	      BackgroundColor	      "black"
+	      ShowName		      off
+	      Inputs		      "5"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
 	      BlockType		      Step
 	      Name		      "Step"
-	      SID		      586
+	      SID		      626
 	      Position		      [155, 355, 185, 385]
 	      Time		      "50"
 	      After		      "0"
@@ -1870,7 +1957,7 @@ Model {
 	    Block {
 	      BlockType		      Step
 	      Name		      "Step1"
-	      SID		      587
+	      SID		      627
 	      Position		      [100, 280, 130, 310]
 	      Time		      "100"
 	      After		      "0"
@@ -1879,7 +1966,7 @@ Model {
 	    Block {
 	      BlockType		      Sum
 	      Name		      "Sum10"
-	      SID		      588
+	      SID		      628
 	      Ports		      [2, 1]
 	      Position		      [805, 130, 825, 150]
 	      ShowName		      off
@@ -1893,7 +1980,7 @@ Model {
 	    Block {
 	      BlockType		      Sum
 	      Name		      "Sum2"
-	      SID		      589
+	      SID		      629
 	      Ports		      [3, 1]
 	      Position		      [195, 325, 215, 345]
 	      ShowName		      off
@@ -1907,7 +1994,7 @@ Model {
 	    Block {
 	      BlockType		      Sum
 	      Name		      "Sum7"
-	      SID		      590
+	      SID		      630
 	      Ports		      [2, 1]
 	      Position		      [130, 175, 150, 195]
 	      ShowName		      off
@@ -1927,7 +2014,7 @@ Model {
 	    Block {
 	      BlockType		      Sum
 	      Name		      "Sum8"
-	      SID		      591
+	      SID		      631
 	      Ports		      [2, 1]
 	      Position		      [820, 515, 840, 535]
 	      ShowName		      off
@@ -1941,7 +2028,7 @@ Model {
 	    Block {
 	      BlockType		      Sum
 	      Name		      "Sum9"
-	      SID		      592
+	      SID		      632
 	      Ports		      [2, 1]
 	      Position		      [155, 400, 175, 420]
 	      ShowName		      off
@@ -1961,104 +2048,104 @@ Model {
 	    Block {
 	      BlockType		      Constant
 	      Name		      "T_dr"
-	      SID		      593
+	      SID		      633
 	      Position		      [25, 237, 80, 263]
 	      Value		      "Td_off"
 	    }
 	    Block {
 	      BlockType		      Terminator
 	      Name		      "Terminator"
-	      SID		      594
+	      SID		      634
 	      Position		      [630, 75, 650, 95]
 	    }
 	    Block {
 	      BlockType		      Terminator
 	      Name		      "Terminator1"
-	      SID		      595
+	      SID		      635
 	      Position		      [655, 295, 675, 315]
 	    }
 	    Block {
 	      BlockType		      Terminator
 	      Name		      "Terminator2"
-	      SID		      596
+	      SID		      636
 	      Position		      [655, 240, 675, 260]
 	    }
 	    Block {
 	      BlockType		      Terminator
 	      Name		      "Terminator3"
-	      SID		      597
+	      SID		      637
 	      Position		      [655, 350, 675, 370]
 	    }
 	    Block {
 	      BlockType		      Terminator
 	      Name		      "Terminator4"
-	      SID		      598
+	      SID		      638
 	      Position		      [655, 405, 675, 425]
 	    }
 	    Block {
 	      BlockType		      Terminator
 	      Name		      "Terminator5"
-	      SID		      599
+	      SID		      639
 	      Position		      [630, 460, 650, 480]
 	    }
 	    Block {
 	      BlockType		      Terminator
 	      Name		      "Terminator6"
-	      SID		      600
+	      SID		      640
 	      Position		      [630, 515, 650, 535]
 	    }
 	    Block {
 	      BlockType		      Terminator
 	      Name		      "Terminator7"
-	      SID		      601
+	      SID		      641
 	      Position		      [655, 185, 675, 205]
 	    }
 	    Block {
 	      BlockType		      TransportDelay
 	      Name		      "Transport\nDelay"
-	      SID		      602
+	      SID		      642
 	      Position		      [110, 395, 140, 425]
 	      DelayTime		      "t_delay"
 	    }
 	    Block {
 	      BlockType		      Constant
 	      Name		      "nom"
-	      SID		      603
+	      SID		      643
 	      Position		      [750, 542, 805, 568]
 	      Value		      "-0.043"
 	    }
 	    Block {
 	      BlockType		      Constant
 	      Name		      "nom1"
-	      SID		      604
+	      SID		      644
 	      Position		      [715, 157, 770, 183]
 	      Value		      "-1.126"
 	    }
 	    Block {
 	      BlockType		      Constant
 	      Name		      "u_in"
-	      SID		      605
+	      SID		      645
 	      Position		      [160, 247, 215, 273]
 	      Value		      "u_in"
 	    }
 	    Block {
 	      BlockType		      Constant
 	      Name		      "u_out"
-	      SID		      606
+	      SID		      646
 	      Position		      [100, 322, 155, 348]
 	      Value		      "u_out"
 	    }
 	    Block {
 	      BlockType		      Constant
 	      Name		      "u_rec_offset"
-	      SID		      607
+	      SID		      647
 	      Position		      [45, 477, 100, 503]
 	      Value		      "u_rec"
 	    }
 	    Block {
 	      BlockType		      Outport
 	      Name		      "p_out"
-	      SID		      608
+	      SID		      648
 	      Position		      [1150, 133, 1180, 147]
 	      IconDisplay	      "Port number"
 	      OutDataType	      "fixdt(1, 16)"
@@ -2067,7 +2154,7 @@ Model {
 	    Block {
 	      BlockType		      Outport
 	      Name		      "SD"
-	      SID		      609
+	      SID		      649
 	      Position		      [1055, 448, 1085, 462]
 	      Port		      "2"
 	      IconDisplay	      "Port number"
@@ -2077,12 +2164,28 @@ Model {
 	    Block {
 	      BlockType		      Outport
 	      Name		      "m_out"
-	      SID		      610
+	      SID		      650
 	      Position		      [1060, 378, 1090, 392]
 	      Port		      "3"
 	      IconDisplay	      "Port number"
 	      OutDataType	      "fixdt(1, 16)"
 	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "x"
+	      SID		      651
+	      Position		      [1065, 298, 1095, 312]
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	    }
+	    Line {
+	      SrcBlock		      "Mux2"
+	      SrcPort		      1
+	      DstBlock		      "x"
+	      DstPort		      1
 	    }
 	    Line {
 	      Name		      "T-ss"
@@ -2173,24 +2276,48 @@ Model {
 	    Line {
 	      SrcBlock		      "Demux2"
 	      SrcPort		      5
-	      DstBlock		      "Terminator1"
-	      DstPort		      1
+	      Points		      [45, 0]
+	      Branch {
+		Points			[0, 25]
+		DstBlock		"Mux2"
+		DstPort			4
+	      }
+	      Branch {
+		DstBlock		"Terminator1"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      Name		      "p_in"
 	      Labels		      [0, 0]
 	      SrcBlock		      "Demux2"
 	      SrcPort		      1
-	      DstBlock		      "Terminator"
-	      DstPort		      1
+	      Points		      [30, 0]
+	      Branch {
+		Points			[0, 25; 400, 0]
+		DstBlock		"Mux2"
+		DstPort			1
+	      }
+	      Branch {
+		DstBlock		"Terminator"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      Name		      "p_out"
 	      Labels		      [0, 0]
 	      SrcBlock		      "Demux2"
 	      SrcPort		      2
-	      DstBlock		      "Sum10"
-	      DstPort		      1
+	      Points		      [210, 0]
+	      Branch {
+		Points			[0, 140]
+		DstBlock		"Mux2"
+		DstPort			2
+	      }
+	      Branch {
+		DstBlock		"Sum10"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      SrcBlock		      "Sum8"
@@ -2250,8 +2377,16 @@ Model {
 	    Line {
 	      SrcBlock		      "Demux2"
 	      SrcPort		      8
-	      DstBlock		      "Terminator5"
-	      DstPort		      1
+	      Points		      [30, 0]
+	      Branch {
+		Points			[0, -25; 400, 0]
+		DstBlock		"Mux2"
+		DstPort			5
+	      }
+	      Branch {
+		DstBlock		"Terminator5"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      SrcBlock		      "Demux2"
@@ -2290,8 +2425,16 @@ Model {
 	      Labels		      [0, 0]
 	      SrcBlock		      "Demux2"
 	      SrcPort		      3
-	      DstBlock		      "Terminator7"
-	      DstPort		      1
+	      Points		      [50, 0]
+	      Branch {
+		Points			[0, 35; 75, 0; 0, 75]
+		DstBlock		"Mux2"
+		DstPort			3
+	      }
+	      Branch {
+		DstBlock		"Terminator7"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      SrcBlock		      "Demux2"
@@ -2309,6 +2452,40 @@ Model {
 	      Position		      [144, 185]
 	    }
 	  }
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From"
+	  SID			  653
+	  Position		  [1010, 211, 1050, 229]
+	  ShowName		  off
+	  GotoTag		  "xout1"
+	}
+	Block {
+	  BlockType		  From
+	  Name			  "From1"
+	  SID			  658
+	  Position		  [1010, 231, 1050, 249]
+	  ShowName		  off
+	  GotoTag		  "xout2"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto"
+	  SID			  654
+	  Position		  [445, 215, 485, 245]
+	  ShowName		  off
+	  GotoTag		  "xout1"
+	  TagVisibility		  "local"
+	}
+	Block {
+	  BlockType		  Goto
+	  Name			  "Goto1"
+	  SID			  656
+	  Position		  [445, 405, 485, 435]
+	  ShowName		  off
+	  GotoTag		  "xout2"
+	  TagVisibility		  "local"
 	}
 	Block {
 	  BlockType		  Memory
@@ -2337,6 +2514,16 @@ Model {
 	  Position		  [615, 376, 620, 414]
 	  ShowName		  off
 	  Inputs		  "2"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux2"
+	  SID			  655
+	  Ports			  [3, 1]
+	  Position		  [1115, 211, 1120, 269]
+	  ShowName		  off
+	  Inputs		  "3"
 	  DisplayOption		  "bar"
 	}
 	Block {
@@ -2674,18 +2861,22 @@ Model {
 	  OutDataType		  "fixdt(1, 16)"
 	  OutScaling		  "2^0"
 	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "x"
+	  SID			  652
+	  Position		  [1145, 233, 1175, 247]
+	  Port			  "6"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "fixdt(1, 16)"
+	  OutScaling		  "2^0"
+	}
 	Line {
 	  SrcBlock		  "Compressor1"
 	  SrcPort		  3
+	  Points		  [0, 20]
 	  DstBlock		  "Sum"
 	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Compressor2"
-	  SrcPort		  3
-	  Points		  [110, 0]
-	  DstBlock		  "Sum"
-	  DstPort		  2
 	}
 	Line {
 	  SrcBlock		  "Tank"
@@ -2704,10 +2895,6 @@ Model {
 	  Branch {
 	    Points		    [0, 35]
 	    Branch {
-	      DstBlock		      "p_d"
-	      DstPort		      1
-	    }
-	    Branch {
 	      Points		      [0, 55]
 	      Branch {
 		DstBlock		"To Workspace2"
@@ -2717,6 +2904,18 @@ Model {
 		Points			[0, 245]
 		DstBlock		"Memory"
 		DstPort			1
+	      }
+	    }
+	    Branch {
+	      Points		      [95, 0]
+	      Branch {
+		DstBlock		"p_d"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, -65]
+		DstBlock		"Mux2"
+		DstPort			3
 	      }
 	    }
 	  }
@@ -2738,7 +2937,7 @@ Model {
 	Line {
 	  SrcBlock		  "Compressor1"
 	  SrcPort		  2
-	  Points		  [120, 0]
+	  Points		  [0, 10; 120, 0]
 	  Branch {
 	    Points		    [75, 0]
 	    DstBlock		    "Mux1"
@@ -2753,7 +2952,7 @@ Model {
 	Line {
 	  SrcBlock		  "Compressor2"
 	  SrcPort		  1
-	  Points		  [155, 0]
+	  Points		  [0, 5; 155, 0]
 	  Branch {
 	    Points		    [25, 0; 0, -245]
 	    DstBlock		    "Mux"
@@ -2768,7 +2967,7 @@ Model {
 	Line {
 	  SrcBlock		  "Compressor2"
 	  SrcPort		  2
-	  Points		  [125, 0]
+	  Points		  [125, 0; 0, 15]
 	  Branch {
 	    Points		    [65, 0; 0, 20]
 	    DstBlock		    "Mux1"
@@ -2783,12 +2982,14 @@ Model {
 	Line {
 	  SrcBlock		  "Td1"
 	  SrcPort		  1
+	  Points		  [90, 0]
 	  DstBlock		  "Compressor1"
 	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "u_r1"
 	  SrcPort		  1
+	  Points		  [90, 0]
 	  DstBlock		  "Compressor1"
 	  DstPort		  2
 	}
@@ -2857,6 +3058,44 @@ Model {
 	    DstPort		    3
 	  }
 	}
+	Line {
+	  SrcBlock		  "Compressor2"
+	  SrcPort		  3
+	  Points		  [110, 0]
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "From"
+	  SrcPort		  1
+	  DstBlock		  "Mux2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Compressor1"
+	  SrcPort		  4
+	  Points		  [25, 0]
+	  DstBlock		  "Goto"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Compressor2"
+	  SrcPort		  4
+	  DstBlock		  "Goto1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "From1"
+	  SrcPort		  1
+	  DstBlock		  "Mux2"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Mux2"
+	  SrcPort		  1
+	  DstBlock		  "x"
+	  DstPort		  1
+	}
       }
     }
     Block {
@@ -2890,8 +3129,8 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1397, 180, 1735, 453]
-      Open		      off
+      Location		      [2061, 174, 2399, 447]
+      Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -2899,8 +3138,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "85              "
-      YMin		      "0.20518"
-      YMax		      "0.20518"
+      YMin		      "0.20497"
+      YMax		      "0.20504"
       SaveToWorkspace	      on
       SaveName		      "SD3"
       DataFormat	      "Array"
@@ -2984,8 +3223,8 @@ Model {
       BlockType		      SubSystem
       Name		      "controller"
       SID		      418
-      Ports		      [2, 1]
-      Position		      [470, 386, 560, 539]
+      Ports		      [3, 1]
+      Position		      [470, 388, 560, 542]
       BlockMirror	      on
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -2997,8 +3236,8 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"controller"
-	Location		[415, 436, 1036, 888]
-	Open			off
+	Location		[1462, 312, 2083, 764]
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -3014,7 +3253,7 @@ Model {
 	  BlockType		  Inport
 	  Name			  "mv"
 	  SID			  419
-	  Position		  [540, 138, 570, 152]
+	  Position		  [520, 98, 550, 112]
 	  BlockMirror		  on
 	  IconDisplay		  "Port number"
 	}
@@ -3022,16 +3261,25 @@ Model {
 	  BlockType		  Inport
 	  Name			  "ref"
 	  SID			  420
-	  Position		  [540, 243, 570, 257]
+	  Position		  [520, 153, 550, 167]
 	  BlockMirror		  on
 	  Port			  "2"
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "xin"
+	  SID			  659
+	  Position		  [520, 268, 550, 282]
+	  BlockMirror		  on
+	  Port			  "3"
 	  IconDisplay		  "Port number"
 	}
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Embedded\nMATLAB Function"
 	  SID			  421
-	  Ports			  [1, 4]
+	  Ports			  [2, 4]
 	  Position		  [265, 56, 405, 344]
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
@@ -3075,7 +3323,7 @@ Model {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
-	    SIDHighWatermark	    22
+	    SIDHighWatermark	    23
 	    Block {
 	      BlockType		      Inport
 	      Name		      "u"
@@ -3084,6 +3332,14 @@ Model {
 	      IconDisplay	      "Port number"
 	      OutDataType	      "sfix(16)"
 	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "xin"
+	      SID		      23
+	      Position		      [20, 136, 40, 154]
+	      Port		      "2"
+	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Demux
@@ -3098,10 +3354,10 @@ Model {
 	      Name		      " SFunction "
 	      SID		      6
 	      Tag		      "Stateflow S-Function parallel_linearized 2"
-	      Ports		      [1, 5]
+	      Ports		      [2, 5]
 	      Position		      [180, 121, 230, 329]
 	      FunctionName	      "sf_sfun"
-	      PortCounts	      "[1 5]"
+	      PortCounts	      "[2 5]"
 	      EnableBusSupport	      on
 	      Port {
 		PortNumber		2
@@ -3180,6 +3436,12 @@ Model {
 	      DstPort		      1
 	    }
 	    Line {
+	      SrcBlock		      "xin"
+	      SrcPort		      1
+	      DstBlock		      " SFunction "
+	      DstPort		      2
+	    }
+	    Line {
 	      Name		      "u_new"
 	      Labels		      [0, 0]
 	      SrcBlock		      " SFunction "
@@ -3224,7 +3486,7 @@ Model {
 	  Name			  "Mux"
 	  SID			  422
 	  Ports			  [2, 1]
-	  Position		  [445, 91, 450, 304]
+	  Position		  [450, 79, 455, 186]
 	  BlockMirror		  on
 	  ShowName		  off
 	  Inputs		  "2"
@@ -3369,6 +3631,12 @@ Model {
 	  DstBlock		  "To Workspace"
 	  DstPort		  1
 	}
+	Line {
+	  SrcBlock		  "xin"
+	  SrcPort		  1
+	  DstBlock		  "Embedded\nMATLAB Function"
+	  DstPort		  2
+	}
       }
     }
     Block {
@@ -3378,8 +3646,8 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [1869, 200, 2207, 473]
-      Open		      off
+      Location		      [1615, 173, 1953, 446]
+      Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -3387,8 +3655,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "85              "
-      YMin		      "-0.00202021"
-      YMax		      "-0.00202021"
+      YMin		      "-0.002067"
+      YMax		      "-0.002055"
       SaveToWorkspace	      on
       SaveName		      "SD2"
       DataFormat	      "Array"
@@ -3423,6 +3691,7 @@ Model {
     Line {
       SrcBlock		      "controller"
       SrcPort		      1
+      Points		      [0, -5]
       DstBlock		      "Rate Transition2"
       DstPort		      1
     }
@@ -3441,12 +3710,14 @@ Model {
     Line {
       SrcBlock		      "Rate Transition"
       SrcPort		      1
+      Points		      [-20, 0]
       DstBlock		      "controller"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Rate Transition1"
       SrcPort		      1
+      Points		      [-35, 0]
       DstBlock		      "controller"
       DstPort		      2
     }
@@ -3461,6 +3732,7 @@ Model {
       SrcPort		      1
       Points		      [-10, 0; 0, -295]
       Branch {
+	Points			[25, 0]
 	DstBlock		"Parallel plant"
 	DstPort			1
       }
@@ -3474,6 +3746,7 @@ Model {
       SrcPort		      2
       Points		      [-20, 0; 0, -285]
       Branch {
+	Points			[35, 0]
 	DstBlock		"Parallel plant"
 	DstPort			2
       }
@@ -3488,6 +3761,7 @@ Model {
       SrcPort		      3
       Points		      [-30, 0; 0, -275]
       Branch {
+	Points			[45, 0]
 	DstBlock		"Parallel plant"
 	DstPort			3
       }
@@ -3502,6 +3776,7 @@ Model {
       SrcPort		      4
       Points		      [-40, 0; 0, -265]
       Branch {
+	Points			[55, 0]
 	DstBlock		"Parallel plant"
 	DstPort			4
       }
@@ -3556,13 +3831,14 @@ Model {
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      5
+      Points		      [0, 20]
       DstBlock		      "PD"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      2
-      Points		      [20, 0]
+      Points		      [0, 5; 20, 0]
       Branch {
 	DstBlock		"Mux2"
 	DstPort			2
@@ -3576,7 +3852,7 @@ Model {
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      3
-      Points		      [5, 0]
+      Points		      [0, 10; 5, 0]
       Branch {
 	Points			[15, 0]
 	DstBlock		"Mux2"
@@ -3591,7 +3867,7 @@ Model {
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      4
-      Points		      [10, 0]
+      Points		      [0, 15; 10, 0]
       Branch {
 	Points			[10, 0]
 	DstBlock		"Mux2"
@@ -3627,6 +3903,13 @@ Model {
       DstBlock		      "u_rec"
       DstPort		      1
     }
+    Line {
+      SrcBlock		      "Parallel plant"
+      SrcPort		      6
+      Points		      [0, 100; 225, 0; 0, 315; -315, 0]
+      DstBlock		      "controller"
+      DstPort		      3
+    }
     Annotation {
       Position		      [881, 100]
     }
@@ -3645,7 +3928,7 @@ Stateflow {
     name		    "parallel_linearized"
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
-    firstTarget		    12
+    firstTarget		    13
     debug {
     }
     sfVersion		    71014000.00001
@@ -3661,7 +3944,7 @@ Stateflow {
     firstJunction	    4
     viewObj		    2
     machine		    1
-    ssIdHighWaterMark	    18
+    ssIdHighWaterMark	    19
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
     firstData		    6
@@ -3685,33 +3968,29 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function [u_new,exitflag_out,it_out,x_out]  = fcn(u)\n%#eml\n% persistent C_new M LB UB Ga Gb Gc "
-      "H Ain b A B upast xinit\npersistent M LB UB Ain b upast xinit dxaug y_old C %x_init_lin\neml.extrinsic('disp');\n"
-      "eml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\neml.extrins"
-      "ic('quadprog');\n\np = 100;\nm = 2;\nysize = 4;\nusize = 4;\nxsize = 11;\ndsize = 2;\nn_delay = [0,20];\n\nif is"
-      "empty(M)\n    tic\n    [C,M,UB,LB,b,Ain,xinit,upast] = get_constant_matrices();\n    dxaug = zeros(size(xinit));"
-      "\n    y_old = zeros(ysize,1);\n    time = toc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\n\ny = u("
-      "1:ysize);\n\n% Estimate state info\n% dxaug = dxaug + M*(y - y_old - C*(dxaug));\nxinit(1:xsize) = xinit(1:xsize"
-      ") + dxaug(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\nx_out = xinit;\n\ny_old = y;\n\nyref = u(ysize+1:"
-      "end);\n\n% Get matrices - linearize about delayed rec.open input\n[A,B,C,H,Ga,Gb,Gc,df0,~,~,~,~] = get_qp_matric"
-      "es(xinit,upast);\n\n\n\n% Get reference and input vector\n\n% Yref = zeros(p*ysize,1);\n% Upast = zeros(m*usize,"
-      "1);\n% for i=1:p\n%     Yref(1+(i-1)*ysize:i*ysize,1) = yref - y;\n% end\n% for i=1:m\n%     Upast(1+(i-1)*usize"
-      ":i*usize,1) = upast;\n% %     Upast(i*usize,1) = upast(2);\n% %     Upast(i*usize,1) = xinit(6);\n% %     Upast("
-      "i*usize,1) = 0;\n% end\n% \n% % Update bounds\n% LBa = LB - Upast;\n% UBa = UB - Upast;\n% \n% % Calculate initi"
-      "al state\n% % dx0 = [zeros(5,1); xinit(6:end-2)-xinit(6); xinit(end-1:end)];\n% % dx0 = [zeros(5,1); xinit(6:end"
-      "-2)-upast(2); xinit(end-1:end)];\n% dx0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize"
-      "+n_delay(2)+1:xsize+2*n_delay(2))-upast(4); zeros(2*dsize,1)];\n% % dx0 = [zeros(5,1); xinit(6:end-2)-xinit(6); "
-      "zeros(2,1)];\n% % dx0 = [zeros(5,1); xinit(6:end-2); zeros(2,1)];\n% % dx0 = [zeros(5,1); xinit(6:end)];\n% \n% "
-      "\n% \n% % Gradient vector\n% f = df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*UWT;\n% \n% % Solve QP\n% lbA = -inf(si"
-      "ze(Ain,1),1);\n% [usol,~,exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\n% exitflag_out = exitflag(1,1);\n"
-      "% it_out = it(1,1);\n% \n% if exitflag_out~=0\n% %     usol=quadprog(H,f,[eye(4); -eye(4); Ain],[UBa; -LBa; b]);"
-      "\n%     exitflag_out\n%     usol = zeros(m*usize,1);\n% end\nusol = zeros(m*usize,1);\nexitflag_out = 0;\nit_out"
-      " = 0;\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);\nu_new = upast + delta_u;\n\n\n% value of x about whic"
-      "h we linearized\nxlin = dxaug;\n% xlin(xsize+1:end) = 0;\n% xlin(xsize+1) = upast(2);\n% xlin(xsize+1+n_delay(2)"
-      ") = upast(4);\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n\nup"
-      "ast = u_new;\n\n\n"
-      editorLayout	      "100 M4x1[551 128 720 615]"
-      breakpoints	      "100 M1x3[42 105 43]"
+      script		      "function [u_new,exitflag_out,it_out,x_out]  = fcn(u,xin)\n%#eml\n% persistent C_new M LB UB Ga Gb"
+      " Gc H Ain b A B upast xinit\npersistent M LB UB Ain b upast xinit dxaug y_old C %x_init_lin\neml.extrinsic('disp"
+      "');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\neml.ex"
+      "trinsic('quadprog');\n\np = 100;\nm = 2;\nysize = 4;\nusize = 4;\nxsize = 11;\ndsize = 2;\nn_delay = [0,20];\n\n"
+      "if isempty(M)\n    tic\n    [C,M,UB,LB,b,Ain,xinit,upast] = get_constant_matrices();\n    dxaug = zeros(size(xin"
+      "it));\n    y_old = zeros(ysize,1);\n    time = toc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\n\ny"
+      " = u(1:ysize);\n\n% Estimate state info\n% dxaug = dxaug + M*(y - y_old - C*(dxaug));\n\n% Use state input info "
+      "to calculate x, y\ndxaug(1:xsize) = 0.5*(xin - xinit(1:xsize) + dxaug(1:xsize));\n\nxinit(1:xsize) = xinit(1:xsi"
+      "ze) + dxaug(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\nx_out = xinit;\n\ny_old = y;\n\nyref = u(ysize+"
+      "1:end);\n\n% Get matrices - linearize about delayed rec.open input\n[A,B,C,H,Ga,Gb,Gc,df0,~,~,~,~] = get_qp_matr"
+      "ices(xinit,upast);\n\n\n\n% Get reference and input vector\n\nYref = zeros(p*ysize,1);\nUpast = zeros(m*usize,1)"
+      ";\nfor i=1:p\n    Yref(1+(i-1)*ysize:i*ysize,1) = yref - y;\nend\nfor i=1:m\n    Upast(1+(i-1)*usize:i*usize,1) "
+      "= upast;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - Upast;\n\n% Calculate initial state\ndx0 = [zero"
+      "s(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(4); zer"
+      "os(2*dsize,1)];\n\n\n% Gradient vector\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*UWT;\n\n% Solve QP\nlbA = -i"
+      "nf(size(Ain,1),1);\n[usol,~,exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_out = exitflag(1,1);"
+      "\nit_out = it(1,1);\n\nif exitflag_out~=0\n    exitflag_out\n    usol = zeros(m*usize,1);\nend\nusol = zeros(m*u"
+      "size,1);\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);\nu_new = upast + delta_u;\n\n\n% value of x about w"
+      "hich we linearized\nxlin = dxaug;\nxlin(xsize+1:end) = 0;\nxlin(xsize+1) = upast(2);\nxlin(xsize+1+n_delay(2)) ="
+      " upast(4);\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n\nupast"
+      " = u_new;\n\n\n"
+      editorLayout	      "100 M4x1[10 5 750 500]"
+      breakpoints	      "100 M[42]"
     }
   }
   junction {
@@ -3831,7 +4110,7 @@ Stateflow {
     id			    10
     ssIdNumber		    18
     name		    "x_out"
-    linkNode		    [2 9 0]
+    linkNode		    [2 9 11]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -3849,14 +4128,36 @@ Stateflow {
     }
     dataType		    "Inherit: Same as Simulink"
   }
-  instance {
+  data {
     id			    11
+    ssIdNumber		    19
+    name		    "xin"
+    linkNode		    [2 10 0]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  instance {
+    id			    12
     name		    "controller/Embedded\nMATLAB Function"
     machine		    1
     chart		    2
   }
   target {
-    id			    12
+    id			    13
     name		    "sfun"
     description		    "Default Simulink S-Function Target."
     machine		    1
