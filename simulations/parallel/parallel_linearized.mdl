@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.98"
+    ComputedModelVersion    "1.110"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -26,9 +26,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 23 10:03:50 2016"
-  RTWModifiedTimeStamp	  380628229
-  ModelVersionFormat	  "1.%<AutoIncrement:98>"
+  LastModifiedDate	  "Wed Mar 23 12:47:47 2016"
+  RTWModifiedTimeStamp	  380634517
+  ModelVersionFormat	  "1.%<AutoIncrement:110>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -784,7 +784,7 @@ Model {
   }
   System {
     Name		    "parallel_linearized"
-    Location		    [2, 74, 1278, 963]
+    Location		    [10, 82, 1270, 955]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -885,8 +885,8 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [937, 176, 1275, 449]
-      Open		      on
+      Location		      [1791, 556, 2129, 829]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -2890,8 +2890,8 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [937, 140, 1275, 413]
-      Open		      on
+      Location		      [1397, 180, 1735, 453]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -2899,8 +2899,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "85              "
-      YMin		      "-1.8"
-      YMax		      "0"
+      YMin		      "0.20518"
+      YMax		      "0.20518"
       SaveToWorkspace	      on
       SaveName		      "SD3"
       DataFormat	      "Array"
@@ -2963,7 +2963,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 84, 1275, 357]
+      Location		      [935, 84, 1273, 357]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2998,7 +2998,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[415, 436, 1036, 888]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -3378,8 +3378,8 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [937, 537, 1275, 810]
-      Open		      on
+      Location		      [1869, 200, 2207, 473]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -3387,8 +3387,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "85              "
-      YMin		      "0.044"
-      YMax		      "0.0451"
+      YMin		      "-0.00202021"
+      YMax		      "-0.00202021"
       SaveToWorkspace	      on
       SaveName		      "SD2"
       DataFormat	      "Array"
@@ -3691,28 +3691,27 @@ Stateflow {
       "ic('quadprog');\n\np = 100;\nm = 2;\nysize = 4;\nusize = 4;\nxsize = 11;\ndsize = 2;\nn_delay = [0,20];\n\nif is"
       "empty(M)\n    tic\n    [C,M,UB,LB,b,Ain,xinit,upast] = get_constant_matrices();\n    dxaug = zeros(size(xinit));"
       "\n    y_old = zeros(ysize,1);\n    time = toc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\n\ny = u("
-      "1:ysize);\n\n% Estimate state info\ndxaug = dxaug + 0*M*(y - y_old - C*(dxaug));\nxinit(1:xsize) = xinit(1:xsize"
+      "1:ysize);\n\n% Estimate state info\n% dxaug = dxaug + M*(y - y_old - C*(dxaug));\nxinit(1:xsize) = xinit(1:xsize"
       ") + dxaug(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\nx_out = xinit;\n\ny_old = y;\n\nyref = u(ysize+1:"
-      "end);\n\n% Get matrices - linearize about delayed rec.open input\n% [A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf,UWT] = get_qp"
-      "_matrices(xinit,[upast(1); dxaug(6)]);\n[A,B,C,H,Ga,Gb,Gc,df0,~,~,~,~] = get_qp_matrices(xinit,upast);\n% [A,B,C"
-      ",H,Ga,Gb,Gc,df0,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,[upast(1); 0]);\n\n\n\n% Get reference and input vector\n\n"
-      "Yref = zeros(p*ysize,1);\nUpast = zeros(m*usize,1);\nfor i=1:p\n    Yref(1+(i-1)*ysize:i*ysize,1) = yref - y;\ne"
-      "nd\nfor i=1:m\n    Upast(1+(i-1)*usize:i*usize,1) = upast;\n%     Upast(i*usize,1) = upast(2);\n%     Upast(i*us"
-      "ize,1) = xinit(6);\n%     Upast(i*usize,1) = 0;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - Upast;\n\n"
-      "% Calculate initial state\n% dx0 = [zeros(5,1); xinit(6:end-2)-xinit(6); xinit(end-1:end)];\n% dx0 = [zeros(5,1)"
-      "; xinit(6:end-2)-upast(2); xinit(end-1:end)];\ndx0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); "
-      "xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(4); zeros(2*dsize,1)];\n% dx0 = [zeros(5,1); xinit(6:end-2)-x"
-      "init(6); zeros(2,1)];\n% dx0 = [zeros(5,1); xinit(6:end-2); zeros(2,1)];\n% dx0 = [zeros(5,1); xinit(6:end)];\n\n"
-      "\n\n% Gradient vector\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*UWT;\n\n% Solve QP\nlbA = -inf(size(Ain,1),1)"
-      ";\n[usol,~,exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_out = exitflag(1,1);\nit_out = it(1,1"
-      ");\n\nif exitflag_out~=0\n%     usol=quadprog(H,f,[eye(4); -eye(4); Ain],[UBa; -LBa; b]);\n    exitflag_out\n   "
-      " usol = zeros(m*usize,1);\nend\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);\n% u_new = [upast(1); dxaug(6"
-      ")] + delta_u;\nu_new = upast + delta_u;\n% u_new = [upast(1); 0] + delta_u;\n\n\n% value of x about which we lin"
-      "earized\nxlin = dxaug;\nxlin(xsize+1:end) = 0;\nxlin(xsize+1) = upast(2);\nxlin(xsize+1+n_delay(2)) = upast(4);\n"
-      "\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n\nupast = u_new;\n\n"
-      "\n"
-      editorLayout	      "100 M4x1[125 125 720 615]"
-      breakpoints	      "100 M[42]"
+      "end);\n\n% Get matrices - linearize about delayed rec.open input\n[A,B,C,H,Ga,Gb,Gc,df0,~,~,~,~] = get_qp_matric"
+      "es(xinit,upast);\n\n\n\n% Get reference and input vector\n\n% Yref = zeros(p*ysize,1);\n% Upast = zeros(m*usize,"
+      "1);\n% for i=1:p\n%     Yref(1+(i-1)*ysize:i*ysize,1) = yref - y;\n% end\n% for i=1:m\n%     Upast(1+(i-1)*usize"
+      ":i*usize,1) = upast;\n% %     Upast(i*usize,1) = upast(2);\n% %     Upast(i*usize,1) = xinit(6);\n% %     Upast("
+      "i*usize,1) = 0;\n% end\n% \n% % Update bounds\n% LBa = LB - Upast;\n% UBa = UB - Upast;\n% \n% % Calculate initi"
+      "al state\n% % dx0 = [zeros(5,1); xinit(6:end-2)-xinit(6); xinit(end-1:end)];\n% % dx0 = [zeros(5,1); xinit(6:end"
+      "-2)-upast(2); xinit(end-1:end)];\n% dx0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize"
+      "+n_delay(2)+1:xsize+2*n_delay(2))-upast(4); zeros(2*dsize,1)];\n% % dx0 = [zeros(5,1); xinit(6:end-2)-xinit(6); "
+      "zeros(2,1)];\n% % dx0 = [zeros(5,1); xinit(6:end-2); zeros(2,1)];\n% % dx0 = [zeros(5,1); xinit(6:end)];\n% \n% "
+      "\n% \n% % Gradient vector\n% f = df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*UWT;\n% \n% % Solve QP\n% lbA = -inf(si"
+      "ze(Ain,1),1);\n% [usol,~,exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\n% exitflag_out = exitflag(1,1);\n"
+      "% it_out = it(1,1);\n% \n% if exitflag_out~=0\n% %     usol=quadprog(H,f,[eye(4); -eye(4); Ain],[UBa; -LBa; b]);"
+      "\n%     exitflag_out\n%     usol = zeros(m*usize,1);\n% end\nusol = zeros(m*usize,1);\nexitflag_out = 0;\nit_out"
+      " = 0;\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);\nu_new = upast + delta_u;\n\n\n% value of x about whic"
+      "h we linearized\nxlin = dxaug;\n% xlin(xsize+1:end) = 0;\n% xlin(xsize+1) = upast(2);\n% xlin(xsize+1+n_delay(2)"
+      ") = upast(4);\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n\nup"
+      "ast = u_new;\n\n\n"
+      editorLayout	      "100 M4x1[551 128 720 615]"
+      breakpoints	      "100 M1x3[42 105 43]"
     }
   }
   junction {

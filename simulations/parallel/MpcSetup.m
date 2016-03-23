@@ -13,7 +13,7 @@ xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
 
 
 %% Initial state
-global P_D
+% global P_D
 
 P_D = 1.08;
 x_init_lin = [0.899; 1.126; 0.15; 440; 0];
