@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 24 10:15:35 2016"
-  RTWModifiedTimeStamp	  380715265
-  ModelVersionFormat	  "1.%<AutoIncrement:2>"
+  LastModifiedDate	  "Thu Mar 24 10:34:25 2016"
+  RTWModifiedTimeStamp	  380716462
+  ModelVersionFormat	  "1.%<AutoIncrement:7>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -716,7 +716,7 @@ Library {
   }
   System {
     Name		    "lib_compressor"
-    Location		    [1424, 126, 1960, 415]
+    Location		    [1726, 348, 2262, 637]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -757,10 +757,11 @@ Library {
       MaskVisibilityString    "on,on,on,on,on,on,on,on"
       MaskToolTipString	      "on,on,on,on,on,on,on,on"
       MaskVariables	      "Td_off=@1;u_in=@2;u_out=@3;u_rec=@4;t_delay=@5;use_dist=@6;u_out_dist=@7;u_out_time=@8;"
-      MaskInitialization      "if ~use_dist\n    n = min(length(u_out_dist),length(u_out_time));\n    if n==0\n       "
-      " u_out_dist = [0;0];\n        u_out_time = [0;0];\n    elseif n==1\n        u_out_dist = [u_out_dist(1);0];\n   "
-      "     u_out_time = [u_out_time(1);0];\n    else\n        u_out_dist = [u_out_dist(1);u_out_dist(2)];\n        u_o"
-      "ut_time = [u_out_time(1); u_out_time(2)];\n    end\nelse\n    u_out_dist = [0;0];\n    u_out_time = [0;0];\nend"
+      MaskInitialization      "if use_dist\n    n = min(length(u_out_dist),length(u_out_time));\n    if n==0\n        "
+      "u_out_dist = [0;0];\n        u_out_time = [0;0];\n    elseif n==1\n        u_out_dist = [u_out_dist(1);0];\n    "
+      "    u_out_time = [u_out_time(1);0];\n    else\n        u_out_dist = [u_out_dist(1);u_out_dist(2)];\n        u_ou"
+      "t_time = [u_out_time(1); u_out_time(2)];\n    end\nelse\n    u_out_dist = [0;0];\n    u_out_time = [0;0];\nend"
+      MaskSelfModifiable      on
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "none"
@@ -783,6 +784,7 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
+	SIDHighWatermark	39
 	Block {
 	  BlockType		  Inport
 	  Name			  "Td"
