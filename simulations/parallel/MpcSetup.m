@@ -2,6 +2,12 @@
 
 clear all
 
+load sys.mat
+As = A;
+Bs = B;
+Cs = C;
+clear A B C
+
 addpath('../call_qpoases_m')
 addpath('../call_qpoases_m/qpoases3/interfaces/matlab/')
 addpath('../common')
@@ -16,7 +22,11 @@ xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
 % global P_D
 
 P_D = 1.08;
-x_init_lin = [0.899; 1.126; 0.15; 440; 0];
+
+% Use increased P2 to get stable system for observer design
+% x_init_lin = [0.899; 1.126; 0.15; 440; 0];
+x_init_lin = [0.899; 1.2; 0.15; 440; 0];
+
 xinit = [x_init_lin; x_init_lin; P_D];
 
 u_out = uoff1(3);
@@ -25,6 +35,18 @@ u_d = ud;
 u_init = zeros(2*ucontrolsize,1);
 
 [A,B,C] = get_qp_matrices(xinit, u_init);
+
+% Go back to original p2 value
+x_init_lin = [0.899; 1.126; 0.15; 440; 0];
+xinit = [x_init_lin; x_init_lin; P_D];
+
+
+% A(1:5,1:5) = As;
+% A(6:10,6:10) = As;
+% A(12,1:5) = Bs(:,2);
+% A(32,6:10) = Bs(:,2);
+% C(1:2,1:5) = Cs;
+% C(3:4,6:10) = Cs;
 
 D = zeros(ysize);
 
