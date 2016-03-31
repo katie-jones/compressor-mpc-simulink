@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.204"
+    ComputedModelVersion    "1.206"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -27,9 +27,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 31 11:06:14 2016"
-  RTWModifiedTimeStamp	  381323125
-  ModelVersionFormat	  "1.%<AutoIncrement:204>"
+  LastModifiedDate	  "Thu Mar 31 11:08:33 2016"
+  RTWModifiedTimeStamp	  381323312
+  ModelVersionFormat	  "1.%<AutoIncrement:206>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -926,7 +926,7 @@ Model {
       System {
 	Name			"Parallel plant"
 	Location		[7, 93, 1283, 982]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -983,7 +983,7 @@ Model {
 	  SID			  669
 	  Ports			  [3, 4]
 	  Position		  [300, 115, 400, 220]
-	  LibraryVersion	  "1.9"
+	  LibraryVersion	  "1.10"
 	  SourceBlock		  "lib_compressor/Compressor1"
 	  SourceType		  "Compressor"
 	  ShowPortLabels	  "FromPortIcon"
@@ -1003,7 +1003,7 @@ Model {
 	  u_out_dist		  "0"
 	  u_out_time		  "80"
 	  u_in_dist		  "-0.1"
-	  u_in_time		  "50"
+	  u_in_time		  "20"
 	}
 	Block {
 	  BlockType		  Reference
@@ -1011,7 +1011,7 @@ Model {
 	  SID			  670
 	  Ports			  [3, 4]
 	  Position		  [300, 330, 400, 435]
-	  LibraryVersion	  "1.9"
+	  LibraryVersion	  "1.10"
 	  SourceBlock		  "lib_compressor/Compressor1"
 	  SourceType		  "Compressor"
 	  ShowPortLabels	  "FromPortIcon"
@@ -1031,7 +1031,7 @@ Model {
 	  u_out_dist		  "0"
 	  u_out_time		  "80"
 	  u_in_dist		  "-0.1"
-	  u_in_time		  "50"
+	  u_in_time		  "20"
 	}
 	Block {
 	  BlockType		  From
@@ -2816,7 +2816,7 @@ Stateflow {
       script		      "function [u_new,exitflag_out,it_out,x_out]  = fcn(u,xin)\n%#eml\n% persistent C_new M LB UB Ga Gb"
       " Gc H Ain b A B upast xinit\npersistent M LB UB Ain b upast xinit dxaug y_old C %x_init_lin\neml.extrinsic('disp"
       "');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\neml.ex"
-      "trinsic('quadprog');\n\np = 100;\nm = 2;\nysize = 4;\nusize = 4;\nxsize = 11;\ndsize = 2;\nn_delay = [0,20];\n\n"
+      "trinsic('quadprog');\n\np = 100;\nm = 2;\nysize = 4;\nusize = 4;\nxsize = 11;\ndsize = 2;\nn_delay = [0,40];\n\n"
       "if isempty(M)\n    tic\n    [C,M,UB,LB,b,Ain,xinit,upast] = get_constant_matrices();\n    dxaug = zeros(size(xin"
       "it));\n    y_old = zeros(ysize,1);\n    time = toc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\n\ny"
       " = u(1:ysize);\n\n% Estimate state info\ndxaug = dxaug + M*(y - y_old - C*(dxaug));\n\n% Use state input info to"
