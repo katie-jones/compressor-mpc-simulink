@@ -1,6 +1,6 @@
 function pdot = get_tank_deriv(x,u)
 
-[~,xsize] = const_mpc();
+[~,xsize,~,~,~,uoff1,uoff2] = const_sim();
 
 % States
 P_D = x(2*xsize+1);
@@ -13,7 +13,7 @@ u_d = u(end);
 
 [~,~,~,~,~,~,D2,m_out_c] = comp_coeffs();
 
-[SpeedSound,~,~,~,~,~,uoff1,uoff2] = const_flow();
+SpeedSound = const_flow();
 
 % Outlet opening
 ud1 = uoff1(3);

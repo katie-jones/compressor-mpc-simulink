@@ -1,13 +1,19 @@
-function [Ts,comp_xsize,xsize,total_xsize,comp_usize,comp_ysize] = const_mpc()
+function [n_delay,dsize,ucontrolsize,p,m,UWT,YWT] = const_mpc()
 %#eml
 
-Ts = 0.05;
+dsize = 2;
 
-comp_xsize = 5;
-xsize = 2*comp_xsize + 1;
-total_xsize = xsize;
+ucontrolsize = 2;
 
-comp_usize = 5;
-comp_ysize = 2;
+n_delay = [0, 40];
+
+p = 100;
+m = 2;
+
+UW = [1e3 1e5];
+YW = [1 1 0.1 0.1];
+
+UWT = kron(eye(m),diag([UW,UW]'));
+YWT = kron(eye(p),diag(YW'));
 
 end

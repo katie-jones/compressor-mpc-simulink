@@ -12,8 +12,8 @@ addpath('../call_qpoases_m')
 addpath('../call_qpoases_m/qpoases3/interfaces/matlab/')
 addpath('../common')
 
-[xsize_comp, xsize, ~, ~, ~, ysize, uoff1, uoff2, ud] = const_sim();
-[Ts,n_delay,dsize,ucontrolsize,p,m,UWT,YWT] = const_mpc2();
+[Ts, xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
+[n_delay,dsize,ucontrolsize,p,m,UWT,YWT] = const_mpc();
 
 xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
 

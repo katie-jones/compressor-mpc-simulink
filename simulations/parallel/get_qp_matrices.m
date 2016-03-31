@@ -1,7 +1,7 @@
 function [A,B,C,H,Ga,Gb,Gc,dx,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,upast)
 
-[xsize_comp, xsize, ~, ~, ~, ysize, uoff1, uoff2, ud] = const_sim();
-[Ts,n_delay,dsize,usize,p,m,UWT,YWT] = const_mpc2();
+[Ts,xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
+[n_delay,dsize,usize,p,m,UWT,YWT] = const_mpc();
 
 x1 = xinit(1:xsize_comp);
 x2 = xinit(xsize_comp+1:2*xsize_comp);

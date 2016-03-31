@@ -6,12 +6,11 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.206"
+    ComputedModelVersion    "1.212"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
   SavedCharacterEncoding  "windows-1252"
-  PreLoadFcn		  "addpath('../common')"
   SaveDefaultBlockParams  on
   ScopeRefreshTime	  0.035000
   OverrideScopeRefreshTime on
@@ -20,16 +19,15 @@ Model {
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
   MaxMDLFileLineLength	  120
-  InitFcn		  "MpcSetup"
   Created		  "Fri Feb 19 09:56:55 2016"
   Creator		  "chkajon"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 31 11:08:33 2016"
-  RTWModifiedTimeStamp	  381323312
-  ModelVersionFormat	  "1.%<AutoIncrement:206>"
+  LastModifiedDate	  "Thu Mar 31 13:13:58 2016"
+  RTWModifiedTimeStamp	  381330836
+  ModelVersionFormat	  "1.%<AutoIncrement:212>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -900,7 +898,7 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "200"
+      TimeRange		      "100"
       YMin		      "1.04"
       YMax		      "1.15"
       SaveToWorkspace	      on
@@ -926,7 +924,7 @@ Model {
       System {
 	Name			"Parallel plant"
 	Location		[7, 93, 1283, 982]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1848,7 +1846,7 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "200"
+      TimeRange		      "100"
       YMin		      "-0.15"
       YMax		      "0.325"
       SaveToWorkspace	      on
@@ -2347,7 +2345,7 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "200"
+      TimeRange		      "100"
       YMin		      "-0.07"
       YMax		      "0.08"
       SaveToWorkspace	      on
@@ -2372,7 +2370,7 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "200"
+      TimeRange		      "100"
       YMin		      "-0.005"
       YMax		      "0.05"
       SaveToWorkspace	      on
@@ -2816,24 +2814,24 @@ Stateflow {
       script		      "function [u_new,exitflag_out,it_out,x_out]  = fcn(u,xin)\n%#eml\n% persistent C_new M LB UB Ga Gb"
       " Gc H Ain b A B upast xinit\npersistent M LB UB Ain b upast xinit dxaug y_old C %x_init_lin\neml.extrinsic('disp"
       "');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\neml.ex"
-      "trinsic('quadprog');\n\np = 100;\nm = 2;\nysize = 4;\nusize = 4;\nxsize = 11;\ndsize = 2;\nn_delay = [0,40];\n\n"
-      "if isempty(M)\n    tic\n    [C,M,UB,LB,b,Ain,xinit,upast] = get_constant_matrices();\n    dxaug = zeros(size(xin"
-      "it));\n    y_old = zeros(ysize,1);\n    time = toc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\n\ny"
-      " = u(1:ysize);\n\n% Estimate state info\ndxaug = dxaug + M*(y - y_old - C*(dxaug));\n\n% Use state input info to"
-      " calculate x, y\nxinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\nx_ou"
-      "t = xinit;\n\ny_old = y;\n\nyref = u(ysize+1:end);\n\n% Get matrices - linearize about delayed rec.open input\n["
-      "A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,upast);\n\n\n\n% Get reference and input vector\n\nYr"
-      "ef = zeros(p*ysize,1);\nUpast = zeros(m*usize,1);\nfor i=1:p\n    Yref(1+(i-1)*ysize:i*ysize,1) = yref - y;\nend"
-      "\nfor i=1:m\n    Upast(1+(i-1)*usize:i*usize,1) = upast;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - "
-      "Upast;\n\n% Calculate initial state\ndx0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsiz"
-      "e+n_delay(2)+1:xsize+2*n_delay(2))-upast(4); zeros(2*dsize,1)];\n\n\n% Gradient vector\nf = df0'*Gc - Yref'*Ga +"
-      " dx0'*Gb;% + Upast'*UWT;\n\n% Solve QP\nlbA = -inf(size(Ain,1),1);\n[usol,~,exitflag,it] = call_qpoases_m(H,f,Ai"
-      "n,LBa,UBa,lbA,b);\nexitflag_out = exitflag(1,1);\nit_out = it(1,1);\n\nif exitflag_out~=0\n    exitflag_out\n   "
-      " usol = zeros(m*usize,1);\nend\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);\nu_new = upast + delta_u;\n\n"
-      "\n% value of x about which we linearized\nxlin = dxaug;\nxlin(xsize+1:end) = 0;\nxlin(xsize+1) = upast(2);\nxlin"
-      "(xsize+1+n_delay(2)) = upast(4);\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug"
-      "-xlin) + df0;\n\nupast = u_new;\n\n\n"
-      editorLayout	      "100 M4x1[225 225 720 615]"
+      "trinsic('quadprog');\n\n\n\n[n_delay,dsize,ucontrolsize,p,m] = const_mpc();\n[~, ~, xsize, ~, ysize] = const_sim"
+      "();\nusize=2*ucontrolsize;\n\nif isempty(M)\n    tic\n    [C,M,UB,LB,b,Ain,xinit,upast] = get_constant_matrices("
+      ");\n    dxaug = zeros(size(xinit));\n    y_old = zeros(ysize,1);\n    time = toc;\n    disp(['Preparation time: "
+      "' num2str(time)]);\nend\n\n\ny = u(1:ysize);\n\n% Estimate state info\ndxaug = dxaug + M*(y - y_old - C*(dxaug))"
+      ";\n\n% Use state input info to calculate x, y\nxinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxinit(xsize+1:en"
+      "d) = dxaug(xsize+1:end);\nx_out = xinit;\n\ny_old = y;\n\nyref = u(ysize+1:end);\n\n% Get matrices - linearize a"
+      "bout delayed rec.open input\n[A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,upast);\n\n\n\n% Get re"
+      "ference and input vector\n\nYref = zeros(p*ysize,1);\nUpast = zeros(m*usize,1);\nfor i=1:p\n    Yref(1+(i-1)*ysi"
+      "ze:i*ysize,1) = yref - y;\nend\nfor i=1:m\n    Upast(1+(i-1)*usize:i*usize,1) = upast;\nend\n\n% Update bounds\n"
+      "LBa = LB - Upast;\nUBa = UB - Upast;\n\n% Calculate initial state\ndx0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_"
+      "delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(4); zeros(2*dsize,1)];\n\n\n% Gradient ve"
+      "ctor\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*UWT;\n\n% Solve QP\nlbA = -inf(size(Ain,1),1);\n[usol,~,exitfl"
+      "ag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_out = exitflag(1,1);\nit_out = it(1,1);\n\nif exitflag"
+      "_out~=0\n    exitflag_out\n    usol = zeros(m*usize,1);\nend\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);"
+      "\nu_new = upast + delta_u;\n\n\n% value of x about which we linearized\nxlin = dxaug;\nxlin(xsize+1:end) = 0;\nx"
+      "lin(xsize+1) = upast(2);\nxlin(xsize+1+n_delay(2)) = upast(4);\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)"
+      "-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n\nupast = u_new;\n\n\n"
+      editorLayout	      "100 M4x1[225 225 1296 1000]"
     }
   }
   junction {
