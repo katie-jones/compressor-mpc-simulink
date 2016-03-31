@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.212"
+    ComputedModelVersion    "1.214"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 31 13:13:58 2016"
-  RTWModifiedTimeStamp	  381330836
-  ModelVersionFormat	  "1.%<AutoIncrement:212>"
+  LastModifiedDate	  "Thu Mar 31 13:30:45 2016"
+  RTWModifiedTimeStamp	  381331825
+  ModelVersionFormat	  "1.%<AutoIncrement:214>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -759,7 +759,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    673
+    SIDHighWatermark	    676
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -1862,6 +1862,32 @@ Model {
       Position		      [1235, 385, 1255, 405]
     }
     Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace1"
+      SID		      675
+      Ports		      [1]
+      Position		      [100, 280, 160, 310]
+      BlockMirror	      on
+      ShowName		      off
+      VariableName	      "u_rec"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace2"
+      SID		      676
+      Ports		      [1]
+      Position		      [100, 55, 160, 85]
+      BlockMirror	      on
+      ShowName		      off
+      VariableName	      "Td"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
       BlockType		      SubSystem
       Name		      "controller"
       SID		      418
@@ -2605,14 +2631,30 @@ Model {
     Line {
       SrcBlock		      "Mux5"
       SrcPort		      1
-      DstBlock		      "Td"
-      DstPort		      1
+      Points		      [-25, 0]
+      Branch {
+	DstBlock		"Td"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -70]
+	DstBlock		"To Workspace2"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Mux6"
       SrcPort		      1
-      DstBlock		      "u_rec"
-      DstPort		      1
+      Points		      [-25, 0]
+      Branch {
+	DstBlock		"u_rec"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 85]
+	DstBlock		"To Workspace1"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Parallel plant"
