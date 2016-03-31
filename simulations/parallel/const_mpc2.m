@@ -12,7 +12,7 @@ ucontrolsize = 2;
 p = 100;
 m = 2;
 
-UW = [1e4 1e6];
+UW = [5e2 5e4];
 YW = [1 1 0.1 0.1];
 
 UWT = kron(eye(m),diag([UW,UW]'));

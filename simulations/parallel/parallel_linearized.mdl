@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.176"
+    ComputedModelVersion    "1.204"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -27,9 +27,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 30 15:22:01 2016"
-  RTWModifiedTimeStamp	  381252119
-  ModelVersionFormat	  "1.%<AutoIncrement:176>"
+  LastModifiedDate	  "Thu Mar 31 11:06:14 2016"
+  RTWModifiedTimeStamp	  381323125
+  ModelVersionFormat	  "1.%<AutoIncrement:204>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -112,7 +112,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "400"
+	  StopTime		  "100"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -892,7 +892,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [2227, 144, 2565, 394]
+      Location		      [2197, 187, 2535, 437]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -901,8 +901,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "200"
-      YMin		      "1.07"
-      YMax		      "1.17"
+      YMin		      "1.04"
+      YMax		      "1.15"
       SaveToWorkspace	      on
       SaveName		      "SD1"
       DataFormat	      "Array"
@@ -983,7 +983,7 @@ Model {
 	  SID			  669
 	  Ports			  [3, 4]
 	  Position		  [300, 115, 400, 220]
-	  LibraryVersion	  "1.7"
+	  LibraryVersion	  "1.9"
 	  SourceBlock		  "lib_compressor/Compressor1"
 	  SourceType		  "Compressor"
 	  ShowPortLabels	  "FromPortIcon"
@@ -1000,8 +1000,10 @@ Model {
 	  u_rec			  "0"
 	  t_delay		  "1"
 	  use_dist		  on
-	  u_out_dist		  "-0.2"
-	  u_out_time		  "50"
+	  u_out_dist		  "0"
+	  u_out_time		  "80"
+	  u_in_dist		  "-0.1"
+	  u_in_time		  "50"
 	}
 	Block {
 	  BlockType		  Reference
@@ -1009,7 +1011,7 @@ Model {
 	  SID			  670
 	  Ports			  [3, 4]
 	  Position		  [300, 330, 400, 435]
-	  LibraryVersion	  "1.7"
+	  LibraryVersion	  "1.9"
 	  SourceBlock		  "lib_compressor/Compressor1"
 	  SourceType		  "Compressor"
 	  ShowPortLabels	  "FromPortIcon"
@@ -1026,8 +1028,10 @@ Model {
 	  u_rec			  "0"
 	  t_delay		  "1"
 	  use_dist		  on
-	  u_out_dist		  "-0.2"
-	  u_out_time		  "50"
+	  u_out_dist		  "0"
+	  u_out_time		  "80"
+	  u_in_dist		  "-0.1"
+	  u_in_time		  "50"
 	}
 	Block {
 	  BlockType		  From
@@ -1743,7 +1747,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1372, 88, 1710, 361]
+      Location		      [1771, 173, 2109, 446]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1751,9 +1755,9 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "200"
-      YMin		      "-5.5"
-      YMax		      "1.5"
+      TimeRange		      "100"
+      YMin		      "-3.5"
+      YMax		      "1.25"
       SaveToWorkspace	      on
       SaveName		      "SD3"
       DataFormat	      "Array"
@@ -1836,7 +1840,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1794, 458, 2132, 731]
+      Location		      [1328, 522, 1666, 795]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1845,7 +1849,7 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "200"
-      YMin		      "-0.025"
+      YMin		      "-0.15"
       YMax		      "0.325"
       SaveToWorkspace	      on
       SaveName		      "SD4"
@@ -2335,7 +2339,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [1800, 96, 2138, 369]
+      Location		      [1365, 89, 1703, 362]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2344,8 +2348,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "200"
-      YMin		      "-0.025"
-      YMax		      "0.3"
+      YMin		      "-0.07"
+      YMax		      "0.08"
       SaveToWorkspace	      on
       SaveName		      "SD2"
       DataFormat	      "Array"
@@ -2360,7 +2364,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1369, 458, 1707, 723]
+      Location		      [1777, 523, 2115, 788]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2369,8 +2373,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "200"
-      YMin		      "0"
-      YMax		      "0.017"
+      YMin		      "-0.005"
+      YMax		      "0.05"
       SaveToWorkspace	      on
       SaveName		      "SD5"
       DataFormat	      "Array"
@@ -2770,6 +2774,8 @@ Stateflow {
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
     firstTarget		    13
+    debug {
+    }
     sfVersion		    71014000.00001
   }
   chart {
