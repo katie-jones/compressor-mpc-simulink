@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 24 10:34:25 2016"
-  RTWModifiedTimeStamp	  380716462
-  ModelVersionFormat	  "1.%<AutoIncrement:7>"
+  LastModifiedDate	  "Thu Mar 31 11:06:07 2016"
+  RTWModifiedTimeStamp	  381323140
+  ModelVersionFormat	  "1.%<AutoIncrement:10>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -716,7 +716,7 @@ Library {
   }
   System {
     Name		    "lib_compressor"
-    Location		    [1726, 348, 2262, 637]
+    Location		    [372, 367, 908, 656]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -748,27 +748,33 @@ Library {
       MaskType		      "Compressor"
       MaskDescription	      "Compressor with tunable inputs."
       MaskPromptString	      "Torque offset|Input valve setting|Output valve setting|Recycle valve offset|Recycle valv"
-      "e time delay|Activate output valve disturbance|Output valve disturbance magnitudes (up to 2)|Output valve distur"
-      "bance times (up to 2)"
-      MaskStyleString	      "edit,edit,edit,edit,edit,checkbox,edit,edit"
-      MaskTunableValueString  "on,on,on,on,on,on,on,on"
-      MaskCallbackString      "|||||||"
-      MaskEnableString	      "on,on,on,on,on,on,on,on"
-      MaskVisibilityString    "on,on,on,on,on,on,on,on"
-      MaskToolTipString	      "on,on,on,on,on,on,on,on"
-      MaskVariables	      "Td_off=@1;u_in=@2;u_out=@3;u_rec=@4;t_delay=@5;use_dist=@6;u_out_dist=@7;u_out_time=@8;"
+      "e time delay|Activate valve disturbances|Output valve disturbance magnitudes (up to 2)|Output valve disturbance "
+      "times (up to 2)|Input valve disturbance magnitudes (up to 2)|Input valve disturbance times (up to 2)"
+      MaskStyleString	      "edit,edit,edit,edit,edit,checkbox,edit,edit,edit,edit"
+      MaskTunableValueString  "on,on,on,on,on,on,on,on,on,on"
+      MaskCallbackString      "|||||||||"
+      MaskEnableString	      "on,on,on,on,on,on,on,on,on,on"
+      MaskVisibilityString    "on,on,on,on,on,on,on,on,on,on"
+      MaskToolTipString	      "on,on,on,on,on,on,on,on,on,on"
+      MaskVariables	      "Td_off=@1;u_in=@2;u_out=@3;u_rec=@4;t_delay=@5;use_dist=@6;u_out_dist=@7;u_out_time=@8;u_in"
+      "_dist=@9;u_in_time=@10;"
       MaskInitialization      "if use_dist\n    n = min(length(u_out_dist),length(u_out_time));\n    if n==0\n        "
       "u_out_dist = [0;0];\n        u_out_time = [0;0];\n    elseif n==1\n        u_out_dist = [u_out_dist(1);0];\n    "
       "    u_out_time = [u_out_time(1);0];\n    else\n        u_out_dist = [u_out_dist(1);u_out_dist(2)];\n        u_ou"
-      "t_time = [u_out_time(1); u_out_time(2)];\n    end\nelse\n    u_out_dist = [0;0];\n    u_out_time = [0;0];\nend"
+      "t_time = [u_out_time(1); u_out_time(2)];\n    end\n    \n    n = min(length(u_in_dist),length(u_in_time));\n    "
+      "if n==0\n        u_in_dist = [0;0];\n        u_in_time = [0;0];\n    elseif n==1\n        u_in_dist = [u_in_dist"
+      "(1);0];\n        u_in_time = [u_in_time(1);0];\n    else\n        u_in_dist = [u_in_dist(1);u_in_dist(2)];\n    "
+      "    u_in_time = [u_in_time(1); u_in_time(2)];\n    end\nelse\n    u_out_dist = [0;0];\n    u_out_time = [0;0];\n"
+      "    u_in_dist = [0;0];\n    u_in_time = [0;0];\nend"
       MaskSelfModifiable      on
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "none"
       MaskPortRotate	      "default"
       MaskIconUnits	      "autoscale"
-      MaskValueString	      "0.304|0.405|u_out|0|1|off|0|0"
-      MaskTabNameString	      "Inputs,Inputs,Inputs,Inputs,Inputs,Disturbances,Disturbances,Disturbances"
+      MaskValueString	      "0.304|0.405|u_out|0|1|off|0|0|0|0"
+      MaskTabNameString	      "Inputs,Inputs,Inputs,Inputs,Inputs,Disturbances,Disturbances,Disturbances,Disturbances,"
+      "Disturbances"
       System {
 	Name			"Compressor1"
 	Location		[7, 93, 1283, 1006]
@@ -784,7 +790,7 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
-	SIDHighWatermark	39
+	SIDHighWatermark	42
 	Block {
 	  BlockType		  Inport
 	  Name			  "Td"
@@ -974,6 +980,7 @@ Library {
 	  Name			  "Step"
 	  SID			  14
 	  Position		  [155, 355, 185, 385]
+	  ShowName		  off
 	  Time			  "u_out_time(2)"
 	  After			  "u_out_dist(2)"
 	  SampleTime		  "0"
@@ -982,10 +989,45 @@ Library {
 	  BlockType		  Step
 	  Name			  "Step1"
 	  SID			  15
-	  Position		  [100, 280, 130, 310]
+	  Position		  [100, 290, 130, 320]
+	  ShowName		  off
 	  Time			  "u_out_time(1)"
 	  After			  "u_out_dist(1)"
 	  SampleTime		  "0"
+	}
+	Block {
+	  BlockType		  Step
+	  Name			  "Step2"
+	  SID			  40
+	  Position		  [45, 220, 75, 250]
+	  ShowName		  off
+	  Time			  "u_in_time(2)"
+	  After			  "u_in_dist(2)"
+	  SampleTime		  "0"
+	}
+	Block {
+	  BlockType		  Step
+	  Name			  "Step3"
+	  SID			  41
+	  Position		  [100, 200, 130, 230]
+	  ShowName		  off
+	  Time			  "u_in_time(1)"
+	  After			  "u_in_dist(1)"
+	  SampleTime		  "0"
+	}
+	Block {
+	  BlockType		  Sum
+	  Name			  "Sum1"
+	  SID			  42
+	  Ports			  [3, 1]
+	  Position		  [135, 250, 155, 270]
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "+++"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
 	}
 	Block {
 	  BlockType		  Sum
@@ -1023,7 +1065,7 @@ Library {
 	  Position		  [130, 175, 150, 195]
 	  ShowName		  off
 	  IconShape		  "round"
-	  Inputs		  "|++"
+	  Inputs		  "++|"
 	  InputSameDT		  off
 	  OutDataTypeMode	  "Inherit via internal rule"
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
@@ -1073,7 +1115,7 @@ Library {
 	  BlockType		  Constant
 	  Name			  "T_dr"
 	  SID			  21
-	  Position		  [25, 237, 80, 263]
+	  Position		  [35, 132, 90, 158]
 	  Value			  "Td_off"
 	}
 	Block {
@@ -1149,7 +1191,7 @@ Library {
 	  BlockType		  Constant
 	  Name			  "u_in"
 	  SID			  33
-	  Position		  [160, 247, 215, 273]
+	  Position		  [35, 267, 90, 293]
 	  Value			  "u_in"
 	}
 	Block {
@@ -1259,23 +1301,10 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "Td"
-	  SrcPort		  1
-	  DstBlock		  "Sum7"
-	  DstPort		  1
-	}
-	Line {
 	  SrcBlock		  "u_rec_offset"
 	  SrcPort		  1
 	  Points		  [60, 0]
 	  DstBlock		  "Sum9"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "T_dr"
-	  SrcPort		  1
-	  Points		  [55, 0]
-	  DstBlock		  "Sum7"
 	  DstPort		  2
 	}
 	Line {
@@ -1419,12 +1448,6 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "u_in"
-	  SrcPort		  1
-	  DstBlock		  "Mux1"
-	  DstPort		  2
-	}
-	Line {
 	  SrcBlock		  "Mux1"
 	  SrcPort		  1
 	  Points		  [0, -5]
@@ -1465,6 +1488,46 @@ Library {
 	  SrcPort		  4
 	  DstBlock		  "Terminator2"
 	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "T_dr"
+	  SrcPort		  1
+	  Points		  [45, 0]
+	  DstBlock		  "Sum7"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Td"
+	  SrcPort		  1
+	  DstBlock		  "Sum7"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Step3"
+	  SrcPort		  1
+	  Points		  [10, 0]
+	  DstBlock		  "Sum1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Step2"
+	  SrcPort		  1
+	  Points		  [20, 0; 0, 25]
+	  DstBlock		  "Sum1"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "u_in"
+	  SrcPort		  1
+	  Points		  [0, 5]
+	  DstBlock		  "Sum1"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Sum1"
+	  SrcPort		  1
+	  DstBlock		  "Mux1"
+	  DstPort		  2
 	}
 	Annotation {
 	  Position		  [42, 373]
