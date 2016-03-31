@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.214"
+    ComputedModelVersion    "1.236"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 31 13:30:45 2016"
+  LastModifiedDate	  "Thu Mar 31 16:11:31 2016"
   RTWModifiedTimeStamp	  381331825
-  ModelVersionFormat	  "1.%<AutoIncrement:214>"
+  ModelVersionFormat	  "1.%<AutoIncrement:236>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "100"
+	  StopTime		  "240"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -759,7 +759,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    676
+    SIDHighWatermark	    677
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -898,9 +898,9 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "100"
-      YMin		      "1.04"
-      YMax		      "1.15"
+      TimeRange		      "120"
+      YMin		      "1.045"
+      YMax		      "1.095"
       SaveToWorkspace	      on
       SaveName		      "SD1"
       DataFormat	      "Array"
@@ -1000,7 +1000,7 @@ Model {
 	  use_dist		  on
 	  u_out_dist		  "0"
 	  u_out_time		  "80"
-	  u_in_dist		  "-0.1"
+	  u_in_dist		  "0"
 	  u_in_time		  "20"
 	}
 	Block {
@@ -1028,7 +1028,7 @@ Model {
 	  use_dist		  on
 	  u_out_dist		  "0"
 	  u_out_time		  "80"
-	  u_in_dist		  "-0.1"
+	  u_in_dist		  "-0.2"
 	  u_in_time		  "20"
 	}
 	Block {
@@ -1126,13 +1126,24 @@ Model {
 	}
 	Block {
 	  BlockType		  Step
+	  Name			  "Step1"
+	  SID			  677
+	  Position		  [630, 235, 660, 265]
+	  NamePlacement		  "alternate"
+	  ShowName		  off
+	  Time			  "80"
+	  After			  "0"
+	  SampleTime		  "0"
+	}
+	Block {
+	  BlockType		  Step
 	  Name			  "Step5"
 	  SID			  662
 	  Position		  [650, 330, 680, 360]
 	  NamePlacement		  "alternate"
 	  ShowName		  off
-	  Time			  "50"
-	  After			  "0"
+	  Time			  "20"
+	  After			  "-0.2"
 	  SampleTime		  "0"
 	}
 	Block {
@@ -1154,11 +1165,11 @@ Model {
 	  BlockType		  Sum
 	  Name			  "Sum1"
 	  SID			  661
-	  Ports			  [2, 1]
+	  Ports			  [3, 1]
 	  Position		  [695, 280, 715, 300]
 	  ShowName		  off
 	  IconShape		  "round"
-	  Inputs		  "|++"
+	  Inputs		  "+++"
 	  InputSameDT		  off
 	  OutDataTypeMode	  "Inherit via internal rule"
 	  OutDataType		  "fixdt(1, 16)"
@@ -1700,17 +1711,24 @@ Model {
 	  DstPort		  2
 	}
 	Line {
-	  SrcBlock		  "u_d"
+	  SrcBlock		  "Step1"
 	  SrcPort		  1
+	  Points		  [40, 0]
 	  DstBlock		  "Sum1"
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "Step5"
+	  SrcBlock		  "u_d"
 	  SrcPort		  1
-	  Points		  [0, -30]
 	  DstBlock		  "Sum1"
 	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Step5"
+	  SrcPort		  1
+	  Points		  [20, 0]
+	  DstBlock		  "Sum1"
+	  DstPort		  3
 	}
       }
     }
@@ -1745,7 +1763,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1771, 173, 2109, 446]
+      Location		      [1778, 118, 2128, 391]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1753,9 +1771,9 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "100"
-      YMin		      "-3.5"
-      YMax		      "1.25"
+      TimeRange		      "120"
+      YMin		      "-7"
+      YMax		      "0.5"
       SaveToWorkspace	      on
       SaveName		      "SD3"
       DataFormat	      "Array"
@@ -1846,9 +1864,9 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "100"
-      YMin		      "-0.15"
-      YMax		      "0.325"
+      TimeRange		      "120"
+      YMin		      "-0.25"
+      YMax		      "0.35"
       SaveToWorkspace	      on
       SaveName		      "SD4"
       DataFormat	      "Array"
@@ -2318,7 +2336,7 @@ Model {
       Location		      [937, 500, 1275, 773]
       Open		      off
       NumInputPorts	      "1"
-      ZoomMode		      "xonly"
+      ZoomMode		      "yonly"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
@@ -2371,9 +2389,9 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "100"
-      YMin		      "-0.07"
-      YMax		      "0.08"
+      TimeRange		      "120"
+      YMin		      "-0.025"
+      YMax		      "0.0125"
       SaveToWorkspace	      on
       SaveName		      "SD2"
       DataFormat	      "Array"
@@ -2396,9 +2414,9 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "100"
-      YMin		      "-0.005"
-      YMax		      "0.05"
+      TimeRange		      "120"
+      YMin		      "0"
+      YMax		      "0.1"
       SaveToWorkspace	      on
       SaveName		      "SD5"
       DataFormat	      "Array"
