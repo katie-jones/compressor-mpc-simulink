@@ -20,7 +20,7 @@ u2 = u(usize+1:2*usize);
 [Out_pres_t,VolumeT,D2_t] = const_tank();
 [~,~,~,~,~,~,D2] = comp_coeffs();
 
-[SpeedSound,~,~,V1,V2] = const_flow();
+[SpeedSound,~,~,~,V2] = const_flow();
 
 ud1 = u1(3);
 ud2 = u2(3);
@@ -38,7 +38,7 @@ Ac1t = get_Act(x1,udt,pd,SpeedSound,VolumeT,D2_t);
 
 Ac2t = get_Act(x2,udt,pd,SpeedSound,VolumeT,D2_t);
 
-Atc1 = get_Atc(x1,ud1,pd,SpeedSound,V1,D2);
+Atc1 = get_Atc(x1,ud1,pd,SpeedSound,V2,D2);
 
 Atc2 = get_Atc(x2,ud2,pd,SpeedSound,V2,D2);
 
