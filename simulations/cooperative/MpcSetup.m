@@ -65,12 +65,12 @@ ub = [0.3; 1];
 lb_rate = [0.1; 0.1];
 ub_rate = [0.1; 1];
 
-LB = repmat(lb,2*m,1);
-UB = repmat(ub,2*m,1);
-LBrate = repmat(lb_rate,2*m,1);
-UBrate = repmat(ub_rate,2*m,1);
+LB = repmat(lb,m,1);
+UB = repmat(ub,m,1);
+LBrate = repmat(lb_rate,m,1);
+UBrate = repmat(ub_rate,m,1);
 
-usize = 2*ucontrolsize;
+usize = ucontrolsize;
 Ain = full(spdiags(ones(usize*m,1)*[1,-1],[-usize,0],usize*m,usize*m));
 
 Ain = [Ain; -Ain];

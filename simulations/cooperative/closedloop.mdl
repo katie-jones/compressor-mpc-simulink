@@ -1,12 +1,12 @@
 Model {
-  Name			  "parallel_linearized"
+  Name			  "closedloop"
   Version		  7.4
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.212"
+    ComputedModelVersion    "1.304"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 31 13:13:58 2016"
-  RTWModifiedTimeStamp	  381330836
-  ModelVersionFormat	  "1.%<AutoIncrement:212>"
+  LastModifiedDate	  "Mon Apr 04 12:05:21 2016"
+  RTWModifiedTimeStamp	  381672300
+  ModelVersionFormat	  "1.%<AutoIncrement:304>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -744,8 +744,8 @@ Model {
     }
   }
   System {
-    Name		    "parallel_linearized"
-    Location		    [2, 74, 1278, 963]
+    Name		    "closedloop"
+    Location		    [2, 82, 1278, 971]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -759,7 +759,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    673
+    SIDHighWatermark	    753
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -890,8 +890,8 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [2197, 187, 2535, 437]
-      Open		      on
+      Location		      [937, 187, 1275, 437]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -1745,8 +1745,8 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1771, 173, 2109, 446]
-      Open		      on
+      Location		      [937, 173, 1275, 446]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -1838,8 +1838,8 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1328, 522, 1666, 795]
-      Open		      on
+      Location		      [1538, 383, 1969, 725]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -1847,8 +1847,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-0.15"
-      YMax		      "0.325"
+      YMin		      "-0.425"
+      YMax		      "0.15"
       SaveToWorkspace	      on
       SaveName		      "SD4"
       DataFormat	      "Array"
@@ -1865,8 +1865,8 @@ Model {
       BlockType		      SubSystem
       Name		      "controller"
       SID		      418
-      Ports		      [3, 1]
-      Position		      [470, 388, 560, 542]
+      Ports		      [2, 1]
+      Position		      [470, 385, 560, 540]
       BlockMirror	      on
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -1878,7 +1878,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"controller"
-	Location		[329, 286, 950, 738]
+	Location		[2, 74, 1278, 963]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1895,7 +1895,7 @@ Model {
 	  BlockType		  Inport
 	  Name			  "mv"
 	  SID			  419
-	  Position		  [520, 98, 550, 112]
+	  Position		  [1015, 83, 1045, 97]
 	  BlockMirror		  on
 	  IconDisplay		  "Port number"
 	}
@@ -1903,26 +1903,17 @@ Model {
 	  BlockType		  Inport
 	  Name			  "ref"
 	  SID			  420
-	  Position		  [520, 153, 550, 167]
+	  Position		  [1015, 138, 1045, 152]
 	  BlockMirror		  on
 	  Port			  "2"
 	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  Inport
-	  Name			  "xin"
-	  SID			  659
-	  Position		  [520, 268, 550, 282]
-	  BlockMirror		  on
-	  Port			  "3"
-	  IconDisplay		  "Port number"
-	}
-	Block {
 	  BlockType		  SubSystem
-	  Name			  "Embedded\nMATLAB Function"
+	  Name			  "Linearization"
 	  SID			  421
-	  Ports			  [2, 4]
-	  Position		  [265, 61, 405, 349]
+	  Ports			  [3, 11]
+	  Position		  [760, 29, 910, 571]
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
 	  LibraryVersion	  "1.30"
@@ -1930,7 +1921,7 @@ Model {
 	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
-	  SystemSampleTime	  "0.05"
+	  SystemSampleTime	  "Ts"
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
@@ -1951,7 +1942,7 @@ Model {
 	  MaskPortRotate	  "default"
 	  MaskIconUnits		  "autoscale"
 	  System {
-	    Name		    "Embedded\nMATLAB Function"
+	    Name		    "Linearization"
 	    Location		    [257, 457, 812, 717]
 	    Open		    off
 	    ModelBrowserVisibility  off
@@ -1965,10 +1956,10 @@ Model {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
-	    SIDHighWatermark	    23
+	    SIDHighWatermark	    32
 	    Block {
 	      BlockType		      Inport
-	      Name		      "u"
+	      Name		      "yin"
 	      SID		      1
 	      Position		      [20, 101, 40, 119]
 	      IconDisplay	      "Port number"
@@ -1977,10 +1968,18 @@ Model {
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "xin"
-	      SID		      23
+	      Name		      "upast"
+	      SID		      24
 	      Position		      [20, 136, 40, 154]
 	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "dxaug_in"
+	      SID		      25
+	      Position		      [20, 171, 40, 189]
+	      Port		      "3"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
@@ -1988,40 +1987,82 @@ Model {
 	      Name		      " Demux "
 	      SID		      7
 	      Ports		      [1, 1]
-	      Position		      [270, 330, 320, 370]
+	      Position		      [270, 460, 320, 500]
 	      Outputs		      "1"
 	    }
 	    Block {
 	      BlockType		      "S-Function"
 	      Name		      " SFunction "
 	      SID		      6
-	      Tag		      "Stateflow S-Function parallel_linearized 2"
-	      Ports		      [2, 5]
-	      Position		      [180, 121, 230, 329]
+	      Tag		      "Stateflow S-Function closedloop 2"
+	      Ports		      [3, 12]
+	      Position		      [180, 135, 230, 395]
 	      FunctionName	      "sf_sfun"
-	      PortCounts	      "[2 5]"
+	      PortCounts	      "[3 12]"
 	      EnableBusSupport	      on
 	      Port {
 		PortNumber		2
-		Name			"u_new"
+		Name			"H1"
 		RTWStorageClass		"Auto"
 		DataLoggingNameMode	"SignalName"
 	      }
 	      Port {
 		PortNumber		3
-		Name			"exitflag_out"
+		Name			"f0_1"
 		RTWStorageClass		"Auto"
 		DataLoggingNameMode	"SignalName"
 	      }
 	      Port {
 		PortNumber		4
-		Name			"it_out"
+		Name			"Gd1"
 		RTWStorageClass		"Auto"
 		DataLoggingNameMode	"SignalName"
 	      }
 	      Port {
 		PortNumber		5
-		Name			"x_out"
+		Name			"H2"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		6
+		Name			"f0_2"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		7
+		Name			"Gd2"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		8
+		Name			"xout"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		9
+		Name			"A"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		10
+		Name			"B"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		11
+		Name			"df0"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		12
+		Name			"dxaug"
 		RTWStorageClass		"Auto"
 		DataLoggingNameMode	"SignalName"
 	      }
@@ -2030,11 +2071,11 @@ Model {
 	      BlockType		      Terminator
 	      Name		      " Terminator "
 	      SID		      9
-	      Position		      [460, 341, 480, 359]
+	      Position		      [460, 471, 480, 489]
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "u_new"
+	      Name		      "H1"
 	      SID		      5
 	      Position		      [460, 101, 480, 119]
 	      IconDisplay	      "Port number"
@@ -2043,7 +2084,7 @@ Model {
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "exitflag_out"
+	      Name		      "f0_1"
 	      SID		      19
 	      Position		      [460, 136, 480, 154]
 	      Port		      "2"
@@ -2051,18 +2092,74 @@ Model {
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "it_out"
-	      SID		      20
+	      Name		      "Gd1"
+	      SID		      22
 	      Position		      [460, 171, 480, 189]
 	      Port		      "3"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
 	      BlockType		      Outport
-	      Name		      "x_out"
-	      SID		      22
+	      Name		      "H2"
+	      SID		      28
 	      Position		      [460, 206, 480, 224]
 	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "f0_2"
+	      SID		      32
+	      Position		      [460, 246, 480, 264]
+	      Port		      "5"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "Gd2"
+	      SID		      26
+	      Position		      [460, 281, 480, 299]
+	      Port		      "6"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "xout"
+	      SID		      31
+	      Position		      [460, 316, 480, 334]
+	      Port		      "7"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "A"
+	      SID		      29
+	      Position		      [460, 351, 480, 369]
+	      Port		      "8"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "B"
+	      SID		      20
+	      Position		      [460, 386, 480, 404]
+	      Port		      "9"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "df0"
+	      SID		      30
+	      Position		      [460, 426, 480, 444]
+	      Port		      "10"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "dxaug"
+	      SID		      27
+	      Position		      [460, 461, 480, 479]
+	      Port		      "11"
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
@@ -2072,47 +2169,109 @@ Model {
 	      DstPort		      1
 	    }
 	    Line {
-	      SrcBlock		      "u"
+	      SrcBlock		      "yin"
 	      SrcPort		      1
 	      DstBlock		      " SFunction "
 	      DstPort		      1
 	    }
 	    Line {
-	      SrcBlock		      "xin"
+	      SrcBlock		      "upast"
 	      SrcPort		      1
 	      DstBlock		      " SFunction "
 	      DstPort		      2
 	    }
 	    Line {
-	      Name		      "u_new"
+	      SrcBlock		      "dxaug_in"
+	      SrcPort		      1
+	      DstBlock		      " SFunction "
+	      DstPort		      3
+	    }
+	    Line {
+	      Name		      "H1"
 	      Labels		      [0, 0]
 	      SrcBlock		      " SFunction "
 	      SrcPort		      2
-	      DstBlock		      "u_new"
+	      DstBlock		      "H1"
 	      DstPort		      1
 	    }
 	    Line {
-	      Name		      "exitflag_out"
+	      Name		      "f0_1"
 	      Labels		      [0, 0]
 	      SrcBlock		      " SFunction "
 	      SrcPort		      3
-	      DstBlock		      "exitflag_out"
+	      DstBlock		      "f0_1"
 	      DstPort		      1
 	    }
 	    Line {
-	      Name		      "it_out"
+	      Name		      "Gd1"
 	      Labels		      [0, 0]
 	      SrcBlock		      " SFunction "
 	      SrcPort		      4
-	      DstBlock		      "it_out"
+	      DstBlock		      "Gd1"
 	      DstPort		      1
 	    }
 	    Line {
-	      Name		      "x_out"
+	      Name		      "H2"
 	      Labels		      [0, 0]
 	      SrcBlock		      " SFunction "
 	      SrcPort		      5
-	      DstBlock		      "x_out"
+	      DstBlock		      "H2"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "f0_2"
+	      Labels		      [0, 0]
+	      SrcBlock		      " SFunction "
+	      SrcPort		      6
+	      DstBlock		      "f0_2"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "Gd2"
+	      Labels		      [0, 0]
+	      SrcBlock		      " SFunction "
+	      SrcPort		      7
+	      DstBlock		      "Gd2"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "xout"
+	      Labels		      [0, 0]
+	      SrcBlock		      " SFunction "
+	      SrcPort		      8
+	      DstBlock		      "xout"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "A"
+	      Labels		      [0, 0]
+	      SrcBlock		      " SFunction "
+	      SrcPort		      9
+	      DstBlock		      "A"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "B"
+	      Labels		      [0, 0]
+	      SrcBlock		      " SFunction "
+	      SrcPort		      10
+	      DstBlock		      "B"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "df0"
+	      Labels		      [0, 0]
+	      SrcBlock		      " SFunction "
+	      SrcPort		      11
+	      DstBlock		      "df0"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "dxaug"
+	      Labels		      [0, 0]
+	      SrcBlock		      " SFunction "
+	      SrcPort		      12
+	      DstBlock		      "dxaug"
 	      DstPort		      1
 	    }
 	    Line {
@@ -2124,44 +2283,697 @@ Model {
 	  }
 	}
 	Block {
+	  BlockType		  Memory
+	  Name			  "Memory1"
+	  SID			  719
+	  Position		  [450, 675, 480, 705]
+	  ShowName		  off
+	  InheritSampleTime	  on
+	}
+	Block {
+	  BlockType		  Memory
+	  Name			  "Memory2"
+	  SID			  720
+	  Position		  [450, 595, 480, 625]
+	  ShowName		  off
+	  X0			  "zeros(xtotalsize,1)"
+	  InheritSampleTime	  on
+	}
+	Block {
 	  BlockType		  Mux
 	  Name			  "Mux"
 	  SID			  422
 	  Ports			  [2, 1]
-	  Position		  [450, 79, 455, 186]
+	  Position		  [945, 64, 950, 171]
 	  BlockMirror		  on
 	  ShowName		  off
 	  Inputs		  "2"
 	  DisplayOption		  "bar"
 	}
 	Block {
-	  BlockType		  Scope
-	  Name			  "Scope1"
-	  SID			  423
-	  Ports			  [1]
-	  Position		  [75, 34, 105, 66]
+	  BlockType		  SubSystem
+	  Name			  "Output"
+	  SID			  718
+	  Ports			  [5, 2]
+	  Position		  [135, 321, 275, 579]
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
-	  Floating		  off
-	  Location		  [-7, 62, 1913, 1160]
-	  Open			  off
-	  NumInputPorts		  "1"
-	  List {
-	    ListType		    AxesTitles
-	    axes1		    "%<SignalLabel>"
+	  LibraryVersion	  "1.30"
+	  PermitHierarchicalResolution "ExplicitOnly"
+	  TreatAsAtomicUnit	  on
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  SystemSampleTime	  "Ts"
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
 	  }
-	  YMin			  "0"
-	  YMax			  "0.6"
-	  SaveName		  "ScopeData1"
-	  DataFormat		  "StructureWithTime"
-	  SampleTime		  "0"
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  MaskType		  "Stateflow"
+	  MaskDescription	  "Embedded MATLAB block"
+	  MaskDisplay		  "disp('fcn');"
+	  MaskSelfModifiable	  on
+	  MaskIconFrame		  on
+	  MaskIconOpaque	  off
+	  MaskIconRotate	  "none"
+	  MaskPortRotate	  "default"
+	  MaskIconUnits		  "autoscale"
+	  System {
+	    Name		    "Output"
+	    Location		    [257, 457, 812, 717]
+	    Open		    off
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    SIDHighWatermark	    31
+	    SIDPrevWatermark	    28
+	    Block {
+	      BlockType		      Inport
+	      Name		      "du_in"
+	      SID		      1
+	      Position		      [20, 101, 40, 119]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "A"
+	      SID		      31
+	      Position		      [20, 136, 40, 154]
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "B"
+	      SID		      30
+	      Position		      [20, 171, 40, 189]
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "df0"
+	      SID		      29
+	      Position		      [20, 206, 40, 224]
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "dxaug_in"
+	      SID		      25
+	      Position		      [20, 246, 40, 264]
+	      Port		      "5"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Demux
+	      Name		      " Demux "
+	      SID		      7
+	      Ports		      [1, 1]
+	      Position		      [270, 360, 320, 400]
+	      Outputs		      "1"
+	    }
+	    Block {
+	      BlockType		      "S-Function"
+	      Name		      " SFunction "
+	      SID		      6
+	      Tag		      "Stateflow S-Function closedloop 1"
+	      Ports		      [5, 3]
+	      Position		      [180, 141, 230, 359]
+	      FunctionName	      "sf_sfun"
+	      PortCounts	      "[5 3]"
+	      EnableBusSupport	      on
+	      Port {
+		PortNumber		2
+		Name			"uout"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	      Port {
+		PortNumber		3
+		Name			"dxaug"
+		RTWStorageClass		"Auto"
+		DataLoggingNameMode	"SignalName"
+	      }
+	    }
+	    Block {
+	      BlockType		      Terminator
+	      Name		      " Terminator "
+	      SID		      9
+	      Position		      [460, 371, 480, 389]
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "uout"
+	      SID		      5
+	      Position		      [460, 101, 480, 119]
+	      IconDisplay	      "Port number"
+	      OutDataType	      "sfix(16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "dxaug"
+	      SID		      27
+	      Position		      [460, 136, 480, 154]
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Line {
+	      SrcBlock		      " SFunction "
+	      SrcPort		      1
+	      DstBlock		      " Demux "
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "du_in"
+	      SrcPort		      1
+	      DstBlock		      " SFunction "
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "A"
+	      SrcPort		      1
+	      DstBlock		      " SFunction "
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "B"
+	      SrcPort		      1
+	      DstBlock		      " SFunction "
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "df0"
+	      SrcPort		      1
+	      DstBlock		      " SFunction "
+	      DstPort		      4
+	    }
+	    Line {
+	      SrcBlock		      "dxaug_in"
+	      SrcPort		      1
+	      DstBlock		      " SFunction "
+	      DstPort		      5
+	    }
+	    Line {
+	      Name		      "uout"
+	      Labels		      [0, 0]
+	      SrcBlock		      " SFunction "
+	      SrcPort		      2
+	      DstBlock		      "uout"
+	      DstPort		      1
+	    }
+	    Line {
+	      Name		      "dxaug"
+	      Labels		      [0, 0]
+	      SrcBlock		      " SFunction "
+	      SrcPort		      3
+	      DstBlock		      "dxaug"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      " Demux "
+	      SrcPort		      1
+	      DstBlock		      " Terminator "
+	      DstPort		      1
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  SubSystem
+	  Name			  "QPs"
+	  SID			  695
+	  Ports			  [7, 3]
+	  Position		  [410, 30, 605, 370]
+	  BlockMirror		  on
+	  LibraryVersion	  "1.762"
+	  TreatAsAtomicUnit	  on
+	  MinAlgLoopOccurrences	  off
+	  PropExecContextOutsideSubsystem off
+	  SystemSampleTime	  "Ts/3"
+	  RTWSystemCode		  "Auto"
+	  FunctionWithSeparateData off
+	  Opaque		  off
+	  RequestExecContextInheritance	off
+	  MaskHideContents	  off
+	  System {
+	    Name		    "QPs"
+	    Location		    [372, 190, 1648, 1079]
+	    Open		    on
+	    ModelBrowserVisibility  off
+	    ModelBrowserWidth	    200
+	    ScreenColor		    "white"
+	    PaperOrientation	    "landscape"
+	    PaperPositionMode	    "auto"
+	    PaperType		    "A4"
+	    PaperUnits		    "centimeters"
+	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
+	    TiledPageScale	    1
+	    ShowPageBoundaries	    off
+	    ZoomFactor		    "100"
+	    Block {
+	      BlockType		      Inport
+	      Name		      "H1"
+	      SID		      709
+	      Position		      [700, 108, 730, 122]
+	      BlockMirror	      on
+	      IconDisplay	      "Port number"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "f0_1"
+	      SID		      702
+	      Position		      [700, 143, 730, 157]
+	      BlockMirror	      on
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Gd2"
+	      SID		      703
+	      Position		      [700, 443, 730, 457]
+	      BlockMirror	      on
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "H2"
+	      SID		      696
+	      Position		      [700, 373, 730, 387]
+	      BlockMirror	      on
+	      Port		      "4"
+	      IconDisplay	      "Port number"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "f0_2"
+	      SID		      729
+	      Position		      [700, 408, 730, 422]
+	      BlockMirror	      on
+	      Port		      "5"
+	      IconDisplay	      "Port number"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "Gd1"
+	      SID		      704
+	      Position		      [700, 178, 730, 192]
+	      BlockMirror	      on
+	      Port		      "6"
+	      IconDisplay	      "Port number"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "upast"
+	      SID		      705
+	      Position		      [875, 358, 905, 372]
+	      BlockMirror	      on
+	      Port		      "7"
+	      IconDisplay	      "Port number"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Controller1"
+	      SID		      707
+	      Ports		      [5, 3]
+	      Position		      [330, 95, 565, 275]
+	      BlockMirror	      on
+	      LibraryVersion	      "1.46"
+	      SourceBlock	      "lib_controller/Controller"
+	      SourceType	      "SubSystem"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData off
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Controller2"
+	      SID		      708
+	      Ports		      [5, 3]
+	      Position		      [330, 360, 565, 540]
+	      BlockMirror	      on
+	      LibraryVersion	      "1.46"
+	      SourceBlock	      "lib_controller/Controller"
+	      SourceType	      "SubSystem"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData off
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	    }
+	    Block {
+	      BlockType		      Demux
+	      Name		      "Demux"
+	      SID		      721
+	      Ports		      [1, 2]
+	      Position		      [830, 346, 835, 384]
+	      BlockMirror	      on
+	      ShowName		      off
+	      Outputs		      "2"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Memory
+	      Name		      "Memory"
+	      SID		      710
+	      Position		      [430, 580, 460, 610]
+	      ShowName		      off
+	      X0		      "zeros(m*ucontrolsize,1)"
+	      InheritSampleTime	      on
+	    }
+	    Block {
+	      BlockType		      Memory
+	      Name		      "Memory1"
+	      SID		      711
+	      Position		      [430, 40, 460, 70]
+	      ShowName		      off
+	      X0		      "zeros(m*ucontrolsize,1)"
+	      InheritSampleTime	      on
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux"
+	      SID		      712
+	      Ports		      [2, 1]
+	      Position		      [180, 166, 185, 204]
+	      BlockMirror	      on
+	      ShowName		      off
+	      Inputs		      "2"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux1"
+	      SID		      716
+	      Ports		      [2, 1]
+	      Position		      [180, 301, 185, 339]
+	      BlockMirror	      on
+	      ShowName		      off
+	      Inputs		      "2"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux2"
+	      SID		      714
+	      Ports		      [2, 1]
+	      Position		      [180, 431, 185, 469]
+	      BlockMirror	      on
+	      ShowName		      off
+	      Inputs		      "2"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "du"
+	      SID		      697
+	      Position		      [30, 178, 60, 192]
+	      BlockMirror	      on
+	      IconDisplay	      "Port number"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "exitflag"
+	      SID		      715
+	      Position		      [30, 318, 60, 332]
+	      BlockMirror	      on
+	      Port		      "2"
+	      IconDisplay	      "Port number"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	    }
+	    Block {
+	      BlockType		      Outport
+	      Name		      "it"
+	      SID		      717
+	      Position		      [30, 443, 60, 457]
+	      BlockMirror	      on
+	      Port		      "3"
+	      IconDisplay	      "Port number"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	    }
+	    Line {
+	      SrcBlock		      "H2"
+	      SrcPort		      1
+	      DstBlock		      "Controller2"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Gd2"
+	      SrcPort		      1
+	      DstBlock		      "Controller2"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "H1"
+	      SrcPort		      1
+	      DstBlock		      "Controller1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Gd1"
+	      SrcPort		      1
+	      DstBlock		      "Controller1"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "Memory1"
+	      SrcPort		      1
+	      Points		      [290, 0; 0, 165]
+	      DstBlock		      "Controller1"
+	      DstPort		      4
+	    }
+	    Line {
+	      SrcBlock		      "Memory"
+	      SrcPort		      1
+	      Points		      [285, 0; 0, -110]
+	      DstBlock		      "Controller2"
+	      DstPort		      4
+	    }
+	    Line {
+	      SrcBlock		      "Controller1"
+	      SrcPort		      1
+	      Points		      [-40, 0]
+	      Branch {
+		Points			[0, 470]
+		DstBlock		"Memory"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[-85, 0]
+		DstBlock		"Mux"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Controller2"
+	      SrcPort		      1
+	      Points		      [-25, 0]
+	      Branch {
+		Points			[0, -335]
+		DstBlock		"Memory1"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[-100, 0]
+		DstBlock		"Mux"
+		DstPort			2
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Mux"
+	      SrcPort		      1
+	      DstBlock		      "du"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Mux1"
+	      SrcPort		      1
+	      DstBlock		      "exitflag"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Mux2"
+	      SrcPort		      1
+	      DstBlock		      "it"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Controller1"
+	      SrcPort		      2
+	      Points		      [-100, 0; 0, 125]
+	      DstBlock		      "Mux1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Controller2"
+	      SrcPort		      2
+	      Points		      [-100, 0; 0, -120]
+	      DstBlock		      "Mux1"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Controller1"
+	      SrcPort		      3
+	      Points		      [-75, 0; 0, 195]
+	      DstBlock		      "Mux2"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Controller2"
+	      SrcPort		      3
+	      Points		      [-75, 0; 0, -50]
+	      DstBlock		      "Mux2"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "upast"
+	      SrcPort		      1
+	      DstBlock		      "Demux"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Demux"
+	      SrcPort		      1
+	      Points		      [-40, 0; 0, -100]
+	      DstBlock		      "Controller1"
+	      DstPort		      5
+	    }
+	    Line {
+	      SrcBlock		      "Demux"
+	      SrcPort		      2
+	      Points		      [-40, 0; 0, 145]
+	      DstBlock		      "Controller2"
+	      DstPort		      5
+	    }
+	    Line {
+	      SrcBlock		      "f0_2"
+	      SrcPort		      1
+	      DstBlock		      "Controller2"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "f0_1"
+	      SrcPort		      1
+	      DstBlock		      "Controller1"
+	      DstPort		      2
+	    }
+	  }
+	}
+	Block {
+	  BlockType		  RateTransition
+	  Name			  "Rate Transition"
+	  SID			  723
+	  Position		  [611, 630, 639, 660]
+	  BlockRotation		  270
+	  NamePlacement		  "alternate"
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  RateTransition
+	  Name			  "Rate Transition1"
+	  SID			  724
+	  Position		  [670, 86, 695, 114]
+	  BlockMirror		  on
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  RateTransition
+	  Name			  "Rate Transition2"
+	  SID			  725
+	  Position		  [670, 136, 695, 164]
+	  BlockMirror		  on
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  RateTransition
+	  Name			  "Rate Transition3"
+	  SID			  726
+	  Position		  [670, 186, 695, 214]
+	  BlockMirror		  on
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  RateTransition
+	  Name			  "Rate Transition4"
+	  SID			  727
+	  Position		  [670, 236, 695, 264]
+	  BlockMirror		  on
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  RateTransition
+	  Name			  "Rate Transition5"
+	  SID			  728
+	  Position		  [670, 286, 695, 314]
+	  BlockMirror		  on
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  RateTransition
+	  Name			  "Rate Transition6"
+	  SID			  730
+	  Position		  [670, 36, 695, 64]
+	  BlockMirror		  on
+	  ShowName		  off
+	}
+	Block {
+	  BlockType		  RateTransition
+	  Name			  "Rate Transition7"
+	  SID			  731
+	  Position		  [355, 71, 380, 99]
+	  BlockMirror		  on
+	  ShowName		  off
 	}
 	Block {
 	  BlockType		  Scope
 	  Name			  "Scope2"
 	  SID			  424
 	  Ports			  [1]
-	  Position		  [75, 184, 105, 216]
+	  Position		  [355, 184, 385, 216]
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
 	  Floating		  off
@@ -2183,7 +2995,7 @@ Model {
 	  Name			  "Scope3"
 	  SID			  425
 	  Ports			  [1]
-	  Position		  [75, 264, 105, 296]
+	  Position		  [355, 299, 385, 331]
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
 	  Floating		  off
@@ -2205,8 +3017,9 @@ Model {
 	  Name			  "To Workspace"
 	  SID			  426
 	  Ports			  [1]
-	  Position		  [60, 335, 120, 365]
+	  Position		  [675, 335, 735, 365]
 	  BlockMirror		  on
+	  ShowName		  off
 	  VariableName		  "x_out"
 	  MaxDataPoints		  "inf"
 	  SampleTime		  "-1"
@@ -2216,7 +3029,7 @@ Model {
 	  BlockType		  Outport
 	  Name			  "Out1"
 	  SID			  427
-	  Position		  [75, 113, 105, 127]
+	  Position		  [20, 378, 50, 392]
 	  BlockMirror		  on
 	  IconDisplay		  "Port number"
 	}
@@ -2227,58 +3040,192 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "Mux"
-	  SrcPort		  1
-	  DstBlock		  "Embedded\nMATLAB Function"
-	  DstPort		  1
-	}
-	Line {
 	  SrcBlock		  "ref"
 	  SrcPort		  1
 	  DstBlock		  "Mux"
 	  DstPort		  2
 	}
 	Line {
-	  SrcBlock		  "Embedded\nMATLAB Function"
+	  SrcBlock		  "Memory1"
 	  SrcPort		  1
-	  Points		  [0, 20; -105, 0]
+	  Points		  [140, 0]
+	  Branch {
+	    Points		    [405, 0; 0, -390]
+	    DstBlock		    "Linearization"
+	    DstPort		    2
+	  }
+	  Branch {
+	    DstBlock		    "Rate Transition"
+	    DstPort		    1
+	  }
+	}
+	Line {
+	  SrcBlock		  "Memory2"
+	  SrcPort		  1
+	  Points		  [495, 0; 0, -130]
+	  DstBlock		  "Linearization"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Output"
+	  SrcPort		  1
+	  Points		  [-40, 0]
+	  Branch {
+	    Points		    [0, 305]
+	    DstBlock		    "Memory1"
+	    DstPort		    1
+	  }
 	  Branch {
 	    DstBlock		    "Out1"
 	    DstPort		    1
 	  }
-	  Branch {
-	    Points		    [0, -70]
-	    DstBlock		    "Scope1"
-	    DstPort		    1
-	  }
 	}
 	Line {
-	  SrcBlock		  "Embedded\nMATLAB Function"
-	  SrcPort		  3
-	  Points		  [0, 40]
-	  DstBlock		  "Scope3"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Embedded\nMATLAB Function"
+	  SrcBlock		  "Output"
 	  SrcPort		  2
-	  Points		  [0, 30]
-	  DstBlock		  "Scope2"
+	  Points		  [-20, 0; 0, 95]
+	  DstBlock		  "Memory2"
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "Embedded\nMATLAB Function"
-	  SrcPort		  4
-	  Points		  [-90, 0; 0, 40]
+	  SrcBlock		  "QPs"
+	  SrcPort		  1
+	  DstBlock		  "Rate Transition7"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Linearization"
+	  SrcPort		  7
 	  DstBlock		  "To Workspace"
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "xin"
-	  SrcPort		  1
-	  Points		  [-95, 0]
-	  DstBlock		  "Embedded\nMATLAB Function"
+	  SrcBlock		  "QPs"
+	  SrcPort		  2
+	  DstBlock		  "Scope2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "QPs"
+	  SrcPort		  3
+	  DstBlock		  "Scope3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Linearization"
+	  SrcPort		  8
+	  DstBlock		  "Output"
 	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Linearization"
+	  SrcPort		  9
+	  DstBlock		  "Output"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Linearization"
+	  SrcPort		  10
+	  DstBlock		  "Output"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "Linearization"
+	  SrcPort		  11
+	  DstBlock		  "Output"
+	  DstPort		  5
+	}
+	Line {
+	  SrcBlock		  "Rate Transition"
+	  SrcPort		  1
+	  Points		  [0, -275]
+	  DstBlock		  "QPs"
+	  DstPort		  7
+	}
+	Line {
+	  SrcBlock		  "Linearization"
+	  SrcPort		  1
+	  DstBlock		  "Rate Transition6"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Rate Transition6"
+	  SrcPort		  1
+	  DstBlock		  "QPs"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Linearization"
+	  SrcPort		  2
+	  DstBlock		  "Rate Transition1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Rate Transition1"
+	  SrcPort		  1
+	  DstBlock		  "QPs"
+	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Linearization"
+	  SrcPort		  3
+	  DstBlock		  "Rate Transition2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Linearization"
+	  SrcPort		  4
+	  DstBlock		  "Rate Transition3"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Linearization"
+	  SrcPort		  5
+	  DstBlock		  "Rate Transition4"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Linearization"
+	  SrcPort		  6
+	  DstBlock		  "Rate Transition5"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Rate Transition2"
+	  SrcPort		  1
+	  DstBlock		  "QPs"
+	  DstPort		  3
+	}
+	Line {
+	  SrcBlock		  "Rate Transition3"
+	  SrcPort		  1
+	  DstBlock		  "QPs"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "Rate Transition4"
+	  SrcPort		  1
+	  DstBlock		  "QPs"
+	  DstPort		  5
+	}
+	Line {
+	  SrcBlock		  "Rate Transition5"
+	  SrcPort		  1
+	  DstBlock		  "QPs"
+	  DstPort		  6
+	}
+	Line {
+	  SrcBlock		  "Mux"
+	  SrcPort		  1
+	  DstBlock		  "Linearization"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Rate Transition7"
+	  SrcPort		  1
+	  Points		  [-30, 0; 0, 265]
+	  DstBlock		  "Output"
+	  DstPort		  1
 	}
       }
     }
@@ -2337,8 +3284,8 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [1365, 89, 1703, 362]
-      Open		      on
+      Location		      [937, 89, 1275, 362]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -2362,8 +3309,8 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1777, 523, 2115, 788]
-      Open		      on
+      Location		      [2073, 171, 2411, 436]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -2371,8 +3318,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-0.005"
-      YMax		      "0.05"
+      YMin		      "-0.25"
+      YMax		      "2"
       SaveToWorkspace	      on
       SaveName		      "SD5"
       DataFormat	      "Array"
@@ -2424,14 +3371,12 @@ Model {
     Line {
       SrcBlock		      "Rate Transition"
       SrcPort		      1
-      Points		      [-20, 0]
       DstBlock		      "controller"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Rate Transition1"
       SrcPort		      1
-      Points		      [-35, 0]
       DstBlock		      "controller"
       DstPort		      2
     }
@@ -2625,15 +3570,8 @@ Model {
       }
       Branch {
 	Points			[130, 0; 0, 50]
-	Branch {
-	  Points		  [0, 265; -315, 0]
-	  DstBlock		  "controller"
-	  DstPort		  3
-	}
-	Branch {
-	  DstBlock		  "Demux1"
-	  DstPort		  1
-	}
+	DstBlock		"Demux1"
+	DstPort			1
       }
     }
     Line {
@@ -2768,18 +3706,16 @@ Model {
 Stateflow {
   machine {
     id			    1
-    name		    "parallel_linearized"
+    name		    "closedloop"
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
-    firstTarget		    13
-    debug {
-    }
+    firstTarget		    33
     sfVersion		    71014000.00001
   }
   chart {
     id			    2
-    name		    "controller/Embedded\nMATLAB Function"
-    windowPosition	    [333.062 308.725 200.25 189.75]
+    name		    "controller/Output"
+    windowPosition	    [348.062 293.725 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1280 1024 1.333333333333333]
     treeNode		    [0 3 0 0]
@@ -2787,11 +3723,11 @@ Stateflow {
     firstJunction	    4
     viewObj		    2
     machine		    1
-    ssIdHighWaterMark	    19
+    ssIdHighWaterMark	    26
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
     firstData		    6
-    chartFileNumber	    2
+    chartFileNumber	    1
     disableImplicitCasting  1
     eml {
       name		      "fcn"
@@ -2811,27 +3747,16 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function [u_new,exitflag_out,it_out,x_out]  = fcn(u,xin)\n%#eml\n% persistent C_new M LB UB Ga Gb"
-      " Gc H Ain b A B upast xinit\npersistent M LB UB Ain b upast xinit dxaug y_old C %x_init_lin\neml.extrinsic('disp"
-      "');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\neml.ex"
-      "trinsic('quadprog');\n\n\n\n[n_delay,dsize,ucontrolsize,p,m] = const_mpc();\n[~, ~, xsize, ~, ysize] = const_sim"
-      "();\nusize=2*ucontrolsize;\n\nif isempty(M)\n    tic\n    [C,M,UB,LB,b,Ain,xinit,upast] = get_constant_matrices("
-      ");\n    dxaug = zeros(size(xinit));\n    y_old = zeros(ysize,1);\n    time = toc;\n    disp(['Preparation time: "
-      "' num2str(time)]);\nend\n\n\ny = u(1:ysize);\n\n% Estimate state info\ndxaug = dxaug + M*(y - y_old - C*(dxaug))"
-      ";\n\n% Use state input info to calculate x, y\nxinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxinit(xsize+1:en"
-      "d) = dxaug(xsize+1:end);\nx_out = xinit;\n\ny_old = y;\n\nyref = u(ysize+1:end);\n\n% Get matrices - linearize a"
-      "bout delayed rec.open input\n[A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,upast);\n\n\n\n% Get re"
-      "ference and input vector\n\nYref = zeros(p*ysize,1);\nUpast = zeros(m*usize,1);\nfor i=1:p\n    Yref(1+(i-1)*ysi"
-      "ze:i*ysize,1) = yref - y;\nend\nfor i=1:m\n    Upast(1+(i-1)*usize:i*usize,1) = upast;\nend\n\n% Update bounds\n"
-      "LBa = LB - Upast;\nUBa = UB - Upast;\n\n% Calculate initial state\ndx0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_"
-      "delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(4); zeros(2*dsize,1)];\n\n\n% Gradient ve"
-      "ctor\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*UWT;\n\n% Solve QP\nlbA = -inf(size(Ain,1),1);\n[usol,~,exitfl"
-      "ag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_out = exitflag(1,1);\nit_out = it(1,1);\n\nif exitflag"
-      "_out~=0\n    exitflag_out\n    usol = zeros(m*usize,1);\nend\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);"
-      "\nu_new = upast + delta_u;\n\n\n% value of x about which we linearized\nxlin = dxaug;\nxlin(xsize+1:end) = 0;\nx"
-      "lin(xsize+1) = upast(2);\nxlin(xsize+1+n_delay(2)) = upast(4);\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)"
-      "-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n\nupast = u_new;\n\n\n"
-      editorLayout	      "100 M4x1[225 225 1296 1000]"
+      script		      "function [uout,dxaug]  = fcn(du_in, A, B, df0, dxaug_in)\n%#eml\npersistent upast\neml.extrinsic("
+      "'disp');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\ne"
+      "ml.extrinsic('quadprog');\n\n\n\n[~, ~, xsize, ~, ~] = const_sim();\n[n_delay,~,ucontrolsize,~,m] = const_mpc();"
+      "\n\nif isempty(upast)\n    tic\n    upast = zeros(ucontrolsize*2,1);\n    time = toc;\n    disp(['Preparation ti"
+      "me: ' num2str(time)]);\nend\n\n% take only the first move from du\ndu = [du_in(1:ucontrolsize,1); du_in(1+m*ucon"
+      "trolsize:(m+1)*ucontrolsize,1)];\n\n% Apply next input\nu_new = upast + du;\n\n% value of x about which we linea"
+      "rized\nxlin = dxaug_in;\nxlin(xsize+1:end) = 0;\nxlin(xsize+1) = upast(2);\nxlin(xsize+1+n_delay(2)) = upast(4);"
+      "\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug_in-xlin) + df0;\n\nupast = u_ne"
+      "w;\nuout = u_new;\n\n"
+      editorLayout	      "100 M4x1[1272 5 1296 1040]"
     }
   }
   junction {
@@ -2867,7 +3792,7 @@ Stateflow {
   data {
     id			    6
     ssIdNumber		    4
-    name		    "u"
+    name		    "du_in"
     linkNode		    [2 0 7]
     scope		    INPUT_DATA
     machine		    1
@@ -2885,10 +3810,10 @@ Stateflow {
   }
   data {
     id			    7
-    ssIdNumber		    5
-    name		    "u_new"
+    ssIdNumber		    26
+    name		    "A"
     linkNode		    [2 6 8]
-    scope		    OUTPUT_DATA
+    scope		    INPUT_DATA
     machine		    1
     props {
       array {
@@ -2897,18 +3822,20 @@ Stateflow {
       type {
 	method			SF_INHERITED_TYPE
 	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
       }
       complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_NO
+      frame		      SF_FRAME_INHERITED
     }
     dataType		    "Inherit: Same as Simulink"
   }
   data {
     id			    8
-    ssIdNumber		    15
-    name		    "exitflag_out"
+    ssIdNumber		    16
+    name		    "B"
     linkNode		    [2 7 9]
-    scope		    OUTPUT_DATA
+    scope		    INPUT_DATA
     machine		    1
     props {
       array {
@@ -2927,10 +3854,10 @@ Stateflow {
   }
   data {
     id			    9
-    ssIdNumber		    16
-    name		    "it_out"
+    ssIdNumber		    25
+    name		    "df0"
     linkNode		    [2 8 10]
-    scope		    OUTPUT_DATA
+    scope		    INPUT_DATA
     machine		    1
     props {
       array {
@@ -2943,14 +3870,14 @@ Stateflow {
 	wordLength		"16"
       }
       complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_NO
+      frame		      SF_FRAME_INHERITED
     }
     dataType		    "Inherit: Same as Simulink"
   }
   data {
     id			    10
-    ssIdNumber		    18
-    name		    "x_out"
+    ssIdNumber		    5
+    name		    "uout"
     linkNode		    [2 9 11]
     scope		    OUTPUT_DATA
     machine		    1
@@ -2961,6 +3888,196 @@ Stateflow {
       type {
 	method			SF_INHERITED_TYPE
 	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    11
+    ssIdNumber		    21
+    name		    "dxaug_in"
+    linkNode		    [2 10 12]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    12
+    ssIdNumber		    23
+    name		    "dxaug"
+    linkNode		    [2 11 0]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  instance {
+    id			    13
+    name		    "controller/Output"
+    machine		    1
+    chart		    2
+  }
+  chart {
+    id			    14
+    name		    "controller/Linearization"
+    windowPosition	    [333.062 308.725 200.25 189.75]
+    viewLimits		    [0 156.75 0 153.75]
+    screen		    [1 1 1280 1024 1.333333333333333]
+    treeNode		    [0 15 0 0]
+    firstTransition	    17
+    firstJunction	    16
+    viewObj		    14
+    machine		    1
+    ssIdHighWaterMark	    28
+    decomposition	    CLUSTER_CHART
+    type		    EML_CHART
+    firstData		    18
+    chartFileNumber	    2
+    disableImplicitCasting  1
+    eml {
+      name		      "fcn"
+    }
+  }
+  state {
+    id			    15
+    labelString		    "eML_blk_kernel()"
+    position		    [18 64.5 118 66]
+    fontSize		    12
+    chart		    14
+    treeNode		    [14 0 0 0]
+    superState		    SUBCHART
+    subviewer		    14
+    ssIdNumber		    1
+    type		    FUNC_STATE
+    decomposition	    CLUSTER_STATE
+    eml {
+      isEML		      1
+      script		      "function [H1, f0_1, Gd1, H2, f0_2, Gd2, xout, A, B, df0, dxaug]  = fcn(yin, upast, dxaug_in)\n%#e"
+      "ml\n% persistent C_new M LB UB Ga Gb Gc H Ain b A B upast xinit\npersistent M xinit y_old C \neml.extrinsic('dis"
+      "p');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\neml.e"
+      "xtrinsic('quadprog');\n\n\n\n[~, ~, xsize, ~, ysize] = const_sim();\n[n_delay,dsize,~,p] = const_mpc();\n\nif is"
+      "empty(M)\n    tic\n    [C,M,~,~,~,~,xinit] = get_constant_matrices();\n    y_old = zeros(ysize,1);\n    time = t"
+      "oc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\n\ny = yin(1:ysize);\nyref = yin(ysize+1:end);\n\n% "
+      "Estimate state info\ndxaug = dxaug_in + M*(y - y_old - C*(dxaug_in));\n\n% Use state input info to calculate x, "
+      "y\nxinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\n\nxout = xinit;\n\n"
+      "% Get matrices - linearize about delayed rec.open input\n[A,B,C,H1,H2,Ga1,Ga2,Gb1,Gb2,Gc1,Gc2,df0,~,Gd1,Gd2] = g"
+      "et_qp_matrices(xinit,upast);\n\n% Get reference and input vector\nYref = zeros(p*ysize,1);\nfor i=1:p\n    Yref("
+      "1+(i-1)*ysize:i*ysize,1) = yref - y;\nend\n\n% Calculate initial state\ndx0 = [zeros(xsize,1); xinit(xsize+1:xsi"
+      "ze+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(4); zeros(2*dsize,1)];\n\n% Gradient"
+      " vector\nf0_1 = df0'*Gc1 - Yref'*Ga1 + dx0'*Gb1;\nf0_2 = df0'*Gc2 - Yref'*Ga2 + dx0'*Gb2;\n\n\n"
+      editorLayout	      "100 M4x1[1272 5 1296 1040]"
+    }
+  }
+  junction {
+    id			    16
+    position		    [23.5747 49.5747 7]
+    chart		    14
+    linkNode		    [14 0 0]
+    subviewer		    14
+    ssIdNumber		    3
+    type		    CONNECTIVE_JUNCTION
+  }
+  transition {
+    id			    17
+    labelString		    "{eML_blk_kernel();}"
+    labelPosition	    [32.125 19.875 102.544 14.964]
+    fontSize		    12
+    src {
+      intersection	      [0 0 1 0 23.5747 14.625 0 0]
+    }
+    dst {
+      id		      16
+      intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
+    }
+    midPoint		    [23.5747 24.9468]
+    chart		    14
+    linkNode		    [14 0 0]
+    dataLimits		    [23.575 23.575 14.625 34.575]
+    subviewer		    14
+    drawStyle		    SMART
+    executionOrder	    1
+    ssIdNumber		    2
+  }
+  data {
+    id			    18
+    ssIdNumber		    4
+    name		    "yin"
+    linkNode		    [14 0 19]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    19
+    ssIdNumber		    5
+    name		    "H1"
+    linkNode		    [14 18 20]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    20
+    ssIdNumber		    15
+    name		    "f0_1"
+    linkNode		    [14 19 21]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
 	isSigned		1
 	wordLength		"16"
       }
@@ -2970,10 +4087,230 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    11
-    ssIdNumber		    19
-    name		    "xin"
-    linkNode		    [2 10 0]
+    id			    21
+    ssIdNumber		    18
+    name		    "Gd1"
+    linkNode		    [14 20 22]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    22
+    ssIdNumber		    24
+    name		    "H2"
+    linkNode		    [14 21 23]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    23
+    ssIdNumber		    28
+    name		    "f0_2"
+    linkNode		    [14 22 24]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    24
+    ssIdNumber		    22
+    name		    "Gd2"
+    linkNode		    [14 23 25]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    25
+    ssIdNumber		    27
+    name		    "xout"
+    linkNode		    [14 24 26]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    26
+    ssIdNumber		    25
+    name		    "A"
+    linkNode		    [14 25 27]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    27
+    ssIdNumber		    16
+    name		    "B"
+    linkNode		    [14 26 28]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    28
+    ssIdNumber		    26
+    name		    "df0"
+    linkNode		    [14 27 29]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    29
+    ssIdNumber		    23
+    name		    "dxaug"
+    linkNode		    [14 28 30]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    30
+    ssIdNumber		    20
+    name		    "upast"
+    linkNode		    [14 29 31]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    31
+    ssIdNumber		    21
+    name		    "dxaug_in"
+    linkNode		    [14 30 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -2992,13 +4329,13 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   instance {
-    id			    12
-    name		    "controller/Embedded\nMATLAB Function"
+    id			    32
+    name		    "controller/Linearization"
     machine		    1
-    chart		    2
+    chart		    14
   }
   target {
-    id			    13
+    id			    33
     name		    "sfun"
     description		    "Default Simulink S-Function Target."
     machine		    1

@@ -1,4 +1,4 @@
-function [A,B,C,H,Ga,Gb,Gc,dx,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,upast)
+function [A,B,C,H1,H2,Ga1,Ga2,Gb1,Gb2,Gc1,Gc2,dx,Sx,Gd1,Gd2,Sf] = get_qp_matrices(xinit,upast)
 
 [Ts,xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
 [n_delay,dsize,usize,p,m,UWT,YWT] = const_mpc();
@@ -95,14 +95,29 @@ for i=2:p
     end
 end
 
+%% Calculate QP matrices for two compressors
+% Input prediction matrices for each compressor
+Su1 = zeros(p*ysize,m*usize);
+Su2 = Su1;
+for i=1:m
+    Su1(:,i:i+usize-1) = Su(:,1+2*(i-1)*usize:(2*i-1)*usize);
+    Su2(:,i:i+usize-1) = Su(:,1+(2*i-1)*usize:2*i*usize);
+end
 
-%% Calculate QP matrices
+% Quadratic term for each compressor
+H1 = Su1'*YWT*Su1 + UWT;
+H2 = Su2'*YWT*Su2 + UWT;
 
-H = Su'*YWT*Su + UWT;
 
-Ga = YWT*Su;
-Gb = Sx'*YWT*Su;
-Gc = Sf'*YWT*Su;
+Ga1 = YWT*Su1;
+Gb1 = Sx'*YWT*Su1;
+Gc1 = Sf'*YWT*Su1;
+Gd1 = Su2'*YWT*Su1;
+
+Ga2 = YWT*Su2;
+Gb2 = Sx'*YWT*Su2;
+Gc2 = Sf'*YWT*Su2;
+Gd2 = Su1'*YWT*Su1;
 
 
 end
