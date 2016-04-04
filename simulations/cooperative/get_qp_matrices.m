@@ -1,4 +1,4 @@
-function [A,B,C,H1,H2,Ga1,Ga2,Gb1,Gb2,Gc1,Gc2,dx,Sx,Gd1,Gd2,Sf] = get_qp_matrices(xinit,upast)
+function [A,B,C,H1,H2,Ga1,Ga2,Gb1,Gb2,Gc1,Gc2,dx,Sx,Gd1,Gd2,Sf,Su1,Su2] = get_qp_matrices(xinit,upast)
 
 [Ts,xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
 [n_delay,dsize,usize,p,m,UWT,YWT] = const_mpc();
@@ -100,8 +100,8 @@ end
 Su1 = zeros(p*ysize,m*usize);
 Su2 = Su1;
 for i=1:m
-    Su1(:,i:i+usize-1) = Su(:,1+2*(i-1)*usize:(2*i-1)*usize);
-    Su2(:,i:i+usize-1) = Su(:,1+(2*i-1)*usize:2*i*usize);
+    Su1(:,(i-1)*usize+1:i*usize) = Su(:,1+2*(i-1)*usize:(2*i-1)*usize);
+    Su2(:,(i-1)*usize+1:i*usize) = Su(:,1+(2*i-1)*usize:2*i*usize);
 end
 
 % Quadratic term for each compressor
