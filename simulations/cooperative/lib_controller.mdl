@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Apr 04 12:01:35 2016"
-  RTWModifiedTimeStamp	  381672092
-  ModelVersionFormat	  "1.%<AutoIncrement:46>"
+  LastModifiedDate	  "Mon Apr 04 14:02:33 2016"
+  RTWModifiedTimeStamp	  381679349
+  ModelVersionFormat	  "1.%<AutoIncrement:47>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -633,7 +633,7 @@ Library {
   }
   System {
     Name		    "lib_controller"
-    Location		    [336, 226, 934, 582]
+    Location		    [1595, 258, 2193, 614]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -647,15 +647,18 @@ Library {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    15
+    SIDHighWatermark	    16
     Block {
       BlockType		      SubSystem
-      Name		      "Controller"
-      SID		      1
+      Name		      "Controller_fcn"
+      SID		      16
       Ports		      [5, 3]
-      Position		      [120, 60, 355, 240]
+      Position		      [120, 23, 260, 317]
       BlockMirror	      on
-      LibraryVersion	      "1.762"
+      NamePlacement	      "alternate"
+      LibraryVersion	      "1.30"
+      PermitHierarchicalResolution "ExplicitOnly"
+      TreatAsAtomicUnit	      on
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -663,9 +666,18 @@ Library {
       Opaque		      off
       RequestExecContextInheritance off
       MaskHideContents	      off
+      MaskType		      "Stateflow"
+      MaskDescription	      "Embedded MATLAB block"
+      MaskDisplay	      "disp('fcn');"
+      MaskSelfModifiable      on
+      MaskIconFrame	      on
+      MaskIconOpaque	      off
+      MaskIconRotate	      "none"
+      MaskPortRotate	      "default"
+      MaskIconUnits	      "autoscale"
       System {
-	Name			"Controller"
-	Location		[49, 116, 665, 506]
+	Name			"Controller_fcn"
+	Location		[257, 457, 812, 717]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -678,354 +690,177 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
+	SIDHighWatermark	39
+	SIDPrevWatermark	39
 	Block {
 	  BlockType		  Inport
 	  Name			  "H"
-	  SID			  2
-	  Position		  [485, 63, 515, 77]
-	  BlockMirror		  on
+	  SID			  23
+	  Position		  [20, 101, 40, 119]
 	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
 	}
 	Block {
 	  BlockType		  Inport
 	  Name			  "f0"
-	  SID			  4
-	  Position		  [485, 123, 515, 137]
-	  BlockMirror		  on
+	  SID			  25
+	  Position		  [20, 136, 40, 154]
 	  Port			  "2"
 	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
 	}
 	Block {
 	  BlockType		  Inport
 	  Name			  "Gd"
-	  SID			  3
-	  Position		  [485, 183, 515, 197]
-	  BlockMirror		  on
+	  SID			  24
+	  Position		  [20, 171, 40, 189]
 	  Port			  "3"
 	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
 	}
 	Block {
 	  BlockType		  Inport
 	  Name			  "du_other"
-	  SID			  5
-	  Position		  [485, 243, 515, 257]
-	  BlockMirror		  on
+	  SID			  31
+	  Position		  [20, 206, 40, 224]
 	  Port			  "4"
 	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
 	}
 	Block {
 	  BlockType		  Inport
 	  Name			  "upast"
-	  SID			  11
-	  Position		  [485, 303, 515, 317]
-	  BlockMirror		  on
+	  SID			  26
+	  Position		  [20, 246, 40, 264]
 	  Port			  "5"
 	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
 	}
 	Block {
-	  BlockType		  SubSystem
-	  Name			  "Controller_fcn"
-	  SID			  7
-	  Ports			  [5, 3]
-	  Position		  [265, 43, 405, 337]
-	  BlockMirror		  on
-	  NamePlacement		  "alternate"
-	  LibraryVersion	  "1.30"
-	  TreatAsAtomicUnit	  on
-	  MinAlgLoopOccurrences	  off
-	  PropExecContextOutsideSubsystem off
-	  RTWSystemCode		  "Auto"
-	  FunctionWithSeparateData off
-	  Opaque		  off
-	  RequestExecContextInheritance	off
-	  MaskHideContents	  off
-	  MaskType		  "Stateflow"
-	  MaskDescription	  "Embedded MATLAB block"
-	  MaskDisplay		  "disp('fcn');"
-	  MaskSelfModifiable	  on
-	  MaskIconFrame		  on
-	  MaskIconOpaque	  off
-	  MaskIconRotate	  "none"
-	  MaskPortRotate	  "default"
-	  MaskIconUnits		  "autoscale"
-	  System {
-	    Name		    "Controller_fcn"
-	    Location		    [257, 457, 812, 717]
-	    Open		    off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "A4"
-	    PaperUnits		    "centimeters"
-	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
-	    SIDHighWatermark	    35
-	    SIDPrevWatermark	    22
-	    Block {
-	      BlockType		      Inport
-	      Name		      "H"
-	      SID		      23
-	      Position		      [20, 101, 40, 119]
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "f0"
-	      SID		      25
-	      Position		      [20, 136, 40, 154]
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "Gd"
-	      SID		      24
-	      Position		      [20, 171, 40, 189]
-	      Port		      "3"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "du_other"
-	      SID		      31
-	      Position		      [20, 206, 40, 224]
-	      Port		      "4"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "upast"
-	      SID		      26
-	      Position		      [20, 246, 40, 264]
-	      Port		      "5"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Demux
-	      Name		      " Demux "
-	      SID		      7
-	      Ports		      [1, 1]
-	      Position		      [270, 360, 320, 400]
-	      Outputs		      "1"
-	    }
-	    Block {
-	      BlockType		      "S-Function"
-	      Name		      " SFunction "
-	      SID		      6
-	      Tag		      "Stateflow S-Function lib_controller 2"
-	      Ports		      [5, 4]
-	      Position		      [180, 141, 230, 359]
-	      FunctionName	      "sf_sfun"
-	      PortCounts	      "[5 4]"
-	      EnableBusSupport	      on
-	      Port {
-		PortNumber		2
-		Name			"uout"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	      Port {
-		PortNumber		3
-		Name			"exitflag_out"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	      Port {
-		PortNumber		4
-		Name			"it_out"
-		RTWStorageClass		"Auto"
-		DataLoggingNameMode	"SignalName"
-	      }
-	    }
-	    Block {
-	      BlockType		      Terminator
-	      Name		      " Terminator "
-	      SID		      9
-	      Position		      [460, 371, 480, 389]
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "uout"
-	      SID		      33
-	      Position		      [460, 101, 480, 119]
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "exitflag_out"
-	      SID		      34
-	      Position		      [460, 136, 480, 154]
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "it_out"
-	      SID		      35
-	      Position		      [460, 171, 480, 189]
-	      Port		      "3"
-	      IconDisplay	      "Port number"
-	    }
-	    Line {
-	      SrcBlock		      " SFunction "
-	      SrcPort		      1
-	      DstBlock		      " Demux "
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "H"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "f0"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      2
-	    }
-	    Line {
-	      SrcBlock		      "Gd"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      3
-	    }
-	    Line {
-	      SrcBlock		      "du_other"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      4
-	    }
-	    Line {
-	      SrcBlock		      "upast"
-	      SrcPort		      1
-	      DstBlock		      " SFunction "
-	      DstPort		      5
-	    }
-	    Line {
-	      Name		      "uout"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      2
-	      DstBlock		      "uout"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "exitflag_out"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      3
-	      DstBlock		      "exitflag_out"
-	      DstPort		      1
-	    }
-	    Line {
-	      Name		      "it_out"
-	      Labels		      [0, 0]
-	      SrcBlock		      " SFunction "
-	      SrcPort		      4
-	      DstBlock		      "it_out"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      " Demux "
-	      SrcPort		      1
-	      DstBlock		      " Terminator "
-	      DstPort		      1
-	    }
+	  BlockType		  Demux
+	  Name			  " Demux "
+	  SID			  37
+	  Ports			  [1, 1]
+	  Position		  [270, 220, 320, 260]
+	  Outputs		  "1"
+	}
+	Block {
+	  BlockType		  "S-Function"
+	  Name			  " SFunction "
+	  SID			  36
+	  Tag			  "Stateflow S-Function lib_controller 3"
+	  Ports			  [5, 4]
+	  Position		  [180, 100, 230, 220]
+	  FunctionName		  "sf_sfun"
+	  PortCounts		  "[5 4]"
+	  EnableBusSupport	  on
+	  Port {
+	    PortNumber		    2
+	    Name		    "uout"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	  Port {
+	    PortNumber		    3
+	    Name		    "exitflag_out"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
+	  }
+	  Port {
+	    PortNumber		    4
+	    Name		    "it_out"
+	    RTWStorageClass	    "Auto"
+	    DataLoggingNameMode	    "SignalName"
 	  }
 	}
 	Block {
-	  BlockType		  Outport
-	  Name			  "du"
-	  SID			  6
-	  Position		  [140, 83, 170, 97]
-	  BlockMirror		  on
-	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
+	  BlockType		  Terminator
+	  Name			  " Terminator "
+	  SID			  39
+	  Position		  [460, 231, 480, 249]
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "exitflag"
-	  SID			  14
-	  Position		  [140, 183, 170, 197]
-	  BlockMirror		  on
+	  Name			  "uout"
+	  SID			  33
+	  Position		  [460, 101, 480, 119]
+	  IconDisplay		  "Port number"
+	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "exitflag_out"
+	  SID			  34
+	  Position		  [460, 136, 480, 154]
 	  Port			  "2"
 	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "it"
-	  SID			  15
-	  Position		  [140, 283, 170, 297]
-	  BlockMirror		  on
+	  Name			  "it_out"
+	  SID			  35
+	  Position		  [460, 171, 480, 189]
 	  Port			  "3"
 	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
 	}
 	Line {
-	  SrcBlock		  "H"
+	  SrcBlock		  " Demux "
 	  SrcPort		  1
-	  DstBlock		  "Controller_fcn"
+	  DstBlock		  " Terminator "
 	  DstPort		  1
+	}
+	Line {
+	  Name			  "it_out"
+	  Labels		  [0, 0]
+	  SrcBlock		  " SFunction "
+	  SrcPort		  4
+	  DstBlock		  "it_out"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "exitflag_out"
+	  Labels		  [0, 0]
+	  SrcBlock		  " SFunction "
+	  SrcPort		  3
+	  DstBlock		  "exitflag_out"
+	  DstPort		  1
+	}
+	Line {
+	  Name			  "uout"
+	  Labels		  [0, 0]
+	  SrcBlock		  " SFunction "
+	  SrcPort		  2
+	  DstBlock		  "uout"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "upast"
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  5
+	}
+	Line {
+	  SrcBlock		  "du_other"
+	  SrcPort		  1
+	  DstBlock		  " SFunction "
+	  DstPort		  4
 	}
 	Line {
 	  SrcBlock		  "Gd"
 	  SrcPort		  1
-	  DstBlock		  "Controller_fcn"
+	  DstBlock		  " SFunction "
 	  DstPort		  3
 	}
 	Line {
 	  SrcBlock		  "f0"
 	  SrcPort		  1
-	  DstBlock		  "Controller_fcn"
+	  DstBlock		  " SFunction "
 	  DstPort		  2
 	}
 	Line {
-	  SrcBlock		  "du_other"
+	  SrcBlock		  "H"
 	  SrcPort		  1
-	  DstBlock		  "Controller_fcn"
-	  DstPort		  4
-	}
-	Line {
-	  SrcBlock		  "upast"
-	  SrcPort		  1
-	  DstBlock		  "Controller_fcn"
-	  DstPort		  5
-	}
-	Line {
-	  SrcBlock		  "Controller_fcn"
-	  SrcPort		  1
-	  DstBlock		  "du"
+	  DstBlock		  " SFunction "
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "Controller_fcn"
-	  SrcPort		  2
-	  DstBlock		  "exitflag"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Controller_fcn"
-	  SrcPort		  3
-	  DstBlock		  "it"
+	  SrcBlock		  " SFunction "
+	  SrcPort		  1
+	  DstBlock		  " Demux "
 	  DstPort		  1
 	}
       }
@@ -1050,8 +885,8 @@ Stateflow {
   }
   chart {
     id			    2
-    name		    "Controller/Controller_fcn"
-    windowPosition	    [348.062 293.725 200.25 189.75]
+    name		    "Controller_fcn"
+    windowPosition	    [378.062 263.725 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1280 1024 1.333333333333333]
     treeNode		    [0 3 0 0]
@@ -1059,11 +894,13 @@ Stateflow {
     firstJunction	    4
     viewObj		    2
     machine		    1
+    subviewS {
+    }
     ssIdHighWaterMark	    27
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
     firstData		    6
-    chartFileNumber	    2
+    chartFileNumber	    3
     disableImplicitCasting  1
     eml {
       name		      "fcn"
@@ -1302,7 +1139,7 @@ Stateflow {
   }
   instance {
     id			    14
-    name		    "Controller/Controller_fcn"
+    name		    "Controller_fcn"
     machine		    1
     chart		    2
   }

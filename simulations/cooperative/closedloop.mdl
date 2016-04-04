@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.304"
+    ComputedModelVersion    "1.312"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Apr 04 12:05:21 2016"
-  RTWModifiedTimeStamp	  381672300
-  ModelVersionFormat	  "1.%<AutoIncrement:304>"
+  LastModifiedDate	  "Mon Apr 04 15:00:24 2016"
+  RTWModifiedTimeStamp	  381682654
+  ModelVersionFormat	  "1.%<AutoIncrement:312>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -576,6 +576,22 @@ Model {
   }
   BlockParameterDefaults {
     Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Inherit from 'Constant value'"
+      OutDataType	      "fixdt(1,16,0)"
+      ConRadixGroup	      "Use specified scaling"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      LockScale		      off
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+    }
+    Block {
       BlockType		      Demux
       Outputs		      "4"
       DisplayOption	      "none"
@@ -759,7 +775,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    753
+    SIDHighWatermark	    829
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -890,7 +906,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [937, 187, 1275, 437]
+      Location		      [1384, 108, 1722, 358]
       Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -899,8 +915,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "1.04"
-      YMax		      "1.15"
+      YMin		      "1.015"
+      YMax		      "1.085"
       SaveToWorkspace	      on
       SaveName		      "SD1"
       DataFormat	      "Array"
@@ -1745,7 +1761,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [937, 173, 1275, 446]
+      Location		      [2050, 156, 2388, 429]
       Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1754,8 +1770,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-3.5"
-      YMax		      "1.25"
+      YMin		      "-0.05"
+      YMax		      "0.425"
       SaveToWorkspace	      on
       SaveName		      "SD3"
       DataFormat	      "Array"
@@ -1838,7 +1854,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1538, 383, 1969, 725]
+      Location		      [1387, 488, 1718, 761]
       Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1847,8 +1863,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-0.425"
-      YMax		      "0.15"
+      YMin		      "-0.0001"
+      YMax		      "0.000225"
       SaveToWorkspace	      on
       SaveName		      "SD4"
       DataFormat	      "Array"
@@ -1868,6 +1884,7 @@ Model {
       Ports		      [2, 1]
       Position		      [470, 385, 560, 540]
       BlockMirror	      on
+      TreatAsAtomicUnit	      on
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       SystemSampleTime	      "Ts"
@@ -1878,7 +1895,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"controller"
-	Location		[2, 74, 1278, 963]
+	Location		[2, 82, 1278, 971]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1918,7 +1935,6 @@ Model {
 	  NamePlacement		  "alternate"
 	  LibraryVersion	  "1.30"
 	  PermitHierarchicalResolution "ExplicitOnly"
-	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
 	  SystemSampleTime	  "Ts"
@@ -2288,6 +2304,7 @@ Model {
 	  SID			  719
 	  Position		  [450, 675, 480, 705]
 	  ShowName		  off
+	  X0			  "zeros(m*ucontrolsize,1)"
 	  InheritSampleTime	  on
 	}
 	Block {
@@ -2320,7 +2337,6 @@ Model {
 	  NamePlacement		  "alternate"
 	  LibraryVersion	  "1.30"
 	  PermitHierarchicalResolution "ExplicitOnly"
-	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
 	  SystemSampleTime	  "Ts"
@@ -2523,7 +2539,6 @@ Model {
 	  Position		  [410, 30, 605, 370]
 	  BlockMirror		  on
 	  LibraryVersion	  "1.762"
-	  TreatAsAtomicUnit	  on
 	  MinAlgLoopOccurrences	  off
 	  PropExecContextOutsideSubsystem off
 	  SystemSampleTime	  "Ts/3"
@@ -2534,8 +2549,8 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "QPs"
-	    Location		    [372, 190, 1648, 1079]
-	    Open		    on
+	    Location		    [2, 82, 1278, 954]
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -2551,7 +2566,7 @@ Model {
 	      BlockType		      Inport
 	      Name		      "H1"
 	      SID		      709
-	      Position		      [700, 108, 730, 122]
+	      Position		      [1380, 178, 1410, 192]
 	      BlockMirror	      on
 	      IconDisplay	      "Port number"
 	      OutDataType	      "fixdt(1, 16)"
@@ -2561,7 +2576,7 @@ Model {
 	      BlockType		      Inport
 	      Name		      "f0_1"
 	      SID		      702
-	      Position		      [700, 143, 730, 157]
+	      Position		      [1380, 213, 1410, 227]
 	      BlockMirror	      on
 	      Port		      "2"
 	      IconDisplay	      "Port number"
@@ -2572,7 +2587,7 @@ Model {
 	      BlockType		      Inport
 	      Name		      "Gd2"
 	      SID		      703
-	      Position		      [700, 443, 730, 457]
+	      Position		      [1380, 548, 1410, 562]
 	      BlockMirror	      on
 	      Port		      "3"
 	      IconDisplay	      "Port number"
@@ -2583,7 +2598,7 @@ Model {
 	      BlockType		      Inport
 	      Name		      "H2"
 	      SID		      696
-	      Position		      [700, 373, 730, 387]
+	      Position		      [1380, 478, 1410, 492]
 	      BlockMirror	      on
 	      Port		      "4"
 	      IconDisplay	      "Port number"
@@ -2594,7 +2609,7 @@ Model {
 	      BlockType		      Inport
 	      Name		      "f0_2"
 	      SID		      729
-	      Position		      [700, 408, 730, 422]
+	      Position		      [1380, 513, 1410, 527]
 	      BlockMirror	      on
 	      Port		      "5"
 	      IconDisplay	      "Port number"
@@ -2605,7 +2620,7 @@ Model {
 	      BlockType		      Inport
 	      Name		      "Gd1"
 	      SID		      704
-	      Position		      [700, 178, 730, 192]
+	      Position		      [1380, 248, 1410, 262]
 	      BlockMirror	      on
 	      Port		      "6"
 	      IconDisplay	      "Port number"
@@ -2616,7 +2631,7 @@ Model {
 	      BlockType		      Inport
 	      Name		      "upast"
 	      SID		      705
-	      Position		      [875, 358, 905, 372]
+	      Position		      [1380, 348, 1410, 362]
 	      BlockMirror	      on
 	      Port		      "7"
 	      IconDisplay	      "Port number"
@@ -2624,15 +2639,29 @@ Model {
 	      OutScaling	      "2^0"
 	    }
 	    Block {
-	      BlockType		      Reference
-	      Name		      "Controller1"
-	      SID		      707
-	      Ports		      [5, 3]
-	      Position		      [330, 95, 565, 275]
+	      BlockType		      Constant
+	      Name		      "Constant"
+	      SID		      754
+	      Position		      [1090, 211, 1135, 229]
 	      BlockMirror	      on
-	      LibraryVersion	      "1.46"
-	      SourceBlock	      "lib_controller/Controller"
-	      SourceType	      "SubSystem"
+	      ShowName		      off
+	      Value		      "zeros(m*ucontrolsize,1)"
+	      OutDataType	      "fixdt(1, 16)"
+	      OutScaling	      "2^0"
+	      SampleTime	      "-1"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Controller_fcn"
+	      SID		      777
+	      Ports		      [5, 3]
+	      Position		      [295, 90, 435, 280]
+	      BlockMirror	      on
+	      ForegroundColor	      "blue"
+	      NamePlacement	      "alternate"
+	      LibraryVersion	      "1.47"
+	      SourceBlock	      "lib_controller/Controller_fcn"
+	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
 	      FunctionWithSeparateData off
@@ -2641,17 +2670,24 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
-	      Name		      "Controller2"
-	      SID		      708
+	      Name		      "Controller_fcn1"
+	      SID		      778
 	      Ports		      [5, 3]
-	      Position		      [330, 360, 565, 540]
+	      Position		      [295, 355, 435, 545]
 	      BlockMirror	      on
-	      LibraryVersion	      "1.46"
-	      SourceBlock	      "lib_controller/Controller"
-	      SourceType	      "SubSystem"
+	      ForegroundColor	      "blue"
+	      NamePlacement	      "alternate"
+	      LibraryVersion	      "1.47"
+	      SourceBlock	      "lib_controller/Controller_fcn"
+	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
 	      FunctionWithSeparateData off
@@ -2660,35 +2696,411 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
-	      BlockType		      Demux
-	      Name		      "Demux"
-	      SID		      721
-	      Ports		      [1, 2]
-	      Position		      [830, 346, 835, 384]
+	      BlockType		      Reference
+	      Name		      "Controller_fcn2"
+	      SID		      799
+	      Ports		      [5, 3]
+	      Position		      [560, 90, 695, 280]
+	      BlockMirror	      on
+	      ForegroundColor	      "blue"
+	      NamePlacement	      "alternate"
+	      LibraryVersion	      "1.47"
+	      SourceBlock	      "lib_controller/Controller_fcn"
+	      SourceType	      "Stateflow"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData off
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Controller_fcn3"
+	      SID		      800
+	      Ports		      [5, 3]
+	      Position		      [555, 355, 695, 545]
+	      BlockMirror	      on
+	      ForegroundColor	      "blue"
+	      NamePlacement	      "alternate"
+	      LibraryVersion	      "1.47"
+	      SourceBlock	      "lib_controller/Controller_fcn"
+	      SourceType	      "Stateflow"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData off
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Controller_fcn4"
+	      SID		      809
+	      Ports		      [5, 3]
+	      Position		      [820, 90, 960, 280]
+	      BlockMirror	      on
+	      ForegroundColor	      "blue"
+	      NamePlacement	      "alternate"
+	      LibraryVersion	      "1.47"
+	      SourceBlock	      "lib_controller/Controller_fcn"
+	      SourceType	      "Stateflow"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData off
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Controller_fcn5"
+	      SID		      810
+	      Ports		      [5, 3]
+	      Position		      [820, 355, 960, 545]
+	      BlockMirror	      on
+	      ForegroundColor	      "blue"
+	      NamePlacement	      "alternate"
+	      LibraryVersion	      "1.47"
+	      SourceBlock	      "lib_controller/Controller_fcn"
+	      SourceType	      "Stateflow"
+	      ShowPortLabels	      "FromPortIcon"
+	      SystemSampleTime	      "-1"
+	      FunctionWithSeparateData off
+	      RTWMemSecFuncInitTerm   "Inherit from model"
+	      RTWMemSecFuncExecute    "Inherit from model"
+	      RTWMemSecDataConstants  "Inherit from model"
+	      RTWMemSecDataInternal   "Inherit from model"
+	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From"
+	      SID		      783
+	      Position		      [465, 95, 505, 115]
 	      BlockMirror	      on
 	      ShowName		      off
-	      Outputs		      "2"
-	      DisplayOption	      "bar"
+	      GotoTag		      "H1"
 	    }
 	    Block {
-	      BlockType		      Memory
-	      Name		      "Memory"
-	      SID		      710
-	      Position		      [430, 580, 460, 610]
+	      BlockType		      From
+	      Name		      "From1"
+	      SID		      792
+	      Position		      [465, 135, 505, 155]
+	      BlockMirror	      on
 	      ShowName		      off
-	      X0		      "zeros(m*ucontrolsize,1)"
-	      InheritSampleTime	      on
+	      GotoTag		      "f01"
 	    }
 	    Block {
-	      BlockType		      Memory
-	      Name		      "Memory1"
-	      SID		      711
-	      Position		      [430, 40, 460, 70]
+	      BlockType		      From
+	      Name		      "From10"
+	      SID		      803
+	      Position		      [725, 175, 765, 195]
+	      BlockMirror	      on
 	      ShowName		      off
-	      X0		      "zeros(m*ucontrolsize,1)"
-	      InheritSampleTime	      on
+	      GotoTag		      "Gd1"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From11"
+	      SID		      804
+	      Position		      [725, 245, 765, 265]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "up1"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From12"
+	      SID		      805
+	      Position		      [725, 370, 765, 390]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "H2"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From13"
+	      SID		      806
+	      Position		      [725, 405, 765, 425]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "f02"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From14"
+	      SID		      807
+	      Position		      [725, 440, 765, 460]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "Gd2"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From15"
+	      SID		      808
+	      Position		      [725, 510, 765, 530]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "up2"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From16"
+	      SID		      811
+	      Position		      [990, 175, 1030, 195]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "Gd1"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From17"
+	      SID		      812
+	      Position		      [990, 245, 1030, 265]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "up1"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From18"
+	      SID		      813
+	      Position		      [990, 360, 1030, 380]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "H2"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From19"
+	      SID		      814
+	      Position		      [990, 400, 1030, 420]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "f02"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From2"
+	      SID		      793
+	      Position		      [465, 175, 505, 195]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "Gd1"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From20"
+	      SID		      815
+	      Position		      [990, 440, 1030, 460]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "Gd2"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From21"
+	      SID		      816
+	      Position		      [990, 520, 1030, 540]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "up2"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From22"
+	      SID		      817
+	      Position		      [990, 105, 1030, 125]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "H1"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From23"
+	      SID		      818
+	      Position		      [990, 140, 1030, 160]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "f01"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From3"
+	      SID		      794
+	      Position		      [465, 255, 505, 275]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "up1"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From4"
+	      SID		      795
+	      Position		      [465, 370, 505, 390]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "H2"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From5"
+	      SID		      796
+	      Position		      [465, 405, 505, 425]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "f02"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From6"
+	      SID		      797
+	      Position		      [465, 440, 505, 460]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "Gd2"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From7"
+	      SID		      798
+	      Position		      [465, 510, 505, 530]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "up2"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From8"
+	      SID		      801
+	      Position		      [725, 105, 765, 125]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "H1"
+	    }
+	    Block {
+	      BlockType		      From
+	      Name		      "From9"
+	      SID		      802
+	      Position		      [725, 140, 765, 160]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "f01"
+	    }
+	    Block {
+	      BlockType		      Goto
+	      Name		      "Goto"
+	      SID		      784
+	      Position		      [1200, 311, 1245, 329]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "up1"
+	      TagVisibility	      "local"
+	    }
+	    Block {
+	      BlockType		      Goto
+	      Name		      "Goto1"
+	      SID		      785
+	      Position		      [1200, 381, 1245, 399]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "up2"
+	      TagVisibility	      "local"
+	    }
+	    Block {
+	      BlockType		      Goto
+	      Name		      "Goto2"
+	      SID		      786
+	      Position		      [1295, 476, 1340, 494]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "H2"
+	      TagVisibility	      "local"
+	    }
+	    Block {
+	      BlockType		      Goto
+	      Name		      "Goto3"
+	      SID		      787
+	      Position		      [1295, 511, 1340, 529]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "f02"
+	      TagVisibility	      "local"
+	    }
+	    Block {
+	      BlockType		      Goto
+	      Name		      "Goto4"
+	      SID		      788
+	      Position		      [1295, 546, 1340, 564]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "Gd2"
+	      TagVisibility	      "local"
+	    }
+	    Block {
+	      BlockType		      Goto
+	      Name		      "Goto5"
+	      SID		      789
+	      Position		      [1300, 176, 1345, 194]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "H1"
+	      TagVisibility	      "local"
+	    }
+	    Block {
+	      BlockType		      Goto
+	      Name		      "Goto6"
+	      SID		      790
+	      Position		      [1300, 211, 1345, 229]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "f01"
+	      TagVisibility	      "local"
+	    }
+	    Block {
+	      BlockType		      Goto
+	      Name		      "Goto7"
+	      SID		      791
+	      Position		      [1300, 246, 1345, 264]
+	      BlockMirror	      on
+	      ShowName		      off
+	      GotoTag		      "Gd1"
+	      TagVisibility	      "local"
 	    }
 	    Block {
 	      BlockType		      Mux
@@ -2724,6 +3136,158 @@ Model {
 	      DisplayOption	      "bar"
 	    }
 	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux3"
+	      SID		      819
+	      Ports		      [2, 1]
+	      Position		      [180, 16, 185, 54]
+	      BlockMirror	      on
+	      ShowName		      off
+	      Inputs		      "2"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux4"
+	      SID		      820
+	      Ports		      [3, 1]
+	      Position		      [160, 571, 165, 639]
+	      BlockMirror	      on
+	      ShowName		      off
+	      Inputs		      "3"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
+	      BlockType		      Scope
+	      Name		      "Scope"
+	      SID		      821
+	      Ports		      [1]
+	      Position		      [85, 589, 115, 621]
+	      BlockMirror	      on
+	      Floating		      off
+	      Location		      [1357, 265, 1694, 528]
+	      Open		      off
+	      NumInputPorts	      "1"
+	      ZoomMode		      "yonly"
+	      List {
+		ListType		AxesTitles
+		axes1			"%<SignalLabel>"
+	      }
+	      YMin		      "-0.11"
+	      YMax		      "0.01"
+	      SaveName		      "ScopeData4"
+	      DataFormat	      "StructureWithTime"
+	      SampleTime	      "0"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Submatrix"
+	      SID		      779
+	      Ports		      [1, 1]
+	      Position		      [1265, 370, 1315, 410]
+	      BlockMirror	      on
+	      LibraryVersion	      "1.846"
+	      SourceBlock	      "dspmtrx3/Submatrix"
+	      SourceType	      "Submatrix"
+	      RowSpan		      "Range of rows"
+	      RowStartMode	      "Offset from last"
+	      RowStartIndex	      "ucontrolsize-1"
+	      RowEndMode	      "Last"
+	      RowEndIndex	      "2"
+	      ColSpan		      "Range of columns"
+	      ColStartMode	      "First"
+	      ColStartIndex	      "1"
+	      ColEndMode	      "Last"
+	      ColEndIndex	      "2"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Submatrix1"
+	      SID		      782
+	      Ports		      [1, 1]
+	      Position		      [1265, 300, 1315, 340]
+	      BlockMirror	      on
+	      LibraryVersion	      "1.846"
+	      SourceBlock	      "dspmtrx3/Submatrix"
+	      SourceType	      "Submatrix"
+	      RowSpan		      "Range of rows"
+	      RowStartMode	      "First"
+	      RowStartIndex	      "1"
+	      RowEndMode	      "Index"
+	      RowEndIndex	      "ucontrolsize"
+	      ColSpan		      "Range of columns"
+	      ColStartMode	      "First"
+	      ColStartIndex	      "1"
+	      ColEndMode	      "Last"
+	      ColEndIndex	      "2"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Submatrix2"
+	      SID		      823
+	      Ports		      [1, 1]
+	      Position		      [210, 576, 260, 594]
+	      BlockMirror	      on
+	      ShowName		      off
+	      LibraryVersion	      "1.846"
+	      SourceBlock	      "dspmtrx3/Submatrix"
+	      SourceType	      "Submatrix"
+	      RowSpan		      "Range of rows"
+	      RowStartMode	      "First"
+	      RowStartIndex	      "1"
+	      RowEndMode	      "Index"
+	      RowEndIndex	      "1"
+	      ColSpan		      "Range of columns"
+	      ColStartMode	      "First"
+	      ColStartIndex	      "1"
+	      ColEndMode	      "Index"
+	      ColEndIndex	      "1"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Submatrix3"
+	      SID		      824
+	      Ports		      [1, 1]
+	      Position		      [210, 596, 260, 614]
+	      BlockMirror	      on
+	      ShowName		      off
+	      LibraryVersion	      "1.846"
+	      SourceBlock	      "dspmtrx3/Submatrix"
+	      SourceType	      "Submatrix"
+	      RowSpan		      "Range of rows"
+	      RowStartMode	      "First"
+	      RowStartIndex	      "1"
+	      RowEndMode	      "Index"
+	      RowEndIndex	      "1"
+	      ColSpan		      "Range of columns"
+	      ColStartMode	      "First"
+	      ColStartIndex	      "1"
+	      ColEndMode	      "Index"
+	      ColEndIndex	      "1"
+	    }
+	    Block {
+	      BlockType		      Reference
+	      Name		      "Submatrix4"
+	      SID		      825
+	      Ports		      [1, 1]
+	      Position		      [210, 616, 260, 634]
+	      BlockMirror	      on
+	      ShowName		      off
+	      LibraryVersion	      "1.846"
+	      SourceBlock	      "dspmtrx3/Submatrix"
+	      SourceType	      "Submatrix"
+	      RowSpan		      "Range of rows"
+	      RowStartMode	      "First"
+	      RowStartIndex	      "1"
+	      RowEndMode	      "Index"
+	      RowEndIndex	      "1"
+	      ColSpan		      "Range of columns"
+	      ColStartMode	      "First"
+	      ColStartIndex	      "1"
+	      ColEndMode	      "Index"
+	      ColEndIndex	      "1"
+	    }
+	    Block {
 	      BlockType		      Outport
 	      Name		      "du"
 	      SID		      697
@@ -2737,7 +3301,7 @@ Model {
 	      BlockType		      Outport
 	      Name		      "exitflag"
 	      SID		      715
-	      Position		      [30, 318, 60, 332]
+	      Position		      [30, 313, 60, 327]
 	      BlockMirror	      on
 	      Port		      "2"
 	      IconDisplay	      "Port number"
@@ -2756,80 +3320,6 @@ Model {
 	      OutScaling	      "2^0"
 	    }
 	    Line {
-	      SrcBlock		      "H2"
-	      SrcPort		      1
-	      DstBlock		      "Controller2"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Gd2"
-	      SrcPort		      1
-	      DstBlock		      "Controller2"
-	      DstPort		      3
-	    }
-	    Line {
-	      SrcBlock		      "H1"
-	      SrcPort		      1
-	      DstBlock		      "Controller1"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Gd1"
-	      SrcPort		      1
-	      DstBlock		      "Controller1"
-	      DstPort		      3
-	    }
-	    Line {
-	      SrcBlock		      "Memory1"
-	      SrcPort		      1
-	      Points		      [290, 0; 0, 165]
-	      DstBlock		      "Controller1"
-	      DstPort		      4
-	    }
-	    Line {
-	      SrcBlock		      "Memory"
-	      SrcPort		      1
-	      Points		      [285, 0; 0, -110]
-	      DstBlock		      "Controller2"
-	      DstPort		      4
-	    }
-	    Line {
-	      SrcBlock		      "Controller1"
-	      SrcPort		      1
-	      Points		      [-40, 0]
-	      Branch {
-		Points			[0, 470]
-		DstBlock		"Memory"
-		DstPort			1
-	      }
-	      Branch {
-		Points			[-85, 0]
-		DstBlock		"Mux"
-		DstPort			1
-	      }
-	    }
-	    Line {
-	      SrcBlock		      "Controller2"
-	      SrcPort		      1
-	      Points		      [-25, 0]
-	      Branch {
-		Points			[0, -335]
-		DstBlock		"Memory1"
-		DstPort			1
-	      }
-	      Branch {
-		Points			[-100, 0]
-		DstBlock		"Mux"
-		DstPort			2
-	      }
-	    }
-	    Line {
-	      SrcBlock		      "Mux"
-	      SrcPort		      1
-	      DstBlock		      "du"
-	      DstPort		      1
-	    }
-	    Line {
 	      SrcBlock		      "Mux1"
 	      SrcPort		      1
 	      DstBlock		      "exitflag"
@@ -2842,64 +3332,364 @@ Model {
 	      DstPort		      1
 	    }
 	    Line {
-	      SrcBlock		      "Controller1"
+	      SrcBlock		      "Controller_fcn"
 	      SrcPort		      2
-	      Points		      [-100, 0; 0, 125]
+	      Points		      [-65, 0; 0, 125]
 	      DstBlock		      "Mux1"
 	      DstPort		      1
 	    }
 	    Line {
-	      SrcBlock		      "Controller2"
+	      SrcBlock		      "Controller_fcn1"
 	      SrcPort		      2
-	      Points		      [-100, 0; 0, -120]
+	      Points		      [-65, 0; 0, -120]
 	      DstBlock		      "Mux1"
-	      DstPort		      2
-	    }
-	    Line {
-	      SrcBlock		      "Controller1"
-	      SrcPort		      3
-	      Points		      [-75, 0; 0, 195]
-	      DstBlock		      "Mux2"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Controller2"
-	      SrcPort		      3
-	      Points		      [-75, 0; 0, -50]
-	      DstBlock		      "Mux2"
 	      DstPort		      2
 	    }
 	    Line {
 	      SrcBlock		      "upast"
 	      SrcPort		      1
-	      DstBlock		      "Demux"
+	      Points		      [-20, 0]
+	      Branch {
+		Points			[0, -35]
+		DstBlock		"Submatrix1"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 35]
+		DstBlock		"Submatrix"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Submatrix1"
+	      SrcPort		      1
+	      DstBlock		      "Goto"
 	      DstPort		      1
 	    }
 	    Line {
-	      SrcBlock		      "Demux"
+	      SrcBlock		      "H1"
 	      SrcPort		      1
-	      Points		      [-40, 0; 0, -100]
-	      DstBlock		      "Controller1"
-	      DstPort		      5
-	    }
-	    Line {
-	      SrcBlock		      "Demux"
-	      SrcPort		      2
-	      Points		      [-40, 0; 0, 145]
-	      DstBlock		      "Controller2"
-	      DstPort		      5
-	    }
-	    Line {
-	      SrcBlock		      "f0_2"
-	      SrcPort		      1
-	      DstBlock		      "Controller2"
-	      DstPort		      2
+	      DstBlock		      "Goto5"
+	      DstPort		      1
 	    }
 	    Line {
 	      SrcBlock		      "f0_1"
 	      SrcPort		      1
-	      DstBlock		      "Controller1"
+	      DstBlock		      "Goto6"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Gd1"
+	      SrcPort		      1
+	      DstBlock		      "Goto7"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "H2"
+	      SrcPort		      1
+	      DstBlock		      "Goto2"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "f0_2"
+	      SrcPort		      1
+	      DstBlock		      "Goto3"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Gd2"
+	      SrcPort		      1
+	      DstBlock		      "Goto4"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Submatrix"
+	      SrcPort		      1
+	      DstBlock		      "Goto1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Controller_fcn1"
+	      SrcPort		      3
+	      Points		      [-45, 0; 0, -55]
+	      DstBlock		      "Mux2"
 	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Controller_fcn1"
+	      SrcPort		      1
+	      Points		      [-15, 0]
+	      Branch {
+		Points			[-70, 0; 0, -190]
+		DstBlock		"Mux"
+		DstPort			2
+	      }
+	      Branch {
+		DstBlock		"Submatrix2"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Controller_fcn"
+	      SrcPort		      1
+	      Points		      [-45, 0; 0, 55]
+	      DstBlock		      "Mux"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Controller_fcn"
+	      SrcPort		      3
+	      Points		      [-45, 0; 0, 190]
+	      DstBlock		      "Mux2"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "From"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "From1"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "From2"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "From3"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn"
+	      DstPort		      5
+	    }
+	    Line {
+	      SrcBlock		      "From4"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn1"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "From5"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn1"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "From6"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn1"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "From7"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn1"
+	      DstPort		      5
+	    }
+	    Line {
+	      SrcBlock		      "From8"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn2"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "From9"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn2"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "From10"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn2"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "From11"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn2"
+	      DstPort		      5
+	    }
+	    Line {
+	      SrcBlock		      "From12"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn3"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "From13"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn3"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "From14"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn3"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "From15"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn3"
+	      DstPort		      5
+	    }
+	    Line {
+	      SrcBlock		      "From21"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn5"
+	      DstPort		      5
+	    }
+	    Line {
+	      SrcBlock		      "From20"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn5"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "From19"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn5"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "From17"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn4"
+	      DstPort		      5
+	    }
+	    Line {
+	      SrcBlock		      "From16"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn4"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "From23"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn4"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Controller_fcn4"
+	      SrcPort		      1
+	      Points		      [-10, 0]
+	      Branch {
+		Points			[-35, 0; 0, 365]
+		DstBlock		"Controller_fcn3"
+		DstPort			4
+	      }
+	      Branch {
+		Points			[0, -95]
+		DstBlock		"Mux3"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Controller_fcn5"
+	      SrcPort		      1
+	      Points		      [-15, 0]
+	      Branch {
+		Points			[-15, 0]
+		Branch {
+		  Points		  [-15, 0; 0, -165]
+		  DstBlock		  "Controller_fcn2"
+		  DstPort		  4
+		}
+		Branch {
+		  Points		  [0, -340]
+		  DstBlock		  "Mux3"
+		  DstPort		  2
+		}
+	      }
+	      Branch {
+		Points			[0, 240]
+		DstBlock		"Submatrix4"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Controller_fcn2"
+	      SrcPort		      1
+	      Points		      [-45, 0; 0, 365]
+	      DstBlock		      "Controller_fcn1"
+	      DstPort		      4
+	    }
+	    Line {
+	      SrcBlock		      "Controller_fcn3"
+	      SrcPort		      1
+	      Points		      [-20, 0]
+	      Branch {
+		Points			[-20, 0; 0, -160]
+		DstBlock		"Controller_fcn"
+		DstPort			4
+	      }
+	      Branch {
+		Points			[0, 220]
+		DstBlock		"Submatrix3"
+		DstPort			1
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Constant"
+	      SrcPort		      1
+	      Points		      [-15, 0]
+	      Branch {
+		DstBlock		"Controller_fcn4"
+		DstPort			4
+	      }
+	      Branch {
+		Points			[0, 270]
+		DstBlock		"Controller_fcn5"
+		DstPort			4
+	      }
+	    }
+	    Line {
+	      SrcBlock		      "Mux4"
+	      SrcPort		      1
+	      DstBlock		      "Scope"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Submatrix2"
+	      SrcPort		      1
+	      DstBlock		      "Mux4"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Submatrix3"
+	      SrcPort		      1
+	      DstBlock		      "Mux4"
+	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "Submatrix4"
+	      SrcPort		      1
+	      DstBlock		      "Mux4"
+	      DstPort		      3
+	    }
+	    Line {
+	      SrcBlock		      "From18"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn5"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "From22"
+	      SrcPort		      1
+	      DstBlock		      "Controller_fcn4"
+	      DstPort		      1
+	    }
+	    Line {
+	      SrcBlock		      "Mux"
+	      SrcPort		      1
+	      DstBlock		      "du"
+	      DstPort		      1
 	    }
 	  }
 	}
@@ -2911,6 +3701,7 @@ Model {
 	  BlockRotation		  270
 	  NamePlacement		  "alternate"
 	  ShowName		  off
+	  X0			  "zeros(m*ucontrolsize,1)"
 	}
 	Block {
 	  BlockType		  RateTransition
@@ -3284,7 +4075,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [937, 89, 1275, 362]
+      Location		      [1735, 553, 2073, 845]
       Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -3309,7 +4100,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [2073, 171, 2411, 436]
+      Location		      [2074, 528, 2412, 793]
       Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -3710,6 +4501,8 @@ Stateflow {
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
     firstTarget		    33
+    debug {
+    }
     sfVersion		    71014000.00001
   }
   chart {
