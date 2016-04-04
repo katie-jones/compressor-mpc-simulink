@@ -2,12 +2,6 @@
 
 clear all
 
-load sys.mat
-As = A;
-Bs = B;
-Cs = C;
-clear A B C
-
 addpath('../call_qpoases_m')
 addpath('../call_qpoases_m/qpoases3/interfaces/matlab/')
 addpath('../common')
@@ -39,14 +33,6 @@ u_init = zeros(2*ucontrolsize,1);
 % Go back to original p2 value
 x_init_lin = [0.899; 1.126; 0.15; 440; 0];
 xinit = [x_init_lin; x_init_lin; P_D];
-
-
-% A(1:5,1:5) = As;
-% A(6:10,6:10) = As;
-% A(12,1:5) = Bs(:,2);
-% A(32,6:10) = Bs(:,2);
-% C(1:2,1:5) = Cs;
-% C(3:4,6:10) = Cs;
 
 D = zeros(ysize);
 
