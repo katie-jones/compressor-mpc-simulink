@@ -7,10 +7,10 @@ ucontrolsize = 2;
 
 n_delay = [0, 40];
 
-p = 100;
-m = 2;
+p = 50;
+m = 1;
 
-UW = [1e3 1e5];
+UW = [5e2 1e6];
 YW = [1 1 0 0];
 
 UWT = kron(eye(m),diag([UW]'));

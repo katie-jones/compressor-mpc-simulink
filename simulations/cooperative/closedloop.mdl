@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.321"
+    ComputedModelVersion    "1.322"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Apr 05 14:54:48 2016"
+  LastModifiedDate	  "Tue Apr 05 15:57:03 2016"
   RTWModifiedTimeStamp	  381768887
-  ModelVersionFormat	  "1.%<AutoIncrement:321>"
+  ModelVersionFormat	  "1.%<AutoIncrement:322>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -761,7 +761,7 @@ Model {
   }
   System {
     Name		    "closedloop"
-    Location		    [2, 74, 1278, 963]
+    Location		    [2, 82, 1278, 971]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -906,7 +906,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [1335, 93, 1674, 363]
+      Location		      [936, 93, 1275, 363]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1761,8 +1761,8 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1729, 93, 2067, 366]
-      Open		      on
+      Location		      [1790, 177, 2128, 450]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
       List {
@@ -1770,8 +1770,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-0.75"
-      YMax		      "1.5"
+      YMin		      "0.16"
+      YMax		      "0.32"
       SaveToWorkspace	      on
       SaveName		      "SD3"
       DataFormat	      "Array"
@@ -1854,7 +1854,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [2151, 474, 2482, 747]
+      Location		      [944, 474, 1275, 747]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1896,7 +1896,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[2, 82, 1278, 971]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2550,7 +2550,7 @@ Model {
 	  System {
 	    Name		    "QPs"
 	    Location		    [2, 82, 1261, 954]
-	    Open		    off
+	    Open		    on
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -3286,7 +3286,7 @@ Model {
 	      Ports		      [1]
 	      Position		      [1260, 599, 1290, 631]
 	      Floating		      off
-	      Location		      [1333, 496, 1670, 759]
+	      Location		      [938, 496, 1275, 759]
 	      Open		      on
 	      NumInputPorts	      "1"
 	      ZoomMode		      "yonly"
@@ -4288,7 +4288,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [2149, 85, 2487, 377]
+      Location		      [937, 85, 1275, 377]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -4313,7 +4313,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1741, 479, 2079, 744]
+      Location		      [937, 479, 1275, 744]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -4714,8 +4714,6 @@ Stateflow {
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
     firstTarget		    33
-    debug {
-    }
     sfVersion		    71014000.00001
   }
   chart {
