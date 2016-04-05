@@ -1,6 +1,6 @@
 % Tuning parameters for MPC controller
 
-% clear all
+clear all
 
 addpath('../call_qpoases_m')
 addpath('../call_qpoases_m/qpoases3/interfaces/matlab/')
@@ -16,10 +16,10 @@ xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
 %% Initial state
 % global P_D
 
-P_D = 1.08;
+P_D = 1.12;
 
 % get stable system for observer design
-x_init_lin = [0.98; 1.28; 0.11; 410; 0];
+x_init_lin = [0.98; 1.4; 0.11; 400; 0];
 
 xinit = [x_init_lin; x_init_lin; P_D];
 
