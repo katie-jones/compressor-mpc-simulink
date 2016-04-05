@@ -10,8 +10,8 @@ n_delay = [0, 40];
 p = 100;
 m = 2;
 
-UW = [1e6 1e7];
-YW = [1 1 0.1 0.1];
+UW = [1e3 1e5];
+YW = [1 1 0 0];
 
 UWT = kron(eye(m),diag([UW]'));
 YWT = kron(eye(p),diag(YW'));

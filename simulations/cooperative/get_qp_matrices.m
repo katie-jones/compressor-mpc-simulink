@@ -60,19 +60,26 @@ for i=2:p+1
 end
 
 Su = zeros(ysize*p,2*usize*m);
+Su1 = zeros(ysize*p,usize*m);
+Su2 = Su1;
 
+B1 = B(:,1:usize);
+B2 = B(:,usize+1:end);
 
 for i=1:p
     for j=1:i
         % for first m inputs, make new columns
         if j<=m
-            Su(1+(i-1)*ysize:i*ysize,1+(j-1)*2*usize:j*2*usize) = CxA(:,:,i-j+1)*B;
+            Su1(1+(i-1)*ysize:i*ysize,1+(j-1)*usize:j*usize) = CxA(:,:,i-j+1)*B1;
+            Su2(1+(i-1)*ysize:i*ysize,1+(j-1)*usize:j*usize) = CxA(:,:,i-j+1)*B2;
             
         % m+1:p inputs are the same as input m
         else
-            toadd = CxA(:,:,i-j+1)*B;
+            toadd1 = CxA(:,:,i-j+1)*B1;
+            toadd2 = CxA(:,:,i-j+1)*B2;
             for k=1:ysize
-                Su(k+(i-1)*ysize,1+(m-1)*2*usize:m*2*usize) = Su(k+(i-1)*ysize,1+(m-1)*2*usize:m*2*usize) + toadd(k,:);
+                Su1(k+(i-1)*ysize,1+(m-1)*usize:m*usize) = Su1(k+(i-1)*ysize,1+(m-1)*usize:m*usize) + toadd1(k,:);
+                Su2(k+(i-1)*ysize,1+(m-1)*usize:m*usize) = Su2(k+(i-1)*ysize,1+(m-1)*usize:m*usize) + toadd2(k,:);
             end
         end
     end
@@ -96,13 +103,6 @@ for i=2:p
 end
 
 %% Calculate QP matrices for two compressors
-% Input prediction matrices for each compressor
-Su1 = zeros(p*ysize,m*usize);
-Su2 = Su1;
-for i=1:m
-    Su1(:,(i-1)*usize+1:i*usize) = Su(:,1+2*(i-1)*usize:(2*i-1)*usize);
-    Su2(:,(i-1)*usize+1:i*usize) = Su(:,1+(2*i-1)*usize:2*i*usize);
-end
 
 % Quadratic term for each compressor
 H1 = Su1'*YWT*Su1 + UWT;

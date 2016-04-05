@@ -1,6 +1,6 @@
 % Tuning parameters for MPC controller
 
-% clear all
+clear all
 
 addpath('../call_qpoases_m')
 addpath('../call_qpoases_m/qpoases3/interfaces/matlab/')
