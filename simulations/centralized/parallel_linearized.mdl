@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.236"
+    ComputedModelVersion    "1.238"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 31 16:11:31 2016"
-  RTWModifiedTimeStamp	  381331825
-  ModelVersionFormat	  "1.%<AutoIncrement:236>"
+  LastModifiedDate	  "Tue Apr 05 16:20:32 2016"
+  RTWModifiedTimeStamp	  381773997
+  ModelVersionFormat	  "1.%<AutoIncrement:238>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -745,7 +745,7 @@ Model {
   }
   System {
     Name		    "parallel_linearized"
-    Location		    [2, 74, 1278, 963]
+    Location		    [2, 82, 1278, 971]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -890,7 +890,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [2197, 187, 2535, 437]
+      Location		      [937, 187, 1275, 437]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -923,7 +923,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Parallel plant"
-	Location		[7, 93, 1283, 982]
+	Location		[282, 173, 1235, 835]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -993,11 +993,11 @@ Model {
 	  RTWMemSecDataInternal	  "Inherit from model"
 	  RTWMemSecDataParameters "Inherit from model"
 	  Td_off		  "0.304"
-	  u_in			  "0.405"
-	  u_out			  "u_out"
+	  u_in			  "uoff1(2)"
+	  u_out			  "uoff1(3)"
 	  u_rec			  "0"
 	  t_delay		  "1"
-	  use_dist		  on
+	  use_dist		  off
 	  u_out_dist		  "0"
 	  u_out_time		  "80"
 	  u_in_dist		  "0"
@@ -1021,11 +1021,11 @@ Model {
 	  RTWMemSecDataInternal	  "Inherit from model"
 	  RTWMemSecDataParameters "Inherit from model"
 	  Td_off		  "0.304"
-	  u_in			  "0.405"
-	  u_out			  "u_out"
+	  u_in			  "uoff2(2)"
+	  u_out			  "uoff2(3)"
 	  u_rec			  "0"
 	  t_delay		  "1"
-	  use_dist		  on
+	  use_dist		  off
 	  u_out_dist		  "0"
 	  u_out_time		  "80"
 	  u_in_dist		  "-0.2"
@@ -1143,7 +1143,7 @@ Model {
 	  NamePlacement		  "alternate"
 	  ShowName		  off
 	  Time			  "20"
-	  After			  "-0.2"
+	  After			  "0"
 	  SampleTime		  "0"
 	}
 	Block {
@@ -1763,7 +1763,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1778, 118, 2128, 391]
+      Location		      [925, 118, 1275, 391]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1856,7 +1856,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1328, 522, 1666, 795]
+      Location		      [937, 522, 1275, 795]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1978,11 +1978,6 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
-	  Array {
-	    Type		    "Handle"
-	    Dimension		    0
-	    PropName		    "AvailSigsLoadSave"
-	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -2381,7 +2376,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [1365, 89, 1703, 362]
+      Location		      [937, 89, 1275, 362]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2406,7 +2401,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1777, 523, 2115, 788]
+      Location		      [937, 523, 1275, 788]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2832,8 +2827,6 @@ Stateflow {
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
     firstTarget		    13
-    debug {
-    }
     sfVersion		    71014000.00001
   }
   chart {
