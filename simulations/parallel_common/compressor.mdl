@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.64"
+    ComputedModelVersion    "1.68"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 23 14:12:42 2016"
-  RTWModifiedTimeStamp	  380643083
-  ModelVersionFormat	  "1.%<AutoIncrement:64>"
+  LastModifiedDate	  "Tue Apr 05 14:18:02 2016"
+  RTWModifiedTimeStamp	  381765350
+  ModelVersionFormat	  "1.%<AutoIncrement:68>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -781,7 +781,7 @@ Model {
   }
   System {
     Name		    "compressor"
-    Location		    [1317, 156, 2483, 679]
+    Location		    [56, 371, 1222, 894]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -795,7 +795,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    510
+    SIDHighWatermark	    512
     Block {
       BlockType		      SubSystem
       Name		      "Compressor1"
@@ -825,7 +825,7 @@ Model {
       MaskIconRotate	      "none"
       MaskPortRotate	      "default"
       MaskIconUnits	      "autoscale"
-      MaskValueString	      "0.304|0.405|u_out|0|1"
+      MaskValueString	      "0.304|u_in|u_out|0|1"
       System {
 	Name			"Compressor1"
 	Location		[2, 82, 1278, 995]
@@ -1562,7 +1562,7 @@ Model {
       MaskIconRotate	      "none"
       MaskPortRotate	      "default"
       MaskIconUnits	      "autoscale"
-      MaskValueString	      "0.304|0.405|u_out|0|1"
+      MaskValueString	      "0.304|u_in|u_out|0|1"
       System {
 	Name			"Compressor2"
 	Location		[2, 82, 1278, 995]
@@ -2351,8 +2351,9 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      YMin		      "-2.5"
-      YMax		      "0"
+      TimeRange		      "100"
+      YMin		      "-10"
+      YMax		      "15"
       SaveName		      "ScopeData1"
       DataFormat	      "StructureWithTime"
       SampleTime	      "0"
@@ -2447,7 +2448,7 @@ Model {
 	  Ports			  [1, 1]
 	  Position		  [185, 164, 340, 196]
 	  FunctionName		  "comp_rig_tank"
-	  Parameters		  "[], P_D"
+	  Parameters		  "[], P_D-0.1"
 	  EnableBusSupport	  off
 	}
 	Block {
@@ -2586,6 +2587,28 @@ Model {
       SaveFormat	      "Structure With Time"
     }
     Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace4"
+      SID		      511
+      Ports		      [1]
+      Position		      [430, 190, 490, 220]
+      VariableName	      "xout1"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace5"
+      SID		      512
+      Ports		      [1]
+      Position		      [430, 395, 490, 425]
+      VariableName	      "xout2"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
       BlockType		      Scope
       Name		      "m_out"
       SID		      272
@@ -2657,8 +2680,9 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      YMin		      "1.01"
-      YMax		      "1.075"
+      TimeRange		      "100"
+      YMin		      "0.9500000000000001"
+      YMax		      "1.25"
       SaveName		      "ScopeData3"
       DataFormat	      "StructureWithTime"
       SampleTime	      "0"
@@ -2888,14 +2912,29 @@ Model {
     Line {
       SrcBlock		      "Compressor1"
       SrcPort		      4
-      DstBlock		      "Goto"
-      DstPort		      1
+      Points		      [10, 0]
+      Branch {
+	DstBlock		"Goto"
+	DstPort			1
+      }
+      Branch {
+	DstBlock		"To Workspace4"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Compressor2"
       SrcPort		      4
-      DstBlock		      "Goto1"
-      DstPort		      1
+      Points		      [5, 0]
+      Branch {
+	DstBlock		"Goto1"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 35]
+	DstBlock		"To Workspace5"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Demux"

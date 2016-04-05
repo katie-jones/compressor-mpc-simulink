@@ -18,9 +18,8 @@ xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
 
 P_D = 1.08;
 
-% Use increased P2 to get stable system for observer design
-% x_init_lin = [0.899; 1.126; 0.15; 440; 0];
-x_init_lin = [0.98; 1.23; 0.12; 420; 0];
+% get stable system for observer design
+x_init_lin = [0.98; 1.28; 0.11; 410; 0];
 
 xinit = [x_init_lin; x_init_lin; P_D];
 
@@ -32,7 +31,7 @@ u_init = zeros(2*ucontrolsize,1);
 [A,B,C] = get_qp_matrices(xinit, u_init);
 
 % Go back to original p2 value
-x_init_lin = [0.899; 1.126; 0.15; 440; 0];
+x_init_lin = [0.916; 1.145; 0.152; 440; 0];
 xinit = [x_init_lin; x_init_lin; P_D];
 
 D = zeros(ysize);
