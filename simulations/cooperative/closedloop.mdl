@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.315"
+    ComputedModelVersion    "1.321"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Apr 05 10:06:17 2016"
-  RTWModifiedTimeStamp	  381751573
-  ModelVersionFormat	  "1.%<AutoIncrement:315>"
+  LastModifiedDate	  "Tue Apr 05 14:54:48 2016"
+  RTWModifiedTimeStamp	  381768887
+  ModelVersionFormat	  "1.%<AutoIncrement:321>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -761,7 +761,7 @@ Model {
   }
   System {
     Name		    "closedloop"
-    Location		    [2, 82, 1278, 971]
+    Location		    [2, 74, 1278, 963]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -906,7 +906,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [2156, 126, 2495, 396]
+      Location		      [1335, 93, 1674, 363]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -940,7 +940,7 @@ Model {
       System {
 	Name			"Parallel plant"
 	Location		[7, 93, 1283, 982]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1009,7 +1009,7 @@ Model {
 	  RTWMemSecDataInternal	  "Inherit from model"
 	  RTWMemSecDataParameters "Inherit from model"
 	  Td_off		  "0.304"
-	  u_in			  "0.405"
+	  u_in			  "uoff1(2)"
 	  u_out			  "u_out"
 	  u_rec			  "0"
 	  t_delay		  "1"
@@ -1037,7 +1037,7 @@ Model {
 	  RTWMemSecDataInternal	  "Inherit from model"
 	  RTWMemSecDataParameters "Inherit from model"
 	  Td_off		  "0.304"
-	  u_in			  "0.405"
+	  u_in			  "uoff2(2)"
 	  u_out			  "u_out"
 	  u_rec			  "0"
 	  t_delay		  "1"
@@ -1761,16 +1761,17 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1336, 494, 1674, 767]
+      Location		      [1729, 93, 2067, 366]
       Open		      on
       NumInputPorts	      "1"
-      ZoomMode		      "xonly"
+      ZoomMode		      "yonly"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMax		      "4.5"
+      YMin		      "-0.75"
+      YMax		      "1.5"
       SaveToWorkspace	      on
       SaveName		      "SD3"
       DataFormat	      "Array"
@@ -1811,8 +1812,8 @@ Model {
       NamePlacement	      "alternate"
       ShowName		      off
       Time		      "0"
-      Before		      "1.08"
-      After		      "1.08"
+      Before		      "1.12"
+      After		      "1.12"
       SampleTime	      "0"
     }
     Block {
@@ -1853,7 +1854,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1749, 126, 2080, 399]
+      Location		      [2151, 474, 2482, 747]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1862,8 +1863,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "0"
-      YMax		      "0.325"
+      YMin		      "-0.07"
+      YMax		      "0.11"
       SaveToWorkspace	      on
       SaveName		      "SD4"
       DataFormat	      "Array"
@@ -1940,6 +1941,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -2298,7 +2304,7 @@ Model {
 	  SID			  719
 	  Position		  [450, 675, 480, 705]
 	  ShowName		  off
-	  X0			  "zeros(m*ucontrolsize,1)"
+	  X0			  "zeros(2*ucontrolsize,1)"
 	  InheritSampleTime	  on
 	}
 	Block {
@@ -2337,6 +2343,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -2539,7 +2550,7 @@ Model {
 	  System {
 	    Name		    "QPs"
 	    Location		    [2, 82, 1261, 954]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -2659,6 +2670,11 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2680,6 +2696,11 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2701,6 +2722,11 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2722,6 +2748,11 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2743,6 +2774,11 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2764,6 +2800,11 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2785,6 +2826,11 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2806,6 +2852,11 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      From
@@ -3235,7 +3286,7 @@ Model {
 	      Ports		      [1]
 	      Position		      [1260, 599, 1290, 631]
 	      Floating		      off
-	      Location		      [938, 177, 1275, 440]
+	      Location		      [1333, 496, 1670, 759]
 	      Open		      on
 	      NumInputPorts	      "1"
 	      ZoomMode		      "yonly"
@@ -3863,7 +3914,7 @@ Model {
 	  BlockRotation		  270
 	  NamePlacement		  "alternate"
 	  ShowName		  off
-	  X0			  "zeros(m*ucontrolsize,1)"
+	  X0			  "zeros(2*ucontrolsize,1)"
 	}
 	Block {
 	  BlockType		  RateTransition
@@ -4237,7 +4288,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [1752, 493, 2090, 785]
+      Location		      [2149, 85, 2487, 377]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -4262,7 +4313,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1355, 128, 1693, 393]
+      Location		      [1741, 479, 2079, 744]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -4663,6 +4714,8 @@ Stateflow {
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
     firstTarget		    33
+    debug {
+    }
     sfVersion		    71014000.00001
   }
   chart {
@@ -4945,7 +4998,7 @@ Stateflow {
       "1+(i-1)*ysize:i*ysize,1) = yref - y;\nend\n\n% Calculate initial state\ndx0 = [zeros(xsize,1); xinit(xsize+1:xsi"
       "ze+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(4); zeros(2*dsize,1)];\n\n% Gradient"
       " vector\nf0_1 = df0'*Gc1 - Yref'*Ga1 + dx0'*Gb1;\nf0_2 = df0'*Gc2 - Yref'*Ga2 + dx0'*Gb2;\n\n\n"
-      editorLayout	      "100 M4x1[1272 5 1296 1040]"
+      editorLayout	      "100 M4x1[10 5 1296 1000]"
     }
   }
   junction {
