@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.238"
+    ComputedModelVersion    "1.243"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Apr 05 16:20:32 2016"
-  RTWModifiedTimeStamp	  381773997
-  ModelVersionFormat	  "1.%<AutoIncrement:238>"
+  LastModifiedDate	  "Tue Apr 05 16:56:33 2016"
+  RTWModifiedTimeStamp	  381775879
+  ModelVersionFormat	  "1.%<AutoIncrement:243>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -745,7 +745,7 @@ Model {
   }
   System {
     Name		    "parallel_linearized"
-    Location		    [2, 82, 1278, 971]
+    Location		    [2, 74, 1278, 963]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -890,7 +890,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [937, 187, 1275, 437]
+      Location		      [1320, 115, 1658, 365]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -899,8 +899,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "120"
-      YMin		      "1.045"
-      YMax		      "1.095"
+      YMin		      "1.1"
+      YMax		      "1.5"
       SaveToWorkspace	      on
       SaveName		      "SD1"
       DataFormat	      "Array"
@@ -1132,7 +1132,7 @@ Model {
 	  NamePlacement		  "alternate"
 	  ShowName		  off
 	  Time			  "80"
-	  After			  "0"
+	  After			  "-0.1"
 	  SampleTime		  "0"
 	}
 	Block {
@@ -1143,7 +1143,7 @@ Model {
 	  NamePlacement		  "alternate"
 	  ShowName		  off
 	  Time			  "20"
-	  After			  "0"
+	  After			  "-0.2"
 	  SampleTime		  "0"
 	}
 	Block {
@@ -1763,7 +1763,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [925, 118, 1275, 391]
+      Location		      [1723, 113, 2073, 386]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1772,8 +1772,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "120"
-      YMin		      "-7"
-      YMax		      "0.5"
+      YMin		      "-1.75"
+      YMax		      "1"
       SaveToWorkspace	      on
       SaveName		      "SD3"
       DataFormat	      "Array"
@@ -1814,8 +1814,8 @@ Model {
       NamePlacement	      "alternate"
       ShowName		      off
       Time		      "0"
-      Before		      "1.08"
-      After		      "1.08"
+      Before		      "1.12"
+      After		      "1.12"
       SampleTime	      "0"
     }
     Block {
@@ -1856,7 +1856,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 522, 1275, 795]
+      Location		      [2160, 522, 2498, 795]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1865,8 +1865,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "120"
-      YMin		      "-0.25"
-      YMax		      "0.35"
+      YMin		      "-0.025"
+      YMax		      "0.325"
       SaveToWorkspace	      on
       SaveName		      "SD4"
       DataFormat	      "Array"
@@ -1978,6 +1978,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -2376,7 +2381,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [937, 89, 1275, 362]
+      Location		      [2163, 121, 2501, 394]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2385,8 +2390,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "120"
-      YMin		      "-0.025"
-      YMax		      "0.0125"
+      YMin		      "0.018"
+      YMax		      "0.0192"
       SaveToWorkspace	      on
       SaveName		      "SD2"
       DataFormat	      "Array"
@@ -2401,7 +2406,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 523, 1275, 788]
+      Location		      [1735, 525, 2073, 790]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2410,8 +2415,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "120"
-      YMin		      "0"
-      YMax		      "0.1"
+      YMin		      "-0.005"
+      YMax		      "0.055"
       SaveToWorkspace	      on
       SaveName		      "SD5"
       DataFormat	      "Array"
@@ -2827,6 +2832,8 @@ Stateflow {
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
     firstTarget		    13
+    debug {
+    }
     sfVersion		    71014000.00001
   }
   chart {
