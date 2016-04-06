@@ -1,1 +1,3 @@
-description of disturbance applied to system
+Output disturbance
+UD: -0.2 @ 20s
+UD: -0.2 @ 80s
