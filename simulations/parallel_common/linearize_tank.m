@@ -58,15 +58,15 @@ B = [B1, zeros(xsize,2);
     zeros(1,2*2)];
 
 % Outputs: SD1, SD2, p21-p22, pd
-C = [C1(2,:), zeros(1,xsize), 0;
-    zeros(1,xsize), C2(2,:), 0;
-    C1(1,:), -C2(1,:), 0;
-    zeros(1,2*xsize), 1];
+% C = [C1(2,:), zeros(1,xsize), 0;
+%     zeros(1,xsize), C2(2,:), 0;
+%     C1(1,:), -C2(1,:), 0;
+%     zeros(1,2*xsize), 1];
 
 % Outputs: p21,p22,SD1,SD2
-% C = [C1, zeros(ysize,xsize), zeros(ysize,1);
-%     zeros(ysize,xsize), C2, zeros(ysize,1);
-%     zeros(1,2*xsize), 1];
+C = [C1, zeros(ysize,xsize), zeros(ysize,1);
+    zeros(ysize,xsize), C2, zeros(ysize,1);
+    zeros(1,2*xsize), 1];
 
 
 
