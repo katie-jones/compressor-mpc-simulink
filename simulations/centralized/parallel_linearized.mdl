@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.244"
+    ComputedModelVersion    "1.245"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,11 +23,11 @@ Model {
   Creator		  "chkajon"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "chkajon"
+  LastModifiedBy	  "katie"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Apr 06 10:42:21 2016"
-  RTWModifiedTimeStamp	  381840132
-  ModelVersionFormat	  "1.%<AutoIncrement:244>"
+  LastModifiedDate	  "Wed Apr  6 11:46:22 2016"
+  RTWModifiedTimeStamp	  381843974
+  ModelVersionFormat	  "1.%<AutoIncrement:245>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "240"
+	  StopTime		  "300"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -535,7 +535,7 @@ Model {
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition    " [ 200, 197, 1080, 827 ] "
+      ConfigPrmDlgPosition    " [ 198, 176, 1082, 829 ] "
     }
     PropName		    "ConfigurationSets"
   }
@@ -745,7 +745,7 @@ Model {
   }
   System {
     Name		    "parallel_linearized"
-    Location		    [2, 82, 1278, 971]
+    Location		    [2, 82, 1278, 955]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -923,8 +923,8 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"Parallel plant"
-	Location		[282, 173, 1235, 835]
-	Open			on
+	Location		[100, 27, 1000, 711]
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -997,11 +997,11 @@ Model {
 	  u_out			  "uoff1(3)"
 	  u_rec			  "0"
 	  t_delay		  "1"
-	  use_dist		  on
+	  use_dist		  off
 	  u_out_dist		  "0"
-	  u_out_time		  "0"
-	  u_in_dist		  "[-0.1 -0.1]"
-	  u_in_time		  "[20 80]"
+	  u_out_time		  "80"
+	  u_in_dist		  "0"
+	  u_in_time		  "20"
 	}
 	Block {
 	  BlockType		  Reference
@@ -1025,11 +1025,11 @@ Model {
 	  u_out			  "uoff2(3)"
 	  u_rec			  "0"
 	  t_delay		  "1"
-	  use_dist		  on
+	  use_dist		  off
 	  u_out_dist		  "0"
-	  u_out_time		  "0"
-	  u_in_dist		  "[-0.1 -0.1]"
-	  u_in_time		  "[20 80]"
+	  u_out_time		  "80"
+	  u_in_dist		  "-0.2"
+	  u_in_time		  "20"
 	}
 	Block {
 	  BlockType		  From
@@ -1132,7 +1132,7 @@ Model {
 	  NamePlacement		  "alternate"
 	  ShowName		  off
 	  Time			  "80"
-	  After			  "0"
+	  After			  "-0.2"
 	  SampleTime		  "0"
 	}
 	Block {
@@ -1143,7 +1143,7 @@ Model {
 	  NamePlacement		  "alternate"
 	  ShowName		  off
 	  Time			  "20"
-	  After			  "0"
+	  After			  "-0.2"
 	  SampleTime		  "0"
 	}
 	Block {
@@ -1978,6 +1978,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -2815,7 +2820,7 @@ Model {
 }
 # Finite State Machines
 #
-#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 10:24:20
+#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 00:35:51
 #
 #
 
