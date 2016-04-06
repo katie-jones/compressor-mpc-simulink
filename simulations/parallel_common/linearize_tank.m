@@ -34,9 +34,9 @@ Att = -SpeedSound * SpeedSound / VolumeT * 1e-5 * (1/2*100/sqrt(abs(pd*100-Out_p
 
 %% Interaction between compressors and discharge tanks
 
-Ac1t = get_Act(x1,udt,pd,SpeedSound,VolumeT,D2_t);
+Ac1t = get_Act(x1,udt,pd,SpeedSound,VolumeT,D2);
 
-Ac2t = get_Act(x2,udt,pd,SpeedSound,VolumeT,D2_t);
+Ac2t = get_Act(x2,udt,pd,SpeedSound,VolumeT,D2);
 
 Atc1 = get_Atc(x1,ud1,pd,SpeedSound,V2,D2);
 
