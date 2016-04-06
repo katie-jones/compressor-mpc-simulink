@@ -21,14 +21,14 @@ P_D = 1.12;
 % get stable system for observer design
 x_init_lin = [0.98; 1.4; 0.11; 400; 0];
 
-xinit = [x_init_lin; x_init_lin; P_D];
+xinit = [x_init_lin; x_init_lin; P_D; zeros(xtotalsize-xsize,1)];
 
 u_out = uoff1(3);
 u_d = ud;
 
 u_init = zeros(2*ucontrolsize,1);
 
-[A,B,C] = get_qp_matrices(xinit, u_init);
+[A,B,C] = get_qp_matrices(xinit, u_init, zeros(ysize,1));
 
 % Go back to original p2 value
 x_init_lin = [0.916; 1.145; 0.152; 440; 0];
