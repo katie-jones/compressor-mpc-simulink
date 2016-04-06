@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.68"
+    ComputedModelVersion    "1.69"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Apr 05 14:18:02 2016"
-  RTWModifiedTimeStamp	  381765350
-  ModelVersionFormat	  "1.%<AutoIncrement:68>"
+  LastModifiedDate	  "Wed Apr 06 13:28:34 2016"
+  RTWModifiedTimeStamp	  381850111
+  ModelVersionFormat	  "1.%<AutoIncrement:69>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -825,7 +825,7 @@ Model {
       MaskIconRotate	      "none"
       MaskPortRotate	      "default"
       MaskIconUnits	      "autoscale"
-      MaskValueString	      "0.304|u_in|u_out|0|1"
+      MaskValueString	      "0.304|uoff1(2)|uoff1(3)|0|1"
       System {
 	Name			"Compressor1"
 	Location		[2, 82, 1278, 995]
@@ -1562,7 +1562,7 @@ Model {
       MaskIconRotate	      "none"
       MaskPortRotate	      "default"
       MaskIconUnits	      "autoscale"
-      MaskValueString	      "0.304|u_in|u_out|0|1"
+      MaskValueString	      "0.304|uoff2(2)|uoff2(3)|0|1"
       System {
 	Name			"Compressor2"
 	Location		[2, 82, 1278, 995]
