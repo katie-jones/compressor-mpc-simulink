@@ -128,7 +128,7 @@ Gd1 = Su2'*YWT*Su1; % u_other cross term
 Ga2 = YWT*Su2;
 Gb2 = Sx'*YWT*Su2;
 Gc2 = Sf'*YWT*Su2;
-Gd2 = Su1'*YWT*Su1;
+Gd2 = Su1'*YWT*Su2;
 
 % Gradient vector
 f0_1 = dx'*Gc1 - Yref'*Ga1 + deltax0'*Gb1;
