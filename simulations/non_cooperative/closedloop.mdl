@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.326"
+    ComputedModelVersion    "1.334"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Apr 06 13:25:31 2016"
-  RTWModifiedTimeStamp	  381849929
-  ModelVersionFormat	  "1.%<AutoIncrement:326>"
+  LastModifiedDate	  "Wed Apr 06 14:06:19 2016"
+  RTWModifiedTimeStamp	  381852122
+  ModelVersionFormat	  "1.%<AutoIncrement:334>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -906,7 +906,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [934, 93, 1273, 363]
+      Location		      [2182, 124, 2521, 394]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1002,7 +1002,7 @@ Model {
 	  SourceType		  "Compressor"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -1013,7 +1013,7 @@ Model {
 	  u_out			  "u_out"
 	  u_rec			  "0"
 	  t_delay		  "1"
-	  use_dist		  "off"
+	  use_dist		  off
 	  u_out_dist		  "0"
 	  u_out_time		  "80"
 	  u_in_dist		  "-0.1"
@@ -1030,7 +1030,7 @@ Model {
 	  SourceType		  "Compressor"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -1041,7 +1041,7 @@ Model {
 	  u_out			  "u_out"
 	  u_rec			  "0"
 	  t_delay		  "1"
-	  use_dist		  "off"
+	  use_dist		  off
 	  u_out_dist		  "0"
 	  u_out_time		  "80"
 	  u_in_dist		  "-0.1"
@@ -1421,7 +1421,7 @@ Model {
 	  SourceType		  "Signal From Workspace"
 	  ShowPortLabels	  "FromPortIcon"
 	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData "off"
+	  FunctionWithSeparateData off
 	  RTWMemSecFuncInitTerm	  "Inherit from model"
 	  RTWMemSecFuncExecute	  "Inherit from model"
 	  RTWMemSecDataConstants  "Inherit from model"
@@ -1431,7 +1431,7 @@ Model {
 	  Ts			  "Ts"
 	  nsamps		  "1"
 	  OutputAfterFinalValue	  "Holding final value"
-	  ignoreOrWarnInputAndFrameLengths "off"
+	  ignoreOrWarnInputAndFrameLengths off
 	}
 	Block {
 	  BlockType		  Outport
@@ -1761,8 +1761,8 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1790, 177, 2128, 450]
-      Open		      off
+      Location		      [1748, 142, 2086, 415]
+      Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
       List {
@@ -1770,8 +1770,7 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "0.16"
-      YMax		      "0.32"
+      YMin		      "-4"
       SaveToWorkspace	      on
       SaveName		      "SD3"
       DataFormat	      "Array"
@@ -1854,7 +1853,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [942, 474, 1273, 747]
+      Location		      [1313, 578, 1644, 851]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1896,7 +1895,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[10, 82, 1270, 955]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1941,6 +1940,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -2338,6 +2342,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -2540,7 +2549,7 @@ Model {
 	  System {
 	    Name		    "QPs"
 	    Location		    [10, 82, 1253, 938]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -2660,6 +2669,11 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2681,6 +2695,11 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2702,6 +2721,11 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2723,6 +2747,11 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2744,6 +2773,11 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2765,6 +2799,11 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2786,6 +2825,11 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2807,6 +2851,11 @@ Model {
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      From
@@ -3236,7 +3285,7 @@ Model {
 	      Ports		      [1]
 	      Position		      [1260, 599, 1290, 631]
 	      Floating		      off
-	      Location		      [936, 496, 1273, 759]
+	      Location		      [2195, 561, 2532, 824]
 	      Open		      on
 	      NumInputPorts	      "1"
 	      ZoomMode		      "yonly"
@@ -4238,7 +4287,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [935, 85, 1273, 377]
+      Location		      [1316, 132, 1654, 424]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -4263,7 +4312,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [935, 479, 1273, 744]
+      Location		      [1781, 580, 2119, 845]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -4936,12 +4985,13 @@ Stateflow {
       script		      "function [H1, f0_1, Gd1, H2, f0_2, Gd2, xout, A, B, df0, dxaug]  = fcn(yin, upast, dxaug_in)\n%#e"
       "ml\n% persistent C_new M LB UB Ga Gb Gc H Ain b A B upast xinit\npersistent M xinit y_old C \neml.extrinsic('dis"
       "p');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\neml.e"
-      "xtrinsic('quadprog');\n\n\n\n[~, ~, xsize, ~, ysize] = const_sim();\n[n_delay,dsize,~,p] = const_mpc();\n\nif is"
-      "empty(M)\n    tic\n    [C,M,~,~,~,~,xinit] = get_constant_matrices();\n    y_old = zeros(ysize,1);\n    time = t"
-      "oc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\n\ny = yin(1:ysize);\nyref = yin(ysize+1:end);\n\n% "
-      "Estimate state info\ndxaug = dxaug_in + M*(y - y_old - C*(dxaug_in));\n\n% Use state input info to calculate x, "
-      "y\nxinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\n\nxout = xinit;\n\n"
-      "% get matrices\n[A,B,C,df0,H1,H2,f0_1,f0_2,Gd1,Gd2] = get_qp_matrices(xinit,upast,yref-y);\n\n\n"
+      "xtrinsic('quadprog');\n\n\n\n[~, ~, xsize, ~, ysize] = const_sim();\n\nif isempty(M)\n    tic\n    [C,M,~,~,~,~,"
+      "xinit] = get_constant_matrices();\n    y_old = zeros(ysize,1);\n    time = toc;\n    disp(['Preparation time: ' "
+      "num2str(time)]);\nend\n\n\ny = yin(1:ysize);\nyref = yin(ysize+1:end);\n\ny1 = yin([1,3,4]);\ny2 = yin([2,3,4]);"
+      "\n\nyref1 = yref([1,3,4]);\nyref2 = yref([2,3,4]);\n\n% Estimate state info\ndxaug = dxaug_in + M*(y - y_old - C"
+      "*(dxaug_in));\n\n% Use state input info to calculate x, y\nxinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxini"
+      "t(xsize+1:end) = dxaug(xsize+1:end);\n\nxout = xinit;\n\n% get matrices\n[A,B,C,df0,H1,H2,f0_1,f0_2,Gd1,Gd2] = g"
+      "et_qp_matrices(xinit,upast,[yref1;yref2]-[y1;y2]);\n\n\n"
       editorLayout	      "100 M4x1[10 5 1296 1000]"
     }
   }

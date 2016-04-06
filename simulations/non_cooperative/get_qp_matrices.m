@@ -46,6 +46,11 @@ B = [Binit(:,1), zeros(xsize,1), Binit(:,usize+1), zeros(xsize,1);
 Cdist = eye(ysize,2*dsize);
 C = [Cinit(1:ysize,:), zeros(ysize,2*sum(n_delay)), Cdist];
 
+C1 = C([1,3,4],:);
+C2 = C([2,3,4],:);
+
+y_comp_size = size(C1,1);
+
 % derivative at linearization point
 dx = [dx2; zeros(2*sum(n_delay)+2*dsize,1)];
 
@@ -57,13 +62,16 @@ dx = [dx2; zeros(2*sum(n_delay)+2*dsize,1)];
 xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
 
 % Pre-compute multiples of C*A^(i-1)
-CxA = zeros(ysize,xtotalsize,p+1);
-CxA(:,:,1) = C;
+CxA1 = zeros(y_comp_size,xtotalsize,p+1);
+CxA2 = zeros(y_comp_size,xtotalsize,p+1);
+CxA1(:,:,1) = C1;
+CxA2(:,:,1) = C2;
 for i=2:p+1
-    CxA(:,:,i) = CxA(:,:,i-1)*A;
+    CxA1(:,:,i) = CxA1(:,:,i-1)*A;
+    CxA2(:,:,i) = CxA2(:,:,i-1)*A;
 end
 
-Su1 = zeros(ysize*p,usize*m);
+Su1 = zeros(y_comp_size*p,usize*m);
 Su2 = Su1;
 
 B1 = B(:,1:usize);
@@ -73,35 +81,40 @@ for i=1:p
     for j=1:i
         % for first m inputs, make new columns
         if j<=m
-            Su1(1+(i-1)*ysize:i*ysize,1+(j-1)*usize:j*usize) = CxA(:,:,i-j+1)*B1;
-            Su2(1+(i-1)*ysize:i*ysize,1+(j-1)*usize:j*usize) = CxA(:,:,i-j+1)*B2;
+            Su1(1+(i-1)*y_comp_size:i*y_comp_size,1+(j-1)*usize:j*usize) = CxA1(:,:,i-j+1)*B1;
+            Su2(1+(i-1)*y_comp_size:i*y_comp_size,1+(j-1)*usize:j*usize) = CxA2(:,:,i-j+1)*B2;
             
         % m+1:p inputs are the same as input m
         else
-            toadd1 = CxA(:,:,i-j+1)*B1;
-            toadd2 = CxA(:,:,i-j+1)*B2;
-            for k=1:ysize
-                Su1(k+(i-1)*ysize,1+(m-1)*usize:m*usize) = Su1(k+(i-1)*ysize,1+(m-1)*usize:m*usize) + toadd1(k,:);
-                Su2(k+(i-1)*ysize,1+(m-1)*usize:m*usize) = Su2(k+(i-1)*ysize,1+(m-1)*usize:m*usize) + toadd2(k,:);
+            toadd1 = CxA1(:,:,i-j+1)*B1;
+            toadd2 = CxA2(:,:,i-j+1)*B2;
+            for k=1:y_comp_size
+                Su1(k+(i-1)*y_comp_size,1+(m-1)*usize:m*usize) = Su1(k+(i-1)*y_comp_size,1+(m-1)*usize:m*usize) + toadd1(k,:);
+                Su2(k+(i-1)*y_comp_size,1+(m-1)*usize:m*usize) = Su2(k+(i-1)*y_comp_size,1+(m-1)*usize:m*usize) + toadd2(k,:);
             end
         end
     end
 end
 
 
-Sx = zeros(ysize*p,xtotalsize);
-Sf = Sx;
+Sx1 = zeros(y_comp_size*p,xtotalsize);
+Sf1 = Sx1;
+Sx2 = Sx1;
+Sf2 = Sx1;
 for i=1:p
-    for j=1:ysize
-        Sx(j+(i-1)*ysize,:) = CxA(j,:,i+1);
+    for j=1:y_comp_size
+        Sx1(j+(i-1)*y_comp_size,:) = CxA1(j,:,i+1);
+        Sx2(j+(i-1)*y_comp_size,:) = CxA2(j,:,i+1);
     end
 end
 
 
-Sf(1:ysize,:) = C;
+Sf1(1:y_comp_size,:) = C1;
+Sf2(1:y_comp_size,:) = C2;
 for i=2:p
-    for j=1:ysize
-        Sf(j+(i-1)*ysize,:) = Sf(j+(i-2)*ysize,:) + CxA(j,:,i);
+    for j=1:y_comp_size
+        Sf1(j+(i-1)*y_comp_size,:) = Sf1(j+(i-2)*y_comp_size,:) + CxA1(j,:,i);
+        Sf2(j+(i-1)*y_comp_size,:) = Sf2(j+(i-2)*y_comp_size,:) + CxA2(j,:,i);
     end
 end
 
@@ -110,9 +123,11 @@ end
 deltax0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(usize+2); zeros(2*dsize,1)];
 
 % reference vector
-Yref = zeros(p*ysize,1);
+Yref1 = zeros(p*y_comp_size,1);
+Yref2 = Yref1;
 for i=1:p
-    Yref(1+(i-1)*ysize:i*ysize,1) = dyref;
+    Yref1(1+(i-1)*y_comp_size:i*y_comp_size,1) = dyref(1:y_comp_size);
+    Yref2(1+(i-1)*y_comp_size:i*y_comp_size,1) = dyref(y_comp_size+1:end);
 end
 
 % Quadratic term for each compressor
@@ -121,18 +136,18 @@ H2 = Su2'*YWT*Su2 + UWT;
 
 % Cross terms
 Ga1 = YWT*Su1; % yref cross term
-Gb1 = Sx'*YWT*Su1; % deltax0 cross term
-Gc1 = Sf'*YWT*Su1; % dx (derivative at lin. pt.) cross term
+Gb1 = Sx1'*YWT*Su1; % deltax0 cross term
+Gc1 = Sf1'*YWT*Su1; % dx (derivative at lin. pt.) cross term
 Gd1 = Su2'*YWT*Su1; % u_other cross term
 
 Ga2 = YWT*Su2;
-Gb2 = Sx'*YWT*Su2;
-Gc2 = Sf'*YWT*Su2;
-Gd2 = Su1'*YWT*Su1;
+Gb2 = Sx2'*YWT*Su2;
+Gc2 = Sf2'*YWT*Su2;
+Gd2 = Su1'*YWT*Su2;
 
 % Gradient vector
-f0_1 = dx'*Gc1 - Yref'*Ga1 + deltax0'*Gb1;
-f0_2 = dx'*Gc2 - Yref'*Ga2 + deltax0'*Gb2;
+f0_1 = dx'*Gc1 - Yref1'*Ga1 + deltax0'*Gb1;
+f0_2 = dx'*Gc2 - Yref1'*Ga2 + deltax0'*Gb2;
 
 
 end
