@@ -7,6 +7,7 @@ Model {
     NumRootOutports	    0
     ParameterArgumentNames  ""
     ComputedModelVersion    "1.349"
+    ComputedModelVersion    "1.336"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -28,6 +29,9 @@ Model {
   LastModifiedDate	  "Thu Apr 07 15:10:50 2016"
   RTWModifiedTimeStamp	  381942648
   ModelVersionFormat	  "1.%<AutoIncrement:349>"
+  LastModifiedDate	  "Thu Apr 07 09:50:25 2016"
+  RTWModifiedTimeStamp	  381923422
+  ModelVersionFormat	  "1.%<AutoIncrement:336>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -906,7 +910,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [2144, 118, 2483, 388]
+      Location		      [2207, 120, 2546, 390]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -977,7 +981,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1803, 211, 2141, 484]
+      Location		      [1783, 121, 2121, 394]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -3530,7 +3534,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1361, 578, 1699, 843]
+      Location		      [1343, 527, 1681, 792]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"

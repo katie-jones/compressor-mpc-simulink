@@ -23,7 +23,7 @@ Model {
   Creator		  "chkajon"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "chkajon"
+  LastModifiedBy	  "katie"
   ModifiedDateFormat	  "%<Auto>"
   LastModifiedDate	  "Thu Apr 07 15:21:41 2016"
   RTWModifiedTimeStamp	  381943295
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "240"
+	  StopTime		  "300"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -535,7 +535,7 @@ Model {
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition    " [ 200, 197, 1080, 827 ] "
+      ConfigPrmDlgPosition    " [ 198, 176, 1082, 829 ] "
     }
     PropName		    "ConfigurationSets"
   }
@@ -2000,7 +2000,7 @@ Model {
 }
 # Finite State Machines
 #
-#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 10:24:20
+#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 00:35:51
 #
 #
 
