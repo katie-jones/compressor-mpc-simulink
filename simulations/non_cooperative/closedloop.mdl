@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.322"
+    ComputedModelVersion    "1.334"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Apr 05 15:57:03 2016"
-  RTWModifiedTimeStamp	  381768887
-  ModelVersionFormat	  "1.%<AutoIncrement:322>"
+  LastModifiedDate	  "Wed Apr 06 14:06:19 2016"
+  RTWModifiedTimeStamp	  381852122
+  ModelVersionFormat	  "1.%<AutoIncrement:334>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -761,7 +761,7 @@ Model {
   }
   System {
     Name		    "closedloop"
-    Location		    [2, 82, 1278, 971]
+    Location		    [10, 82, 1270, 938]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -906,7 +906,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [936, 93, 1275, 363]
+      Location		      [2182, 124, 2521, 394]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1761,8 +1761,8 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1790, 177, 2128, 450]
-      Open		      off
+      Location		      [1748, 142, 2086, 415]
+      Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
       List {
@@ -1770,8 +1770,7 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "0.16"
-      YMax		      "0.32"
+      YMin		      "-4"
       SaveToWorkspace	      on
       SaveName		      "SD3"
       DataFormat	      "Array"
@@ -1854,7 +1853,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [944, 474, 1275, 747]
+      Location		      [1313, 578, 1644, 851]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1895,7 +1894,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"controller"
-	Location		[2, 82, 1278, 971]
+	Location		[10, 82, 1270, 955]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2549,8 +2548,8 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "QPs"
-	    Location		    [2, 82, 1261, 954]
-	    Open		    on
+	    Location		    [10, 82, 1253, 938]
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -3286,7 +3285,7 @@ Model {
 	      Ports		      [1]
 	      Position		      [1260, 599, 1290, 631]
 	      Floating		      off
-	      Location		      [938, 496, 1275, 759]
+	      Location		      [2195, 561, 2532, 824]
 	      Open		      on
 	      NumInputPorts	      "1"
 	      ZoomMode		      "yonly"
@@ -4288,7 +4287,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [937, 85, 1275, 377]
+      Location		      [1316, 132, 1654, 424]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -4313,7 +4312,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 479, 1275, 744]
+      Location		      [1781, 580, 2119, 845]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -4986,16 +4985,13 @@ Stateflow {
       script		      "function [H1, f0_1, Gd1, H2, f0_2, Gd2, xout, A, B, df0, dxaug]  = fcn(yin, upast, dxaug_in)\n%#e"
       "ml\n% persistent C_new M LB UB Ga Gb Gc H Ain b A B upast xinit\npersistent M xinit y_old C \neml.extrinsic('dis"
       "p');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\neml.e"
-      "xtrinsic('quadprog');\n\n\n\n[~, ~, xsize, ~, ysize] = const_sim();\n[n_delay,dsize,~,p] = const_mpc();\n\nif is"
-      "empty(M)\n    tic\n    [C,M,~,~,~,~,xinit] = get_constant_matrices();\n    y_old = zeros(ysize,1);\n    time = t"
-      "oc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\n\ny = yin(1:ysize);\nyref = yin(ysize+1:end);\n\n% "
-      "Estimate state info\ndxaug = dxaug_in + M*(y - y_old - C*(dxaug_in));\n\n% Use state input info to calculate x, "
-      "y\nxinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\n\nxout = xinit;\n\n"
-      "% Get matrices - linearize about delayed rec.open input\n[A,B,C,H1,H2,Ga1,Ga2,Gb1,Gb2,Gc1,Gc2,df0,~,Gd1,Gd2] = g"
-      "et_qp_matrices(xinit,upast);\n\n% Get reference and input vector\nYref = zeros(p*ysize,1);\nfor i=1:p\n    Yref("
-      "1+(i-1)*ysize:i*ysize,1) = yref - y;\nend\n\n% Calculate initial state\ndx0 = [zeros(xsize,1); xinit(xsize+1:xsi"
-      "ze+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(4); zeros(2*dsize,1)];\n\n% Gradient"
-      " vector\nf0_1 = df0'*Gc1 - Yref'*Ga1 + dx0'*Gb1;\nf0_2 = df0'*Gc2 - Yref'*Ga2 + dx0'*Gb2;\n\n\n"
+      "xtrinsic('quadprog');\n\n\n\n[~, ~, xsize, ~, ysize] = const_sim();\n\nif isempty(M)\n    tic\n    [C,M,~,~,~,~,"
+      "xinit] = get_constant_matrices();\n    y_old = zeros(ysize,1);\n    time = toc;\n    disp(['Preparation time: ' "
+      "num2str(time)]);\nend\n\n\ny = yin(1:ysize);\nyref = yin(ysize+1:end);\n\ny1 = yin([1,3,4]);\ny2 = yin([2,3,4]);"
+      "\n\nyref1 = yref([1,3,4]);\nyref2 = yref([2,3,4]);\n\n% Estimate state info\ndxaug = dxaug_in + M*(y - y_old - C"
+      "*(dxaug_in));\n\n% Use state input info to calculate x, y\nxinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxini"
+      "t(xsize+1:end) = dxaug(xsize+1:end);\n\nxout = xinit;\n\n% get matrices\n[A,B,C,df0,H1,H2,f0_1,f0_2,Gd1,Gd2] = g"
+      "et_qp_matrices(xinit,upast,[yref1;yref2]-[y1;y2]);\n\n\n"
       editorLayout	      "100 M4x1[10 5 1296 1000]"
     }
   }

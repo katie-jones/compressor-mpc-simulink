@@ -41,7 +41,7 @@ for i=2:length(t)
     
     yout(:,i) = C*dxaug(:,i) + yout(:,i-1);
 
-    [A,B,C,H1,H2,Ga1,Ga2,Gb1,Gb2,Gc1,Gc2,fd,Sx,Gd1,Gd2,Sf,Su1,Su2] = get_qp_matrices(xaug(:,i),u(:,i-1));
+    [A,B,C,fd] = get_qp_matrices(xaug(:,i),u(:,i-1),zeros(4,1));
     
     xlin = dxaug(:,i);
     xlin(xsize+1) = u(2,i-1);

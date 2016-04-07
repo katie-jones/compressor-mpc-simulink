@@ -34,9 +34,9 @@ Att = -SpeedSound * SpeedSound / VolumeT * 1e-5 * (1/2*100/sqrt(abs(pd*100-Out_p
 
 %% Interaction between compressors and discharge tanks
 
-Ac1t = get_Act(x1,udt,pd,SpeedSound,VolumeT,D2_t);
+Ac1t = get_Act(x1,udt,pd,SpeedSound,VolumeT,D2);
 
-Ac2t = get_Act(x2,udt,pd,SpeedSound,VolumeT,D2_t);
+Ac2t = get_Act(x2,udt,pd,SpeedSound,VolumeT,D2);
 
 Atc1 = get_Atc(x1,ud1,pd,SpeedSound,V2,D2);
 
@@ -58,15 +58,15 @@ B = [B1, zeros(xsize,2);
     zeros(1,2*2)];
 
 % Outputs: SD1, SD2, p21-p22, pd
-C = [C1(2,:), zeros(1,xsize), 0;
-    zeros(1,xsize), C2(2,:), 0;
-    C1(1,:), -C2(1,:), 0;
-    zeros(1,2*xsize), 1];
+% C = [C1(2,:), zeros(1,xsize), 0;
+%     zeros(1,xsize), C2(2,:), 0;
+%     C1(1,:), -C2(1,:), 0;
+%     zeros(1,2*xsize), 1];
 
 % Outputs: p21,p22,SD1,SD2
-% C = [C1, zeros(ysize,xsize), zeros(ysize,1);
-%     zeros(ysize,xsize), C2, zeros(ysize,1);
-%     zeros(1,2*xsize), 1];
+C = [C1, zeros(ysize,xsize), zeros(ysize,1);
+    zeros(ysize,xsize), C2, zeros(ysize,1);
+    zeros(1,2*xsize), 1];
 
 
 

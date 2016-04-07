@@ -27,7 +27,9 @@ f2 = get_comp_deriv(x_init_lin,[u(usize+1:2*usize);P_D],1);
 ftank = get_tank_deriv(x,u);
 
 % linearize system
-[Ac,Bc,Cc] = linearize_tank(x, u);
+[Ac,Bc,Ccorig] = linearize_tank(x, u);
+
+Cc = [Ccorig([2,4],:); Ccorig(1,:)-Ccorig(3,:); Ccorig(5,:)];
 
 % disturbances
 delta_x = ones(N,1)*[repmat([0.01, 0.01, 0.05, 10, 0.05],1,2),0.02];

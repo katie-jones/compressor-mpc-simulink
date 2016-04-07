@@ -1,5 +1,6 @@
-function [A,B,C,H1,H2,Ga1,Ga2,Gb1,Gb2,Gc1,Gc2,dx,Sx,Gd1,Gd2,Sf,Su1,Su2] = get_qp_matrices(xinit,upast)
+function [A,B,C,dx,H1,H2,f0_1,f0_2,Gd1,Gd2] = get_qp_matrices(xinit,upast,dyref)
 
+%% Constants
 [Ts,xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
 [n_delay,dsize,usize,p,m,UWT,YWT] = const_mpc();
 
@@ -15,7 +16,10 @@ u2(end) = pd;
 
 u = [u1; u2; ud];
 
-[Ac,Bc,Cc] = linearize_tank(xinit,u);
+%% Linearization
+
+[Ac,Bc,Ccorig] = linearize_tank(xinit, u);
+Cc = [Ccorig([2,4],:); Ccorig(1,:)-Ccorig(3,:); Ccorig(5,:)];
 
 f1 = get_comp_deriv(x1,u1,0);
 f2 = get_comp_deriv(x2,u2,0);
@@ -43,6 +47,7 @@ B = [Binit(:,1), zeros(xsize,1), Binit(:,usize+1), zeros(xsize,1);
 Cdist = eye(ysize,2*dsize);
 C = [Cinit(1:ysize,:), zeros(ysize,2*sum(n_delay)), Cdist];
 
+% derivative at linearization point
 dx = [dx2; zeros(2*sum(n_delay)+2*dsize,1)];
 
 
@@ -50,16 +55,15 @@ dx = [dx2; zeros(2*sum(n_delay)+2*dsize,1)];
 %% Define system matrices
 
 % Y = Su*U + Sx*X
-xsize = xsize + 2*sum(n_delay) + 2*dsize;
+xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
 
 % Pre-compute multiples of C*A^(i-1)
-CxA = zeros(ysize,xsize,p+1);
+CxA = zeros(ysize,xtotalsize,p+1);
 CxA(:,:,1) = C;
 for i=2:p+1
     CxA(:,:,i) = CxA(:,:,i-1)*A;
 end
 
-Su = zeros(ysize*p,2*usize*m);
 Su1 = zeros(ysize*p,usize*m);
 Su2 = Su1;
 
@@ -86,7 +90,7 @@ for i=1:p
 end
 
 
-Sx = zeros(ysize*p,xsize);
+Sx = zeros(ysize*p,xtotalsize);
 Sf = Sx;
 for i=1:p
     for j=1:ysize
@@ -103,21 +107,33 @@ for i=2:p
 end
 
 %% Calculate QP matrices for two compressors
+% deltax0 (augmented)
+deltax0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(usize+2); zeros(2*dsize,1)];
+
+% reference vector
+Yref = zeros(p*ysize,1);
+for i=1:p
+    Yref(1+(i-1)*ysize:i*ysize,1) = dyref;
+end
 
 % Quadratic term for each compressor
 H1 = Su1'*YWT*Su1 + UWT;
 H2 = Su2'*YWT*Su2 + UWT;
 
-
-Ga1 = YWT*Su1;
-Gb1 = Sx'*YWT*Su1;
-Gc1 = Sf'*YWT*Su1;
-Gd1 = Su2'*YWT*Su1;
+% Cross terms
+Ga1 = YWT*Su1; % yref cross term
+Gb1 = Sx'*YWT*Su1; % deltax0 cross term
+Gc1 = Sf'*YWT*Su1; % dx (derivative at lin. pt.) cross term
+Gd1 = Su2'*YWT*Su1; % u_other cross term
 
 Ga2 = YWT*Su2;
 Gb2 = Sx'*YWT*Su2;
 Gc2 = Sf'*YWT*Su2;
-Gd2 = Su1'*YWT*Su1;
+Gd2 = Su1'*YWT*Su2;
+
+% Gradient vector
+f0_1 = dx'*Gc1 - Yref'*Ga1 + deltax0'*Gb1;
+f0_2 = dx'*Gc2 - Yref'*Ga2 + deltax0'*Gb2;
 
 
 end

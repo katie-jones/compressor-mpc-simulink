@@ -15,7 +15,10 @@ u2(end) = pd;
 
 u = [u1; u2; ud];
 
-[Ac,Bc,Cc] = linearize_tank(xinit,u);
+[Ac,Bc,Ccorig] = linearize_tank(xinit, u);
+
+% choose outputs to use
+Cc = [Ccorig([2,4],:); Ccorig(1,:)-Ccorig(3,:); Ccorig(5,:)];
 
 f1 = get_comp_deriv(x1,u1,0);
 f2 = get_comp_deriv(x2,u2,0);
