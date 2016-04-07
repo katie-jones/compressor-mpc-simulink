@@ -4,10 +4,11 @@ addpath('../common')
 addpath('../parallel_common/')
 
 save_plots=0;
+fname='Td_pred_15.pdf';
 
 %% Constants
 [Ts, ~, ~, ~, ysize] = const_sim();
-[~,~,ucontrolsize,p,m] = const_mpc();
+[~,~,ucontrolsize,p,m,UWT,YWT] = const_mpc();
 
 P_D = 1.12;
 
@@ -20,7 +21,7 @@ uinit = zeros(2*ucontrolsize,1);
 %% Predictions
 Su1 = get_prediction_matrix(xinit,uinit);
 
-du = repmat([0.01; 0],m,1); % step on torque, no recycle valve
+du = repmat([0.01; 0.0],m,1); % step on torque, no recycle valve
 
 y1 = reshape(Su1*du,ysize,p)'; % prediction of compressor 1
 
@@ -30,8 +31,21 @@ SD_sum = zeros(p,2);
 
 SD_sum(1,:) = [0 0];
 for i=2:p
-    SD_sum(i,:) = SD_sum(i-1,:) + Ts*y1(i,1:2);
+    SD_sum(i,:) = SD_sum(i-1,:) + y1(i,1:2);
 end
+
+SD_sum = SD_sum .^ 2;
+
+% SD_sum = (Su1*du)'*YWT*(Su1*du);
+
+% SD_sum(1,1) = y1(1,1)*YWT(1,1)*y1(1,1);
+% SD_sum(1,2) = y1(1,2)*YWT(2,2)*y1(1,2);
+% 
+% for i=2:p
+%     SD_sum(i,1) = SD_sum(i-1,1) + y1(i,1)*YWT((i-1)*4+1,(i-1)*4+1)*y1(i,1)';
+%     SD_sum(i,2) = SD_sum(i-1,2) + y1(i,2)*YWT((i-1)*4+2,(i-1)*4+2)*y1(i,2)';
+% end
+
 %%
 
 fig=figure; 
@@ -44,21 +58,21 @@ grid on
 title('Predicted surge distance')
 xlabel({'Horizon length (m)'; 'x = [0.92 1.15 0.15 440 0]'''})
 ylabel('Relative surge distance [%]')
-legend('SD_1','SD_2','location','southwest')
+legend('SD_1','SD_2','location','best')
 
 subplot(1,2,2)
-plot(t,SD_sum.^2);
+plot(t,SD_sum);
 
-ylim([0 0.25])
+ylim([0 200])
 xlim([0 p])
 grid on
 title('Cumulative effect of predicted surge distance')
-xlabel({'Horizon length (m)'; '\Delta T_{d,1}=0.01, p=2'})
+xlabel({'Horizon length (m)'; '\Delta T_{d,1}=0.01, m=2, Vtank=15x'})
 ylabel('Cumulative effect of surge distance')
 
 if save_plots
     fig=printplot(fig);
-    saveas(fig,'Td_effect.pdf')
+    saveas(fig,fname)
 end
 
 set(0,'defaultlinelinewidth',1)
@@ -165,11 +179,38 @@ fd = Acom*f(:);
 
 end
 
-function [n_delay,dsize,usize,p,m] = const_mpc()
+function [n_delay,dsize,usize,p,m,UWT,YWT] = const_mpc()
 n_delay = [0; 40];
 dsize = 2;
 usize = 2;
-p = 100;
+p = 200;
 m = 2;
+
+UW = [1e4 1e6];
+YW = [1 1 0.1 0];
+
+UWT = kron(eye(m),diag(UW'));
+YWT = kron(eye(p),diag(YW'));
+% YWT = kron(diag(1/10*logspace(1,0,p)),diag(YW));
+
+end
+
+function [Ts, xsize_comp, xsize, usize_comp, ysize, uoff1, uoff2, ud] = const_sim()
+%#eml
+
+Ts = 0.05;
+
+xsize_comp = 5;
+xsize = 2*xsize_comp + 1;
+
+usize_comp = 5;
+
+ysize_comp = 2;
+ysize = 2*ysize_comp;
+
+uoff1 = [0.304, 0.43, 1, 0, 0]'; % offset applied to calculated inputs
+uoff2 = uoff1;
+
+ud = 0.7;
 
 end

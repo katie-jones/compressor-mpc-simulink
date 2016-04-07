@@ -8,7 +8,7 @@ addpath('../common')
 addpath('../parallel_common/')
 
 [Ts, xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
-[n_delay,dsize,ucontrolsize,p,m,UWT,YWT] = const_mpc();
+[n_delay,dsize,ucontrolsize,p,m] = const_mpc();
 
 xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
 
