@@ -1,12 +1,12 @@
 Model {
-  Name			  "parallel_linearized"
+  Name			  "closedloop"
   Version		  7.4
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.251"
+    ComputedModelVersion    "1.257"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,11 +23,11 @@ Model {
   Creator		  "chkajon"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "katie"
+  LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Apr 07 15:21:41 2016"
-  RTWModifiedTimeStamp	  381943295
-  ModelVersionFormat	  "1.%<AutoIncrement:251>"
+  LastModifiedDate	  "Fri Apr 08 09:04:38 2016"
+  RTWModifiedTimeStamp	  382007077
+  ModelVersionFormat	  "1.%<AutoIncrement:257>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "300"
+	  StopTime		  "200"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -726,8 +726,8 @@ Model {
     }
   }
   System {
-    Name		    "parallel_linearized"
-    Location		    [2, 74, 1278, 963]
+    Name		    "closedloop"
+    Location		    [2, 82, 1278, 971]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -741,7 +741,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    678
+    SIDHighWatermark	    681
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -872,8 +872,8 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [2189, 140, 2527, 390]
-      Open		      on
+      Location		      [2186, 133, 2524, 383]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -881,9 +881,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "120"
-      YMin		      "1.03"
-      YMax		      "1.15"
-      SaveToWorkspace	      on
+      YMin		      "1.095"
+      YMax		      "1.175"
       SaveName		      "SD1"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -895,7 +894,7 @@ Model {
       SID		      678
       Ports		      [4, 6]
       Position		      [365, 112, 660, 253]
-      LibraryVersion	      "1.5"
+      LibraryVersion	      "1.7"
       SourceBlock	      "lib_parallel_comp/Parallel plant"
       SourceType	      ""
       ShowPortLabels	      "FromPortIcon"
@@ -906,11 +905,11 @@ Model {
       RTWMemSecDataConstants  "Inherit from model"
       RTWMemSecDataInternal   "Inherit from model"
       RTWMemSecDataParameters "Inherit from model"
-      disturbances_on	      off
+      disturbances_on	      on
       disturbances_symm	      off
-      dist_t		      "0"
-      dist1		      "0"
-      dist2		      "0"
+      dist_t_in		      "tdist"
+      dist1_in		      "udist1"
+      dist2_in		      "udist2"
     }
     Block {
       BlockType		      RateTransition
@@ -943,8 +942,8 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1375, 133, 1725, 406]
-      Open		      on
+      Location		      [1348, 117, 1698, 390]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -952,9 +951,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "120"
-      YMin		      "-4.5"
-      YMax		      "1.5"
-      SaveToWorkspace	      on
+      YMin		      "-0.45"
+      YMax		      "0.25"
       SaveName		      "SD3"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1036,8 +1034,8 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1792, 131, 2130, 404]
-      Open		      on
+      Location		      [1744, 502, 2082, 775]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -1045,9 +1043,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "120"
-      YMin		      "-0.1"
-      YMax		      "0.325"
-      SaveToWorkspace	      on
+      YMin		      "-0.115"
+      YMax		      "-0.055"
       SaveName		      "SD4"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1086,6 +1083,42 @@ Model {
       SaveFormat	      "Structure With Time"
     }
     Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace3"
+      SID		      679
+      Ports		      [1]
+      Position		      [900, 210, 960, 240]
+      ShowName		      off
+      VariableName	      "SD"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace4"
+      SID		      680
+      Ports		      [1]
+      Position		      [920, 35, 980, 65]
+      ShowName		      off
+      VariableName	      "pout"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace5"
+      SID		      681
+      Ports		      [1]
+      Position		      [900, 255, 960, 285]
+      ShowName		      off
+      VariableName	      "PD"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
       BlockType		      SubSystem
       Name		      "controller"
       SID		      418
@@ -1103,7 +1136,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[329, 286, 950, 738]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1219,7 +1252,7 @@ Model {
 	      BlockType		      "S-Function"
 	      Name		      " SFunction "
 	      SID		      6
-	      Tag		      "Stateflow S-Function parallel_linearized 2"
+	      Tag		      "Stateflow S-Function closedloop 2"
 	      Ports		      [2, 5]
 	      Position		      [180, 121, 230, 329]
 	      FunctionName	      "sf_sfun"
@@ -1524,7 +1557,6 @@ Model {
       TimeRange		      "200"
       YMin		      "0.1175"
       YMax		      "0.155"
-      SaveToWorkspace	      on
       SaveName		      "SD8"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1548,7 +1580,6 @@ Model {
       TimeRange		      "200"
       YMin		      "0.89"
       YMax		      "1"
-      SaveToWorkspace	      on
       SaveName		      "SD7"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1561,8 +1592,8 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [1799, 508, 2137, 781]
-      Open		      on
+      Location		      [1765, 113, 2103, 386]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -1570,9 +1601,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "120"
-      YMin		      "-0.08"
-      YMax		      "0.05"
-      SaveToWorkspace	      on
+      YMin		      "-0.025"
+      YMax		      "0.055"
       SaveName		      "SD2"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1586,8 +1616,8 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1397, 510, 1735, 775]
-      Open		      on
+      Location		      [1329, 505, 1667, 770]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -1595,9 +1625,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "120"
-      YMin		      "0.0666275"
-      YMax		      "0.066665"
-      SaveToWorkspace	      on
+      YMin		      "0.1034"
+      YMax		      "0.1045"
       SaveName		      "SD5"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1610,7 +1639,7 @@ Model {
       Ports		      [1]
       Position		      [800, 279, 830, 311]
       Floating		      off
-      Location		      [1601, 486, 1939, 736]
+      Location		      [937, 486, 1275, 736]
       Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1618,10 +1647,9 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "85              "
+      TimeRange		      "85"
       YMin		      "1.1125"
       YMax		      "1.1141"
-      SaveToWorkspace	      on
       SaveName		      "SD6"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1769,9 +1797,17 @@ Model {
 	DstPort			1
       }
       Branch {
-	Points			[0, 200]
-	DstBlock		"Mux2"
-	DstPort			4
+	Points			[0, 30]
+	Branch {
+	  Points		  [0, 170]
+	  DstBlock		  "Mux2"
+	  DstPort		  4
+	}
+	Branch {
+	  Points		  [0, 0]
+	  DstBlock		  "To Workspace5"
+	  DstPort		  1
+	}
       }
     }
     Line {
@@ -1817,14 +1853,30 @@ Model {
     Line {
       SrcBlock		      "Mux4"
       SrcPort		      1
-      DstBlock		      "SD"
-      DstPort		      1
+      Points		      [10, 0]
+      Branch {
+	DstBlock		"SD"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 60]
+	DstBlock		"To Workspace3"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Mux1"
       SrcPort		      1
-      DstBlock		      "pout"
-      DstPort		      1
+      Points		      [15, 0]
+      Branch {
+	DstBlock		"pout"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -45]
+	DstBlock		"To Workspace4"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Mux5"
@@ -2000,7 +2052,7 @@ Model {
 }
 # Finite State Machines
 #
-#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 00:35:51
+#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 10:24:20
 #
 #
 
@@ -2008,12 +2060,10 @@ Model {
 Stateflow {
   machine {
     id			    1
-    name		    "parallel_linearized"
+    name		    "closedloop"
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
     firstTarget		    13
-    debug {
-    }
     sfVersion		    71014000.00001
   }
   chart {
@@ -2071,7 +2121,7 @@ Stateflow {
       "ly next input\ndelta_u = usol(1:usize,1);\nu_new = upast + delta_u;\n\n\n% value of x about which we linearized\n"
       "xlin = dxaug;\nxlin(xsize+1:end) = 0;\nxlin(xsize+1) = upast(2);\nxlin(xsize+1+n_delay(2)) = upast(4);\n\ndxaug "
       "= B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n\nupast = u_new;\n\n\n"
-      editorLayout	      "100 M4x1[25 25 720 615]"
+      editorLayout	      "100 M4x1[45 45 720 615]"
     }
   }
   junction {

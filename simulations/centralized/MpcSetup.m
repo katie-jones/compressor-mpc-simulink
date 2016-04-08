@@ -87,6 +87,9 @@ xinit = [xinit; zeros(xtotalsize-xsize,1)];
 upast = u_init;
 deltax = zeros(xtotalsize,1);
 
+%% Define disturbances
+disturbances;
+
 
 disp('MPC Problem Formulated');
 
