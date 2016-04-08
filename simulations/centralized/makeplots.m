@@ -135,6 +135,5 @@ if saveplots
     save([results_folder,results_fname,'.mat'],'Results')
 end
     
-    
-    
+set(0,'defaultlinelinewidth',1)
     
