@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Apr 07 09:44:23 2016"
-  RTWModifiedTimeStamp	  381921826
-  ModelVersionFormat	  "1.%<AutoIncrement:5>"
+  LastModifiedDate	  "Thu Apr 07 15:56:04 2016"
+  RTWModifiedTimeStamp	  381945363
+  ModelVersionFormat	  "1.%<AutoIncrement:7>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -701,7 +701,7 @@ Library {
   }
   System {
     Name		    "lib_parallel_comp"
-    Location		    [1727, 295, 2263, 584]
+    Location		    [372, 367, 908, 656]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -738,13 +738,12 @@ Library {
       MaskEnableString	      "on,on,on,on,on"
       MaskVisibilityString    "on,on,on,on,on"
       MaskToolTipString	      "on,on,on,on,on"
-      MaskVariables	      "disturbances_on=@1;disturbances_symm=@2;dist_t=@3;dist1=@4;dist2=@5;"
-      MaskInitialization      "if disturbances_on\n    dist1 = dist1(:);\n    dist2 = dist2(:);\n    dist_t = dist_t(:"
-      ");\n    \n    if length(dist1) < 5\n        dist1 = [dist1; zeros(5-length(dist1),1)];\n    end\n    if length(d"
-      "ist2) < 5\n        dist2 = [dist2; zeros(5-length(dist1),1)];\n    end\n    \n    if length(dist_t) < 2\n       "
-      " dist_t = [dist_t; zeros(2-length(dist_t),1)];\n    end\n    \n    if disturbances_symm\n        dist1(4) = dist"
-      "1(1);\n        dist1(5) = dist1(2);\n        dist2(4) = dist2(1);\n        dist2(5) = dist2(2);\n    end\n    \n"
-      "else\n    dist_t = [0 0];\n    dist1 = [0 0 0 0 0];\n    dist2 = dist1;\nend"
+      MaskVariables	      "disturbances_on=@1;disturbances_symm=@2;dist_t_in=@3;dist1_in=@4;dist2_in=@5;"
+      MaskInitialization      "dist1 = zeros(5,1);\ndist2 = dist1;\ndist_t = zeros(2,1);\n\nif disturbances_on\n    fo"
+      "r i=1:min(5,length(dist1_in))\n        dist1(i) = dist1_in(i);\n    end\n    for i=1:min(5,length(dist2_in))\n  "
+      "      dist2(i) = dist2_in(i);\n    end\n    for i=1:min(2,length(dist_t_in))\n        dist_t(i) = dist_t_in(i);\n"
+      "    end\n    \n    if disturbances_symm\n        dist1(4) = dist1(1);\n        dist1(5) = dist1(2);\n        dis"
+      "t2(4) = dist2(1);\n        dist2(5) = dist2(2);\n    end\nend\n"
       MaskSelfModifiable      on
       MaskIconFrame	      on
       MaskIconOpaque	      on
@@ -813,7 +812,7 @@ Library {
 	  SID			  43
 	  Ports			  [3, 4]
 	  Position		  [195, 100, 295, 205]
-	  LibraryVersion	  "1.12"
+	  LibraryVersion	  "1.10"
 	  SourceBlock		  "lib_compressor/Compressor1"
 	  SourceType		  "Compressor"
 	  ShowPortLabels	  "FromPortIcon"
@@ -841,7 +840,7 @@ Library {
 	  SID			  44
 	  Ports			  [3, 4]
 	  Position		  [195, 315, 295, 420]
-	  LibraryVersion	  "1.12"
+	  LibraryVersion	  "1.10"
 	  SourceBlock		  "lib_compressor/Compressor1"
 	  SourceType		  "Compressor"
 	  ShowPortLabels	  "FromPortIcon"
