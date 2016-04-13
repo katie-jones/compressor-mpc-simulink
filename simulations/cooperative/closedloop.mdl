@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.344"
+    ComputedModelVersion    "1.345"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "katie"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Apr 13 10:21:46 2016"
-  RTWModifiedTimeStamp	  382443697
-  ModelVersionFormat	  "1.%<AutoIncrement:344>"
+  LastModifiedDate	  "Wed Apr 13 10:46:46 2016"
+  RTWModifiedTimeStamp	  382445205
+  ModelVersionFormat	  "1.%<AutoIncrement:345>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -761,7 +761,7 @@ Model {
   }
   System {
     Name		    "closedloop"
-    Location		    [1, 203, 925, 739]
+    Location		    [0, 178, 924, 714]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -775,7 +775,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    846
+    SIDHighWatermark	    847
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -1134,6 +1134,17 @@ Model {
       Position		      [90, 265, 150, 295]
       BlockMirror	      on
       VariableName	      "u_rec"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace4"
+      SID		      847
+      Ports		      [1]
+      Position		      [990, 190, 1050, 220]
+      VariableName	      "PD"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
       SaveFormat	      "Structure With Time"
@@ -3744,6 +3755,7 @@ Model {
       }
     }
     Line {
+      Labels		      [3, 0]
       SrcBlock		      "Parallel plant"
       SrcPort		      5
       Points		      [15, 0; 0, 30; 110, 0]
@@ -3755,6 +3767,11 @@ Model {
 	Points			[0, 200]
 	DstBlock		"Mux2"
 	DstPort			4
+      }
+      Branch {
+	Points			[0, -35]
+	DstBlock		"To Workspace4"
+	DstPort			1
       }
     }
     Line {
