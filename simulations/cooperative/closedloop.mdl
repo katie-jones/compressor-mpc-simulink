@@ -6,8 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.349"
-    ComputedModelVersion    "1.336"
+    ComputedModelVersion    "1.337"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -24,14 +23,11 @@ Model {
   Creator		  "chkajon"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "chkajon"
+  LastModifiedBy	  "katie"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Apr 07 15:10:50 2016"
-  RTWModifiedTimeStamp	  381942648
-  ModelVersionFormat	  "1.%<AutoIncrement:349>"
-  LastModifiedDate	  "Thu Apr 07 09:50:25 2016"
-  RTWModifiedTimeStamp	  381923422
-  ModelVersionFormat	  "1.%<AutoIncrement:336>"
+  LastModifiedDate	  "Wed Apr 13 09:26:08 2016"
+  RTWModifiedTimeStamp	  382440312
+  ModelVersionFormat	  "1.%<AutoIncrement:337>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -765,7 +761,7 @@ Model {
   }
   System {
     Name		    "closedloop"
-    Location		    [2, 74, 1278, 963]
+    Location		    [0, 82, 1440, 900]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -910,7 +906,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [2207, 120, 2546, 390]
+      Location		      [1087, 112, 1426, 382]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -933,7 +929,7 @@ Model {
       SID		      842
       Ports		      [4, 6]
       Position		      [355, 112, 650, 248]
-      LibraryVersion	      "1.5"
+      LibraryVersion	      "1.7"
       SourceBlock	      "lib_parallel_comp/Parallel plant"
       SourceType	      ""
       ShowPortLabels	      "FromPortIcon"
@@ -945,10 +941,10 @@ Model {
       RTWMemSecDataInternal   "Inherit from model"
       RTWMemSecDataParameters "Inherit from model"
       disturbances_on	      on
-      disturbances_symm	      on
-      dist_t		      "30"
-      dist1		      "[0 0 -0.2]"
-      dist2		      "0"
+      disturbances_symm	      off
+      dist_t_in		      "tdist"
+      dist1_in		      "udist1"
+      dist2_in		      "udist2"
     }
     Block {
       BlockType		      RateTransition
@@ -981,7 +977,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1783, 121, 2121, 394]
+      Location		      [1088, 113, 1426, 386]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -1074,7 +1070,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1374, 73, 1705, 346]
+      Location		      [1095, 84, 1426, 357]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1161,11 +1157,6 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
-	  Array {
-	    Type		    "Handle"
-	    Dimension		    0
-	    PropName		    "AvailSigsLoadSave"
-	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -1563,11 +1554,6 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
-	  Array {
-	    Type		    "Handle"
-	    Dimension		    0
-	    PropName		    "AvailSigsLoadSave"
-	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -1884,17 +1870,12 @@ Model {
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
-	      Array {
-		Type			"Handle"
-		Dimension		0
-		PropName		"AvailSigsLoadSave"
-	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -1910,17 +1891,12 @@ Model {
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
-	      Array {
-		Type			"Handle"
-		Dimension		0
-		PropName		"AvailSigsLoadSave"
-	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -1936,17 +1912,12 @@ Model {
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
-	      Array {
-		Type			"Handle"
-		Dimension		0
-		PropName		"AvailSigsLoadSave"
-	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -1962,17 +1933,12 @@ Model {
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
-	      Array {
-		Type			"Handle"
-		Dimension		0
-		PropName		"AvailSigsLoadSave"
-	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -1988,17 +1954,12 @@ Model {
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
-	      Array {
-		Type			"Handle"
-		Dimension		0
-		PropName		"AvailSigsLoadSave"
-	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2014,17 +1975,12 @@ Model {
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
-	      Array {
-		Type			"Handle"
-		Dimension		0
-		PropName		"AvailSigsLoadSave"
-	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2040,17 +1996,12 @@ Model {
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
-	      Array {
-		Type			"Handle"
-		Dimension		0
-		PropName		"AvailSigsLoadSave"
-	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2066,17 +2017,12 @@ Model {
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
-	      Array {
-		Type			"Handle"
-		Dimension		0
-		PropName		"AvailSigsLoadSave"
-	      }
 	    }
 	    Block {
 	      BlockType		      From
@@ -2506,7 +2452,7 @@ Model {
 	      Ports		      [1]
 	      Position		      [1260, 599, 1290, 631]
 	      Floating		      off
-	      Location		      [2174, 571, 2511, 834]
+	      Location		      [1089, 563, 1426, 826]
 	      Open		      on
 	      NumInputPorts	      "1"
 	      List {
@@ -3509,7 +3455,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [1316, 127, 1654, 419]
+      Location		      [1088, 119, 1426, 411]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -3534,7 +3480,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1343, 527, 1681, 792]
+      Location		      [1088, 519, 1426, 784]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -3924,7 +3870,7 @@ Model {
 }
 # Finite State Machines
 #
-#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 10:24:20
+#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 00:35:51
 #
 #
 
@@ -3936,8 +3882,6 @@ Stateflow {
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
     firstTarget		    33
-    debug {
-    }
     sfVersion		    71014000.00001
   }
   chart {
