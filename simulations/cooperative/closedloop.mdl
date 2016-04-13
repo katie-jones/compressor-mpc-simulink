@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.337"
+    ComputedModelVersion    "1.344"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "katie"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Apr 13 09:26:08 2016"
-  RTWModifiedTimeStamp	  382440312
-  ModelVersionFormat	  "1.%<AutoIncrement:337>"
+  LastModifiedDate	  "Wed Apr 13 10:21:46 2016"
+  RTWModifiedTimeStamp	  382443697
+  ModelVersionFormat	  "1.%<AutoIncrement:344>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -761,7 +761,7 @@ Model {
   }
   System {
     Name		    "closedloop"
-    Location		    [0, 82, 1440, 900]
+    Location		    [1, 203, 925, 739]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -775,7 +775,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    842
+    SIDHighWatermark	    846
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -906,8 +906,8 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [1087, 112, 1426, 382]
-      Open		      on
+      Location		      [1078, 104, 1417, 374]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -953,7 +953,7 @@ Model {
       Position		      [600, 409, 635, 441]
       BlockMirror	      on
       NamePlacement	      "alternate"
-      X0		      "[0.2;0.2;0;1.08]"
+      X0		      "yss"
     }
     Block {
       BlockType		      RateTransition
@@ -961,6 +961,7 @@ Model {
       SID		      416
       Position		      [615, 484, 650, 516]
       BlockMirror	      on
+      X0		      "yref"
     }
     Block {
       BlockType		      RateTransition
@@ -977,8 +978,8 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1088, 113, 1426, 386]
-      Open		      on
+      Location		      [1070, 97, 1408, 370]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
       List {
@@ -988,7 +989,6 @@ Model {
       TimeRange		      "100"
       YMin		      "-0.2"
       YMax		      "0.35"
-      SaveToWorkspace	      on
       SaveName		      "SD3"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1070,8 +1070,8 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1095, 84, 1426, 357]
-      Open		      on
+      Location		      [1077, 84, 1408, 357]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -1081,7 +1081,6 @@ Model {
       TimeRange		      "100"
       YMin		      "-0.025"
       YMax		      "0.325"
-      SaveToWorkspace	      on
       SaveName		      "SD4"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1092,6 +1091,52 @@ Model {
       Name		      "Terminator"
       SID		      665
       Position		      [1235, 385, 1255, 405]
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace"
+      SID		      843
+      Ports		      [1]
+      Position		      [990, 55, 1050, 85]
+      VariableName	      "pout"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace1"
+      SID		      844
+      Ports		      [1]
+      Position		      [990, 120, 1050, 150]
+      VariableName	      "SD"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace2"
+      SID		      845
+      Ports		      [1]
+      Position		      [100, 55, 160, 85]
+      BlockMirror	      on
+      VariableName	      "Td"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace3"
+      SID		      846
+      Ports		      [1]
+      Position		      [90, 265, 150, 295]
+      BlockMirror	      on
+      VariableName	      "u_rec"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
     }
     Block {
       BlockType		      SubSystem
@@ -1111,7 +1156,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"controller"
-	Location		[10, 82, 1270, 955]
+	Location		[0, 82, 1440, 900]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -1157,6 +1202,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -1554,6 +1604,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -1870,12 +1925,17 @@ Model {
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData "off"
+	      FunctionWithSeparateData off
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -1891,12 +1951,17 @@ Model {
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData "off"
+	      FunctionWithSeparateData off
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -1912,12 +1977,17 @@ Model {
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData "off"
+	      FunctionWithSeparateData off
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -1933,12 +2003,17 @@ Model {
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData "off"
+	      FunctionWithSeparateData off
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -1954,12 +2029,17 @@ Model {
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData "off"
+	      FunctionWithSeparateData off
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -1975,12 +2055,17 @@ Model {
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData "off"
+	      FunctionWithSeparateData off
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -1996,12 +2081,17 @@ Model {
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData "off"
+	      FunctionWithSeparateData off
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      Reference
@@ -2017,12 +2107,17 @@ Model {
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData "off"
+	      FunctionWithSeparateData off
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
 	      RTWMemSecDataInternal   "Inherit from model"
 	      RTWMemSecDataParameters "Inherit from model"
+	      Array {
+		Type			"Handle"
+		Dimension		0
+		PropName		"AvailSigsLoadSave"
+	      }
 	    }
 	    Block {
 	      BlockType		      From
@@ -2452,8 +2547,8 @@ Model {
 	      Ports		      [1]
 	      Position		      [1260, 599, 1290, 631]
 	      Floating		      off
-	      Location		      [1089, 563, 1426, 826]
-	      Open		      on
+	      Location		      [1080, 555, 1417, 827]
+	      Open		      off
 	      NumInputPorts	      "1"
 	      List {
 		ListType		AxesTitles
@@ -3407,7 +3502,7 @@ Model {
       Ports		      [1]
       Position		      [1125, 479, 1155, 511]
       Floating		      off
-      Location		      [937, 500, 1275, 773]
+      Location		      [928, 492, 1266, 765]
       Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -3418,7 +3513,6 @@ Model {
       TimeRange		      "200"
       YMin		      "0.1175"
       YMax		      "0.155"
-      SaveToWorkspace	      on
       SaveName		      "SD8"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -3431,7 +3525,7 @@ Model {
       Ports		      [1]
       Position		      [1125, 274, 1155, 306]
       Floating		      off
-      Location		      [937, 493, 1275, 766]
+      Location		      [928, 485, 1266, 758]
       Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -3442,7 +3536,6 @@ Model {
       TimeRange		      "200"
       YMin		      "0.89"
       YMax		      "1"
-      SaveToWorkspace	      on
       SaveName		      "SD7"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -3455,8 +3548,8 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [1088, 119, 1426, 411]
-      Open		      on
+      Location		      [1070, 103, 1408, 395]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -3466,7 +3559,6 @@ Model {
       TimeRange		      "100"
       YMin		      "-0.07"
       YMax		      "0.08"
-      SaveToWorkspace	      on
       SaveName		      "SD2"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -3480,8 +3572,8 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1088, 519, 1426, 784]
-      Open		      on
+      Location		      [1070, 503, 1408, 768]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -3491,7 +3583,6 @@ Model {
       TimeRange		      "100"
       YMin		      "0"
       YMax		      "0.07"
-      SaveToWorkspace	      on
       SaveName		      "SD5"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -3695,26 +3786,58 @@ Model {
     Line {
       SrcBlock		      "Mux4"
       SrcPort		      1
-      DstBlock		      "SD"
-      DstPort		      1
+      Points		      [15, 0]
+      Branch {
+	DstBlock		"SD"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -30]
+	DstBlock		"To Workspace1"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Mux1"
       SrcPort		      1
-      DstBlock		      "pout"
-      DstPort		      1
+      Points		      [15, 0]
+      Branch {
+	DstBlock		"pout"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -25]
+	DstBlock		"To Workspace"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Mux5"
       SrcPort		      1
-      DstBlock		      "Td"
-      DstPort		      1
+      Points		      [-30, 0]
+      Branch {
+	DstBlock		"Td"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -70]
+	DstBlock		"To Workspace2"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Mux6"
       SrcPort		      1
-      DstBlock		      "u_rec"
-      DstPort		      1
+      Points		      [-30, 0]
+      Branch {
+	DstBlock		"u_rec"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 70]
+	DstBlock		"To Workspace3"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Parallel plant"
@@ -4154,14 +4277,14 @@ Stateflow {
       script		      "function [H1, f0_1, Gd1, H2, f0_2, Gd2, xout, A, B, df0, dxaug]  = fcn(yin, upast, dxaug_in)\n%#e"
       "ml\n% persistent C_new M LB UB Ga Gb Gc H Ain b A B upast xinit\npersistent M xinit y_old C \neml.extrinsic('dis"
       "p');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\neml.e"
-      "xtrinsic('quadprog');\n\n\n\n[~, ~, xsize, ~, ysize] = const_sim();\n[n_delay,dsize,~,p] = const_mpc();\n\nif is"
-      "empty(M)\n    tic\n    [C,M,~,~,~,~,xinit] = get_constant_matrices();\n%     y_old = zeros(ysize,1);\n    y_old "
-      "= [0.2175; 0.2175; 0; 1.12];\n    time = toc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\n\ny = yin"
-      "(1:ysize);\nyref = yin(ysize+1:end);\n\n% Estimate state info\ndxaug = dxaug_in + M*(y - y_old - C*(dxaug_in));\n"
-      "\n% Use state input info to calculate x, y\nxinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxinit(xsize+1:end) "
-      "= dxaug(xsize+1:end);\n\nxout = xinit;\n\n% get matrices\n[A,B,C,df0,H1,H2,f0_1,f0_2,Gd1,Gd2] = get_qp_matrices("
-      "xinit,upast,yref-y);\n\n\n"
-      editorLayout	      "100 M4x1[10 5 1296 1000]"
+      "xtrinsic('quadprog');\n\n\n\n[~, ~, xsize, ~, ysize] = const_sim();\n% [n_delay,dsize,~,p] = const_mpc();\n\nif "
+      "isempty(M)\n    tic\n    [C,M,~,~,~,~,xinit] = get_constant_matrices();\n%     y_old = zeros(ysize,1);\n    y_ol"
+      "d = [0.2175; 0.2175; 0; 1.12];\n%     y_old = yss;\n    time = toc;\n    disp(['Preparation time: ' num2str(time"
+      ")]);\nend\n\n\ny = yin(1:ysize);\nyref = yin(ysize+1:end);\n\n% Estimate state info\ndxaug = dxaug_in + M*(y - y"
+      "_old - C*(dxaug_in));\n\n% Use state input info to calculate x, y\nxinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize"
+      ");\nxinit(xsize+1:end) = dxaug(xsize+1:end);\n\nxout = xinit;\n\n% get matrices\n[A,B,C,df0,H1,H2,f0_1,f0_2,Gd1,"
+      "Gd2] = get_qp_matrices(xinit,upast,yref-y);\n\n\n"
+      editorLayout	      "100 M4x1[10 22 1460 888]"
       breakpoints	      "100 M[39]"
     }
   }
