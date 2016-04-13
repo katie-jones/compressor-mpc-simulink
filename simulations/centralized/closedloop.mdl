@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.263"
+    ComputedModelVersion    "1.268"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Apr 08 14:58:26 2016"
-  RTWModifiedTimeStamp	  382028304
-  ModelVersionFormat	  "1.%<AutoIncrement:263>"
+  LastModifiedDate	  "Wed Apr 13 09:34:23 2016"
+  RTWModifiedTimeStamp	  382440861
+  ModelVersionFormat	  "1.%<AutoIncrement:268>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -918,7 +918,7 @@ Model {
       Position		      [600, 409, 635, 441]
       BlockMirror	      on
       NamePlacement	      "alternate"
-      X0		      "[0.2;0.2;0;1.08]"
+      X0		      "yss"
     }
     Block {
       BlockType		      RateTransition
@@ -926,6 +926,7 @@ Model {
       SID		      416
       Position		      [615, 484, 650, 516]
       BlockMirror	      on
+      X0		      "yref"
     }
     Block {
       BlockType		      RateTransition
@@ -1136,7 +1137,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[329, 286, 950, 738]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2101,21 +2102,22 @@ Stateflow {
       "');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\neml.ex"
       "trinsic('quadprog');\n\n\n\n[n_delay,dsize,ucontrolsize,p,m] = const_mpc();\n[~, ~, xsize, ~, ysize] = const_sim"
       "();\nusize=2*ucontrolsize;\n\nif isempty(M)\n    tic\n    [C,M,UB,LB,b,Ain,xinit,upast] = get_constant_matrices("
-      ");\n    dxaug = zeros(size(xinit));\n%     y_old = zeros(ysize,1);\n    y_old = [0.2175; 0.2175; 0; 1.12];\n    "
-      "time = toc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\n\ny = u(1:ysize);\n\n% Estimate state info\n"
-      "dxaug = dxaug + M*(y - y_old - C*(dxaug));\n\n% Use state input info to calculate x, y\nxinit(1:xsize) = xinit(1"
-      ":xsize)+dxaug(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\nx_out = xinit;\n\ny_old = y;\n\nyref = u(ysiz"
-      "e+1:end);\n\n% Get matrices - linearize about delayed rec.open input\n[A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf,UWT] = get_"
-      "qp_matrices(xinit,upast);\n\n\n\n% Get reference and input vector\n\nYref = zeros(p*ysize,1);\nUpast = zeros(m*u"
-      "size,1);\nfor i=1:p\n    Yref(1+(i-1)*ysize:i*ysize,1) = yref - y;\nend\nfor i=1:m\n    Upast(1+(i-1)*usize:i*us"
-      "ize,1) = upast;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - Upast;\n\n% Calculate initial state\ndx0 "
-      "= [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast("
-      "4); zeros(2*dsize,1)];\n\n\n% Gradient vector\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*UWT;\n\n% Solve QP\nl"
-      "bA = -inf(size(Ain,1),1);\n[usol,~,exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_out = exitfla"
-      "g(1,1);\nit_out = it(1,1);\n\nif exitflag_out~=0\n    exitflag_out\n    usol = zeros(m*usize,1);\nend\n\n\n% App"
-      "ly next input\ndelta_u = usol(1:usize,1);\nu_new = upast + delta_u;\n\n\n% value of x about which we linearized\n"
-      "xlin = dxaug;\nxlin(xsize+1:end) = 0;\nxlin(xsize+1) = upast(2);\nxlin(xsize+1+n_delay(2)) = upast(4);\n\ndxaug "
-      "= B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n\nupast = u_new;\n\n\n"
+      ");\n    dxaug = zeros(size(xinit));\n%     y_old = zeros(ysize,1);\n    y_old = [0.2175; 0.2175; 0; 1.12];\n%   "
+      "  y_old = yss;\n    time = toc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\n\ny = u(1:ysize);\n\n% "
+      "Estimate state info\ndxaug = dxaug + M*(y - y_old - C*(dxaug));\n\n% Use state input info to calculate x, y\nxin"
+      "it(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\nx_out = xinit;\n\ny_old "
+      "= y;\n\nyref = u(ysize+1:end);\n\n% Get matrices - linearize about delayed rec.open input\n[A,B,C,H,Ga,Gb,Gc,df0"
+      ",Sx,Su,Sf,UWT] = get_qp_matrices(xinit,upast);\n\n\n\n% Get reference and input vector\n\nYref = zeros(p*ysize,1"
+      ");\nUpast = zeros(m*usize,1);\nfor i=1:p\n    Yref(1+(i-1)*ysize:i*ysize,1) = yref - y;\nend\nfor i=1:m\n    Upa"
+      "st(1+(i-1)*usize:i*usize,1) = upast;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - Upast;\n\n% Calculat"
+      "e initial state\ndx0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize"
+      "+2*n_delay(2))-upast(4); zeros(2*dsize,1)];\n\n\n% Gradient vector\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*"
+      "UWT;\n\n% Solve QP\nlbA = -inf(size(Ain,1),1);\n[usol,~,exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\ne"
+      "xitflag_out = exitflag(1,1);\nit_out = it(1,1);\n\nif exitflag_out~=0\n    exitflag_out\n    usol = zeros(m*usiz"
+      "e,1);\nend\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);\nu_new = upast + delta_u;\n\n\n% value of x about"
+      " which we linearized\nxlin = dxaug;\nxlin(xsize+1:end) = 0;\nxlin(xsize+1) = upast(2);\nxlin(xsize+1+n_delay(2))"
+      " = upast(4);\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n\nupa"
+      "st = u_new;\n\n\n"
       editorLayout	      "100 M4x1[10 5 750 500]"
     }
   }
