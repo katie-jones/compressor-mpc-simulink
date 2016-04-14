@@ -1,7 +1,9 @@
 set(0,'defaultaxesfontsize',14)
 set(0,'defaultlinelinewidth',1.5)
 
-saveplots = 0;
+if ~exist('saveplots','var')
+    saveplots = 0;
+end
 
 % check disturbances
 udist = [];
