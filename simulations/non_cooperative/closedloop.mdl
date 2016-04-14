@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.334"
+    ComputedModelVersion    "1.345"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,11 +23,11 @@ Model {
   Creator		  "chkajon"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "chkajon"
+  LastModifiedBy	  "katie"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Apr 06 14:06:19 2016"
-  RTWModifiedTimeStamp	  381852122
-  ModelVersionFormat	  "1.%<AutoIncrement:334>"
+  LastModifiedDate	  "Wed Apr 13 10:46:46 2016"
+  RTWModifiedTimeStamp	  382445205
+  ModelVersionFormat	  "1.%<AutoIncrement:345>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "100"
+	  StopTime		  "200"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -761,7 +761,7 @@ Model {
   }
   System {
     Name		    "closedloop"
-    Location		    [10, 82, 1270, 938]
+    Location		    [0, 178, 924, 714]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -775,7 +775,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    841
+    SIDHighWatermark	    847
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -906,8 +906,8 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [2182, 124, 2521, 394]
-      Open		      on
+      Location		      [1078, 104, 1417, 374]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -915,8 +915,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "1.13725"
-      YMax		      "1.14"
+      YMin		      "1.12"
+      YMax		      "1.131"
       SaveToWorkspace	      on
       SaveName		      "SD1"
       DataFormat	      "Array"
@@ -924,811 +924,27 @@ Model {
       SampleTime	      "0"
     }
     Block {
-      BlockType		      SubSystem
+      BlockType		      Reference
       Name		      "Parallel plant"
-      SID		      284
+      SID		      842
       Ports		      [4, 6]
-      Position		      [370, 112, 660, 253]
-      LibraryVersion	      "1.762"
-      MinAlgLoopOccurrences   off
-      PropExecContextOutsideSubsystem off
-      RTWSystemCode	      "Auto"
+      Position		      [355, 112, 650, 248]
+      LibraryVersion	      "1.7"
+      SourceBlock	      "lib_parallel_comp/Parallel plant"
+      SourceType	      ""
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
       FunctionWithSeparateData off
-      Opaque		      off
-      RequestExecContextInheritance off
-      MaskHideContents	      off
-      System {
-	Name			"Parallel plant"
-	Location		[7, 93, 1283, 982]
-	Open			off
-	ModelBrowserVisibility	off
-	ModelBrowserWidth	200
-	ScreenColor		"white"
-	PaperOrientation	"landscape"
-	PaperPositionMode	"auto"
-	PaperType		"A4"
-	PaperUnits		"centimeters"
-	TiledPaperMargins	[1.270000, 1.270000, 1.270000, 1.270000]
-	TiledPageScale		1
-	ShowPageBoundaries	off
-	ZoomFactor		"100"
-	Block {
-	  BlockType		  Inport
-	  Name			  "Td1"
-	  SID			  403
-	  Position		  [160, 128, 190, 142]
-	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "u_r1"
-	  SID			  404
-	  Position		  [160, 163, 190, 177]
-	  Port			  "2"
-	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "Td2"
-	  SID			  408
-	  Position		  [160, 343, 190, 357]
-	  Port			  "3"
-	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
-	}
-	Block {
-	  BlockType		  Inport
-	  Name			  "u_r2"
-	  SID			  409
-	  Position		  [160, 378, 190, 392]
-	  Port			  "4"
-	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "Compressor1"
-	  SID			  669
-	  Ports			  [3, 4]
-	  Position		  [300, 115, 400, 220]
-	  LibraryVersion	  "1.10"
-	  SourceBlock		  "lib_compressor/Compressor1"
-	  SourceType		  "Compressor"
-	  ShowPortLabels	  "FromPortIcon"
-	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData off
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
-	  Td_off		  "0.304"
-	  u_in			  "uoff1(2)"
-	  u_out			  "u_out"
-	  u_rec			  "0"
-	  t_delay		  "1"
-	  use_dist		  off
-	  u_out_dist		  "0"
-	  u_out_time		  "80"
-	  u_in_dist		  "-0.1"
-	  u_in_time		  "20"
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "Compressor2"
-	  SID			  670
-	  Ports			  [3, 4]
-	  Position		  [300, 330, 400, 435]
-	  LibraryVersion	  "1.10"
-	  SourceBlock		  "lib_compressor/Compressor1"
-	  SourceType		  "Compressor"
-	  ShowPortLabels	  "FromPortIcon"
-	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData off
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
-	  Td_off		  "0.304"
-	  u_in			  "uoff2(2)"
-	  u_out			  "u_out"
-	  u_rec			  "0"
-	  t_delay		  "1"
-	  use_dist		  off
-	  u_out_dist		  "0"
-	  u_out_time		  "80"
-	  u_in_dist		  "-0.1"
-	  u_in_time		  "20"
-	}
-	Block {
-	  BlockType		  From
-	  Name			  "From"
-	  SID			  653
-	  Position		  [1010, 211, 1050, 229]
-	  ShowName		  off
-	  GotoTag		  "xout1"
-	}
-	Block {
-	  BlockType		  From
-	  Name			  "From1"
-	  SID			  658
-	  Position		  [1010, 231, 1050, 249]
-	  ShowName		  off
-	  GotoTag		  "xout2"
-	}
-	Block {
-	  BlockType		  Goto
-	  Name			  "Goto"
-	  SID			  654
-	  Position		  [445, 215, 485, 245]
-	  ShowName		  off
-	  GotoTag		  "xout1"
-	  TagVisibility		  "local"
-	}
-	Block {
-	  BlockType		  Goto
-	  Name			  "Goto1"
-	  SID			  656
-	  Position		  [445, 405, 485, 435]
-	  ShowName		  off
-	  GotoTag		  "xout2"
-	  TagVisibility		  "local"
-	}
-	Block {
-	  BlockType		  Memory
-	  Name			  "Memory"
-	  SID			  528
-	  Position		  [515, 610, 545, 640]
-	  BlockMirror		  on
-	  ShowName		  off
-	  X0			  "P_D"
-	}
-	Block {
-	  BlockType		  Mux
-	  Name			  "Mux"
-	  SID			  380
-	  Ports			  [2, 1]
-	  Position		  [615, 76, 620, 114]
-	  ShowName		  off
-	  Inputs		  "2"
-	  DisplayOption		  "bar"
-	}
-	Block {
-	  BlockType		  Mux
-	  Name			  "Mux1"
-	  SID			  381
-	  Ports			  [2, 1]
-	  Position		  [615, 376, 620, 414]
-	  ShowName		  off
-	  Inputs		  "2"
-	  DisplayOption		  "bar"
-	}
-	Block {
-	  BlockType		  Mux
-	  Name			  "Mux2"
-	  SID			  655
-	  Ports			  [3, 1]
-	  Position		  [1115, 211, 1120, 269]
-	  ShowName		  off
-	  Inputs		  "3"
-	  DisplayOption		  "bar"
-	}
-	Block {
-	  BlockType		  Scope
-	  Name			  "SD"
-	  SID			  382
-	  Ports			  [1]
-	  Position		  [695, 379, 725, 411]
-	  Floating		  off
-	  Location		  [107, 135, 431, 374]
-	  Open			  off
-	  NumInputPorts		  "1"
-	  List {
-	    ListType		    AxesTitles
-	    axes1		    "%<SignalLabel>"
-	  }
-	  YMin			  "-2.5"
-	  YMax			  "0"
-	  SaveName		  "ScopeData1"
-	  DataFormat		  "StructureWithTime"
-	  SampleTime		  "0"
-	}
-	Block {
-	  BlockType		  Step
-	  Name			  "Step5"
-	  SID			  662
-	  Position		  [650, 330, 680, 360]
-	  NamePlacement		  "alternate"
-	  ShowName		  off
-	  Time			  "50"
-	  After			  "0"
-	  SampleTime		  "0"
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum"
-	  SID			  383
-	  Ports			  [2, 1]
-	  Position		  [505, 220, 525, 240]
-	  ShowName		  off
-	  IconShape		  "round"
-	  InputSameDT		  off
-	  OutDataTypeMode	  "Inherit via internal rule"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Sum
-	  Name			  "Sum1"
-	  SID			  661
-	  Ports			  [2, 1]
-	  Position		  [695, 280, 715, 300]
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "|++"
-	  InputSameDT		  off
-	  OutDataTypeMode	  "Inherit via internal rule"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  SubSystem
-	  Name			  "Tank"
-	  SID			  384
-	  Ports			  [2, 2]
-	  Position		  [735, 198, 855, 322]
-	  LibraryVersion	  "1.762"
-	  MinAlgLoopOccurrences	  off
-	  PropExecContextOutsideSubsystem off
-	  RTWSystemCode		  "Auto"
-	  FunctionWithSeparateData off
-	  Opaque		  off
-	  RequestExecContextInheritance	off
-	  MaskHideContents	  off
-	  System {
-	    Name		    "Tank"
-	    Location		    [580, 163, 1078, 459]
-	    Open		    off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "A4"
-	    PaperUnits		    "centimeters"
-	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
-	    Block {
-	      BlockType		      Inport
-	      Name		      "m_in"
-	      SID		      385
-	      Position		      [75, 143, 105, 157]
-	      IconDisplay	      "Port number"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "u_D"
-	      SID		      386
-	      Position		      [75, 198, 105, 212]
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
-	    }
-	    Block {
-	      BlockType		      Demux
-	      Name		      "Demux"
-	      SID		      387
-	      Ports		      [1, 2]
-	      Position		      [365, 161, 370, 199]
-	      ShowName		      off
-	      Outputs		      "2"
-	      DisplayOption	      "bar"
-	    }
-	    Block {
-	      BlockType		      Mux
-	      Name		      "Mux"
-	      SID		      388
-	      Ports		      [2, 1]
-	      Position		      [140, 161, 145, 199]
-	      ShowName		      off
-	      Inputs		      "2"
-	      DisplayOption	      "bar"
-	    }
-	    Block {
-	      BlockType		      "S-Function"
-	      Name		      "S-Function1"
-	      SID		      389
-	      Ports		      [1, 1]
-	      Position		      [185, 164, 340, 196]
-	      FunctionName	      "comp_rig_tank"
-	      Parameters	      "[], P_D"
-	      EnableBusSupport	      off
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "m_out"
-	      SID		      390
-	      Position		      [400, 143, 430, 157]
-	      IconDisplay	      "Port number"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "p_D"
-	      SID		      391
-	      Position		      [400, 198, 430, 212]
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
-	    }
-	    Line {
-	      SrcBlock		      "S-Function1"
-	      SrcPort		      1
-	      DstBlock		      "Demux"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Demux"
-	      SrcPort		      1
-	      Points		      [5, 0; 0, -20]
-	      DstBlock		      "m_out"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Demux"
-	      SrcPort		      2
-	      Points		      [5, 0; 0, 15]
-	      DstBlock		      "p_D"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Mux"
-	      SrcPort		      1
-	      DstBlock		      "S-Function1"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "m_in"
-	      SrcPort		      1
-	      Points		      [5, 0; 0, 20]
-	      DstBlock		      "Mux"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "u_D"
-	      SrcPort		      1
-	      Points		      [5, 0; 0, -15]
-	      DstBlock		      "Mux"
-	      DstPort		      2
-	    }
-	  }
-	}
-	Block {
-	  BlockType		  ToWorkspace
-	  Name			  "To Workspace1"
-	  SID			  393
-	  Ports			  [1]
-	  Position		  [715, 450, 775, 480]
-	  VariableName		  "SD"
-	  MaxDataPoints		  "inf"
-	  SampleTime		  "-1"
-	  SaveFormat		  "Structure With Time"
-	}
-	Block {
-	  BlockType		  ToWorkspace
-	  Name			  "To Workspace2"
-	  SID			  394
-	  Ports			  [1]
-	  Position		  [900, 365, 960, 395]
-	  VariableName		  "PD"
-	  MaxDataPoints		  "inf"
-	  SampleTime		  "-1"
-	  SaveFormat		  "Structure With Time"
-	}
-	Block {
-	  BlockType		  ToWorkspace
-	  Name			  "To Workspace3"
-	  SID			  395
-	  Ports			  [1]
-	  Position		  [715, 140, 775, 170]
-	  VariableName		  "pout"
-	  MaxDataPoints		  "inf"
-	  SampleTime		  "-1"
-	  SaveFormat		  "Structure With Time"
-	}
-	Block {
-	  BlockType		  Scope
-	  Name			  "m_out"
-	  SID			  396
-	  Ports			  [1]
-	  Position		  [900, 214, 930, 246]
-	  Floating		  off
-	  Location		  [469, 138, 793, 377]
-	  Open			  off
-	  NumInputPorts		  "1"
-	  ZoomMode		  "xonly"
-	  List {
-	    ListType		    AxesTitles
-	    axes1		    "%<SignalLabel>"
-	  }
-	  SaveName		  "ScopeData2"
-	  DataFormat		  "StructureWithTime"
-	  SampleTime		  "0"
-	}
-	Block {
-	  BlockType		  Scope
-	  Name			  "p_D"
-	  SID			  397
-	  Ports			  [1]
-	  Position		  [900, 274, 930, 306]
-	  Floating		  off
-	  Location		  [1932, 161, 2256, 400]
-	  Open			  off
-	  NumInputPorts		  "1"
-	  List {
-	    ListType		    AxesTitles
-	    axes1		    "%<SignalLabel>"
-	  }
-	  YMin			  "1.01"
-	  YMax			  "1.075"
-	  SaveName		  "ScopeData3"
-	  DataFormat		  "StructureWithTime"
-	  SampleTime		  "0"
-	}
-	Block {
-	  BlockType		  Scope
-	  Name			  "p_out"
-	  SID			  398
-	  Ports			  [1]
-	  Position		  [695, 79, 725, 111]
-	  Floating		  off
-	  Location		  [1492, 163, 1816, 402]
-	  Open			  off
-	  NumInputPorts		  "1"
-	  List {
-	    ListType		    AxesTitles
-	    axes1		    "%<SignalLabel>"
-	  }
-	  DataFormat		  "StructureWithTime"
-	  SampleTime		  "0"
-	}
-	Block {
-	  BlockType		  Reference
-	  Name			  "u_d"
-	  SID			  399
-	  Ports			  [0, 1]
-	  Position		  [615, 273, 670, 307]
-	  LibraryVersion	  "1.673"
-	  SourceBlock		  "dspsrcs4/Signal From\nWorkspace"
-	  SourceType		  "Signal From Workspace"
-	  ShowPortLabels	  "FromPortIcon"
-	  SystemSampleTime	  "-1"
-	  FunctionWithSeparateData off
-	  RTWMemSecFuncInitTerm	  "Inherit from model"
-	  RTWMemSecFuncExecute	  "Inherit from model"
-	  RTWMemSecDataConstants  "Inherit from model"
-	  RTWMemSecDataInternal	  "Inherit from model"
-	  RTWMemSecDataParameters "Inherit from model"
-	  X			  "u_d"
-	  Ts			  "Ts"
-	  nsamps		  "1"
-	  OutputAfterFinalValue	  "Holding final value"
-	  ignoreOrWarnInputAndFrameLengths off
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "pout1"
-	  SID			  405
-	  Position		  [810, 28, 840, 42]
-	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "SD1"
-	  SID			  433
-	  Position		  [795, 68, 825, 82]
-	  Port			  "2"
-	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "pout2"
-	  SID			  411
-	  Position		  [660, 513, 690, 527]
-	  Port			  "3"
-	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "SD2"
-	  SID			  434
-	  Position		  [660, 553, 690, 567]
-	  Port			  "4"
-	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "p_d"
-	  SID			  407
-	  Position		  [995, 318, 1025, 332]
-	  Port			  "5"
-	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "x"
-	  SID			  652
-	  Position		  [1145, 233, 1175, 247]
-	  Port			  "6"
-	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
-	}
-	Line {
-	  SrcBlock		  "Compressor1"
-	  SrcPort		  3
-	  Points		  [0, 25]
-	  DstBlock		  "Sum"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Tank"
-	  SrcPort		  1
-	  DstBlock		  "m_out"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Tank"
-	  SrcPort		  2
-	  Points		  [10, 0]
-	  Branch {
-	    DstBlock		    "p_D"
-	    DstPort		    1
-	  }
-	  Branch {
-	    Points		    [0, 35]
-	    Branch {
-	      Points		      [0, 55]
-	      Branch {
-		DstBlock		"To Workspace2"
-		DstPort			1
-	      }
-	      Branch {
-		Points			[0, 245]
-		DstBlock		"Memory"
-		DstPort			1
-	      }
-	    }
-	    Branch {
-	      Points		      [95, 0]
-	      Branch {
-		DstBlock		"p_d"
-		DstPort			1
-	      }
-	      Branch {
-		Points			[0, -65]
-		DstBlock		"Mux2"
-		DstPort			3
-	      }
-	    }
-	  }
-	}
-	Line {
-	  SrcBlock		  "Compressor1"
-	  SrcPort		  1
-	  Points		  [95, 0; 0, -45]
-	  Branch {
-	    DstBlock		    "Mux"
-	    DstPort		    1
-	  }
-	  Branch {
-	    Points		    [0, -50]
-	    DstBlock		    "pout1"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  SrcBlock		  "Compressor1"
-	  SrcPort		  2
-	  Points		  [0, 15; 120, 0]
-	  Branch {
-	    Points		    [75, 0]
-	    DstBlock		    "Mux1"
-	    DstPort		    1
-	  }
-	  Branch {
-	    Points		    [0, -95]
-	    DstBlock		    "SD1"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  SrcBlock		  "Compressor2"
-	  SrcPort		  1
-	  Points		  [0, 5; 155, 0]
-	  Branch {
-	    Points		    [25, 0; 0, -245]
-	    DstBlock		    "Mux"
-	    DstPort		    2
-	  }
-	  Branch {
-	    Points		    [0, 170]
-	    DstBlock		    "pout2"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  SrcBlock		  "Compressor2"
-	  SrcPort		  2
-	  Points		  [125, 0; 0, 15]
-	  Branch {
-	    Points		    [65, 0; 0, 20]
-	    DstBlock		    "Mux1"
-	    DstPort		    2
-	  }
-	  Branch {
-	    Points		    [0, 175]
-	    DstBlock		    "SD2"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  SrcBlock		  "Td1"
-	  SrcPort		  1
-	  DstBlock		  "Compressor1"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "u_r1"
-	  SrcPort		  1
-	  DstBlock		  "Compressor1"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "Sum"
-	  SrcPort		  1
-	  DstBlock		  "Tank"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Mux1"
-	  SrcPort		  1
-	  Points		  [40, 0]
-	  Branch {
-	    DstBlock		    "SD"
-	    DstPort		    1
-	  }
-	  Branch {
-	    Points		    [0, 70]
-	    DstBlock		    "To Workspace1"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  SrcBlock		  "Mux"
-	  SrcPort		  1
-	  Points		  [35, 0]
-	  Branch {
-	    DstBlock		    "p_out"
-	    DstPort		    1
-	  }
-	  Branch {
-	    Points		    [0, 60]
-	    DstBlock		    "To Workspace3"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  SrcBlock		  "Td2"
-	  SrcPort		  1
-	  DstBlock		  "Compressor2"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "u_r2"
-	  SrcPort		  1
-	  DstBlock		  "Compressor2"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "Memory"
-	  SrcPort		  1
-	  Points		  [-225, 0; 0, -215]
-	  Branch {
-	    DstBlock		    "Compressor1"
-	    DstPort		    3
-	  }
-	  Branch {
-	    DstBlock		    "Compressor2"
-	    DstPort		    3
-	  }
-	}
-	Line {
-	  SrcBlock		  "Compressor2"
-	  SrcPort		  3
-	  Points		  [110, 0]
-	  DstBlock		  "Sum"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "From"
-	  SrcPort		  1
-	  DstBlock		  "Mux2"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Compressor1"
-	  SrcPort		  4
-	  Points		  [25, 0]
-	  DstBlock		  "Goto"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Compressor2"
-	  SrcPort		  4
-	  DstBlock		  "Goto1"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "From1"
-	  SrcPort		  1
-	  DstBlock		  "Mux2"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "Mux2"
-	  SrcPort		  1
-	  DstBlock		  "x"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Sum1"
-	  SrcPort		  1
-	  DstBlock		  "Tank"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "u_d"
-	  SrcPort		  1
-	  DstBlock		  "Sum1"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Step5"
-	  SrcPort		  1
-	  Points		  [0, -30]
-	  DstBlock		  "Sum1"
-	  DstPort		  2
-	}
-      }
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      disturbances_on	      on
+      disturbances_symm	      off
+      dist_t_in		      "tdist"
+      dist1_in		      "udist1"
+      dist2_in		      "udist2"
     }
     Block {
       BlockType		      RateTransition
@@ -1737,7 +953,7 @@ Model {
       Position		      [600, 409, 635, 441]
       BlockMirror	      on
       NamePlacement	      "alternate"
-      X0		      "[0.2;0.2;0;1.08]"
+      X0		      "yss"
     }
     Block {
       BlockType		      RateTransition
@@ -1745,6 +961,7 @@ Model {
       SID		      416
       Position		      [615, 484, 650, 516]
       BlockMirror	      on
+      X0		      "yref"
     }
     Block {
       BlockType		      RateTransition
@@ -1761,8 +978,8 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1748, 142, 2086, 415]
-      Open		      on
+      Location		      [1070, 97, 1408, 370]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
       List {
@@ -1770,8 +987,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-4"
-      SaveToWorkspace	      on
+      YMin		      "-0.2"
+      YMax		      "0.35"
       SaveName		      "SD3"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1786,8 +1003,8 @@ Model {
       NamePlacement	      "alternate"
       ShowName		      off
       Time		      "0"
-      Before		      "0.2"
-      After		      "0.2"
+      Before		      "0.22"
+      After		      "0.22"
       SampleTime	      "0"
     }
     Block {
@@ -1824,8 +1041,8 @@ Model {
       NamePlacement	      "alternate"
       ShowName		      off
       Time		      "0"
-      Before		      "0.2"
-      After		      "0.2"
+      Before		      "0.22"
+      After		      "0.22"
       SampleTime	      "0"
     }
     Block {
@@ -1853,8 +1070,8 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1313, 578, 1644, 851]
-      Open		      on
+      Location		      [1077, 84, 1408, 357]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -1862,9 +1079,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-0.07"
-      YMax		      "0.11"
-      SaveToWorkspace	      on
+      YMin		      "-0.025"
+      YMax		      "0.325"
       SaveName		      "SD4"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1875,6 +1091,63 @@ Model {
       Name		      "Terminator"
       SID		      665
       Position		      [1235, 385, 1255, 405]
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace"
+      SID		      843
+      Ports		      [1]
+      Position		      [990, 55, 1050, 85]
+      VariableName	      "pout"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace1"
+      SID		      844
+      Ports		      [1]
+      Position		      [990, 120, 1050, 150]
+      VariableName	      "SD"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace2"
+      SID		      845
+      Ports		      [1]
+      Position		      [100, 55, 160, 85]
+      BlockMirror	      on
+      VariableName	      "Td"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace3"
+      SID		      846
+      Ports		      [1]
+      Position		      [90, 265, 150, 295]
+      BlockMirror	      on
+      VariableName	      "u_rec"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace4"
+      SID		      847
+      Ports		      [1]
+      Position		      [990, 190, 1050, 220]
+      VariableName	      "PD"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
     }
     Block {
       BlockType		      SubSystem
@@ -1894,7 +1167,7 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"controller"
-	Location		[10, 82, 1270, 955]
+	Location		[0, 82, 1440, 900]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -3285,16 +2558,15 @@ Model {
 	      Ports		      [1]
 	      Position		      [1260, 599, 1290, 631]
 	      Floating		      off
-	      Location		      [2195, 561, 2532, 824]
-	      Open		      on
+	      Location		      [1080, 555, 1417, 827]
+	      Open		      off
 	      NumInputPorts	      "1"
-	      ZoomMode		      "yonly"
 	      List {
 		ListType		AxesTitles
 		axes1			"%<SignalLabel>"
 	      }
-	      YMin		      "-0.0225"
-	      YMax		      "0.0225"
+	      YMin		      "-0.0011"
+	      YMax		      "0.0007"
 	      SaveName		      "ScopeData4"
 	      DataFormat	      "StructureWithTime"
 	      SampleTime	      "0"
@@ -3717,17 +2989,9 @@ Model {
 	    Line {
 	      SrcBlock		      "Controller_fcn4"
 	      SrcPort		      1
-	      Points		      [-10, 0]
-	      Branch {
-		Points			[-35, 0; 0, 365]
-		DstBlock		"Controller_fcn3"
-		DstPort			4
-	      }
-	      Branch {
-		Points			[0, -95]
-		DstBlock		"Mux3"
-		DstPort			1
-	      }
+	      Points		      [-45, 0; 0, 365]
+	      DstBlock		      "Controller_fcn3"
+	      DstPort		      4
 	    }
 	    Line {
 	      SrcBlock		      "Controller_fcn5"
@@ -3737,11 +3001,6 @@ Model {
 		Points			[-15, 0; 0, -165]
 		DstBlock		"Controller_fcn2"
 		DstPort			4
-	      }
-	      Branch {
-		Points			[0, -340]
-		DstBlock		"Mux3"
-		DstPort			2
 	      }
 	      Branch {
 		Points			[0, 220]
@@ -3805,12 +3064,6 @@ Model {
 	      SrcBlock		      "From22"
 	      SrcPort		      1
 	      DstBlock		      "Controller_fcn4"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Mux"
-	      SrcPort		      1
-	      DstBlock		      "du"
 	      DstPort		      1
 	    }
 	    Line {
@@ -3878,23 +3131,38 @@ Model {
 	    Line {
 	      SrcBlock		      "Controller_fcn6"
 	      SrcPort		      1
-	      Points		      [-45, 0; 0, 370]
-	      DstBlock		      "Controller_fcn5"
-	      DstPort		      4
+	      Points		      [-5, 0]
+	      Branch {
+		Points			[-40, 0; 0, 370]
+		DstBlock		"Controller_fcn5"
+		DstPort			4
+	      }
+	      Branch {
+		Points			[0, -95]
+		DstBlock		"Mux3"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      SrcBlock		      "Controller_fcn7"
 	      SrcPort		      1
 	      Points		      [-20, 0]
 	      Branch {
-		Points			[0, -160]
-		DstBlock		"Controller_fcn4"
-		DstPort			4
-	      }
-	      Branch {
 		Points			[0, 200]
 		DstBlock		"Submatrix2"
 		DstPort			1
+	      }
+	      Branch {
+		Points			[0, -160]
+		Branch {
+		  DstBlock		  "Controller_fcn4"
+		  DstPort		  4
+		}
+		Branch {
+		  Points		  [0, -180]
+		  DstBlock		  "Mux3"
+		  DstPort		  2
+		}
 	      }
 	    }
 	    Line {
@@ -3902,6 +3170,12 @@ Model {
 	      SrcPort		      1
 	      DstBlock		      "Mux4"
 	      DstPort		      4
+	    }
+	    Line {
+	      SrcBlock		      "Mux"
+	      SrcPort		      1
+	      DstBlock		      "du"
+	      DstPort		      1
 	    }
 	  }
 	}
@@ -4239,7 +3513,7 @@ Model {
       Ports		      [1]
       Position		      [1125, 479, 1155, 511]
       Floating		      off
-      Location		      [937, 500, 1275, 773]
+      Location		      [928, 492, 1266, 765]
       Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -4250,7 +3524,6 @@ Model {
       TimeRange		      "200"
       YMin		      "0.1175"
       YMax		      "0.155"
-      SaveToWorkspace	      on
       SaveName		      "SD8"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -4263,7 +3536,7 @@ Model {
       Ports		      [1]
       Position		      [1125, 274, 1155, 306]
       Floating		      off
-      Location		      [937, 493, 1275, 766]
+      Location		      [928, 485, 1266, 758]
       Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -4274,7 +3547,6 @@ Model {
       TimeRange		      "200"
       YMin		      "0.89"
       YMax		      "1"
-      SaveToWorkspace	      on
       SaveName		      "SD7"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -4287,8 +3559,8 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [1316, 132, 1654, 424]
-      Open		      on
+      Location		      [1070, 103, 1408, 395]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -4298,7 +3570,6 @@ Model {
       TimeRange		      "100"
       YMin		      "-0.07"
       YMax		      "0.08"
-      SaveToWorkspace	      on
       SaveName		      "SD2"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -4312,8 +3583,8 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1781, 580, 2119, 845]
-      Open		      on
+      Location		      [1070, 503, 1408, 768]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -4321,9 +3592,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-0.25"
-      YMax		      "2"
-      SaveToWorkspace	      on
+      YMin		      "0"
+      YMax		      "0.07"
       SaveName		      "SD5"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -4394,11 +3664,11 @@ Model {
       SrcPort		      1
       Points		      [-10, 0; 0, -295]
       Branch {
-	DstBlock		"Parallel plant"
+	DstBlock		"Mux5"
 	DstPort			1
       }
       Branch {
-	DstBlock		"Mux5"
+	DstBlock		"Parallel plant"
 	DstPort			1
       }
     }
@@ -4407,13 +3677,13 @@ Model {
       SrcPort		      2
       Points		      [-20, 0; 0, -285]
       Branch {
-	DstBlock		"Parallel plant"
-	DstPort			2
-      }
-      Branch {
 	Points			[-80, 0]
 	DstBlock		"Mux6"
 	DstPort			1
+      }
+      Branch {
+	DstBlock		"Parallel plant"
+	DstPort			2
       }
     }
     Line {
@@ -4421,13 +3691,13 @@ Model {
       SrcPort		      3
       Points		      [-30, 0; 0, -275]
       Branch {
-	DstBlock		"Parallel plant"
-	DstPort			3
-      }
-      Branch {
 	Points			[0, -50]
 	DstBlock		"Mux5"
 	DstPort			2
+      }
+      Branch {
+	DstBlock		"Parallel plant"
+	DstPort			3
       }
     }
     Line {
@@ -4435,13 +3705,13 @@ Model {
       SrcPort		      4
       Points		      [-40, 0; 0, -265]
       Branch {
-	DstBlock		"Parallel plant"
-	DstPort			4
-      }
-      Branch {
 	Points			[0, -15]
 	DstBlock		"Mux6"
 	DstPort			2
+      }
+      Branch {
+	DstBlock		"Parallel plant"
+	DstPort			4
       }
     }
     Line {
@@ -4474,7 +3744,7 @@ Model {
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      1
-      Points		      [25, 0; 0, -35; 25, 0]
+      Points		      [10, 0; 0, -10; 25, 0; 0, -35; 25, 0]
       Branch {
 	DstBlock		"Mux1"
 	DstPort			1
@@ -4485,9 +3755,10 @@ Model {
       }
     }
     Line {
+      Labels		      [3, 0]
       SrcBlock		      "Parallel plant"
       SrcPort		      5
-      Points		      [0, 20; 115, 0]
+      Points		      [15, 0; 0, 30; 110, 0]
       Branch {
 	DstBlock		"PD"
 	DstPort			1
@@ -4497,11 +3768,16 @@ Model {
 	DstBlock		"Mux2"
 	DstPort			4
       }
+      Branch {
+	Points			[0, -35]
+	DstBlock		"To Workspace4"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      2
-      Points		      [0, 5; 20, 0; 0, 5]
+      Points		      [30, 0; 0, 5]
       Branch {
 	DstBlock		"Mux4"
 	DstPort			1
@@ -4514,7 +3790,7 @@ Model {
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      3
-      Points		      [0, 10; 5, 0; 0, -75; 70, 0]
+      Points		      [0, 10; 15, 0; 0, -75; 70, 0]
       Branch {
 	DstBlock		"Mux1"
 	DstPort			2
@@ -4525,47 +3801,65 @@ Model {
       }
     }
     Line {
-      SrcBlock		      "Parallel plant"
-      SrcPort		      4
-      Points		      [0, 15; 10, 0; 0, -35; 25, 0]
-      Branch {
-	DstBlock		"Mux4"
-	DstPort			2
-      }
-      Branch {
-	Points			[0, 245]
-	DstBlock		"Mux2"
-	DstPort			2
-      }
-    }
-    Line {
       SrcBlock		      "Mux4"
       SrcPort		      1
-      DstBlock		      "SD"
-      DstPort		      1
+      Points		      [15, 0]
+      Branch {
+	DstBlock		"SD"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -30]
+	DstBlock		"To Workspace1"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Mux1"
       SrcPort		      1
-      DstBlock		      "pout"
-      DstPort		      1
+      Points		      [15, 0]
+      Branch {
+	DstBlock		"pout"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -25]
+	DstBlock		"To Workspace"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Mux5"
       SrcPort		      1
-      DstBlock		      "Td"
-      DstPort		      1
+      Points		      [-30, 0]
+      Branch {
+	DstBlock		"Td"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -70]
+	DstBlock		"To Workspace2"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Mux6"
       SrcPort		      1
-      DstBlock		      "u_rec"
-      DstPort		      1
+      Points		      [-30, 0]
+      Branch {
+	DstBlock		"u_rec"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 70]
+	DstBlock		"To Workspace3"
+	DstPort			1
+      }
     }
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      6
-      Points		      [0, 100; 95, 0]
+      Points		      [10, 0; 0, 115; 95, 0]
       Branch {
 	Points			[0, -50]
 	DstBlock		"x"
@@ -4694,6 +3988,21 @@ Model {
       DstBlock		      "Mux2"
       DstPort		      3
     }
+    Line {
+      SrcBlock		      "Parallel plant"
+      SrcPort		      4
+      Points		      [45, 0]
+      Branch {
+	Points			[95, 0]
+	DstBlock		"Mux4"
+	DstPort			2
+      }
+      Branch {
+	Points			[0, 230]
+	DstBlock		"Mux2"
+	DstPort			2
+      }
+    }
     Annotation {
       Position		      [881, 100]
     }
@@ -4701,7 +4010,7 @@ Model {
 }
 # Finite State Machines
 #
-#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 10:24:20
+#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 00:35:51
 #
 #
 
@@ -4985,14 +4294,14 @@ Stateflow {
       script		      "function [H1, f0_1, Gd1, H2, f0_2, Gd2, xout, A, B, df0, dxaug]  = fcn(yin, upast, dxaug_in)\n%#e"
       "ml\n% persistent C_new M LB UB Ga Gb Gc H Ain b A B upast xinit\npersistent M xinit y_old C \neml.extrinsic('dis"
       "p');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\neml.e"
-      "xtrinsic('quadprog');\n\n\n\n[~, ~, xsize, ~, ysize] = const_sim();\n\nif isempty(M)\n    tic\n    [C,M,~,~,~,~,"
-      "xinit] = get_constant_matrices();\n    y_old = zeros(ysize,1);\n    time = toc;\n    disp(['Preparation time: ' "
-      "num2str(time)]);\nend\n\n\ny = yin(1:ysize);\nyref = yin(ysize+1:end);\n\ny1 = yin([1,3,4]);\ny2 = yin([2,3,4]);"
-      "\n\nyref1 = yref([1,3,4]);\nyref2 = yref([2,3,4]);\n\n% Estimate state info\ndxaug = dxaug_in + M*(y - y_old - C"
-      "*(dxaug_in));\n\n% Use state input info to calculate x, y\nxinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxini"
-      "t(xsize+1:end) = dxaug(xsize+1:end);\n\nxout = xinit;\n\n% get matrices\n[A,B,C,df0,H1,H2,f0_1,f0_2,Gd1,Gd2] = g"
-      "et_qp_matrices(xinit,upast,[yref1;yref2]-[y1;y2]);\n\n\n"
-      editorLayout	      "100 M4x1[10 5 1296 1000]"
+      "xtrinsic('quadprog');\n\n\n\n[~, ~, xsize, ~, ysize] = const_sim();\n% [n_delay,dsize,~,p] = const_mpc();\n\nif "
+      "isempty(M)\n    tic\n    [C,M,~,~,~,~,xinit] = get_constant_matrices();\n%     y_old = zeros(ysize,1);\n    y_ol"
+      "d = [0.2175; 0.2175; 0; 1.12];\n%     y_old = yss;\n    time = toc;\n    disp(['Preparation time: ' num2str(time"
+      ")]);\nend\n\n\ny = yin(1:ysize);\nyref = yin(ysize+1:end);\n\n% Estimate state info\ndxaug = dxaug_in + M*(y - y"
+      "_old - C*(dxaug_in));\n\n% Use state input info to calculate x, y\nxinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize"
+      ");\nxinit(xsize+1:end) = dxaug(xsize+1:end);\n\nxout = xinit;\n\n% get matrices\n[A,B,C,df0,H1,H2,f0_1,f0_2,Gd1,"
+      "Gd2] = get_qp_matrices(xinit,upast,[yref1;yref2]-[y1;y2]);\n\n\n"
+      editorLayout	      "100 M4x1[10 22 1460 888]"
     }
   }
   junction {
