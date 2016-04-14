@@ -1,6 +1,6 @@
 clear all
 
-Td = 0.02;
+Td = 0;
 rec_open = 0;
 
 Ts = 0.05;
