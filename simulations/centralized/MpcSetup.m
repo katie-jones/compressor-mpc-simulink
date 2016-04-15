@@ -1,6 +1,5 @@
 % Tuning parameters for MPC controller
 
-clear all
 
 addpath('../call_qpoases_m')
 addpath('../call_qpoases_m/qpoases3/interfaces/matlab/')
@@ -88,7 +87,7 @@ upast = u_init;
 deltax = zeros(xtotalsize,1);
 
 %% Define disturbances
-disturbances;
+[tdist,udist1,udist2,dist_dirname] = disturbances(n_disturbance);
 
 
 disp('MPC Problem Formulated');

@@ -1,6 +1,8 @@
+% set default plotting params
 set(0,'defaultaxesfontsize',14)
 set(0,'defaultlinelinewidth',1.5)
 
+% if variable hasn't been set
 if ~exist('saveplots','var')
     saveplots = 0;
 end
@@ -117,8 +119,25 @@ xlabel('Time [s]')
 if saveplots
     set(fig,'units','centimeters','position',1.25*[0 0 21 29.7])
     fig=printplot(fig);
-    saveas(fig,[results_folder,results_fname,'.fig'])
-    saveas(fig,[results_folder,results_fname,'.pdf'])
+
+    if (results_folder(end)~='/')
+        results_folder = strcat(results_folder,'/');
+    end
+    if dist_dirname(end)~='/'
+        dist_dirname = strcat(dist_dirname,'/');
+    end
+    if ~exist(results_folder,'dir')
+        mkdir(results_folder)
+    elseif dist_overwrite==0
+        basename = [results_folder,dist_dirname,results_fname];
+        n = 0;
+        while (exist([basename,'.pdf'],'file') || exist([basename,'.mat'],'file') || exist([basename,'.fig'],'file'))
+            n=n+1;
+            basename=[basename,num2str(n)];
+        end
+    end
+    saveas(fig,[basename,'.fig'])
+    saveas(fig,[basename,'.pdf'])
     [n_delay,~,~,p,m,UWT,YWT] = const_mpc();
     Results.n_delay = n_delay;
     Results.p = p;
@@ -134,7 +153,7 @@ if saveplots
     Results.pd = PD;
     Results.tdist = tdist;
     Results.udist = [udist1; udist2];
-    save([results_folder,results_fname,'.mat'],'Results')
+    save([basename,'.mat'],'Results')
 end
     
 set(0,'defaultlinelinewidth',1)
