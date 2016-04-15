@@ -84,6 +84,9 @@ deltax = zeros(xtotalsize,1);
 % add disturbances
 disturbances;
 
+% Choose number of controller iterations (1-4)
+n_controller_iterations = 4;
+
 disp('MPC Problem Formulated');
 
 generate_file_linearized;
