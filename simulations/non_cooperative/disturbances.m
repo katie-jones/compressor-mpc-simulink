@@ -1,6 +1,6 @@
-results_folder = 'results/output_dist2/';
+results_folder = 'results/output_dist/';
 mkdir(results_folder);
-results_fname = '02_02';
+results_fname = '3it_02_02';
 results_title = 'Output Disturbance';
 
 tdist = [30 100]; % disturbance times

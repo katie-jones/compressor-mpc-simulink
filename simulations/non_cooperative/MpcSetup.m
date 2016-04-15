@@ -85,7 +85,7 @@ deltax = zeros(xtotalsize,1);
 disturbances;
 
 % Choose number of controller iterations (1-4)
-n_controller_iterations = 4;
+n_controller_iterations = 3;
 
 disp('MPC Problem Formulated');
 
