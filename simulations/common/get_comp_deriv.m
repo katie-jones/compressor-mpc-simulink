@@ -52,10 +52,18 @@ m_in = C * M3 + m_in_c; % Inflow valve
 
 % If using for simulation, have dead zone on recycle opening
 % If using for MPC, remove dead zone (better results)
-if flag==1
-    m_rec_ss = (m_rec_ss_c(1) * sqrt(p2*1e5 - p1*1e5) * Recycle_opening  + m_rec_ss_c(2) ) * ~(Recycle_opening<1e-2);
+v = m_rec_ss_c(1) * sqrt(p2*1e5 - p1*1e5) * Recycle_opening  + m_rec_ss_c(2);
+x0 = 1e-2;
+if flag==1 || Recycle_opening >= 2*x0
+    m_rec_ss = v * ~(Recycle_opening<x0);
 else
-    m_rec_ss = (m_rec_ss_c(1) * sqrt(p2*1e5 - p1*1e5) * Recycle_opening);
+    n = 1e3; % barrier constant
+    if x>=x0
+        a = 0.1+0.9*exp(n*(x-x0));
+    else
+        a = 2-0.9*exp(-n*x);
+    end
+    m_rec_ss = a * v;
 end
 
 
