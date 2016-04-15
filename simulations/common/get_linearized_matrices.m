@@ -104,12 +104,25 @@ A = [dp1dot;
     domegacdot;
     dqrdot];
 
+
 % Linearized B matrix
+x0 = 1e-2; % deadzone cutoff
+dmrur = tauRecycle * m_rec_ss_c(1) * sqrt(p2*1e5 - p1*1e5);
+if Recycle_opening < 2*x0 % in linear zone
+    n = 1e3; % barrier constant
+    if x>=x0
+        a = exp(n*(x-x0));
+    else
+        a = 2-exp(-n*x);
+    end
+    dmrur = a*dmrur;
+end
+
 B = [0, 0;
     0, 0;
     0, 0;
     1.0/J*torque_drive_c/omega_comp, 0;
-    0, tauRecycle*m_rec_ss_c(1) * sqrt(p2*1e5 - p1*1e5)];
+    0, dmrur];
 
 % Linearized C matrix
 C = [0, 1, 0, 0, 0;
@@ -120,3 +133,4 @@ C(2,:) = 100*C(2,:); % SD output is multiplied by factor 100
 
 
 end
+
