@@ -119,17 +119,20 @@ xlabel('Time [s]')
 if saveplots
     set(fig,'units','centimeters','position',1.25*[0 0 21 29.7])
     fig=printplot(fig);
-
+    
     if (results_folder(end)~='/')
         results_folder = strcat(results_folder,'/');
     end
     if dist_dirname(end)~='/'
         dist_dirname = strcat(dist_dirname,'/');
     end
+    basename = [results_folder,dist_dirname,results_fname];
     if ~exist(results_folder,'dir')
         mkdir(results_folder)
-    elseif dist_overwrite==0
-        basename = [results_folder,dist_dirname,results_fname];
+    elseif ~exist([results_folder,dist_dirname],'dir')
+        mkdir([results_folder,dist_dirname])
+    elseif results_overwrite==0
+        
         n = 0;
         while (exist([basename,'.pdf'],'file') || exist([basename,'.mat'],'file') || exist([basename,'.fig'],'file'))
             n=n+1;
@@ -139,6 +142,7 @@ if saveplots
     saveas(fig,[basename,'.fig'])
     saveas(fig,[basename,'.pdf'])
     [n_delay,~,~,p,m,UWT,YWT] = const_mpc();
+    [n_barrier,delta_barrier] = const_barrier();
     Results.n_delay = n_delay;
     Results.p = p;
     Results.m = m;
@@ -153,6 +157,8 @@ if saveplots
     Results.pd = PD;
     Results.tdist = tdist;
     Results.udist = [udist1; udist2];
+    Results.n_barrier = n_barrier;
+    Results.delta_barrier = delta_barrier;
     save([basename,'.mat'],'Results')
 end
     

@@ -7,12 +7,12 @@ addpath('../decentralized_common/')
 n_disturbance = 1;
 
 % Choose number of controller iterations
-n_controller_iterations = 2;
+n_controller_iterations = 3;
 
 % Choose filename and directory for saving results
 % Plotting function should take care of ensuring no results are overwritten
-results_folder = '../results/cooperative/';
-results_fname = [num2str(n_controller_iterations),'2it'];
+results_folder = '../results/cooperative_barrier/';
+results_fname = [num2str(n_controller_iterations),'it'];
 results_overwrite = 0;
 
 % Reference output
@@ -20,7 +20,9 @@ yss = [0.2175 0.2175 0 1.12]';
 yref = [0.2175 0.2175 0 1.12]';
 
 % Run MpcSetup script, perform simulation and plot results
-MpcSetup;
-sim('closedloop');
-makeplots;
+for n_disturbance=1:6
+    MpcSetup;
+    sim('decentralized_closedloop');
+    makeplots;
+end
 

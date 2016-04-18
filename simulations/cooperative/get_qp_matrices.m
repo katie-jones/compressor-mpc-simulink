@@ -21,8 +21,8 @@ u = [u1; u2; ud];
 [Ac,Bc,Ccorig] = linearize_tank(xinit, u);
 Cc = [Ccorig([2,4],:); Ccorig(1,:)-Ccorig(3,:); Ccorig(5,:)];
 
-f1 = get_comp_deriv(x1,u1,0);
-f2 = get_comp_deriv(x2,u2,0);
+f1 = get_comp_deriv(x1,u1,1);
+f2 = get_comp_deriv(x2,u2,1);
 ftank = get_tank_deriv(xinit,u);
 
 [Ainit,Binit,Cinit,dx2] = discretize_rk4(Ac,Bc,Cc,[f1; f2; ftank],Ts);

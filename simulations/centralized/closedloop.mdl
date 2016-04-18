@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.268"
+    ComputedModelVersion    "1.270"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Apr 13 09:34:23 2016"
-  RTWModifiedTimeStamp	  382440861
-  ModelVersionFormat	  "1.%<AutoIncrement:268>"
+  LastModifiedDate	  "Fri Apr 15 17:27:24 2016"
+  RTWModifiedTimeStamp	  382641049
+  ModelVersionFormat	  "1.%<AutoIncrement:270>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -727,7 +727,7 @@ Model {
   }
   System {
     Name		    "closedloop"
-    Location		    [2, 82, 1278, 971]
+    Location		    [2, 74, 1278, 963]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -872,7 +872,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [937, 164, 1275, 414]
+      Location		      [2178, 125, 2538, 398]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -943,7 +943,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [925, 142, 1275, 415]
+      Location		      [1766, 127, 2116, 400]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -952,8 +952,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "120"
-      YMin		      "-1.5"
-      YMax		      "2"
+      YMin		      "-1.2"
+      YMax		      "0.4"
       SaveName		      "SD3"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1035,7 +1035,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 543, 1275, 816]
+      Location		      [1342, 512, 1680, 785]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1044,8 +1044,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "120"
-      YMin		      "-0.1"
-      YMax		      "0.09"
+      YMin		      "-0.075"
+      YMax		      "0.125"
       SaveName		      "SD4"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1192,6 +1192,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -1588,7 +1593,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [937, 144, 1275, 417]
+      Location		      [1379, 134, 1717, 407]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1597,8 +1602,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "120"
-      YMin		      "0.01"
-      YMax		      "0.17"
+      YMin		      "0.015"
+      YMax		      "0.095"
       SaveName		      "SD2"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1612,17 +1617,17 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 539, 1275, 804]
+      Location		      [1804, 526, 2142, 791]
       Open		      on
       NumInputPorts	      "1"
-      ZoomMode		      "xonly"
+      ZoomMode		      "yonly"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "120"
-      YMin		      "-0.01"
-      YMax		      "0.14"
+      YMin		      "-0.0025"
+      YMax		      "0.0375"
       SaveName		      "SD5"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -2060,6 +2065,8 @@ Stateflow {
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
     firstTarget		    13
+    debug {
+    }
     sfVersion		    71014000.00001
   }
   chart {
