@@ -57,11 +57,11 @@ x0 = 1e-2;
 if flag==1 || Recycle_opening >= 2*x0
     m_rec_ss = v * ~(Recycle_opening<x0);
 else
-    n = 1e3; % barrier constant
-    if x>=x0
-        a = 0.1+0.9*exp(n*(x-x0));
+    n = 1e2; % barrier constant
+    if Recycle_opening>=x0
+        a = 0.1+0.9*exp(n*(Recycle_opening-x0));
     else
-        a = 2-0.9*exp(-n*x);
+        a = 2-0.9*exp(-n*Recycle_opening);
     end
     m_rec_ss = a * v;
 end

@@ -109,11 +109,11 @@ A = [dp1dot;
 x0 = 1e-2; % deadzone cutoff
 dmrur = tauRecycle * m_rec_ss_c(1) * sqrt(p2*1e5 - p1*1e5);
 if Recycle_opening < 2*x0 % in linear zone
-    n = 1e3; % barrier constant
-    if x>=x0
-        a = 0.1+0.9*exp(n*(x-x0));
+    n = 1e2; % barrier constant
+    if Recycle_opening>=x0
+        a = 0.1+0.9*exp(n*(Recycle_opening-x0));
     else
-        a = 2-0.9*exp(-n*x);
+        a = 2-0.9*exp(-n*Recycle_opening);
     end
     dmrur = a*dmrur;
 end
