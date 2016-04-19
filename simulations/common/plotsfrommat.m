@@ -7,6 +7,19 @@ if ~exist('saveplots','var')
     saveplots = 0;
 end
 
+v2struct(Results)
+
+udist1 = udist(1,:);
+udist2 = udist(2,:);
+
+if ~exist('off1','var')
+    [~, ~, ~, ~, ~, uoff1, uoff2, ud] = const_sim();
+end
+
+if ~exist('yref','var')
+    yref = [0.2175 0.2175 0 1.12]';
+end
+
 % check disturbances
 udist = [];
 ulegstr = {};
@@ -71,91 +84,40 @@ subplot(3,2,1)
 plot(Td.time,Td.signals.values)
 grid on
 title('Inputs','fontsize',16)
-ylabel('Torque setting')
+ylabel('Torque Setting')
 legend('Comp. 1','Comp. 2','location','best')
 
 subplot(3,2,2)
-plot(pout.time,pout.signals.values)
+plot(pout.time, pout.signals.values)
 grid on
 title('Outputs','fontsize',16)
 ylabel('Output pressure')
 legend('Comp. 1','Comp. 2','location','best')
 
 subplot(3,2,3)
-plot(u_rec.time,u_rec.signals.values)
+plot(ur.time, ur.signals.values)
 grid on
-ylabel('Recycle opening')
+ylabel('Recycle valve')
 legend('Comp. 1','Comp. 2','location','best')
 
 subplot(3,2,4)
-plot(SD.time,SD.signals.values)
+plot(SD.time, SD.signals.values)
 grid on
 hold on
-plot([0 max(SD.time)], [yref(1) yref(1)],'-.k')
-ylabel('Surge Distance')
-legend('Comp. 1','Comp. 2','location','best')
+plot([0 max(SD.time)], [yref(2) yref(2)],'-.k')
+ylabel('Surge distance')
+legend('Comp. 1','Comp. 2','Ref','location','best')
 
 subplot(3,2,5)
 plot([0 tdist(1) tdist(1) tdist(2) tdist(2) SD.time(end)],udist);
-legend(ulegstr,'fontsize',12,'location','north','orientation','horizontal');
 grid on
 ylabel('Valve setting')
-xlabel('Time [s]')
+legend(ulegstr,'location','best')
 
-subplot(3,2,10)
-plot(PD.time,PD.signals.values)
+subplot(3,2,6)
+plot(pd.time,pd.signals.values)
 grid on
+ylabel('Tank pressure')
 hold on
-plot([0 max(PD.time)], [yref(4) yref(4)],'-.k')
-ylabel('Pressure')
-xlabel('Time [s]')
-
-if saveplots
-    set(fig,'units','centimeters','position',1.25*[0 0 21 29.7])
-    fig=printplot(fig);
-    
-    if (results_folder(end)~='/')
-        results_folder = strcat(results_folder,'/');
-    end
-    if dist_dirname(end)~='/'
-        dist_dirname = strcat(dist_dirname,'/');
-    end
-    basename = [results_folder,dist_dirname,results_fname];
-    if ~exist(results_folder,'dir')
-        mkdir(results_folder)
-    elseif ~exist([results_folder,dist_dirname],'dir')
-        mkdir([results_folder,dist_dirname])
-    elseif results_overwrite==0
-        
-        n = 0;
-        while (exist([basename,'.pdf'],'file') || exist([basename,'.mat'],'file') || exist([basename,'.fig'],'file'))
-            n=n+1;
-            basename=[basename,num2str(n)];
-        end
-    end
-    saveas(fig,[basename,'.fig'])
-    saveas(fig,[basename,'.pdf'])
-    [n_delay,~,~,p,m,UWT,YWT] = const_mpc();
-    [n_barrier,delta_barrier] = const_barrier();
-    Results.n_delay = n_delay;
-    Results.p = p;
-    Results.m = m;
-    Results.UWT = UWT;
-    Results.YWT = YWT;
-    Results.lb = lb;
-    Results.ub = ub;
-    Results.Td = Td;
-    Results.ur = u_rec;
-    Results.SD = SD;
-    Results.pout = pout;
-    Results.pd = PD;
-    Results.tdist = tdist;
-    Results.udist = [udist1; udist2];
-    Results.yref = yref;
-    Results.n_barrier = n_barrier;
-    Results.delta_barrier = delta_barrier;
-    save([basename,'.mat'],'Results')
-end
-
-set(0,'defaultlinelinewidth',1)
+plot([0 max(pd.time)], [yref(4) yref(4)],'-.k')
 
