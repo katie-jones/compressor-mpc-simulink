@@ -3,14 +3,16 @@ function test_predictions()
 addpath('../common')
 addpath('../parallel_common/')
 
-save_plots=0;
-fname='Td_pred_15.pdf';
+save_plots=1;
+fname='../results/Td_pred_15.png';
 
 %% Constants
 [Ts, ~, ~, ~, ysize] = const_sim();
 [~,~,ucontrolsize,p,m,UWT,YWT] = const_mpc();
 
 P_D = 1.12;
+
+yref = 0.2;
 
 x_init_lin = [0.916; 1.145; 0.152; 440; 0];
 
@@ -31,10 +33,11 @@ SD_sum = zeros(p,2);
 
 SD_sum(1,:) = [0 0];
 for i=2:p
-    SD_sum(i,:) = SD_sum(i-1,:) + y1(i,1:2);
+%     SD_sum(i,:) = SD_sum(i-1,:) + y1(i,1:2);
+    SD_sum(i,:) = SD_sum(i-1,:) + (0.2-y1(i,1:2)).^2 - 0.2^2;
 end
 
-SD_sum = SD_sum .^ 2;
+% SD_sum = SD_sum .^ 2;
 
 % SD_sum = (Su1*du)'*YWT*(Su1*du);
 
@@ -55,20 +58,26 @@ set(0,'DefaultLineLineWidth',2)
 subplot(1,2,1)
 plot(t,y1(:,1:2));
 grid on
+hold on
+plot([min(t),max(t)],[yref yref],'-.k')
 title('Predicted surge distance')
 xlabel({'Horizon length (m)'; 'x = [0.92 1.15 0.15 440 0]'''})
 ylabel('Relative surge distance [%]')
-legend('SD_1','SD_2','location','best')
+legend('Comp. 1','Comp. 2','Ref','location','best')
 
 subplot(1,2,2)
 plot(t,SD_sum);
+hold on
+% plot(t,-SD_sum(:,1),'-.')
+plot(t,sum(SD_sum,2),'--r')
 
-ylim([0 200])
+ylim([-10 10])
 xlim([0 p])
 grid on
-title('Cumulative effect of predicted surge distance')
-xlabel({'Horizon length (m)'; '\Delta T_{d,1}=0.01, m=2, Vtank=15x'})
+title({'Cumulative penalty on predicted surge distance','(compared to no input)'})
+xlabel({'Horizon length (p)'; '\Delta T_{d,1}=0.01, Vtank=8.5'})
 ylabel('Cumulative effect of surge distance')
+legend('Comp. 1','Comp. 2','Total','location','best')
 
 if save_plots
     fig=printplot(fig);
@@ -196,7 +205,7 @@ YWT = kron(eye(p),diag(YW'));
 end
 
 function [Ts, xsize_comp, xsize, usize_comp, ysize, uoff1, uoff2, ud] = const_sim()
-%#eml
+
 
 Ts = 0.05;
 
@@ -214,3 +223,4 @@ uoff2 = uoff1;
 ud = 0.7;
 
 end
+
