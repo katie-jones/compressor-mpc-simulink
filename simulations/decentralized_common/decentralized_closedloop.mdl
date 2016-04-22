@@ -1,12 +1,12 @@
 Model {
-  Name			  "closedloop"
+  Name			  "decentralized_closedloop"
   Version		  7.4
   MdlSubVersion		  0
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.351"
+    ComputedModelVersion    "1.357"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,11 +23,11 @@ Model {
   Creator		  "chkajon"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "chkajon"
+  LastModifiedBy	  "katie"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Apr 15 09:48:11 2016"
-  RTWModifiedTimeStamp	  382614486
-  ModelVersionFormat	  "1.%<AutoIncrement:351>"
+  LastModifiedDate	  "Wed Apr 20 16:51:04 2016"
+  RTWModifiedTimeStamp	  383071863
+  ModelVersionFormat	  "1.%<AutoIncrement:357>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "200"
+	  StopTime		  "500"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -535,7 +535,7 @@ Model {
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition    " [ 200, 197, 1080, 827 ] "
+      ConfigPrmDlgPosition    " [ 279, 59, 1219, 818 ] "
     }
     PropName		    "ConfigurationSets"
   }
@@ -777,8 +777,8 @@ Model {
     }
   }
   System {
-    Name		    "closedloop"
-    Location		    [2, 82, 1278, 971]
+    Name		    "decentralized_closedloop"
+    Location		    [104, 98, 1391, 826]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -792,7 +792,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    864
+    SIDHighWatermark	    867
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -831,7 +831,7 @@ Model {
       Name		      "Mux2"
       SID		      413
       Ports		      [4, 1]
-      Position		      [665, 406, 670, 444]
+      Position		      [665, 410, 670, 465]
       BlockMirror	      on
       NamePlacement	      "alternate"
       ShowName		      off
@@ -923,7 +923,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [936, 97, 1275, 367]
+      Location		      [882, 84, 1221, 354]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -995,7 +995,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [937, 92, 1275, 365]
+      Location		      [883, 84, 1221, 357]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -1065,9 +1065,9 @@ Model {
     Block {
       BlockType		      Sum
       Name		      "Sum"
-      SID		      673
+      SID		      867
       Ports		      [2, 1]
-      Position		      [705, 420, 725, 440]
+      Position		      [710, 435, 730, 455]
       BlockMirror	      on
       ShowName		      off
       IconShape		      "round"
@@ -1087,7 +1087,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [944, 471, 1275, 744]
+      Location		      [890, 423, 1221, 696]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1185,7 +1185,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[0, 82, 1440, 900]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1294,7 +1294,7 @@ Model {
 	      BlockType		      "S-Function"
 	      Name		      " SFunction "
 	      SID		      6
-	      Tag		      "Stateflow S-Function closedloop 2"
+	      Tag		      "Stateflow S-Function decentralized_closedloop 2"
 	      Ports		      [3, 12]
 	      Position		      [180, 135, 230, 395]
 	      FunctionName	      "sf_sfun"
@@ -1708,7 +1708,7 @@ Model {
 	      BlockType		      "S-Function"
 	      Name		      " SFunction "
 	      SID		      6
-	      Tag		      "Stateflow S-Function closedloop 1"
+	      Tag		      "Stateflow S-Function decentralized_closedloop 1"
 	      Ports		      [5, 3]
 	      Position		      [180, 141, 230, 359]
 	      FunctionName	      "sf_sfun"
@@ -1828,8 +1828,8 @@ Model {
 	  MaskHideContents	  off
 	  System {
 	    Name		    "QPs"
-	    Location		    [10, 82, 1253, 938]
-	    Open		    on
+	    Location		    [35, 149, 1322, 801]
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -1950,12 +1950,12 @@ Model {
 	      BlockMirror	      on
 	      ForegroundColor	      "blue"
 	      NamePlacement	      "alternate"
-	      LibraryVersion	      "1.47"
+	      LibraryVersion	      "1.49"
 	      SourceBlock	      "lib_controller/Controller_fcn"
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
@@ -1971,12 +1971,12 @@ Model {
 	      BlockMirror	      on
 	      ForegroundColor	      "blue"
 	      NamePlacement	      "alternate"
-	      LibraryVersion	      "1.47"
+	      LibraryVersion	      "1.49"
 	      SourceBlock	      "lib_controller/Controller_fcn"
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
@@ -1992,12 +1992,12 @@ Model {
 	      BlockMirror	      on
 	      ForegroundColor	      "blue"
 	      NamePlacement	      "alternate"
-	      LibraryVersion	      "1.47"
+	      LibraryVersion	      "1.49"
 	      SourceBlock	      "lib_controller/Controller_fcn"
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
@@ -2013,12 +2013,12 @@ Model {
 	      BlockMirror	      on
 	      ForegroundColor	      "blue"
 	      NamePlacement	      "alternate"
-	      LibraryVersion	      "1.47"
+	      LibraryVersion	      "1.49"
 	      SourceBlock	      "lib_controller/Controller_fcn"
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
@@ -2034,12 +2034,12 @@ Model {
 	      BlockMirror	      on
 	      ForegroundColor	      "blue"
 	      NamePlacement	      "alternate"
-	      LibraryVersion	      "1.47"
+	      LibraryVersion	      "1.49"
 	      SourceBlock	      "lib_controller/Controller_fcn"
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
@@ -2055,12 +2055,12 @@ Model {
 	      BlockMirror	      on
 	      ForegroundColor	      "blue"
 	      NamePlacement	      "alternate"
-	      LibraryVersion	      "1.47"
+	      LibraryVersion	      "1.49"
 	      SourceBlock	      "lib_controller/Controller_fcn"
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
@@ -2076,12 +2076,12 @@ Model {
 	      BlockMirror	      on
 	      ForegroundColor	      "blue"
 	      NamePlacement	      "alternate"
-	      LibraryVersion	      "1.47"
+	      LibraryVersion	      "1.49"
 	      SourceBlock	      "lib_controller/Controller_fcn"
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
@@ -2097,12 +2097,12 @@ Model {
 	      BlockMirror	      on
 	      ForegroundColor	      "blue"
 	      NamePlacement	      "alternate"
-	      LibraryVersion	      "1.47"
+	      LibraryVersion	      "1.49"
 	      SourceBlock	      "lib_controller/Controller_fcn"
 	      SourceType	      "Stateflow"
 	      ShowPortLabels	      "FromPortIcon"
 	      SystemSampleTime	      "-1"
-	      FunctionWithSeparateData off
+	      FunctionWithSeparateData "off"
 	      RTWMemSecFuncInitTerm   "Inherit from model"
 	      RTWMemSecFuncExecute    "Inherit from model"
 	      RTWMemSecDataConstants  "Inherit from model"
@@ -2567,6 +2567,17 @@ Model {
 	      DisplayOption	      "bar"
 	    }
 	    Block {
+	      BlockType		      Mux
+	      Name		      "Mux7"
+	      SID		      865
+	      Ports		      [8, 1]
+	      Position		      [210, 609, 215, 716]
+	      BlockMirror	      on
+	      ShowName		      off
+	      Inputs		      "8"
+	      DisplayOption	      "bar"
+	    }
+	    Block {
 	      BlockType		      Scope
 	      Name		      "Scope"
 	      SID		      821
@@ -2722,33 +2733,9 @@ Model {
 	    }
 	    Block {
 	      BlockType		      Terminator
-	      Name		      "Terminator1"
-	      SID		      854
-	      Position		      [1140, 320, 1160, 340]
-	      BlockMirror	      on
-	      ShowName		      off
-	    }
-	    Block {
-	      BlockType		      Terminator
 	      Name		      "Terminator10"
 	      SID		      863
 	      Position		      [545, 520, 565, 540]
-	      BlockMirror	      on
-	      ShowName		      off
-	    }
-	    Block {
-	      BlockType		      Terminator
-	      Name		      "Terminator11"
-	      SID		      864
-	      Position		      [545, 585, 565, 605]
-	      BlockMirror	      on
-	      ShowName		      off
-	    }
-	    Block {
-	      BlockType		      Terminator
-	      Name		      "Terminator2"
-	      SID		      855
-	      Position		      [1140, 585, 1160, 605]
 	      BlockMirror	      on
 	      ShowName		      off
 	    }
@@ -2770,25 +2757,9 @@ Model {
 	    }
 	    Block {
 	      BlockType		      Terminator
-	      Name		      "Terminator5"
-	      SID		      858
-	      Position		      [830, 320, 850, 340]
-	      BlockMirror	      on
-	      ShowName		      off
-	    }
-	    Block {
-	      BlockType		      Terminator
 	      Name		      "Terminator6"
 	      SID		      859
 	      Position		      [830, 520, 850, 540]
-	      BlockMirror	      on
-	      ShowName		      off
-	    }
-	    Block {
-	      BlockType		      Terminator
-	      Name		      "Terminator7"
-	      SID		      860
-	      Position		      [830, 585, 850, 605]
 	      BlockMirror	      on
 	      ShowName		      off
 	    }
@@ -2801,12 +2772,16 @@ Model {
 	      ShowName		      off
 	    }
 	    Block {
-	      BlockType		      Terminator
-	      Name		      "Terminator9"
-	      SID		      862
-	      Position		      [545, 320, 565, 340]
+	      BlockType		      ToWorkspace
+	      Name		      "To Workspace"
+	      SID		      866
+	      Ports		      [1]
+	      Position		      [85, 645, 145, 675]
 	      BlockMirror	      on
-	      ShowName		      off
+	      VariableName	      "J"
+	      MaxDataPoints	      "inf"
+	      SampleTime	      "-1"
+	      SaveFormat	      "Structure With Time"
 	    }
 	    Block {
 	      BlockType		      Outport
@@ -2932,9 +2907,17 @@ Model {
 	    Line {
 	      SrcBlock		      "Controller_fcn1"
 	      SrcPort		      3
-	      Points		      [-45, 0; 0, -55]
-	      DstBlock		      "Mux2"
-	      DstPort		      2
+	      Points		      [-45, 0]
+	      Branch {
+		Points			[0, -55]
+		DstBlock		"Mux2"
+		DstPort			2
+	      }
+	      Branch {
+		Points			[0, 30]
+		DstBlock		"Mux7"
+		DstPort			2
+	      }
 	    }
 	    Line {
 	      SrcBlock		      "Controller_fcn1"
@@ -2960,9 +2943,16 @@ Model {
 	    Line {
 	      SrcBlock		      "Controller_fcn"
 	      SrcPort		      3
-	      Points		      [-45, 0; 0, 190]
-	      DstBlock		      "Mux2"
-	      DstPort		      1
+	      Points		      [-45, 0; 0, 190; -10, 0]
+	      Branch {
+		DstBlock		"Mux2"
+		DstPort			1
+	      }
+	      Branch {
+		Points			[0, 90]
+		DstBlock		"Mux7"
+		DstPort			1
+	      }
 	    }
 	    Line {
 	      SrcBlock		      "From"
@@ -3354,21 +3344,9 @@ Model {
 	      DstPort		      1
 	    }
 	    Line {
-	      SrcBlock		      "Controller_fcn6"
-	      SrcPort		      3
-	      DstBlock		      "Terminator1"
-	      DstPort		      1
-	    }
-	    Line {
 	      SrcBlock		      "Controller_fcn7"
 	      SrcPort		      2
 	      DstBlock		      "Terminator3"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Controller_fcn7"
-	      SrcPort		      3
-	      DstBlock		      "Terminator2"
 	      DstPort		      1
 	    }
 	    Line {
@@ -3378,21 +3356,9 @@ Model {
 	      DstPort		      1
 	    }
 	    Line {
-	      SrcBlock		      "Controller_fcn4"
-	      SrcPort		      3
-	      DstBlock		      "Terminator5"
-	      DstPort		      1
-	    }
-	    Line {
 	      SrcBlock		      "Controller_fcn5"
 	      SrcPort		      2
 	      DstBlock		      "Terminator6"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Controller_fcn5"
-	      SrcPort		      3
-	      DstBlock		      "Terminator7"
 	      DstPort		      1
 	    }
 	    Line {
@@ -3402,21 +3368,57 @@ Model {
 	      DstPort		      1
 	    }
 	    Line {
-	      SrcBlock		      "Controller_fcn2"
-	      SrcPort		      3
-	      DstBlock		      "Terminator9"
-	      DstPort		      1
-	    }
-	    Line {
 	      SrcBlock		      "Controller_fcn3"
 	      SrcPort		      2
 	      DstBlock		      "Terminator10"
 	      DstPort		      1
 	    }
 	    Line {
+	      SrcBlock		      "Controller_fcn2"
+	      SrcPort		      3
+	      Points		      [-130, 0; 0, 310]
+	      DstBlock		      "Mux7"
+	      DstPort		      3
+	    }
+	    Line {
 	      SrcBlock		      "Controller_fcn3"
 	      SrcPort		      3
-	      DstBlock		      "Terminator11"
+	      Points		      [-125, 0; 0, 60]
+	      DstBlock		      "Mux7"
+	      DstPort		      4
+	    }
+	    Line {
+	      SrcBlock		      "Controller_fcn4"
+	      SrcPort		      3
+	      Points		      [-120, 0; 0, 340]
+	      DstBlock		      "Mux7"
+	      DstPort		      5
+	    }
+	    Line {
+	      SrcBlock		      "Controller_fcn5"
+	      SrcPort		      3
+	      Points		      [-120, 0; 0, 90]
+	      DstBlock		      "Mux7"
+	      DstPort		      6
+	    }
+	    Line {
+	      SrcBlock		      "Controller_fcn6"
+	      SrcPort		      3
+	      Points		      [-145, 0; 0, 370]
+	      DstBlock		      "Mux7"
+	      DstPort		      7
+	    }
+	    Line {
+	      SrcBlock		      "Controller_fcn7"
+	      SrcPort		      3
+	      Points		      [-145, 0; 0, 120]
+	      DstBlock		      "Mux7"
+	      DstPort		      8
+	    }
+	    Line {
+	      SrcBlock		      "Mux7"
+	      SrcPort		      1
+	      DstBlock		      "To Workspace"
 	      DstPort		      1
 	    }
 	  }
@@ -3687,7 +3689,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [937, 83, 1275, 375]
+      Location		      [883, 84, 1221, 376]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -3711,7 +3713,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 482, 1275, 747]
+      Location		      [883, 434, 1221, 699]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -3760,6 +3762,7 @@ Model {
     Line {
       SrcBlock		      "Mux2"
       SrcPort		      1
+      Points		      [0, -15]
       DstBlock		      "Rate Transition"
       DstPort		      1
     }
@@ -3878,6 +3881,7 @@ Model {
 	DstPort			1
       }
       Branch {
+	Points			[5, 0]
 	DstBlock		"Sum"
 	DstPort			1
       }
@@ -3886,20 +3890,23 @@ Model {
       Labels		      [3, 0]
       SrcBlock		      "Parallel plant"
       SrcPort		      5
-      Points		      [15, 0; 0, 30; 110, 0]
+      Points		      [15, 0; 0, 30; 80, 0]
       Branch {
-	DstBlock		"PD"
-	DstPort			1
+	Points			[30, 0]
+	Branch {
+	  DstBlock		  "PD"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, -35]
+	  DstBlock		  "To Workspace4"
+	  DstPort		  1
+	}
       }
       Branch {
-	Points			[0, 200]
+	Points			[0, 220]
 	DstBlock		"Mux2"
 	DstPort			4
-      }
-      Branch {
-	Points			[0, -35]
-	DstBlock		"To Workspace4"
-	DstPort			1
       }
     }
     Line {
@@ -3924,6 +3931,7 @@ Model {
 	DstPort			2
       }
       Branch {
+	Points			[5, 0]
 	DstBlock		"Sum"
 	DstPort			2
       }
@@ -4111,12 +4119,6 @@ Model {
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Sum"
-      SrcPort		      1
-      DstBlock		      "Mux2"
-      DstPort		      3
-    }
-    Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      4
       Points		      [45, 0]
@@ -4126,10 +4128,16 @@ Model {
 	DstPort			2
       }
       Branch {
-	Points			[0, 230]
+	Points			[0, 240]
 	DstBlock		"Mux2"
 	DstPort			2
       }
+    }
+    Line {
+      SrcBlock		      "Sum"
+      SrcPort		      1
+      DstBlock		      "Mux2"
+      DstPort		      3
     }
     Annotation {
       Position		      [881, 100]
@@ -4138,7 +4146,7 @@ Model {
 }
 # Finite State Machines
 #
-#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 10:24:20
+#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 00:35:51
 #
 #
 
@@ -4146,7 +4154,7 @@ Model {
 Stateflow {
   machine {
     id			    1
-    name		    "closedloop"
+    name		    "decentralized_closedloop"
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
     firstTarget		    33

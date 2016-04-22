@@ -13,11 +13,11 @@ Library {
   Creator		  "chkajon"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "chkajon"
+  LastModifiedBy	  "katie"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Apr 04 14:02:33 2016"
-  RTWModifiedTimeStamp	  381679349
-  ModelVersionFormat	  "1.%<AutoIncrement:47>"
+  LastModifiedDate	  "Tue Apr 19 14:27:30 2016"
+  RTWModifiedTimeStamp	  382976836
+  ModelVersionFormat	  "1.%<AutoIncrement:49>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -633,7 +633,7 @@ Library {
   }
   System {
     Name		    "lib_controller"
-    Location		    [1595, 258, 2193, 614]
+    Location		    [420, 247, 1018, 603]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -763,7 +763,7 @@ Library {
 	  }
 	  Port {
 	    PortNumber		    4
-	    Name		    "it_out"
+	    Name		    "J_out"
 	    RTWStorageClass	    "Auto"
 	    DataLoggingNameMode	    "SignalName"
 	  }
@@ -791,7 +791,7 @@ Library {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "it_out"
+	  Name			  "J_out"
 	  SID			  35
 	  Position		  [460, 171, 480, 189]
 	  Port			  "3"
@@ -804,11 +804,11 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  Name			  "it_out"
+	  Name			  "J_out"
 	  Labels		  [0, 0]
 	  SrcBlock		  " SFunction "
 	  SrcPort		  4
-	  DstBlock		  "it_out"
+	  DstBlock		  "J_out"
 	  DstPort		  1
 	}
 	Line {
@@ -869,7 +869,7 @@ Library {
 }
 # Finite State Machines
 #
-#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 10:24:20
+#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 00:35:51
 #
 #
 
@@ -894,8 +894,6 @@ Stateflow {
     firstJunction	    4
     viewObj		    2
     machine		    1
-    subviewS {
-    }
     ssIdHighWaterMark	    27
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
@@ -920,17 +918,17 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function [uout,exitflag_out,it_out]  = fcn(H, f0, Gd, du_other, upast)\n%#eml\n% persistent C_new"
-      " M LB UB Ga Gb Gc H Ain b A B upast xinit\npersistent LB UB Ain b\neml.extrinsic('disp');\neml.extrinsic('toc');"
-      "\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\n\n[~,~,usize,~,m] = const_mpc();"
-      "\n\n\nif isempty(LB)\n    tic\n    [~,~,UB,LB,b,Ain] = get_constant_matrices();\n    time = toc;\n    disp(['Pre"
-      "paration time: ' num2str(time)]);\nend\n\n% Get reference and input vector\nUpast = zeros(m*usize,1);\nfor i=1:m"
-      "\n    Upast(1+(i-1)*usize:i*usize,1) = upast;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - Upast;\n\n%"
-      " Update linear term to add effect of other compressor\nf = f0 + du_other'*Gd;\n\n% Solve QP\nlbA = -inf(size(Ain"
-      ",1),1);\n[usol,~,exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_out = exitflag(1,1);\nit_out = "
-      "it(1,1);\n\nif exitflag_out~=0\n    exitflag_out\n    usol = zeros(m*usize,1);\nend\n\n% Output\nuout = zeros(m*"
-      "usize,1);\nfor i=1:m*usize\n    uout(i) = usol(i);\nend\n\n"
-      editorLayout	      "100 M4x1[1272 5 1296 1040]"
+      script		      "function [uout,exitflag_out,J_out]  = fcn(H, f0, Gd, du_other, upast)\n%#eml\n% persistent C_new "
+      "M LB UB Ga Gb Gc H Ain b A B upast xinit\npersistent LB UB Ain b\neml.extrinsic('disp');\neml.extrinsic('toc');\n"
+      "eml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\n\n[~,~,usize,~,m] = const_mpc();\n"
+      "\n\nif isempty(LB)\n    tic\n    [~,~,UB,LB,b,Ain] = get_constant_matrices();\n    time = toc;\n    disp(['Prepa"
+      "ration time: ' num2str(time)]);\nend\n\n% Get reference and input vector\nUpast = zeros(m*usize,1);\nfor i=1:m\n"
+      "    Upast(1+(i-1)*usize:i*usize,1) = upast;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - Upast;\n\n% U"
+      "pdate linear term to add effect of other compressor\nf = f0 + du_other'*Gd;\n\n% Solve QP\nlbA = -inf(size(Ain,1"
+      "),1);\n[usol,J,exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_out = exitflag(1,1);\nit_out = it"
+      "(1,1);\nJ_out = J(1,1);\n\nif exitflag_out~=0\n    exitflag_out\n    usol = zeros(m*usize,1);\nend\n\n% Output\n"
+      "uout = zeros(m*usize,1);\nfor i=1:m*usize\n    uout(i) = usol(i);\nend\n\n"
+      editorLayout	      "100 M4x1[1272 30 1440 870]"
     }
   }
   junction {
@@ -1118,7 +1116,7 @@ Stateflow {
   data {
     id			    13
     ssIdNumber		    27
-    name		    "it_out"
+    name		    "J_out"
     linkNode		    [2 12 0]
     scope		    OUTPUT_DATA
     machine		    1
