@@ -50,23 +50,35 @@ for i=1:length(udist1)
                     input_added(1) = 1;
                     udist = cat(1,udist,uoff1(2)+udist1(1)*[0 0 1 1 1 1]);
                     ulegstr{end+1} = 'Input valve 1';
+                    if udist2(1)~=0
+                        udist(end,:) = udist(end,:) + udist2(i)*[0 0 0 0 1 1];
+                    end
                     udist = cat(1,udist,uoff2(2)+udist1(4)*[0 0 1 1 1 1]);
                     ulegstr{end+1} = 'Input valve 2';
+                    if udist2(4)~=0
+                        udist(end,:) = udist(end,:) + udist2(i)*[0 0 0 0 1 1];
+                    end
                 end
             case 2
                 if ~output_added(1)
                     output_added(1) = 1;
                     udist = cat(1,udist,uoff1(3)+udist1(2)*[0 0 1 1 1 1]);
                     ulegstr{end+1} = 'Output valve 1';
+                    if udist2(2)~=0
+                        udist(end,:) = udist(end,:) + udist2(i)*[0 0 0 0 1 1];
+                    end
                     udist = cat(1,udist,uoff2(3)+udist1(5)*[0 0 1 1 1 1]);
                     ulegstr{end+1} = 'Output valve 2';
+                    if udist2(5)~=0
+                        udist(end,:) = udist(end,:) + udist2(i)*[0 0 0 0 1 1];
+                    end
                 end
             case 0
                 udist = cat(1,udist,ud+udist1(3)*[0 0 1 1 1 1]);
                 ulegstr{end+1} = 'Output valve (tank)';
-        end
-        if udist2(i)~=0
-            udist(end,:) = udist(end,:) + udist2(i)*[0 0 0 0 1 1];
+                if udist2(i)~=0
+                        udist(end,:) = udist(end,:) + udist2(i)*[0 0 0 0 1 1];
+                    end
         end
     elseif udist2(i)~=0
         switch mod(i,3)
