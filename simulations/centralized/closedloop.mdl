@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.270"
+    ComputedModelVersion    "1.272"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,11 +23,11 @@ Model {
   Creator		  "chkajon"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "chkajon"
+  LastModifiedBy	  "katie"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Apr 15 17:27:24 2016"
-  RTWModifiedTimeStamp	  382641049
-  ModelVersionFormat	  "1.%<AutoIncrement:270>"
+  LastModifiedDate	  "Wed Apr 20 12:54:31 2016"
+  RTWModifiedTimeStamp	  383057668
+  ModelVersionFormat	  "1.%<AutoIncrement:272>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "200"
+	  StopTime		  "600"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -535,7 +535,7 @@ Model {
       }
       Name		      "Configuration"
       CurrentDlgPage	      "Solver"
-      ConfigPrmDlgPosition    " [ 198, 176, 1082, 829 ] "
+      ConfigPrmDlgPosition    " [ 289, 92, 1213, 831 ] "
     }
     PropName		    "ConfigurationSets"
   }
@@ -727,7 +727,7 @@ Model {
   }
   System {
     Name		    "closedloop"
-    Location		    [2, 74, 1278, 963]
+    Location		    [1, 320, 1288, 1048]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -872,7 +872,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [2178, 125, 2538, 398]
+      Location		      [1057, 109, 1417, 382]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -943,7 +943,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1766, 127, 2116, 400]
+      Location		      [1067, 111, 1417, 384]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1035,7 +1035,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1342, 512, 1680, 785]
+      Location		      [1079, 496, 1417, 769]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1593,7 +1593,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [1379, 134, 1717, 407]
+      Location		      [1079, 118, 1417, 391]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1617,7 +1617,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1804, 526, 2142, 791]
+      Location		      [1079, 510, 1417, 775]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -2053,7 +2053,7 @@ Model {
 }
 # Finite State Machines
 #
-#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 10:24:20
+#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 00:35:51
 #
 #
 
@@ -2065,8 +2065,6 @@ Stateflow {
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
     firstTarget		    13
-    debug {
-    }
     sfVersion		    71014000.00001
   }
   chart {

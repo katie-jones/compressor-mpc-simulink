@@ -9,7 +9,7 @@
 % 5: Large tank output disturbance (-0.3, 0)
 % 6+: Small tank output disturbance (-0.1, -0.1)
 function [tdist,udist1,udist2,fname] = disturbances(n_disturbance)
-tdist = [30 100]; % disturbance times
+tdist = [50 100]; % disturbance times
 
 switch n_disturbance
     case 1 % output disturbance

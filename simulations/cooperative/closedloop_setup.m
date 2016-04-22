@@ -6,7 +6,7 @@ addpath('../decentralized_common/')
 % 1: output, 2: input, 3: asymmetric output, 4: asymmetric input, 5: big output
 
 % Choose number of controller iterations
-n_controller_iterations = 1;
+n_controller_iterations = 3;
 
 % Choose filename and directory for saving results
 % Plotting function should take care of ensuring no results are overwritten
@@ -24,7 +24,7 @@ yss = [0.2175 0.2175 0 1.12]';
 yref = [0.2175 0.2175 0 1.12]';
 
 % Run MpcSetup script, perform simulation and plot results
-for n_disturbance=1:1
+for n_disturbance=5
     MpcSetup;
     sim('decentralized_closedloop');
     makeplots;
