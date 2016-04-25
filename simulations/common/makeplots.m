@@ -110,7 +110,7 @@ grid on
 hold on
 plot([0 max(SD.time)], [yref(1) yref(1)],'-.k')
 ylabel('Surge Distance')
-legend('Comp. 1','Comp. 2')
+legend('Comp. 1','Comp. 2','location','southeast')
 
 subplot(3,2,5)
 plot([0 tdist(1) tdist(1) tdist(2) tdist(2) SD.time(end)],udist);
@@ -156,7 +156,8 @@ if saveplots
     end
     saveas(fig,[basename,'.fig'])
     saveas(fig,[basename,'.pdf'])
-    [n_delay,~,~,p,m,UWT,YWT] = const_mpc();
+    [n_delay,~,~,p,m] = const_mpc();
+    weights;
     [n_barrier,delta_barrier] = const_barrier();
     Results.n_delay = n_delay;
     Results.p = p;
