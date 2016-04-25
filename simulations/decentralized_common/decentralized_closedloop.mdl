@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.398"
+    ComputedModelVersion    "1.405"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Apr 25 15:32:06 2016"
-  RTWModifiedTimeStamp	  383499125
-  ModelVersionFormat	  "1.%<AutoIncrement:398>"
+  LastModifiedDate	  "Mon Apr 25 16:20:22 2016"
+  RTWModifiedTimeStamp	  383502021
+  ModelVersionFormat	  "1.%<AutoIncrement:405>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -897,7 +897,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [1784, 109, 2123, 379]
+      Location		      [936, 155, 1275, 425]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -906,8 +906,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "1.1"
-      YMax		      "1.375"
+      YMin		      "1.11"
+      YMax		      "1.25"
       SaveToWorkspace	      on
       SaveName		      "SD1"
       DataFormat	      "Array"
@@ -969,7 +969,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1363, 109, 1701, 382]
+      Location		      [937, 161, 1275, 434]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -978,8 +978,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "0.075"
-      YMax		      "0.325"
+      YMin		      "-3.25"
+      YMax		      "0.5"
       SaveName		      "SD3"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1061,7 +1061,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1798, 504, 2129, 777]
+      Location		      [944, 548, 1275, 821]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1070,8 +1070,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-0.025"
-      YMax		      "0.325"
+      YMin		      "-0.125"
+      YMax		      "0.15"
       SaveName		      "SD4"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1237,11 +1237,6 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
-	  Array {
-	    Type		    "Handle"
-	    Dimension		    0
-	    PropName		    "AvailSigsLoadSave"
-	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -1667,11 +1662,6 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
-	  Array {
-	    Type		    "Handle"
-	    Dimension		    0
-	    PropName		    "AvailSigsLoadSave"
-	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -1871,11 +1861,6 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
-	  Array {
-	    Type		    "Handle"
-	    Dimension		    0
-	    PropName		    "AvailSigsLoadSave"
-	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -2388,7 +2373,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [2188, 95, 2526, 387]
+      Location		      [937, 147, 1275, 439]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2397,8 +2382,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "1.38778e-017"
-      YMax		      "0.425"
+      YMin		      "-0.04"
+      YMax		      "0.14"
       SaveName		      "SD2"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -2412,7 +2397,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1388, 512, 1726, 777]
+      Location		      [937, 539, 1275, 804]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2421,8 +2406,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-0.005"
-      YMax		      "0.05"
+      YMin		      "0"
+      YMax		      "0.085"
       SaveName		      "SD5"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -3562,10 +3547,10 @@ Stateflow {
       "disp');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\n\n"
       "[~,~,usize,~,m] = const_mpc();\n\n\nif isempty(LB)\n    tic\n    [~,~,UB,LB,b,Ain] = get_constant_matrices();\n "
       "   usol_past = zeros(m*usize, 2);\n    time = toc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\nn_ma"
-      "x_iterations = 10;\n\ndu_other1 = usol_past(:,1);\ndu_other2 = usol_past(:,2);\n\n% Get reference and input vect"
-      "or\nUpast1 = zeros(m*usize,1);\nUpast2 = zeros(m*usize,1);\nfor i=1:m\n    Upast1(1+(i-1)*usize:i*usize,1) = upa"
-      "st(1:usize);\n    Upast2(1+(i-1)*usize:i*usize,1) = upast(usize+1:2*usize);\nend\n\n% Update bounds\nLBa1 = LB -"
-      " Upast1;\nUBa1 = UB - Upast1;\n\nLBa2 = LB - Upast2;\nUBa2 = UB - Upast2;\n\nJ_out = zeros(n_max_iterations,2);\n"
+      "x_iterations = 4;\n\ndu_other1 = usol_past(:,1);\ndu_other2 = usol_past(:,2);\n\n% Get reference and input vecto"
+      "r\nUpast1 = zeros(m*usize,1);\nUpast2 = zeros(m*usize,1);\nfor i=1:m\n    Upast1(1+(i-1)*usize:i*usize,1) = upas"
+      "t(1:usize);\n    Upast2(1+(i-1)*usize:i*usize,1) = upast(usize+1:2*usize);\nend\n\n% Update bounds\nLBa1 = LB - "
+      "Upast1;\nUBa1 = UB - Upast1;\n\nLBa2 = LB - Upast2;\nUBa2 = UB - Upast2;\n\nJ_out = zeros(n_max_iterations,2);\n"
       "\nuout = zeros(2*m*usize,1);\n\nexitflag_out = 0;\n\n\nfor i=1:n_max_iterations\n    % Update linear term to add"
       " effect of other compressor\n    f1 = f01 + du_other1'*Gd1;\n    f2 = f02 + du_other2'*Gd2;\n    \n    % Solve Q"
       "P\n    lbA = -inf(size(Ain,1),1);\n    [usol1,J1] = call_qpoases_m(H1,f1,Ain,LBa1,UBa1,lbA,b);\n    [usol2,J2,ex"
