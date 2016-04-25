@@ -26,7 +26,7 @@ u_d = ud;
 
 u_init = zeros(2*ucontrolsize,1);
 
-[A,B,C] = get_qp_matrices(xinit, u_init, zeros(ysize,1));
+[A,B,C] = get_qp_matrices(xinit, u_init, zeros(ysize,1),UWT,YWT);
 
 % Go back to original p2 value
 x_init_lin = [0.916; 1.145; 0.152; 440; 0];

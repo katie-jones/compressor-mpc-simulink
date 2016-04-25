@@ -23,6 +23,8 @@ end
 yss = [0.2175 0.2175 0 1.12]';
 yref = [0.2175 0.2175 0 1.12]';
 
+weights;
+
 % Run MpcSetup script, perform simulation and plot results
 for n_disturbance=5
     MpcSetup;
