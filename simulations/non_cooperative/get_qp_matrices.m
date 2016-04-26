@@ -47,11 +47,6 @@ B = [Binit(:,1), zeros(xsize,1), Binit(:,usize+1), zeros(xsize,1);
 Cdist = eye(ysize,2*dsize);
 C = [Cinit(1:ysize,:), zeros(ysize,2*sum(n_delay)), Cdist];
 
-C1 = C([1,3,4],:);
-C2 = C([2,3,4],:);
-
-y_comp_size = size(C1,1);
-
 % derivative at linearization point
 dx = [dx2; zeros(2*sum(n_delay)+2*dsize,1)];
 
@@ -63,61 +58,71 @@ dx = [dx2; zeros(2*sum(n_delay)+2*dsize,1)];
 xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
 
 % Pre-compute multiples of C*A^(i-1)
-CxA1 = zeros(y_comp_size,xtotalsize,p+1);
-CxA2 = zeros(y_comp_size,xtotalsize,p+1);
-CxA1(:,:,1) = C1;
-CxA2(:,:,1) = C2;
+CxA = zeros(ysize,xtotalsize,p+1);
+CxA(:,:,1) = C;
 for i=2:p+1
-    CxA1(:,:,i) = CxA1(:,:,i-1)*A;
-    CxA2(:,:,i) = CxA2(:,:,i-1)*A;
+    CxA(:,:,i) = CxA(:,:,i-1)*A;
 end
 
-Su1 = zeros(y_comp_size*p,usize*m);
-Su2 = Su1;
-
-B1 = B(:,1:usize);
-B2 = B(:,usize+1:end);
+Su = zeros(ysize*p,2*usize*m);
 
 for i=1:p
     for j=1:i
         % for first m inputs, make new columns
         if j<=m
-            Su1(1+(i-1)*y_comp_size:i*y_comp_size,1+(j-1)*usize:j*usize) = CxA1(:,:,i-j+1)*B1;
-            Su2(1+(i-1)*y_comp_size:i*y_comp_size,1+(j-1)*usize:j*usize) = CxA2(:,:,i-j+1)*B2;
+            Su(1+(i-1)*ysize:i*ysize,1+(j-1)*2*usize:j*2*usize) = CxA(:,:,i-j+1)*B;
             
         % m+1:p inputs are the same as input m
         else
-            toadd1 = CxA1(:,:,i-j+1)*B1;
-            toadd2 = CxA2(:,:,i-j+1)*B2;
-            for k=1:y_comp_size
-                Su1(k+(i-1)*y_comp_size,1+(m-1)*usize:m*usize) = Su1(k+(i-1)*y_comp_size,1+(m-1)*usize:m*usize) + toadd1(k,:);
-                Su2(k+(i-1)*y_comp_size,1+(m-1)*usize:m*usize) = Su2(k+(i-1)*y_comp_size,1+(m-1)*usize:m*usize) + toadd2(k,:);
+            toadd = CxA(:,:,i-j+1)*B;
+            for k=1:ysize
+                Su(k+(i-1)*ysize,1+(m-1)*2*usize:m*2*usize) = Su(k+(i-1)*ysize,1+(m-1)*2*usize:m*2*usize) + toadd(k,:);
             end
         end
     end
 end
 
 
-Sx1 = zeros(y_comp_size*p,xtotalsize);
-Sf1 = Sx1;
-Sx2 = Sx1;
-Sf2 = Sx1;
+Sx = zeros(ysize*p,xtotalsize);
+Sf = Sx;
+
 for i=1:p
-    for j=1:y_comp_size
-        Sx1(j+(i-1)*y_comp_size,:) = CxA1(j,:,i+1);
-        Sx2(j+(i-1)*y_comp_size,:) = CxA2(j,:,i+1);
+    for j=1:ysize
+        Sx(j+(i-1)*ysize,:) = CxA(j,:,i+1);
     end
 end
 
 
-Sf1(1:y_comp_size,:) = C1;
-Sf2(1:y_comp_size,:) = C2;
+Sf(1:ysize,:) = C;
 for i=2:p
-    for j=1:y_comp_size
-        Sf1(j+(i-1)*y_comp_size,:) = Sf1(j+(i-2)*y_comp_size,:) + CxA1(j,:,i);
-        Sf2(j+(i-1)*y_comp_size,:) = Sf2(j+(i-2)*y_comp_size,:) + CxA2(j,:,i);
+    for j=1:ysize
+        Sf(j+(i-1)*ysize,:) = Sf(j+(i-2)*ysize,:) + CxA(j,:,i);
     end
 end
+
+% indices for outputs of comp. 1/2
+y_comp_size = 3;
+ind1 = sort([1:ysize:p*ysize, 3:ysize:p*ysize, 4:ysize:p*ysize]);
+ind2 = sort([2:ysize:p*ysize, 3:ysize:p*ysize, 4:ysize:p*ysize]);
+
+Su1 = zeros(p*y_comp_size, m*usize);
+Su2 = Su1;
+Su2y1 = Su1;
+Su1y2 = Su1;
+
+for i=1:m
+    Su1(:,(i-1)*usize+1:i*usize) = Su(ind1,2*(i-1)*usize+1:(2*i-1)*usize);
+    Su2(:,(i-1)*usize+1:i*usize) = Su(ind2,(2*i-1)*usize+1:2*i*usize);
+    Su1y2(:,(i-1)*usize+1:i*usize) = Su(ind2,2*(i-1)*usize+1:(2*i-1)*usize);
+    Su2y1(:,(i-1)*usize+1:i*usize) = Su(ind1,(2*i-1)*usize+1:2*i*usize);
+end
+
+Sx1 = Sx(ind1,:);
+Sx2 = Sx(ind2,:);
+
+Sf1 = Sf(ind1,:);
+Sf2 = Sf(ind2,:);
+
 
 %% Calculate QP matrices for two compressors
 % deltax0 (augmented)
@@ -139,12 +144,12 @@ H2 = Su2'*YWT*Su2 + UWT;
 Ga1 = YWT*Su1; % yref cross term
 Gb1 = Sx1'*YWT*Su1; % deltax0 cross term
 Gc1 = Sf1'*YWT*Su1; % dx (derivative at lin. pt.) cross term
-Gd1 = Su2'*YWT*Su1; % u_other cross term
+Gd1 = Su2y1'*YWT*Su1; % u_other cross term
 
 Ga2 = YWT*Su2;
 Gb2 = Sx2'*YWT*Su2;
 Gc2 = Sf2'*YWT*Su2;
-Gd2 = Su1'*YWT*Su2;
+Gd2 = Su1y2'*YWT*Su2;
 
 % Gradient vector
 f0_1 = dx'*Gc1 - Yref1'*Ga1 + deltax0'*Gb1;
