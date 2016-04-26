@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.405"
+    ComputedModelVersion    "1.411"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Apr 25 16:20:22 2016"
-  RTWModifiedTimeStamp	  383502021
-  ModelVersionFormat	  "1.%<AutoIncrement:405>"
+  LastModifiedDate	  "Tue Apr 26 13:31:32 2016"
+  RTWModifiedTimeStamp	  383578291
+  ModelVersionFormat	  "1.%<AutoIncrement:411>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "500"
+	  StopTime		  "700"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -895,9 +895,9 @@ Model {
       Name		      "PD"
       SID		      432
       Ports		      [1]
-      Position		      [800, 224, 830, 256]
+      Position		      [800, 219, 830, 251]
       Floating		      off
-      Location		      [936, 155, 1275, 425]
+      Location		      [1319, 151, 1658, 421]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -906,8 +906,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "1.11"
-      YMax		      "1.25"
+      YMin		      "1.1"
+      YMax		      "1.5"
       SaveToWorkspace	      on
       SaveName		      "SD1"
       DataFormat	      "Array"
@@ -969,7 +969,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [937, 161, 1275, 434]
+      Location		      [2138, 146, 2476, 419]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -978,8 +978,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-3.25"
-      YMax		      "0.5"
+      YMin		      "-1.25"
+      YMax		      "1.5"
       SaveName		      "SD3"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1061,7 +1061,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [944, 548, 1275, 821]
+      Location		      [1347, 566, 1678, 839]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1070,8 +1070,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-0.125"
-      YMax		      "0.15"
+      YMin		      "-0.025"
+      YMax		      "0.325"
       SaveName		      "SD4"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1237,6 +1237,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -1662,6 +1667,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -1861,6 +1871,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -2373,7 +2388,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [937, 147, 1275, 439]
+      Location		      [1697, 142, 2035, 434]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2382,8 +2397,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-0.04"
-      YMax		      "0.14"
+      YMin		      "1.38778e-017"
+      YMax		      "0.4"
       SaveName		      "SD2"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -2397,7 +2412,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 539, 1275, 804]
+      Location		      [1869, 557, 2207, 822]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2578,6 +2593,7 @@ Model {
       Branch {
 	Points			[30, 0]
 	Branch {
+	  Points		  [5, 0]
 	  DstBlock		  "PD"
 	  DstPort		  1
 	}
@@ -2842,6 +2858,8 @@ Stateflow {
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
     firstTarget		    51
+    debug {
+    }
     sfVersion		    71014000.00001
   }
   chart {
@@ -3121,7 +3139,7 @@ Stateflow {
       "M*(y - y_old - C*(dxaug_in));\n\n% Use state input info to calculate x, y\nxinit(1:xsize) = xinit(1:xsize)+dxaug"
       "(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\n\nxout = xinit;\n\n% get matrices\n[A,B,C,df0,H1,H2,f0_1,f"
       "0_2,Gd1,Gd2] = get_qp_matrices(xinit,upast,yref-y,UWT,YWT);\n\n\n"
-      editorLayout	      "100 M4x1[10 22 1280 984]"
+      editorLayout	      "100 M4x1[45 45 720 615]"
     }
   }
   junction {
@@ -3547,7 +3565,7 @@ Stateflow {
       "disp');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\n\n"
       "[~,~,usize,~,m] = const_mpc();\n\n\nif isempty(LB)\n    tic\n    [~,~,UB,LB,b,Ain] = get_constant_matrices();\n "
       "   usol_past = zeros(m*usize, 2);\n    time = toc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\nn_ma"
-      "x_iterations = 4;\n\ndu_other1 = usol_past(:,1);\ndu_other2 = usol_past(:,2);\n\n% Get reference and input vecto"
+      "x_iterations = 3;\n\ndu_other1 = usol_past(:,1);\ndu_other2 = usol_past(:,2);\n\n% Get reference and input vecto"
       "r\nUpast1 = zeros(m*usize,1);\nUpast2 = zeros(m*usize,1);\nfor i=1:m\n    Upast1(1+(i-1)*usize:i*usize,1) = upas"
       "t(1:usize);\n    Upast2(1+(i-1)*usize:i*usize,1) = upast(usize+1:2*usize);\nend\n\n% Update bounds\nLBa1 = LB - "
       "Upast1;\nUBa1 = UB - Upast1;\n\nLBa2 = LB - Upast2;\nUBa2 = UB - Upast2;\n\nJ_out = zeros(n_max_iterations,2);\n"
@@ -3560,7 +3578,7 @@ Stateflow {
       "1(j);\n            uout(j+m*usize) = usol2(j);\n        end\n        if m>1\n            for j=1:(m-1)*usize\n  "
       "              usol_past(j,:) = [usol1(usize+j), usol2(usize+j)];\n            end\n            usol_past((m-1)*u"
       "size+1:m*usize) = usol_past((m-2)*usize+1:(m-1)*usize);\n        end\n    end\nend\n\n\n"
-      editorLayout	      "100 M4x1[1272 5 1296 1040]"
+      editorLayout	      "100 M4x1[25 25 720 615]"
     }
   }
   junction {

@@ -1,7 +1,7 @@
 [~,~,~,p,m] = const_mpc();
 
-UW = [3e2 1e4];
-YW = [1 0 1e6];
+UW = [1.2e4 1.2e5];
+YW = [1 0 8e3];
 
 UWT = kron(eye(m),diag([UW]'));
 YWT = kron(eye(p),diag(YW'));

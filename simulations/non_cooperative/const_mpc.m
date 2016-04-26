@@ -7,8 +7,8 @@ ucontrolsize = 2;
 
 n_delay = [0, 40];
 
-p = 50;
-m = 1;
+p = 100;
+m = 2;
 
 
 
