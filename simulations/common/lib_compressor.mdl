@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Mar 31 11:06:07 2016"
-  RTWModifiedTimeStamp	  381323140
-  ModelVersionFormat	  "1.%<AutoIncrement:10>"
+  LastModifiedDate	  "Mon Apr 25 16:42:26 2016"
+  RTWModifiedTimeStamp	  383503341
+  ModelVersionFormat	  "1.%<AutoIncrement:12>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -716,7 +716,7 @@ Library {
   }
   System {
     Name		    "lib_compressor"
-    Location		    [372, 367, 908, 656]
+    Location		    [372, 367, 1152, 711]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -735,7 +735,7 @@ Library {
       BlockType		      SubSystem
       Name		      "Compressor1"
       SID		      1
-      Ports		      [3, 4]
+      Ports		      [4, 4]
       Position		      [60, 55, 160, 160]
       LibraryVersion	      "1.762"
       MinAlgLoopOccurrences   off
@@ -777,7 +777,7 @@ Library {
       "Disturbances"
       System {
 	Name			"Compressor1"
-	Location		[7, 93, 1283, 1006]
+	Location		[2, 82, 1278, 971]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -790,7 +790,7 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
-	SIDHighWatermark	42
+	SIDHighWatermark	45
 	Block {
 	  BlockType		  Inport
 	  Name			  "Td"
@@ -812,10 +812,20 @@ Library {
 	}
 	Block {
 	  BlockType		  Inport
-	  Name			  "p_d"
+	  Name			  "p_inlet"
 	  SID			  4
 	  Position		  [185, 478, 215, 492]
 	  Port			  "3"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "fixdt(1, 16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Inport
+	  Name			  "p_outlet"
+	  SID			  44
+	  Position		  [185, 553, 215, 567]
+	  Port			  "4"
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
 	  OutScaling		  "2^0"
@@ -856,7 +866,7 @@ Library {
 	    ZoomFactor		    "100"
 	    Block {
 	      BlockType		      Inport
-	      Name		      "In1"
+	      Name		      "u"
 	      SID		      6
 	      Position		      [50, 43, 80, 57]
 	      IconDisplay	      "Port number"
@@ -879,7 +889,7 @@ Library {
 	      IconDisplay	      "Port number"
 	    }
 	    Line {
-	      SrcBlock		      "In1"
+	      SrcBlock		      "u"
 	      SrcPort		      1
 	      DstBlock		      "S-Function1"
 	      DstPort		      1
@@ -957,11 +967,11 @@ Library {
 	  BlockType		  Mux
 	  Name			  "Mux1"
 	  SID			  12
-	  Ports			  [5, 1]
-	  Position		  [260, 144, 265, 526]
+	  Ports			  [6, 1]
+	  Position		  [260, 146, 265, 599]
 	  BackgroundColor	  "black"
 	  ShowName		  off
-	  Inputs		  "5"
+	  Inputs		  "6"
 	  DisplayOption		  "bar"
 	}
 	Block {
@@ -1229,9 +1239,9 @@ Library {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "m_out"
-	  SID			  38
-	  Position		  [1060, 378, 1090, 392]
+	  Name			  "x_out"
+	  SID			  39
+	  Position		  [1065, 298, 1095, 312]
 	  Port			  "3"
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
@@ -1239,9 +1249,9 @@ Library {
 	}
 	Block {
 	  BlockType		  Outport
-	  Name			  "x_out"
-	  SID			  39
-	  Position		  [1065, 298, 1095, 312]
+	  Name			  "p_in"
+	  SID			  45
+	  Position		  [1150, 83, 1180, 97]
 	  Port			  "4"
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
@@ -1281,7 +1291,7 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "p_d"
+	  SrcBlock		  "p_inlet"
 	  SrcPort		  1
 	  DstBlock		  "Mux1"
 	  DstPort		  5
@@ -1347,13 +1357,20 @@ Library {
 	  SrcPort		  1
 	  Points		  [30, 0]
 	  Branch {
-	    Points		    [0, 25; 400, 0]
-	    DstBlock		    "Mux2"
+	    DstBlock		    "Terminator"
 	    DstPort		    1
 	  }
 	  Branch {
-	    DstBlock		    "Terminator"
-	    DstPort		    1
+	    Points		    [0, 25; 400, 0]
+	    Branch {
+	      DstBlock		      "Mux2"
+	      DstPort		      1
+	    }
+	    Branch {
+	      Points		      [0, -20]
+	      DstBlock		      "p_in"
+	      DstPort		      1
+	    }
 	  }
 	}
 	Line {
@@ -1416,16 +1433,8 @@ Library {
 	Line {
 	  SrcBlock		  "Demux2"
 	  SrcPort		  7
-	  Points		  [40, 0]
-	  Branch {
-	    DstBlock		    "Terminator4"
-	    DstPort		    1
-	  }
-	  Branch {
-	    Points		    [75, 0; 0, -30]
-	    DstBlock		    "m_out"
-	    DstPort		    1
-	  }
+	  DstBlock		  "Terminator4"
+	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Demux2"
@@ -1450,7 +1459,7 @@ Library {
 	Line {
 	  SrcBlock		  "Mux1"
 	  SrcPort		  1
-	  Points		  [0, -5]
+	  Points		  [0, -40]
 	  DstBlock		  "Compresion plant"
 	  DstPort		  1
 	}
@@ -1528,6 +1537,12 @@ Library {
 	  SrcPort		  1
 	  DstBlock		  "Mux1"
 	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "p_outlet"
+	  SrcPort		  1
+	  DstBlock		  "Mux1"
+	  DstPort		  6
 	}
 	Annotation {
 	  Position		  [42, 373]

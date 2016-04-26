@@ -5,7 +5,8 @@ torque_drive = u(1);
 Inflow_opening = u(2);
 Outflow_opening = u(3); 
 Recycle_opening = u(4);
-dummy = u(5); 
+In_pres = u(5); 
+Out_pres = u(6);
 
 
 % States
@@ -16,12 +17,9 @@ omega_comp = x(4);
 m_rec = x(5);
 
 [J,tauRecycle,A,C,m_in_c,m_rec_ss_c,D2,m_out_c,T_ss_c,~,torque_drive_c] = comp_coeffs();
-[SpeedSound,In_pres,Out_pres,VolumeT1,VolumeT2,AdivL] = const_flow();
+[SpeedSound,~,~,VolumeT1,VolumeT2,AdivL] = const_flow();
 
-% For parallel simulation w/ non-constant output pressure
-if dummy>0
-    Out_pres = dummy;
-end
+
 
 torque_drive = torque_drive * torque_drive_c / (2 * pi * 50);
 % if omega_comp > 2*pi*50
