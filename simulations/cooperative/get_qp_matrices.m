@@ -108,7 +108,7 @@ end
 
 %% Calculate QP matrices for two compressors
 % deltax0 (augmented)
-deltax0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(usize+2); zeros(2*dsize,1)];
+deltax0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(usize+2); xinit(end-2*dsize+1:end)];
 
 % reference vector
 Yref = zeros(p*ysize,1);
