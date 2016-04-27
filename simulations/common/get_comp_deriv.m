@@ -8,6 +8,12 @@ Recycle_opening = u(4);
 In_pres = u(5); 
 Out_pres = u(6);
 
+if In_pres < 0
+    q_in = u(7);
+else
+    q_in = -1;
+end
+
 
 % States
 p1 = x(1);
@@ -45,7 +51,11 @@ M3 = [dp_sqrt*Inflow_opening^3 dp_sqrt*Inflow_opening^2 dp_sqrt*Inflow_opening d
     Inflow_opening^3 Inflow_opening^2 Inflow_opening 1]';
 
 
-m_in = C * M3 + m_in_c; % Inflow valve
+if q_in < 0 % if mass flow not given
+    m_in = C * M3 + m_in_c; % Inflow valve
+else
+    m_in = q_in;
+end
 
 
 % If using for simulation, have dead zone on recycle opening

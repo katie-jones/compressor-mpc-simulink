@@ -17,21 +17,21 @@ u2 = u(usize+1:2*usize);
 
 [~,~,~,~,~,~,D2] = comp_coeffs();
 
-[SpeedSound,~,~,V1,V2] = const_flow();
+[SpeedSound,~,~,Vin,Vout] = const_flow();
 
 ud1 = u1(3);
-ud2 = u2(3);
 
+%% Interaction between compressors
 
-%% Interaction between compressors and discharge tanks
+dc1c2 = get_Act(x1(2),ud1,x2(1),SpeedSound,Vin,D2); % effect of comp 1 on comp 2
+dc2c1 = get_Act(x1(2),ud1,x2(1),SpeedSound,Vout,D2); % effect of comp 2 on comp 1
 
-Ac1t = get_Act(x1,udt,pd,SpeedSound,VolumeT,D2);
+Ac1c2 = zeros(xsize);
+Ac2c1 = Ac1c2;
 
-Ac2t = get_Act(x2,udt,pd,SpeedSound,VolumeT,D2);
+Ac1c2(2,1) = dc1c2;
+Ac2c1(1,2) = dc2c1;
 
-Atc1 = get_Atc(x1,ud1,pd,SpeedSound,V2,D2);
-
-Atc2 = get_Atc(x2,ud2,pd,SpeedSound,V2,D2);
 
 %% Compressor dynamics
 [A1,B1,C1] = get_linearized_matrices(x1,u1);
@@ -40,19 +40,11 @@ Atc2 = get_Atc(x2,ud2,pd,SpeedSound,V2,D2);
 
 
 %% Output system
-A = [ [A1, zeros(xsize);
-    zeros(xsize), A2;
-    Ac1t, Ac2t], [Atc1; Atc2; Att] ];
+A = [ A1, Ac2c1; Ac1c2, A2 ];
 
 B = [B1, zeros(xsize,2);
-    zeros(xsize,2), B2;
-    zeros(1,2*2)];
+    zeros(xsize,2), B2];
 
-% Outputs: SD1, SD2, p21-p22, pd
-% C = [C1(2,:), zeros(1,xsize), 0;
-%     zeros(1,xsize), C2(2,:), 0;
-%     C1(1,:), -C2(1,:), 0;
-%     zeros(1,2*xsize), 1];
 
 % Outputs: p21,p22,SD1,SD2
 C = [C1, zeros(ysize,xsize);
@@ -62,15 +54,11 @@ C = [C1, zeros(ysize,xsize);
 
 end
 
-% Get component of A matrix that is the effect of compressor states on pd
-function Act = get_Act(x,ud,pd,SpeedSound,VolumeT,D2)
+% Get component of A matrix that is the effect of compressor pressure on
+% adjoining tank
+function Act = get_Act(p2,ud,pd,SpeedSound,VolumeT,D2)
 
-p2 = x(2);
-
-Act = [0, ...
-    SpeedSound*SpeedSound/VolumeT * 1e-5 * (1/2*100/sqrt(abs(p2*100-pd*100))) * (D2(1)*ud^3 + D2(2)*ud^2 + D2(3)*ud + D2(4)),...
-    0, 0, 0
-    ];
-
+Act = SpeedSound*SpeedSound/VolumeT * 1e-5 * (1/2*100/sqrt(abs(p2*100-pd*100))) * (D2(1)*ud^3 + D2(2)*ud^2 + D2(3)*ud + D2(4));
+    
 end
 

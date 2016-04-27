@@ -1,4 +1,4 @@
-function [Ts, xsize_comp, xsize, usize_comp, ysize, uoff1, uoff2, ud] = const_sim()
+function [Ts, xsize_comp, xsize, usize_comp, ysize, uoff1, uoff2] = const_sim()
 %#eml
 
 Ts = 0.05;
@@ -11,10 +11,8 @@ usize_comp = 5;
 ysize_comp = 2;
 ysize = 2*ysize_comp;
 
-uoff1 = [0.304, 0.43, 1, 0, 0]'; % offset applied to calculated inputs
-uoff2 = uoff1;
-
-ud = 0.7;
+uoff1 = [0.304, 0.405, 0.393, 0]'; % offset applied to calculated inputs
+uoff2 = [0.304, 0.405, 0.393, 0]';
 
 end
 

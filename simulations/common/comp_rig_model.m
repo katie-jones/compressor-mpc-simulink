@@ -42,7 +42,7 @@ sizes = simsizes;
 sizes.NumContStates  = 5;     % continuous states
 sizes.NumDiscStates  = 0;     % discrete states
 sizes.NumOutputs     = 10;     % outputs of model 
-sizes.NumInputs      = 5;     % inputs of model
+sizes.NumInputs      = 7;     % inputs of model
 sizes.DirFeedthrough = 1;     % System is causal
 sizes.NumSampleTimes = 1;     %
 sys = simsizes(sizes);        %
@@ -66,6 +66,7 @@ Outflow_opening = u(3);
 % Recycle_opening = u(4);
 In_pres = u(5); 
 Out_pres = u(6);
+q_in = u(7);
 
 % States
 p1 = x(1);%
@@ -103,7 +104,11 @@ M3 = [dp_sqrt*Inflow_opening^3 dp_sqrt*Inflow_opening^2 dp_sqrt*Inflow_opening d
     Inflow_opening^3 Inflow_opening^2 Inflow_opening 1]';
 
 
+if In_pres > 0
 m_in = C * M3 + m_in_c; % Inflow valve
+else
+    m_in = q_in;
+end
 
 
 dp_sqrt2 = sqrt(abs(p2*100 - Out_pres*100)) * sign(p2*100 - Out_pres*100);      

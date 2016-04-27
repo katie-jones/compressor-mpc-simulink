@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Apr 25 16:42:26 2016"
-  RTWModifiedTimeStamp	  383503341
-  ModelVersionFormat	  "1.%<AutoIncrement:12>"
+  LastModifiedDate	  "Wed Apr 27 11:21:31 2016"
+  RTWModifiedTimeStamp	  383656889
+  ModelVersionFormat	  "1.%<AutoIncrement:13>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -747,17 +747,18 @@ Library {
       MaskHideContents	      off
       MaskType		      "Compressor"
       MaskDescription	      "Compressor with tunable inputs."
-      MaskPromptString	      "Torque offset|Input valve setting|Output valve setting|Recycle valve offset|Recycle valv"
-      "e time delay|Activate valve disturbances|Output valve disturbance magnitudes (up to 2)|Output valve disturbance "
-      "times (up to 2)|Input valve disturbance magnitudes (up to 2)|Input valve disturbance times (up to 2)"
-      MaskStyleString	      "edit,edit,edit,edit,edit,checkbox,edit,edit,edit,edit"
-      MaskTunableValueString  "on,on,on,on,on,on,on,on,on,on"
-      MaskCallbackString      "|||||||||"
-      MaskEnableString	      "on,on,on,on,on,on,on,on,on,on"
-      MaskVisibilityString    "on,on,on,on,on,on,on,on,on,on"
-      MaskToolTipString	      "on,on,on,on,on,on,on,on,on,on"
-      MaskVariables	      "Td_off=@1;u_in=@2;u_out=@3;u_rec=@4;t_delay=@5;use_dist=@6;u_out_dist=@7;u_out_time=@8;u_in"
-      "_dist=@9;u_in_time=@10;"
+      MaskPromptString	      "Intial state|Torque offset|Input valve setting|Output valve setting|Recycle valve offset"
+      "|Recycle valve time delay|Activate valve disturbances|Output valve disturbance magnitudes (up to 2)|Output valve"
+      " disturbance times (up to 2)|Input valve disturbance magnitudes (up to 2)|Input valve disturbance times (up to 2"
+      ")"
+      MaskStyleString	      "edit,edit,edit,edit,edit,edit,checkbox,edit,edit,edit,edit"
+      MaskTunableValueString  "on,on,on,on,on,on,on,on,on,on,on"
+      MaskCallbackString      "||||||||||"
+      MaskEnableString	      "on,on,on,on,on,on,on,on,on,on,on"
+      MaskVisibilityString    "on,on,on,on,on,on,on,on,on,on,on"
+      MaskToolTipString	      "on,on,on,on,on,on,on,on,on,on,on"
+      MaskVariables	      "x_init=@1;Td_off=@2;u_in=@3;u_out=@4;u_rec=@5;t_delay=@6;use_dist=@7;u_out_dist=@8;u_out_ti"
+      "me=@9;u_in_dist=@10;u_in_time=@11;"
       MaskInitialization      "if use_dist\n    n = min(length(u_out_dist),length(u_out_time));\n    if n==0\n        "
       "u_out_dist = [0;0];\n        u_out_time = [0;0];\n    elseif n==1\n        u_out_dist = [u_out_dist(1);0];\n    "
       "    u_out_time = [u_out_time(1);0];\n    else\n        u_out_dist = [u_out_dist(1);u_out_dist(2)];\n        u_ou"
@@ -772,9 +773,9 @@ Library {
       MaskIconRotate	      "none"
       MaskPortRotate	      "default"
       MaskIconUnits	      "autoscale"
-      MaskValueString	      "0.304|0.405|u_out|0|1|off|0|0|0|0"
-      MaskTabNameString	      "Inputs,Inputs,Inputs,Inputs,Inputs,Disturbances,Disturbances,Disturbances,Disturbances,"
-      "Disturbances"
+      MaskValueString	      "x_init_lin|0.304|0.405|u_out|0||off|0|0|0|0"
+      MaskTabNameString	      "Disturbances,Inputs,Inputs,Inputs,Inputs,Inputs,Disturbances,Disturbances,Disturbances,"
+      "Disturbances,Disturbances"
       System {
 	Name			"Compressor1"
 	Location		[2, 82, 1278, 971]
@@ -878,7 +879,7 @@ Library {
 	      Ports		      [1, 1]
 	      Position		      [160, 34, 315, 66]
 	      FunctionName	      "comp_rig_model"
-	      Parameters	      "[], x_init_lin"
+	      Parameters	      "[], x_init"
 	      EnableBusSupport	      off
 	    }
 	    Block {
