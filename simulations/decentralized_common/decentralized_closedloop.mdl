@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.411"
+    ComputedModelVersion    "1.412"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Apr 26 13:31:32 2016"
+  LastModifiedDate	  "Wed Apr 27 08:33:58 2016"
   RTWModifiedTimeStamp	  383578291
-  ModelVersionFormat	  "1.%<AutoIncrement:411>"
+  ModelVersionFormat	  "1.%<AutoIncrement:412>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "700"
+	  StopTime		  "500"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -907,7 +907,7 @@ Model {
       }
       TimeRange		      "100"
       YMin		      "1.1"
-      YMax		      "1.5"
+      YMax		      "1.26"
       SaveToWorkspace	      on
       SaveName		      "SD1"
       DataFormat	      "Array"
@@ -978,8 +978,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-1.25"
-      YMax		      "1.5"
+      YMin		      "-1.5"
+      YMax		      "1.75"
       SaveName		      "SD3"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1070,8 +1070,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-0.025"
-      YMax		      "0.325"
+      YMin		      "-0.15"
+      YMax		      "0.25"
       SaveName		      "SD4"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1159,7 +1159,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[10, 82, 1270, 900]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2421,8 +2421,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "0"
-      YMax		      "0.085"
+      YMin		      "-0.01"
+      YMax		      "0.1"
       SaveName		      "SD5"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -3578,7 +3578,7 @@ Stateflow {
       "1(j);\n            uout(j+m*usize) = usol2(j);\n        end\n        if m>1\n            for j=1:(m-1)*usize\n  "
       "              usol_past(j,:) = [usol1(usize+j), usol2(usize+j)];\n            end\n            usol_past((m-1)*u"
       "size+1:m*usize) = usol_past((m-2)*usize+1:(m-1)*usize);\n        end\n    end\nend\n\n\n"
-      editorLayout	      "100 M4x1[25 25 720 615]"
+      editorLayout	      "100 M4x1[45 45 720 615]"
     }
   }
   junction {

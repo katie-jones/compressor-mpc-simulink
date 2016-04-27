@@ -7,7 +7,7 @@ addpath('../common')
 addpath('../parallel_common')
 
 [Ts, xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
-[n_delay,dsize,ucontrolsize,p,m,UWT,YWT] = const_mpc();
+[n_delay,dsize,ucontrolsize,p,m] = const_mpc();
 
 xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
 
@@ -29,7 +29,7 @@ u_d = ud;
 
 u_init = zeros(2*ucontrolsize,1);
 
-[A,B,C] = get_qp_matrices(xinit, u_init);
+[A,B,C] = get_qp_matrices(xinit, u_init, UWT, YWT);
 
 % Go back to original p2 value
 % x_init_lin = [0.899; 1.126; 0.15; 440; 0];

@@ -102,7 +102,7 @@ subplot(3,2,3)
 plot(u_rec.time,u_rec.signals.values)
 grid on
 ylabel('Recycle opening')
-legend('Comp. 1','Comp. 2')
+legend('Comp. 1','Comp. 2','location','best')
 
 subplot(3,2,4)
 plot(SD.time,SD.signals.values)
@@ -126,6 +126,33 @@ hold on
 plot([0 max(PD.time)], [yref(4) yref(4)],'-.k')
 ylabel('Pressure')
 xlabel('Time [s]')
+
+
+[n_delay,~,~,p,m] = const_mpc();
+weights;
+[n_barrier,delta_barrier] = const_barrier();
+[~,Vtank] = const_tank();
+Results.n_delay = n_delay;
+Results.Vtank = Vtank;
+Results.p = p;
+Results.m = m;
+Results.UWT = UWT;
+Results.YWT = YWT;
+Results.lb = lb;
+Results.ub = ub;
+Results.Td = Td;
+Results.ur = u_rec;
+Results.SD = SD;
+Results.pout = pout;
+Results.pd = PD;
+Results.tdist = tdist;
+Results.udist = [udist1; udist2];
+Results.yref = yref;
+Results.n_barrier = n_barrier;
+Results.delta_barrier = delta_barrier;
+if exist('n_iterations','var')
+Results.n_iterations = n_iterations;
+end
 
 if saveplots
 
@@ -156,29 +183,7 @@ if saveplots
     end
     saveas(fig,[basename,'.fig'])
     saveas(fig,[basename,'.pdf'])
-    [n_delay,~,~,p,m] = const_mpc();
-    weights;
-    [n_barrier,delta_barrier] = const_barrier();
-    Results.n_delay = n_delay;
-    Results.p = p;
-    Results.m = m;
-    Results.UWT = UWT;
-    Results.YWT = YWT;
-    Results.lb = lb;
-    Results.ub = ub;
-    Results.Td = Td;
-    Results.ur = u_rec;
-    Results.SD = SD;
-    Results.pout = pout;
-    Results.pd = PD;
-    Results.tdist = tdist;
-    Results.udist = [udist1; udist2];
-    Results.yref = yref;
-    Results.n_barrier = n_barrier;
-    Results.delta_barrier = delta_barrier;
-    if exist('n_iterations','var')
-        Results.n_iterations = n_iterations;
-    end
+
     save([basename,'.mat'],'Results')
 end
 

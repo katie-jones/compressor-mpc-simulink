@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.273"
+    ComputedModelVersion    "1.280"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Apr 26 16:16:02 2016"
-  RTWModifiedTimeStamp	  383588150
-  ModelVersionFormat	  "1.%<AutoIncrement:273>"
+  LastModifiedDate	  "Wed Apr 27 10:02:20 2016"
+  RTWModifiedTimeStamp	  383649657
+  ModelVersionFormat	  "1.%<AutoIncrement:280>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "600"
+	  StopTime		  "500"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -576,6 +576,22 @@ Model {
   }
   BlockParameterDefaults {
     Block {
+      BlockType		      Constant
+      Value		      "1"
+      VectorParams1D	      on
+      SamplingMode	      "Sample based"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Inherit from 'Constant value'"
+      OutDataType	      "fixdt(1,16,0)"
+      ConRadixGroup	      "Use specified scaling"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
+      LockScale		      off
+      SampleTime	      "inf"
+      FramePeriod	      "inf"
+    }
+    Block {
       BlockType		      Demux
       Outputs		      "4"
       DisplayOption	      "none"
@@ -727,7 +743,7 @@ Model {
   }
   System {
     Name		    "closedloop"
-    Location		    [1, 320, 1288, 1048]
+    Location		    [2, 74, 1278, 963]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -741,7 +757,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    681
+    SIDHighWatermark	    683
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -872,7 +888,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [915, 109, 1275, 382]
+      Location		      [2176, 189, 2536, 462]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -943,7 +959,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [925, 111, 1275, 384]
+      Location		      [1405, 183, 1755, 456]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -952,8 +968,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "120"
-      YMin		      "-1.2"
-      YMax		      "0.4"
+      YMin		      "-2.25"
+      YMax		      "0.5"
       SaveName		      "SD3"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1035,7 +1051,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 496, 1275, 769]
+      Location		      [1800, 548, 2138, 821]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1044,8 +1060,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "120"
-      YMin		      "-0.075"
-      YMax		      "0.125"
+      YMin		      "-0.15"
+      YMax		      "0.175"
       SaveName		      "SD4"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1123,8 +1139,8 @@ Model {
       BlockType		      SubSystem
       Name		      "controller"
       SID		      418
-      Ports		      [3, 1]
-      Position		      [470, 388, 560, 542]
+      Ports		      [2, 1]
+      Position		      [470, 390, 560, 545]
       BlockMirror	      on
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -1136,8 +1152,8 @@ Model {
       MaskHideContents	      off
       System {
 	Name			"controller"
-	Location		[329, 286, 950, 738]
-	Open			on
+	Location		[368, 341, 989, 793]
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1153,7 +1169,7 @@ Model {
 	  BlockType		  Inport
 	  Name			  "mv"
 	  SID			  419
-	  Position		  [520, 98, 550, 112]
+	  Position		  [520, 73, 550, 87]
 	  BlockMirror		  on
 	  IconDisplay		  "Port number"
 	}
@@ -1161,25 +1177,36 @@ Model {
 	  BlockType		  Inport
 	  Name			  "ref"
 	  SID			  420
-	  Position		  [520, 153, 550, 167]
+	  Position		  [520, 128, 550, 142]
 	  BlockMirror		  on
 	  Port			  "2"
 	  IconDisplay		  "Port number"
 	}
 	Block {
-	  BlockType		  Inport
-	  Name			  "xin"
-	  SID			  659
-	  Position		  [520, 268, 550, 282]
+	  BlockType		  Constant
+	  Name			  "Constant"
+	  SID			  682
+	  Position		  [465, 190, 495, 220]
 	  BlockMirror		  on
-	  Port			  "3"
-	  IconDisplay		  "Port number"
+	  Value			  "UWT"
+	  OutDataType		  "fixdt(1, 16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
+	  BlockType		  Constant
+	  Name			  "Constant1"
+	  SID			  683
+	  Position		  [465, 285, 495, 315]
+	  BlockMirror		  on
+	  Value			  "YWT"
+	  OutDataType		  "fixdt(1, 16)"
+	  OutScaling		  "2^0"
 	}
 	Block {
 	  BlockType		  SubSystem
 	  Name			  "Embedded\nMATLAB Function"
 	  SID			  421
-	  Ports			  [2, 4]
+	  Ports			  [3, 4]
 	  Position		  [265, 61, 405, 349]
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
@@ -1192,6 +1219,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -1218,7 +1250,7 @@ Model {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
-	    SIDHighWatermark	    23
+	    SIDHighWatermark	    25
 	    Block {
 	      BlockType		      Inport
 	      Name		      "u"
@@ -1230,10 +1262,18 @@ Model {
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "xin"
-	      SID		      23
+	      Name		      "UWT"
+	      SID		      24
 	      Position		      [20, 136, 40, 154]
 	      Port		      "2"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "YWT"
+	      SID		      25
+	      Position		      [20, 171, 40, 189]
+	      Port		      "3"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
@@ -1249,10 +1289,10 @@ Model {
 	      Name		      " SFunction "
 	      SID		      6
 	      Tag		      "Stateflow S-Function closedloop 2"
-	      Ports		      [2, 5]
+	      Ports		      [3, 5]
 	      Position		      [180, 121, 230, 329]
 	      FunctionName	      "sf_sfun"
-	      PortCounts	      "[2 5]"
+	      PortCounts	      "[3 5]"
 	      EnableBusSupport	      on
 	      Port {
 		PortNumber		2
@@ -1331,10 +1371,16 @@ Model {
 	      DstPort		      1
 	    }
 	    Line {
-	      SrcBlock		      "xin"
+	      SrcBlock		      "UWT"
 	      SrcPort		      1
 	      DstBlock		      " SFunction "
 	      DstPort		      2
+	    }
+	    Line {
+	      SrcBlock		      "YWT"
+	      SrcPort		      1
+	      DstBlock		      " SFunction "
+	      DstPort		      3
 	    }
 	    Line {
 	      Name		      "u_new"
@@ -1381,7 +1427,7 @@ Model {
 	  Name			  "Mux"
 	  SID			  422
 	  Ports			  [2, 1]
-	  Position		  [450, 79, 455, 186]
+	  Position		  [450, 54, 455, 161]
 	  BlockMirror		  on
 	  ShowName		  off
 	  Inputs		  "2"
@@ -1527,11 +1573,16 @@ Model {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "xin"
+	  SrcBlock		  "Constant"
 	  SrcPort		  1
-	  Points		  [-95, 0]
 	  DstBlock		  "Embedded\nMATLAB Function"
 	  DstPort		  2
+	}
+	Line {
+	  SrcBlock		  "Constant1"
+	  SrcPort		  1
+	  DstBlock		  "Embedded\nMATLAB Function"
+	  DstPort		  3
 	}
       }
     }
@@ -1588,7 +1639,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [937, 118, 1275, 391]
+      Location		      [1791, 188, 2129, 461]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1612,7 +1663,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 510, 1275, 775]
+      Location		      [1416, 544, 1754, 809]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -1654,6 +1705,7 @@ Model {
     Line {
       SrcBlock		      "controller"
       SrcPort		      1
+      Points		      [0, -5]
       DstBlock		      "Rate Transition2"
       DstPort		      1
     }
@@ -1913,15 +1965,8 @@ Model {
       }
       Branch {
 	Points			[130, 0; 0, 50]
-	Branch {
-	  Points		  [0, 265; -315, 0]
-	  DstBlock		  "controller"
-	  DstPort		  3
-	}
-	Branch {
-	  DstBlock		  "Demux1"
-	  DstPort		  1
-	}
+	DstBlock		"Demux1"
+	DstPort			1
       }
     }
     Line {
@@ -2059,7 +2104,7 @@ Stateflow {
     name		    "closedloop"
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
-    firstTarget		    13
+    firstTarget		    14
     sfVersion		    71014000.00001
   }
   chart {
@@ -2073,7 +2118,7 @@ Stateflow {
     firstJunction	    4
     viewObj		    2
     machine		    1
-    ssIdHighWaterMark	    19
+    ssIdHighWaterMark	    21
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
     firstData		    6
@@ -2097,28 +2142,28 @@ Stateflow {
     decomposition	    CLUSTER_STATE
     eml {
       isEML		      1
-      script		      "function [u_new,exitflag_out,it_out,x_out]  = fcn(u,xin)\n%#eml\n% persistent C_new M LB UB Ga Gb"
-      " Gc H Ain b A B upast xinit\npersistent M LB UB Ain b upast xinit dxaug y_old C %x_init_lin\neml.extrinsic('disp"
-      "');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\neml.ex"
-      "trinsic('quadprog');\n\n\n\n[n_delay,dsize,ucontrolsize,p,m] = const_mpc();\n[~, ~, xsize, ~, ysize] = const_sim"
-      "();\nusize=2*ucontrolsize;\n\nif isempty(M)\n    tic\n    [C,M,UB,LB,b,Ain,xinit,upast] = get_constant_matrices("
-      ");\n    dxaug = zeros(size(xinit));\n%     y_old = zeros(ysize,1);\n    y_old = [0.2175; 0.2175; 0; 1.12];\n%   "
-      "  y_old = yss;\n    time = toc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\n\ny = u(1:ysize);\n\n% "
-      "Estimate state info\ndxaug = dxaug + M*(y - y_old - C*(dxaug));\n\n% Use state input info to calculate x, y\nxin"
-      "it(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\nx_out = xinit;\n\ny_old "
-      "= y;\n\nyref = u(ysize+1:end);\n\n% Get matrices - linearize about delayed rec.open input\n[A,B,C,H,Ga,Gb,Gc,df0"
-      ",Sx,Su,Sf,UWT] = get_qp_matrices(xinit,upast);\n\n\n\n% Get reference and input vector\n\nYref = zeros(p*ysize,1"
-      ");\nUpast = zeros(m*usize,1);\nfor i=1:p\n    Yref(1+(i-1)*ysize:i*ysize,1) = yref - y;\nend\nfor i=1:m\n    Upa"
-      "st(1+(i-1)*usize:i*usize,1) = upast;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - Upast;\n\n% Calculat"
-      "e initial state\ndx0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize"
-      "+2*n_delay(2))-upast(4); xinit(end-2*dsize+1:end)];\n\n\n% Gradient vector\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% +"
-      " Upast'*UWT;\n\n% Solve QP\nlbA = -inf(size(Ain,1),1);\n[usol,~,exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lb"
-      "A,b);\nexitflag_out = exitflag(1,1);\nit_out = it(1,1);\n\nif exitflag_out~=0\n    exitflag_out\n    usol = zero"
-      "s(m*usize,1);\nend\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);\nu_new = upast + delta_u;\n\n\n% value of"
-      " x about which we linearized\nxlin = dxaug;\nxlin(xsize+1:end) = 0;\nxlin(xsize+1) = upast(2);\nxlin(xsize+1+n_d"
-      "elay(2)) = upast(4);\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug-xlin) + df0"
-      ";\n\nupast = u_new;\n\n\n"
-      editorLayout	      "100 M4x1[10 5 750 500]"
+      script		      "function [u_new,exitflag_out,it_out,x_out]  = fcn(u,UWT,YWT)\n%#eml\n% persistent C_new M LB UB G"
+      "a Gb Gc H Ain b A B upast xinit\npersistent M LB UB Ain b upast xinit dxaug y_old C %x_init_lin\neml.extrinsic('"
+      "disp');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\nem"
+      "l.extrinsic('quadprog');\n\n\n\n[n_delay,dsize,ucontrolsize,p,m] = const_mpc();\n[~, ~, xsize, ~, ysize] = const"
+      "_sim();\nusize=2*ucontrolsize;\n\nif isempty(M)\n    tic\n    [C,M,UB,LB,b,Ain,xinit,upast] = get_constant_matri"
+      "ces();\n    dxaug = zeros(size(xinit));\n%     y_old = zeros(ysize,1);\n    y_old = [0.2175; 0.2175; 0; 1.12];\n"
+      "%     y_old = yss;\n    time = toc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\n\ny = u(1:ysize);\n"
+      "\n% Estimate state info\ndxaug = dxaug + M*(y - y_old - C*(dxaug));\n\n% Use state input info to calculate x, y\n"
+      "xinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\nx_out = xinit;\n\ny_o"
+      "ld = y;\n\nyref = u(ysize+1:end);\n\n% Get matrices - linearize about delayed rec.open input\n[A,B,C,H,Ga,Gb,Gc,"
+      "df0] = get_qp_matrices(xinit,upast,UWT,YWT);\n\n\n\n% Get reference and input vector\n\nYref = zeros(p*ysize,1);"
+      "\nUpast = zeros(m*usize,1);\nfor i=1:p\n    Yref(1+(i-1)*ysize:i*ysize,1) = yref - y;\nend\nfor i=1:m\n    Upast"
+      "(1+(i-1)*usize:i*usize,1) = upast;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - Upast;\n\n% Calculate "
+      "initial state\ndx0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2"
+      "*n_delay(2))-upast(4); xinit(end-2*dsize+1:end)];\n\n\n% Gradient vector\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% + U"
+      "past'*UWT;\n\n% Solve QP\nlbA = -inf(size(Ain,1),1);\n[usol,~,exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,"
+      "b);\nexitflag_out = exitflag(1,1);\nit_out = it(1,1);\n\nif exitflag_out~=0\n    exitflag_out\n    usol = zeros("
+      "m*usize,1);\nend\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);\nu_new = upast + delta_u;\n\n\n% value of x"
+      " about which we linearized\nxlin = dxaug;\nxlin(xsize+1:end) = 0;\nxlin(xsize+1) = upast(2);\nxlin(xsize+1+n_del"
+      "ay(2)) = upast(4);\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n"
+      "\nupast = u_new;\n\n\n"
+      editorLayout	      "100 M4x1[10 5 884 858]"
     }
   }
   junction {
@@ -2258,9 +2303,31 @@ Stateflow {
   }
   data {
     id			    11
-    ssIdNumber		    19
-    name		    "xin"
-    linkNode		    [2 10 0]
+    ssIdNumber		    20
+    name		    "UWT"
+    linkNode		    [2 10 12]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    12
+    ssIdNumber		    21
+    name		    "YWT"
+    linkNode		    [2 11 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -2279,13 +2346,13 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   instance {
-    id			    12
+    id			    13
     name		    "controller/Embedded\nMATLAB Function"
     machine		    1
     chart		    2
   }
   target {
-    id			    13
+    id			    14
     name		    "sfun"
     description		    "Default Simulink S-Function Target."
     machine		    1
