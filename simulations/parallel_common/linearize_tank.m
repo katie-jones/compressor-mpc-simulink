@@ -38,9 +38,9 @@ Ac1t = get_Act(x1,udt,pd,SpeedSound,VolumeT,D2);
 
 Ac2t = get_Act(x2,udt,pd,SpeedSound,VolumeT,D2);
 
-Atc1 = get_Atc(x1,ud1,pd,SpeedSound,V2,D2);
+Atc1 = get_Act(x1,ud1,pd,SpeedSound,V2,D2)';
 
-Atc2 = get_Atc(x2,ud2,pd,SpeedSound,V2,D2);
+Atc2 = get_Act(x2,ud2,pd,SpeedSound,V2,D2)';
 
 %% Compressor dynamics
 [A1,B1,C1] = get_linearized_matrices(x1,u1);
@@ -84,15 +84,4 @@ Act = [0, ...
 
 end
 
-
-% Get component of A matrix that is the effect of pd on compressor states
-function Atc = get_Atc(x,ud,pd,SpeedSound,VolumeT2,D2)
-
-p2 = x(2);
-
-Atc = [0;
-    SpeedSound * SpeedSound / VolumeT2 * 1e-5 * (1/2*100/sqrt(abs(p2*100-pd*100))) * (D2(1)*ud^3 + D2(2)*ud^2 + D2(3)*ud + D2(4));
-    0; 0; 0];
-
-end
 

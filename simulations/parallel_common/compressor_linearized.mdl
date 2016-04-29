@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.56"
+    ComputedModelVersion    "1.57"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 23 10:19:12 2016"
-  RTWModifiedTimeStamp	  380629149
-  ModelVersionFormat	  "1.%<AutoIncrement:56>"
+  LastModifiedDate	  "Wed Apr 27 15:54:07 2016"
+  RTWModifiedTimeStamp	  383673244
+  ModelVersionFormat	  "1.%<AutoIncrement:57>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1416,14 +1416,14 @@ Model {
       Name		      "T_dr"
       SID		      290
       Position		      [265, 387, 320, 413]
-      Value		      "0.304"
+      Value		      "uoff1(1)"
     }
     Block {
       BlockType		      Constant
       Name		      "T_dr1"
       SID		      302
       Position		      [265, 792, 320, 818]
-      Value		      "0.304"
+      Value		      "uoff2(1)"
     }
     Block {
       BlockType		      Reference
@@ -2121,28 +2121,28 @@ Model {
       Name		      "u_in"
       SID		      293
       Position		      [400, 397, 455, 423]
-      Value		      "0.405"
+      Value		      "uoff1(2)"
     }
     Block {
       BlockType		      Constant
       Name		      "u_in1"
       SID		      305
       Position		      [400, 802, 455, 828]
-      Value		      "0.405"
+      Value		      "uoff2(2)"
     }
     Block {
       BlockType		      Constant
       Name		      "u_out"
       SID		      294
       Position		      [340, 472, 395, 498]
-      Value		      "u_out"
+      Value		      "uoff1(3)"
     }
     Block {
       BlockType		      Constant
       Name		      "u_out1"
       SID		      306
       Position		      [340, 877, 395, 903]
-      Value		      "u_out"
+      Value		      "uoff2(3)"
     }
     Block {
       BlockType		      Reference

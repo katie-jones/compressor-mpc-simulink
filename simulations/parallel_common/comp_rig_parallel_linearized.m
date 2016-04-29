@@ -196,7 +196,7 @@ du = u - u_old;
 
 f1 = get_comp_deriv(x1,u1,1);
 f2 = get_comp_deriv(x2,u2,1);
-ftank = get_tank_deriv(x_old,u);
+ftank = get_tank_deriv(x_old,u(end));
 
 sys = [f1; f2; ftank] + B*du([1,4,1+usize,4+usize]) + A*(x-x_old);
 
