@@ -17,6 +17,9 @@ x2 = x(xsize+1:2*xsize);
 u1 = u(1:usize);
 u2 = u(usize+1:2*usize);
 
+u1(end) = pd;
+u2(end) = pd;
+
 [Out_pres_t,VolumeT,D2_t] = const_tank();
 [~,~,~,~,~,~,D2] = comp_coeffs();
 
@@ -34,11 +37,11 @@ Att = -SpeedSound * SpeedSound / VolumeT * 1e-5 * (1/2*100/sqrt(abs(pd*100-Out_p
 
 %% Interaction between compressors and discharge tanks
 
-Ac1t = get_Act(x1,udt,pd,SpeedSound,VolumeT,D2);
+Ac1t = get_Act(x1,ud1,pd,SpeedSound,VolumeT,D2); % effect of compressor 1 on tank
 
-Ac2t = get_Act(x2,udt,pd,SpeedSound,VolumeT,D2);
+Ac2t = get_Act(x2,ud2,pd,SpeedSound,VolumeT,D2);
 
-Atc1 = get_Atc(x1,ud1,pd,SpeedSound,V2,D2);
+Atc1 = get_Atc(x1,ud1,pd,SpeedSound,V2,D2); % effect of tank on compressor 1
 
 Atc2 = get_Atc(x2,ud2,pd,SpeedSound,V2,D2);
 
