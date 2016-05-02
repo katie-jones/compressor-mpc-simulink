@@ -5,11 +5,13 @@ addpath('../common')
 Td = 0;
 u_rec = 0.0; % recycle opening
 
-P_D = 1.08; % initialize tank pressure
+% P_D = 1.08; % initialize tank pressure
+P_D = 1.12;
 
 % linearization point
   
-x_init_lin = [0.899; 1.126; 0.15; 440; 0];
+% x_init_lin = [0.899; 1.126; 0.15; 440; 0];
+x_init_lin = [0.916; 1.145; 0.152; 440; 0];
 
 [Ts, xsize_comp, xsize, usize_comp, ysize, uoff1, uoff2, ud] = const_sim();
 
