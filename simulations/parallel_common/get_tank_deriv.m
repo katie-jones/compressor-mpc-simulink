@@ -1,55 +1,26 @@
 function pdot = get_tank_deriv(x,u)
 
-[~,xsize,~,~,~,uoff1,uoff2] = const_sim();
-
 % States
-P_D = x(2*xsize+1);
+P_D = x(1);
 
-x1 = x(1:xsize);
-x2 = x(xsize+1:2*xsize);
+% Inputs
+m_in = u(1);
+Outflow_opening = u(2);
 
-u_d = u(end);
-
-
-[~,~,~,~,~,~,D2,m_out_c] = comp_coeffs();
+[Out_pres,VolumeT,D2,m_out_c] = const_tank();
 
 SpeedSound = const_flow();
 
-% Outlet opening
-ud1 = uoff1(3);
-ud2 = uoff2(3);
 
+dp_sqrt2 = sqrt(abs(P_D*100 - Out_pres*100)) * sign(P_D*100 - Out_pres*100);      
 
-% Calculate m_out1 from tank of compressor 1
+M5 = [dp_sqrt2*Outflow_opening^3 dp_sqrt2*Outflow_opening^2 dp_sqrt2*Outflow_opening dp_sqrt2 ...
+       Outflow_opening^3 Outflow_opening^2 Outflow_opening 1]';
 
-p2 = x1(2);%
-m_out1 = get_mass_flow(p2,P_D,ud1,D2,m_out_c);
+m_out = D2 * M5 + m_out_c;
 
-
-
-
-% Calculate m_out2 from tank of compressor 2
-
-p2 = x2(2);%
-m_out2 = get_mass_flow(p2,P_D,ud2,D2,m_out_c);
-
-
-
-% Calculate m_out from large tank
-
-[Out_pres,VolumeT,D2,m_out_c] = const_tank();
-m_out_tank = get_mass_flow(P_D,Out_pres,u_d,D2,m_out_c);
-
-
-% m_in to large tank
-m_in = m_out1+m_out2;
-
-
-pdot = SpeedSound * SpeedSound / VolumeT * (m_in - m_out_tank) * 1e-5; % p1
-
-
+pdot = SpeedSound * SpeedSound / VolumeT * (m_in - m_out) * 1e-5; % p1
 end
-
 
 % Get mass flow out of a tank given pressures, valve setting, valve
 % coefficients

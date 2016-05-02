@@ -43,7 +43,7 @@ sizes = simsizes;
 sizes.NumContStates  = 11;     % continuous states
 sizes.NumDiscStates  = 0;     % discrete states
 sizes.NumOutputs     = 21;     % outputs of model 
-sizes.NumInputs      = 11;     % inputs of model
+sizes.NumInputs      = 12;     % inputs of model
 sizes.DirFeedthrough = 1;     % System is causal
 sizes.NumSampleTimes = 1;     %
 sys = simsizes(sizes);        %
@@ -60,25 +60,27 @@ end
 % ******************************************
 
 function [sys] = mdlOutputs(t,x,u,Param)
-global P_D
-
 [~,xsize,~,usize] = const_sim;
-
-x1 = x(1:xsize);
-x2 = x(xsize+1:2*xsize);
-P_D = x(end);
 
 u1 = u(1:usize);
 u2 = u(usize+1:2*usize);
 
+x1 = x(1:xsize);
+x2 = x(xsize+1:2*xsize);
+PD = x(end);
+
+u1(end) = PD;
+u2(end) = PD;
+
 sys_comp1 = compOutputs(x1,u1);
 sys_comp2 = compOutputs(x2,u2);
 
-sys = [sys_comp1(:); sys_comp2(:); P_D];
+sys = [sys_comp1(:); sys_comp2(:); PD];
 
 end
 
 function sys = compOutputs(x,u)
+
 % Inputs
 torque_drive = u(1);  
 Inflow_opening = u(2);
@@ -93,8 +95,13 @@ m_comp = x(3);%
 omega_comp = x(4);%
 m_rec = x(5);%
 
-[~,~,A,C,m_in_c,~,D2,m_out_c,T_ss_c,SD_c,torque_drive_c] = comp_coeffs();
-[~,In_pres,Out_pres] = const_flow();
+[J,tauRecycle,A,C,m_in_c,m_rec_ss_c,D2,m_out_c,T_ss_c,SD_c,torque_drive_c] = comp_coeffs();
+[SpeedSound,In_pres,Out_pres,VolumeT1,VolumeT2,AdivL] = const_flow();
+
+% for parallel simulation with non-consant output pressure
+if dummy > 0
+    Out_pres = dummy;
+end
 
 torque_drive = torque_drive * torque_drive_c / (2 * pi * 50);
 % if omega_comp > 2*pi*50
@@ -108,6 +115,7 @@ torque_drive = torque_drive * torque_drive_c / (2 * pi * 50);
 % R_air = 8.31 / 28.97 * 1000;
 % T_in = u(5);
 % T0 = 25;
+
 
 M = [omega_comp^2*m_comp^3 omega_comp^2*m_comp^2 omega_comp^2*m_comp omega_comp^2 ...
     omega_comp*m_comp^3 omega_comp*m_comp^2 omega_comp*m_comp omega_comp ...
@@ -132,10 +140,14 @@ m_in = C * M3 + m_in_c; % Inflow valve
 
 dp_sqrt2 = sqrt(abs(p2*100 - Out_pres*100)) * sign(p2*100 - Out_pres*100);      
 
-M5 = [dp_sqrt2*Outflow_opening^3 dp_sqrt2*Outflow_opening^2 dp_sqrt2*Outflow_opening dp_sqrt2 ...
-       Outflow_opening^3 Outflow_opening^2 Outflow_opening 1]';
+M5 = [dp_sqrt2*Outflow_opening^3, dp_sqrt2*Outflow_opening^2, dp_sqrt2*Outflow_opening, dp_sqrt2, ...
+       Outflow_opening^3, Outflow_opening^2, Outflow_opening, 1]';
 
 m_out = D2 * M5 + m_out_c;
+
+% output valve 
+% m_out = Valve_out_gain*Outflow_opening*sqrt(abs(p2 - Out_pres*1e3))*sign(p2 - Out_pres*1e3); % Outflow valve
+% m_out = max(m_out+0.05, 0);
 
 
 T_ss_model = (T_ss_c(1) +  T_ss_c(2) * m_comp);% .* ~(m_comp < 1e-2);
@@ -161,7 +173,6 @@ sys(8) = m_rec; %
 sys(9) = T_ss_model;
 sys(10) = SD;
 
-% keyboard;
 end
 
 
@@ -171,34 +182,40 @@ end
 
 
 function sys = mdlDerivatives(t,x,u,Param)
-global u_old x_old
+global x_old u_old
 
-[~,xsize,~,usize] = const_sim;
+[~,xsize,~,usize,~,uoff1,uoff2,ud] = const_sim;
 
-if (isempty(u_old))
+
+if (isempty(x_old))
     x_init_lin = [0.899; 1.126; 0.15; 440; 0];
-    x_old = [x_init_lin;x_init_lin;1.08];
-    u_old = zeros(2*usize+1,1);
+    x_old = [x_init_lin; x_init_lin; 1.08];
+    u_old = [uoff1; uoff2; 0.3; ud];
 end
+    
 
-
-P_D = x(end);
-
-u1 = [u_old(1:usize-1);P_D];
-u2 = [u_old(usize+1:2*usize-1);P_D];
+u1 = u_old(1:usize);
+u2 = u_old(usize+1:2*usize);
 
 x1 = x_old(1:xsize);
 x2 = x_old(xsize+1:2*xsize);
+PD = x_old(end);
 
-[A,B] = linearize_tank(x_old,u_old);
+u1(end) = PD;
+u2(end) = PD;
+
+ud = u(2*usize+1);
+m_tank_in = u(end);
+
+dx1 = get_comp_deriv(x1,u1,1);
+dx2 = get_comp_deriv(x2,u2,1);
+dtank = get_tank_deriv(PD,[m_tank_in; ud]);
 
 du = u - u_old;
 
-f1 = get_comp_deriv(x1,u1,1);
-f2 = get_comp_deriv(x2,u2,1);
-ftank = get_tank_deriv(x_old,u);
+[A,B] = linearize_tank(x_old, [u1; u2; ud]);
 
-sys = [f1; f2; ftank] + B*du([1,4,1+usize,4+usize]) + A*(x-x_old);
+sys = [dx1; dx2; dtank] + A*(x-x_old) + B*[du(1); du(4); du(1+usize); du(4+usize)];
 
 u_old = u;
 x_old = x;

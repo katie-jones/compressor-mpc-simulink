@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.56"
+    ComputedModelVersion    "1.63"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Mar 23 10:19:12 2016"
-  RTWModifiedTimeStamp	  380629149
-  ModelVersionFormat	  "1.%<AutoIncrement:56>"
+  LastModifiedDate	  "Mon May 02 13:31:45 2016"
+  RTWModifiedTimeStamp	  384087961
+  ModelVersionFormat	  "1.%<AutoIncrement:63>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -640,6 +640,15 @@ Model {
       Interpolate	      on
     }
     Block {
+      BlockType		      Memory
+      X0		      "0"
+      InheritSampleTime	      off
+      LinearizeMemory	      off
+      LinearizeAsDelay	      off
+      StateMustResolveToSignalObject off
+      RTWStateStorageClass    "Auto"
+    }
+    Block {
       BlockType		      Mux
       Inputs		      "4"
       DisplayOption	      "none"
@@ -763,7 +772,7 @@ Model {
   }
   System {
     Name		    "compressor_linearized"
-    Location		    [2, 82, 1261, 954]
+    Location		    [2, 74, 1261, 946]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -777,7 +786,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    385
+    SIDHighWatermark	    389
     Block {
       BlockType		      Demux
       Name		      "Demux1"
@@ -971,7 +980,7 @@ Model {
       System {
 	Name			"Parallel compresion plant"
 	Location		[2, 82, 1278, 995]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1002,6 +1011,14 @@ Model {
 	  DisplayOption		  "bar"
 	}
 	Block {
+	  BlockType		  Memory
+	  Name			  "Memory"
+	  SID			  389
+	  Position		  [250, 630, 280, 660]
+	  BlockMirror		  on
+	  X0			  "0.31"
+	}
+	Block {
 	  BlockType		  Mux
 	  Name			  "Mux1"
 	  SID			  383
@@ -1010,6 +1027,17 @@ Model {
 	  BackgroundColor	  "black"
 	  ShowName		  off
 	  Inputs		  "10"
+	  DisplayOption		  "bar"
+	}
+	Block {
+	  BlockType		  Mux
+	  Name			  "Mux2"
+	  SID			  387
+	  Ports			  [2, 1]
+	  Position		  [120, 262, 125, 408]
+	  BackgroundColor	  "black"
+	  ShowName		  off
+	  Inputs		  "2"
 	  DisplayOption		  "bar"
 	}
 	Block {
@@ -1034,6 +1062,23 @@ Model {
 	  EnableBusSupport	  off
 	}
 	Block {
+	  BlockType		  Sum
+	  Name			  "Sum"
+	  SID			  388
+	  Ports			  [2, 1]
+	  Position		  [395, 635, 415, 655]
+	  BlockMirror		  on
+	  ShowName		  off
+	  IconShape		  "round"
+	  Inputs		  "++|"
+	  InputSameDT		  off
+	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "fixdt(1, 16)"
+	  OutScaling		  "2^0"
+	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
+	  SaturateOnIntegerOverflow off
+	}
+	Block {
 	  BlockType		  Outport
 	  Name			  "Out1"
 	  SID			  312
@@ -1055,12 +1100,6 @@ Model {
 	  Position		  [675, 543, 705, 557]
 	  Port			  "3"
 	  IconDisplay		  "Port number"
-	}
-	Line {
-	  SrcBlock		  "In1"
-	  SrcPort		  1
-	  DstBlock		  "S-Function1"
-	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Demux3"
@@ -1101,8 +1140,15 @@ Model {
 	Line {
 	  SrcBlock		  "Demux3"
 	  SrcPort		  7
-	  DstBlock		  "Mux3"
-	  DstPort		  7
+	  Points		  [10, 0]
+	  Branch {
+	    DstBlock		    "Mux3"
+	    DstPort		    7
+	  }
+	  Branch {
+	    DstBlock		    "Sum"
+	    DstPort		    1
+	  }
 	}
 	Line {
 	  SrcBlock		  "Demux3"
@@ -1161,8 +1207,16 @@ Model {
 	Line {
 	  SrcBlock		  "Demux3"
 	  SrcPort		  17
-	  DstBlock		  "Mux1"
-	  DstPort		  7
+	  Points		  [120, 0]
+	  Branch {
+	    DstBlock		    "Mux1"
+	    DstPort		    7
+	  }
+	  Branch {
+	    Points		    [0, 195]
+	    DstBlock		    "Sum"
+	    DstPort		    2
+	  }
 	}
 	Line {
 	  SrcBlock		  "Demux3"
@@ -1205,6 +1259,32 @@ Model {
 	  SrcPort		  1
 	  DstBlock		  "Demux3"
 	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "In1"
+	  SrcPort		  1
+	  DstBlock		  "Mux2"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Mux2"
+	  SrcPort		  1
+	  Points		  [10, 0; 0, -40]
+	  DstBlock		  "S-Function1"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Sum"
+	  SrcPort		  1
+	  DstBlock		  "Memory"
+	  DstPort		  1
+	}
+	Line {
+	  SrcBlock		  "Memory"
+	  SrcPort		  1
+	  Points		  [-155, 0; 0, -275]
+	  DstBlock		  "Mux2"
+	  DstPort		  2
 	}
 	Annotation {
 	  Position		  [515, 279]
@@ -1416,14 +1496,14 @@ Model {
       Name		      "T_dr"
       SID		      290
       Position		      [265, 387, 320, 413]
-      Value		      "0.304"
+      Value		      "uoff1(1)"
     }
     Block {
       BlockType		      Constant
       Name		      "T_dr1"
       SID		      302
       Position		      [265, 792, 320, 818]
-      Value		      "0.304"
+      Value		      "uoff2(1)"
     }
     Block {
       BlockType		      Reference
@@ -1807,16 +1887,17 @@ Model {
       Ports		      [1]
       Position		      [1345, 399, 1375, 431]
       Floating		      off
-      Location		      [965, 360, 1317, 605]
+      Location		      [923, 360, 1275, 605]
       Open		      off
       NumInputPorts	      "1"
+      ZoomMode		      "yonly"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "100.8"
-      YMax		      "100.975"
+      YMin		      "0"
+      YMax		      "1"
       SaveName		      "ScopeData3"
       DataFormat	      "StructureWithTime"
       LimitDataPoints	      off
@@ -1945,7 +2026,7 @@ Model {
       Ports		      [1]
       Position		      [1255, 14, 1285, 46]
       Floating		      off
-      Location		      [965, 360, 1317, 605]
+      Location		      [923, 360, 1275, 605]
       Open		      off
       NumInputPorts	      "1"
       List {
@@ -1989,7 +2070,7 @@ Model {
       Ports		      [1]
       Position		      [1570, 24, 1600, 56]
       Floating		      off
-      Location		      [965, 360, 1317, 605]
+      Location		      [923, 360, 1275, 605]
       Open		      off
       NumInputPorts	      "1"
       List {
@@ -2121,28 +2202,28 @@ Model {
       Name		      "u_in"
       SID		      293
       Position		      [400, 397, 455, 423]
-      Value		      "0.405"
+      Value		      "uoff1(2)"
     }
     Block {
       BlockType		      Constant
       Name		      "u_in1"
       SID		      305
       Position		      [400, 802, 455, 828]
-      Value		      "0.405"
+      Value		      "uoff2(2)"
     }
     Block {
       BlockType		      Constant
       Name		      "u_out"
       SID		      294
       Position		      [340, 472, 395, 498]
-      Value		      "u_out"
+      Value		      "uoff1(3)"
     }
     Block {
       BlockType		      Constant
       Name		      "u_out1"
       SID		      306
       Position		      [340, 877, 395, 903]
-      Value		      "u_out"
+      Value		      "uoff2(3)"
     }
     Block {
       BlockType		      Reference
@@ -2195,14 +2276,14 @@ Model {
       Name		      "u_rec_offset"
       SID		      295
       Position		      [285, 627, 340, 653]
-      Value		      "0"
+      Value		      "uoff1(4)"
     }
     Block {
       BlockType		      Constant
       Name		      "u_rec_offset1"
       SID		      307
       Position		      [285, 1032, 340, 1058]
-      Value		      "0"
+      Value		      "uoff2(4)"
     }
     Line {
       SrcBlock		      "Sum2"
