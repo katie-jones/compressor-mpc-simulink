@@ -746,7 +746,7 @@ Model {
       SID		      513
       Ports		      [3, 4]
       Position		      [300, 75, 400, 180]
-      LibraryVersion	      "1.12"
+      LibraryVersion	      "1.10"
       SourceBlock	      "lib_compressor/Compressor1"
       SourceType	      "Compressor"
       ShowPortLabels	      "FromPortIcon"
@@ -774,7 +774,7 @@ Model {
       SID		      514
       Ports		      [3, 4]
       Position		      [300, 285, 400, 390]
-      LibraryVersion	      "1.12"
+      LibraryVersion	      "1.10"
       SourceBlock	      "lib_compressor/Compressor1"
       SourceType	      "Compressor"
       ShowPortLabels	      "FromPortIcon"
@@ -974,7 +974,7 @@ Model {
 	  Ports			  [1, 1]
 	  Position		  [185, 164, 340, 196]
 	  FunctionName		  "comp_rig_tank"
-	  Parameters		  "[], P_D-0.1"
+	  Parameters		  "[], P_D"
 	  EnableBusSupport	  off
 	}
 	Block {
