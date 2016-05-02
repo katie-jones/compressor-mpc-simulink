@@ -1,4 +1,4 @@
-function f = get_comp_deriv(x, u, flag)
+function [f,m_out] = get_comp_deriv(x, u, flag)
 %#eml
 % Inputs
 torque_drive = u(1);  
