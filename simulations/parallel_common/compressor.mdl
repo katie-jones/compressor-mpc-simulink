@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.73"
+    ComputedModelVersion    "1.72"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Apr 27 16:04:54 2016"
-  RTWModifiedTimeStamp	  383673893
-  ModelVersionFormat	  "1.%<AutoIncrement:73>"
+  LastModifiedDate	  "Thu Apr 07 09:20:19 2016"
+  RTWModifiedTimeStamp	  381921357
+  ModelVersionFormat	  "1.%<AutoIncrement:72>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -725,7 +725,7 @@ Model {
   }
   System {
     Name		    "compressor"
-    Location		    [75, 209, 1241, 732]
+    Location		    [56, 371, 1222, 894]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -746,7 +746,7 @@ Model {
       SID		      513
       Ports		      [3, 4]
       Position		      [300, 75, 400, 180]
-      LibraryVersion	      "1.10"
+      LibraryVersion	      "1.12"
       SourceBlock	      "lib_compressor/Compressor1"
       SourceType	      "Compressor"
       ShowPortLabels	      "FromPortIcon"
@@ -774,7 +774,7 @@ Model {
       SID		      514
       Ports		      [3, 4]
       Position		      [300, 285, 400, 390]
-      LibraryVersion	      "1.10"
+      LibraryVersion	      "1.12"
       SourceBlock	      "lib_compressor/Compressor1"
       SourceType	      "Compressor"
       ShowPortLabels	      "FromPortIcon"
@@ -916,7 +916,7 @@ Model {
       System {
 	Name			"Tank"
 	Location		[580, 163, 1078, 459]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -974,7 +974,7 @@ Model {
 	  Ports			  [1, 1]
 	  Position		  [185, 164, 340, 196]
 	  FunctionName		  "comp_rig_tank"
-	  Parameters		  "[], P_D"
+	  Parameters		  "[], P_D-0.1"
 	  EnableBusSupport	  off
 	}
 	Block {

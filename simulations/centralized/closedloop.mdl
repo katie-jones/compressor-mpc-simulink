@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.281"
+    ComputedModelVersion    "1.280"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Apr 27 15:32:20 2016"
-  RTWModifiedTimeStamp	  383671939
-  ModelVersionFormat	  "1.%<AutoIncrement:281>"
+  LastModifiedDate	  "Wed Apr 27 10:02:20 2016"
+  RTWModifiedTimeStamp	  383649657
+  ModelVersionFormat	  "1.%<AutoIncrement:280>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "200"
+	  StopTime		  "500"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -743,7 +743,7 @@ Model {
   }
   System {
     Name		    "closedloop"
-    Location		    [2, 82, 1278, 971]
+    Location		    [2, 74, 1278, 963]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -888,7 +888,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [915, 189, 1275, 462]
+      Location		      [2176, 189, 2536, 462]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -959,7 +959,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [925, 183, 1275, 456]
+      Location		      [1405, 183, 1755, 456]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1051,7 +1051,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 548, 1275, 821]
+      Location		      [1800, 548, 2138, 821]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1219,6 +1219,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -1634,7 +1639,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [937, 188, 1275, 461]
+      Location		      [1791, 188, 2129, 461]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1658,7 +1663,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 544, 1275, 809]
+      Location		      [1416, 544, 1754, 809]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
