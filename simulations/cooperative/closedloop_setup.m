@@ -26,7 +26,7 @@ weights;
 % Run MpcSetup script, perform simulation and plot results
 for n_disturbance=5
     MpcSetup;
-    sim('decentralized_closedloop');
-    makeplots;
+%     sim('decentralized_closedloop');
+%     makeplots;
 end
 
