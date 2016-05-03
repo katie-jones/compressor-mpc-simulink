@@ -4,6 +4,8 @@ function [A, B, C] = linearize_tank(x,u)
 %#eml
 
 %% Constants
+pd = x(end);
+ud = u(end);
 
 xsize = 5;
 usize = 6;
@@ -15,23 +17,33 @@ x2 = x(xsize+1:2*xsize);
 u1 = u(1:usize);
 u2 = u(usize+1:2*usize);
 
+u1(end) = pd;
+u2(end) = pd;
+
+[~,VolumeT,D2_t] = const_tank();
 [~,~,~,~,~,~,D2] = comp_coeffs();
 
-[SpeedSound,~,~,Vin,Vout] = const_flow();
+[SpeedSound,~,~,~,V2] = const_flow();
 
 ud1 = u1(3);
 
-%% Interaction between compressors
+pin_tank = x1(2);
+pout_tank = x2(1);
 
-dc1c2 = get_Act(x1(2),ud1,x2(1),SpeedSound,Vin,D2); % effect of comp 1 on comp 2
-dc2c1 = get_Act(x1(2),ud1,x2(1),SpeedSound,Vout,D2); % effect of comp 2 on comp 1
 
-Ac1c2 = zeros(xsize);
-Ac2c1 = Ac1c2;
 
-Ac1c2(2,1) = dc1c2;
-Ac2c1(1,2) = dc2c1;
+%% Dynamics of discharge tank
+Att = - getValveDerivative(pd,pout_tank,SpeedSound,VolumeT,ud,D2_t) - getValveDerivative(pin_tank,pd,SpeedSound,VolumeT,ud1,D2);
 
+%% Interaction between compressors and discharge tanks
+
+% Effect of compressors on tank
+Act = [0; getValveDerivative(pin_tank,pd,SpeedSound,VolumeT,ud1,D2); 0; 0; 0;
+    getValveDerivative(pd,pout_tank,SpeedSound,VolumeT,ud,D2); 0; 0; 0; 0]';
+
+% Effect of tank on compressors
+Atc = [0; getValveDerivative(pin_tank,pd,SpeedSound,V2,ud1,D2); 0; 0; 0;
+    0; getValveDerivative(pd,pout_tank,SpeedSound,V2,ud,D2); 0; 0; 0];
 
 %% Compressor dynamics
 [A1,B1,C1] = get_linearized_matrices(x1,u1);
@@ -40,25 +52,26 @@ Ac2c1(1,2) = dc2c1;
 
 
 %% Output system
-A = [ A1, Ac2c1; Ac1c2, A2 ];
+A = [ [A1, zeros(xsize);
+    zeros(xsize), A2;
+    Act], [Atc; Att] ];
 
 B = [B1, zeros(xsize,2);
-    zeros(xsize,2), B2];
+    zeros(xsize,2), B2;
+    zeros(1,2*2)];
 
-
-% Outputs: p21,p22,SD1,SD2
-C = [C1, zeros(ysize,xsize);
-    zeros(ysize,xsize), C2];
+% Outputs: p21,SD1,p22,SD2,PD
+C = [C1, zeros(ysize,xsize), zeros(ysize,1);
+    zeros(ysize,xsize), C2, zeros(ysize,1);
+    zeros(1,2*xsize), 1];
 
 
 
 end
 
-% Get component of A matrix that is the effect of compressor pressure on
-% adjoining tank
-function Act = get_Act(p2,ud,pd,SpeedSound,VolumeT,D2)
 
-Act = SpeedSound*SpeedSound/VolumeT * 1e-5 * (1/2*100/sqrt(abs(p2*100-pd*100))) * (D2(1)*ud^3 + D2(2)*ud^2 + D2(3)*ud + D2(4));
-    
+function dp2 = getValveDerivative(p1,p2,SpeedSound,V,u,D)
+dp2 = SpeedSound*SpeedSound/V * 1e-5 * 100/2/sqrt(abs(p1*100-p2*100)) * [u^3, u^2, u, 1] * D(1:4)';
+
 end
 

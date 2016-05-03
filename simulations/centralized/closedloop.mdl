@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.272"
+    ComputedModelVersion    "1.274"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,11 +23,11 @@ Model {
   Creator		  "chkajon"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "katie"
+  LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed Apr 20 12:54:31 2016"
-  RTWModifiedTimeStamp	  383057668
-  ModelVersionFormat	  "1.%<AutoIncrement:272>"
+  LastModifiedDate	  "Tue May 03 13:26:44 2016"
+  RTWModifiedTimeStamp	  384182799
+  ModelVersionFormat	  "1.%<AutoIncrement:274>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -695,25 +695,6 @@ Model {
       MinMaxOverflowLogging   "UseLocalSettings"
     }
     Block {
-      BlockType		      Sum
-      IconShape		      "rectangular"
-      Inputs		      "++"
-      CollapseMode	      "All dimensions"
-      CollapseDim	      "1"
-      InputSameDT	      on
-      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeMode	      "Same as first input"
-      OutDataType	      "fixdt(1,16,0)"
-      OutScaling	      "[]"
-      OutDataTypeStr	      "Inherit: Same as first input"
-      LockScale		      off
-      RndMeth		      "Floor"
-      SaturateOnIntegerOverflow	on
-      SampleTime	      "-1"
-    }
-    Block {
       BlockType		      Terminator
     }
     Block {
@@ -727,7 +708,7 @@ Model {
   }
   System {
     Name		    "closedloop"
-    Location		    [1, 320, 1288, 1048]
+    Location		    [-11, 144, 1276, 872]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -866,35 +847,12 @@ Model {
       DisplayOption	      "bar"
     }
     Block {
-      BlockType		      Scope
-      Name		      "PD"
-      SID		      432
-      Ports		      [1]
-      Position		      [800, 224, 830, 256]
-      Floating		      off
-      Location		      [1057, 109, 1417, 382]
-      Open		      on
-      NumInputPorts	      "1"
-      ZoomMode		      "xonly"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      TimeRange		      "120"
-      YMin		      "1.08"
-      YMax		      "1.2"
-      SaveName		      "SD1"
-      DataFormat	      "Array"
-      LimitDataPoints	      off
-      SampleTime	      "0"
-    }
-    Block {
       BlockType		      Reference
       Name		      "Parallel plant"
       SID		      678
-      Ports		      [4, 6]
-      Position		      [365, 112, 660, 253]
-      LibraryVersion	      "1.7"
+      Ports		      [4, 5]
+      Position		      [365, 114, 660, 256]
+      LibraryVersion	      "1.24"
       SourceBlock	      "lib_parallel_comp/Parallel plant"
       SourceType	      ""
       ShowPortLabels	      "FromPortIcon"
@@ -905,6 +863,7 @@ Model {
       RTWMemSecDataConstants  "Inherit from model"
       RTWMemSecDataInternal   "Inherit from model"
       RTWMemSecDataParameters "Inherit from model"
+      x_init_total	      "xinit"
       disturbances_on	      on
       disturbances_symm	      off
       dist_t_in		      "tdist"
@@ -943,7 +902,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1067, 111, 1417, 384]
+      Location		      [925, 111, 1275, 384]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -968,8 +927,8 @@ Model {
       NamePlacement	      "alternate"
       ShowName		      off
       Time		      "0"
-      Before		      "0.2"
-      After		      "0.2"
+      Before		      "yref(2)"
+      After		      "yref(2)"
       SampleTime	      "0"
     }
     Block {
@@ -981,7 +940,8 @@ Model {
       NamePlacement	      "alternate"
       ShowName		      off
       Time		      "0"
-      After		      "0"
+      Before		      "yref(3)"
+      After		      "yref(3)"
       SampleTime	      "0"
     }
     Block {
@@ -993,8 +953,8 @@ Model {
       NamePlacement	      "alternate"
       ShowName		      off
       Time		      "0"
-      Before		      "1.12"
-      After		      "1.12"
+      Before		      "yref(4)"
+      After		      "yref(4)"
       SampleTime	      "0"
     }
     Block {
@@ -1006,26 +966,9 @@ Model {
       NamePlacement	      "alternate"
       ShowName		      off
       Time		      "0"
-      Before		      "0.2"
-      After		      "0.2"
+      Before		      "yref(1)"
+      After		      "yref(1)"
       SampleTime	      "0"
-    }
-    Block {
-      BlockType		      Sum
-      Name		      "Sum"
-      SID		      673
-      Ports		      [2, 1]
-      Position		      [705, 420, 725, 440]
-      BlockMirror	      on
-      ShowName		      off
-      IconShape		      "round"
-      Inputs		      "+-|"
-      InputSameDT	      off
-      OutDataTypeMode	      "Inherit via internal rule"
-      OutDataType	      "fixdt(1, 16)"
-      OutScaling	      "2^0"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
     }
     Block {
       BlockType		      Scope
@@ -1035,7 +978,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1079, 496, 1417, 769]
+      Location		      [937, 496, 1275, 769]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1108,23 +1051,11 @@ Model {
       SaveFormat	      "Structure With Time"
     }
     Block {
-      BlockType		      ToWorkspace
-      Name		      "To Workspace5"
-      SID		      681
-      Ports		      [1]
-      Position		      [900, 255, 960, 285]
-      ShowName		      off
-      VariableName	      "PD"
-      MaxDataPoints	      "inf"
-      SampleTime	      "-1"
-      SaveFormat	      "Structure With Time"
-    }
-    Block {
       BlockType		      SubSystem
       Name		      "controller"
       SID		      418
       Ports		      [3, 1]
-      Position		      [470, 388, 560, 542]
+      Position		      [470, 398, 560, 552]
       BlockMirror	      on
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
@@ -1192,11 +1123,6 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
-	  Array {
-	    Type		    "Handle"
-	    Dimension		    0
-	    PropName		    "AvailSigsLoadSave"
-	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -1593,7 +1519,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [1079, 118, 1417, 391]
+      Location		      [937, 118, 1275, 391]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1617,7 +1543,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1079, 510, 1417, 775]
+      Location		      [937, 510, 1275, 775]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -1659,6 +1585,7 @@ Model {
     Line {
       SrcBlock		      "controller"
       SrcPort		      1
+      Points		      [0, -10]
       DstBlock		      "Rate Transition2"
       DstPort		      1
     }
@@ -1677,7 +1604,6 @@ Model {
     Line {
       SrcBlock		      "Rate Transition"
       SrcPort		      1
-      Points		      [-20, 0]
       DstBlock		      "controller"
       DstPort		      1
     }
@@ -1697,8 +1623,9 @@ Model {
     Line {
       SrcBlock		      "Demux"
       SrcPort		      1
-      Points		      [-10, 0; 0, -295]
+      Points		      [-10, 0; 0, -290]
       Branch {
+	Points			[-90, 0]
 	DstBlock		"Mux5"
 	DstPort			1
       }
@@ -1710,7 +1637,7 @@ Model {
     Line {
       SrcBlock		      "Demux"
       SrcPort		      2
-      Points		      [-20, 0; 0, -285]
+      Points		      [-20, 0; 0, -280]
       Branch {
 	Points			[-80, 0]
 	DstBlock		"Mux6"
@@ -1724,9 +1651,9 @@ Model {
     Line {
       SrcBlock		      "Demux"
       SrcPort		      3
-      Points		      [-30, 0; 0, -275]
+      Points		      [-30, 0; 0, -270]
       Branch {
-	Points			[0, -50]
+	Points			[0, -55]
 	DstBlock		"Mux5"
 	DstPort			2
       }
@@ -1738,9 +1665,9 @@ Model {
     Line {
       SrcBlock		      "Demux"
       SrcPort		      4
-      Points		      [-40, 0; 0, -265]
+      Points		      [-40, 0; 0, -260]
       Branch {
-	Points			[0, -15]
+	Points			[0, -20]
 	DstBlock		"Mux6"
 	DstPort			2
       }
@@ -1775,81 +1702,6 @@ Model {
       Points		      [-65, 0; 0, -95]
       DstBlock		      "Mux3"
       DstPort		      4
-    }
-    Line {
-      SrcBlock		      "Parallel plant"
-      SrcPort		      1
-      Points		      [25, 0; 0, -35; 25, 0]
-      Branch {
-	DstBlock		"Mux1"
-	DstPort			1
-      }
-      Branch {
-	DstBlock		"Sum"
-	DstPort			1
-      }
-    }
-    Line {
-      SrcBlock		      "Parallel plant"
-      SrcPort		      5
-      Points		      [0, 20; 115, 0]
-      Branch {
-	DstBlock		"PD"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, 30]
-	Branch {
-	  Points		  [0, 170]
-	  DstBlock		  "Mux2"
-	  DstPort		  4
-	}
-	Branch {
-	  Points		  [0, 0]
-	  DstBlock		  "To Workspace5"
-	  DstPort		  1
-	}
-      }
-    }
-    Line {
-      SrcBlock		      "Parallel plant"
-      SrcPort		      2
-      Points		      [0, 5; 20, 0; 0, 5]
-      Branch {
-	DstBlock		"Mux4"
-	DstPort			1
-      }
-      Branch {
-	DstBlock		"Mux2"
-	DstPort			1
-      }
-    }
-    Line {
-      SrcBlock		      "Parallel plant"
-      SrcPort		      3
-      Points		      [0, 10; 5, 0; 0, -75; 70, 0]
-      Branch {
-	DstBlock		"Mux1"
-	DstPort			2
-      }
-      Branch {
-	DstBlock		"Sum"
-	DstPort			2
-      }
-    }
-    Line {
-      SrcBlock		      "Parallel plant"
-      SrcPort		      4
-      Points		      [0, 15; 10, 0; 0, -35; 25, 0]
-      Branch {
-	DstBlock		"Mux4"
-	DstPort			2
-      }
-      Branch {
-	Points			[0, 245]
-	DstBlock		"Mux2"
-	DstPort			2
-      }
     }
     Line {
       SrcBlock		      "Mux4"
@@ -1909,7 +1761,7 @@ Model {
     }
     Line {
       SrcBlock		      "Parallel plant"
-      SrcPort		      6
+      SrcPort		      5
       Points		      [0, 100; 95, 0]
       Branch {
 	Points			[0, -50]
@@ -2041,10 +1893,63 @@ Model {
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Sum"
+      SrcBlock		      "Parallel plant"
       SrcPort		      1
-      DstBlock		      "Mux2"
-      DstPort		      3
+      Points		      [40, 0]
+      Branch {
+	Points			[0, 0; 0, 285]
+	DstBlock		"Mux2"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, -40]
+	DstBlock		"Mux1"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Parallel plant"
+      SrcPort		      2
+      Points		      [50, 0]
+      Branch {
+	Points			[0, 0; 0, 265]
+	DstBlock		"Mux2"
+	DstPort			2
+      }
+      Branch {
+	DstBlock		"Mux4"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Parallel plant"
+      SrcPort		      3
+      Points		      [60, 0]
+      Branch {
+	Points			[0, 0; 0, 245]
+	DstBlock		"Mux2"
+	DstPort			3
+      }
+      Branch {
+	Points			[0, -80]
+	DstBlock		"Mux1"
+	DstPort			2
+      }
+    }
+    Line {
+      SrcBlock		      "Parallel plant"
+      SrcPort		      4
+      Points		      [70, 0]
+      Branch {
+	Points			[0, 0; 0, 225]
+	DstBlock		"Mux2"
+	DstPort			4
+      }
+      Branch {
+	Points			[0, -40]
+	DstBlock		"Mux4"
+	DstPort			2
+      }
     }
     Annotation {
       Position		      [881, 100]
@@ -2053,7 +1958,7 @@ Model {
 }
 # Finite State Machines
 #
-#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 00:35:51
+#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 10:24:20
 #
 #
 
