@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.281"
+    ComputedModelVersion    "1.282"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -23,11 +23,11 @@ Model {
   Creator		  "chkajon"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "chkajon"
+  LastModifiedBy	  "katie"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue May 03 08:55:22 2016"
-  RTWModifiedTimeStamp	  384166516
-  ModelVersionFormat	  "1.%<AutoIncrement:281>"
+  LastModifiedDate	  "Tue May  3 09:28:56 2016"
+  RTWModifiedTimeStamp	  384168535
+  ModelVersionFormat	  "1.%<AutoIncrement:282>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -743,7 +743,7 @@ Model {
   }
   System {
     Name		    "closedloop"
-    Location		    [2, 74, 1278, 963]
+    Location		    [2, 37, 1278, 926]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -888,7 +888,7 @@ Model {
       Ports		      [1]
       Position		      [800, 224, 830, 256]
       Floating		      off
-      Location		      [1308, 166, 1668, 439]
+      Location		      [1075, 166, 1435, 439]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -959,7 +959,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1773, 137, 2123, 410]
+      Location		      [1075, 129, 1425, 402]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -984,8 +984,8 @@ Model {
       NamePlacement	      "alternate"
       ShowName		      off
       Time		      "0"
-      Before		      "0.2"
-      After		      "0.2"
+      Before		      "yref(2)"
+      After		      "yref(2)"
       SampleTime	      "0"
     }
     Block {
@@ -997,7 +997,8 @@ Model {
       NamePlacement	      "alternate"
       ShowName		      off
       Time		      "0"
-      After		      "0"
+      Before		      "yref(3)"
+      After		      "yref(3)"
       SampleTime	      "0"
     }
     Block {
@@ -1009,8 +1010,8 @@ Model {
       NamePlacement	      "alternate"
       ShowName		      off
       Time		      "0"
-      Before		      "1.12"
-      After		      "1.12"
+      Before		      "yref(4)"
+      After		      "yref(4)"
       SampleTime	      "0"
     }
     Block {
@@ -1022,8 +1023,8 @@ Model {
       NamePlacement	      "alternate"
       ShowName		      off
       Time		      "0"
-      Before		      "0.2"
-      After		      "0.2"
+      Before		      "yref(1)"
+      After		      "yref(1)"
       SampleTime	      "0"
     }
     Block {
@@ -1051,7 +1052,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1310, 543, 1648, 816]
+      Location		      [1087, 535, 1425, 808]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1639,7 +1640,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [2218, 136, 2556, 409]
+      Location		      [1087, 128, 1425, 401]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1663,7 +1664,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1806, 543, 2144, 808]
+      Location		      [1087, 535, 1425, 800]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -2093,7 +2094,7 @@ Model {
 }
 # Finite State Machines
 #
-#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 10:24:20
+#    Stateflow Version 7.1 (R2009a) dated Jul 17 2009, 00:35:51
 #
 #
 
