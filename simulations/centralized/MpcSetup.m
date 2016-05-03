@@ -1,26 +1,38 @@
 % Tuning parameters for MPC controller
-
+clear all
 
 addpath('../call_qpoases_m')
 addpath('../call_qpoases_m/qpoases3/interfaces/matlab/')
 addpath('../common')
 addpath('../parallel_common')
 
+n_disturbance = 5;
+
+%% Parameters for saving results
+% Choose filename and directory for saving results
+% Plotting function should take care of ensuring no results are overwritten
+results_folder = '../results1/';
+results_label = 'Centralized';
+results_fname = 'cen';
+results_overwrite = 0;
+
+if ~exist(results_folder,'dir')
+    mkdir(results_folder)
+end
+
+saveplots = 1;
+
+%% Constants
 [Ts, xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
 [n_delay,dsize,ucontrolsize,p,m] = const_mpc();
 
 xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
-
+weights;
 
 %% Initial state
-% global P_D
-
 P_D = 1.12;
 
-% Use increased P2 to get stable system for observer design
-% x_init_lin = [0.899; 1.126; 0.15; 440; 0];
-% x_init_lin = [0.899; 1.2; 0.15; 440; 0];
-x_init_lin = [0.98; 1.4; 0.11; 400; 0];
+x_init_lin = [0.916; 1.145; 0.152; 440; 0];
 
 xinit = [x_init_lin; x_init_lin; P_D];
 
@@ -31,15 +43,13 @@ u_init = zeros(2*ucontrolsize,1);
 
 [A,B,C] = get_qp_matrices(xinit, u_init, UWT, YWT);
 
-% Go back to original p2 value
-% x_init_lin = [0.899; 1.126; 0.15; 440; 0];
-x_init_lin = [0.916; 1.145; 0.152; 440; 0];
-
 xinit = [x_init_lin; x_init_lin; P_D];
 
-
-
 D = zeros(ysize);
+
+% Reference output
+yss = [0.2175 0.2175 0 1.12]';
+yref = [0.22 0.22 0 1.12]';
 
 %% Design observer
 % expectation of output disturbance
@@ -96,3 +106,5 @@ generate_file_linearized;
 
 disp('Embedded files generated.');
 
+sim('closedloop.mdl');
+makeplots;

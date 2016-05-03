@@ -10,14 +10,13 @@ n_controller_iterations = 3;
 
 % Choose filename and directory for saving results
 % Plotting function should take care of ensuring no results are overwritten
-results_folder = '../results/non_cooperative_bar/';
-results_fname = [num2str(n_controller_iterations),'it'];
+results_folder = '../results1/';
+results_label = 'Non-cooperative';
+results_fname = ['noncoop',num2str(n_controller_iterations),'it'];
 results_overwrite = 0;
 saveplots = 0;
 
-% Reference output
-yss = [0.2175 0.2175 0 1.12]';
-yref = [0.2175 0.2175 0 1.12]';
+
 
 weights;
 
