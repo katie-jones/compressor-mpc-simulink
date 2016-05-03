@@ -1,4 +1,4 @@
-function f = get_comp_deriv(x, u, flag)
+function [f,m_out] = get_comp_deriv(x, u, flag)
 %#eml
 % Inputs
 torque_drive = u(1);  
@@ -8,11 +8,10 @@ Recycle_opening = u(4);
 In_pres = u(5); 
 Out_pres = u(6);
 
-if In_pres < 0
-    q_in = u(7);
-else
-    q_in = -1;
+if length(u)>6
+ q_in = u(7);
 end
+
 
 
 % States
@@ -46,12 +45,11 @@ torque_drive = torque_drive * torque_drive_c / (2 * pi * 50);
 
 % Algebraic equations
 
+if In_pres > 0
 dp_sqrt = sqrt(abs(In_pres*100 - p1*100)) * sign(In_pres*100 - p1*100);
 M3 = [dp_sqrt*Inflow_opening^3 dp_sqrt*Inflow_opening^2 dp_sqrt*Inflow_opening dp_sqrt ...
     Inflow_opening^3 Inflow_opening^2 Inflow_opening 1]';
 
-
-if q_in < 0 % if mass flow not given
     m_in = C * M3 + m_in_c; % Inflow valve
 else
     m_in = q_in;
