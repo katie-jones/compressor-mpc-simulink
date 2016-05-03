@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue May 03 14:30:30 2016"
-  RTWModifiedTimeStamp	  384186629
-  ModelVersionFormat	  "1.%<AutoIncrement:19>"
+  LastModifiedDate	  "Tue May 03 16:15:13 2016"
+  RTWModifiedTimeStamp	  384192912
+  ModelVersionFormat	  "1.%<AutoIncrement:22>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -675,7 +675,7 @@ Library {
   }
   System {
     Name		    "lib_parallel_comp"
-    Location		    [1417, 416, 1953, 705]
+    Location		    [372, 367, 908, 656]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -696,6 +696,7 @@ Library {
       SID		      78
       Ports		      [4, 5]
       Position		      [50, 20, 245, 140]
+      LibraryVersion	      "1.20"
       MinAlgLoopOccurrences   off
       PropExecContextOutsideSubsystem off
       RTWSystemCode	      "Auto"
@@ -729,7 +730,7 @@ Library {
       System {
 	Name			"Parallel plant"
 	Location		[105, 183, 1148, 972]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -799,16 +800,16 @@ Library {
 	  RTWMemSecDataConstants  "Inherit from model"
 	  RTWMemSecDataInternal	  "Inherit from model"
 	  RTWMemSecDataParameters "Inherit from model"
-	  x_init		  "x_init2"
-	  Td_off		  "uoff2(1)"
-	  u_in			  "uoff2(2)"
-	  u_out			  "uoff2(3)"
-	  u_rec			  "uoff2(4)"
+	  x_init		  "x_init1"
+	  Td_off		  "uoff1(1)"
+	  u_in			  "uoff1(2)"
+	  u_out			  "uoff1(3)"
+	  u_rec			  "uoff1(4)"
 	  t_delay		  "n_delay(2)*Ts"
 	  use_dist		  on
-	  u_out_dist		  "[dist1(4); dist2(4)]"
+	  u_out_dist		  "[dist1(1); dist2(1)]"
 	  u_out_time		  "dist_t"
-	  u_in_dist		  "[dist1(5); dist2(5)]"
+	  u_in_dist		  "[dist1(2); dist2(2)]"
 	  u_in_time		  "dist_t"
 	}
 	Block {
@@ -864,7 +865,7 @@ Library {
 	  SID			  537
 	  Position		  [445, 140, 475, 170]
 	  ShowName		  off
-	  Value			  "ud"
+	  Value			  "uoff2(2)"
 	  OutDataType		  "fixdt(1, 16)"
 	  OutScaling		  "2^0"
 	}
