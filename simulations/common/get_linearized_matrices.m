@@ -19,16 +19,11 @@ omega_comp = x(4);
 % m_rec = x(5);
 
 torque_drive_in = u(1);
-% Inflow_opening = 0.405;
-% Outflow_opening = 0.393;
 Inflow_opening = u(2);
 Outflow_opening = u(3); 
 Recycle_opening = u(4);
 In_pres = u(5);
 Out_pres = u(6);
-
-% torque_drive = torque_drive * 15000 / (2 * pi * 50);
-% torque_drive = torque_drive * (2 * pi * 50 / omega_comp);
 
 %-------------------------------------------------------------------------%
 %----------------------------- CONSTANTS ---------------------------------%
@@ -42,8 +37,8 @@ Out_pres = u(6);
 %-------------------------------------------------------------------------%
 
 % Partial derivatives of p1
-dp1dot = [ SpeedSound * SpeedSound / VolumeT1 * 1e-5 * (-1/2*sign(In_pres-p1)*100/sqrt(abs(In_pres*100-p1*100))) * (C_coeff(1)*Inflow_opening^3 + C_coeff(2)*Inflow_opening^2 + C_coeff(3)*Inflow_opening + C_coeff(4)),...
-         0,...
+dp1dot = [ -getValveDerivative(In_pres, p1, SpeedSound, VolumeT1, Inflow_opening, C_coeff),...
+             0,...
          -SpeedSound * SpeedSound / VolumeT1 * 1e-5,...
          0,...
          SpeedSound * SpeedSound / VolumeT1 * 1e-5
@@ -51,7 +46,7 @@ dp1dot = [ SpeedSound * SpeedSound / VolumeT1 * 1e-5 * (-1/2*sign(In_pres-p1)*10
 
 % Partial derivatives of p2
 dp2dot = [ 0,...
-         -SpeedSound * SpeedSound / VolumeT2 * 1e-5 * (1/2*100/sqrt(abs(p2*100-Out_pres*100))) * (D2(1)*Outflow_opening^3 + D2(2)*Outflow_opening^2 + D2(3)*Outflow_opening + D2(4)),...
+        -getValveDerivative(p2,Out_pres,SpeedSound,VolumeT2,Outflow_opening, D2),...
          SpeedSound * SpeedSound / VolumeT2 * 1e-5,...
          0,...
          -SpeedSound * SpeedSound / VolumeT2 * 1e-5
