@@ -11,7 +11,7 @@ n_disturbance = 5;
 %% Parameters for saving results
 % Choose filename and directory for saving results
 % Plotting function should take care of ensuring no results are overwritten
-results_folder = '../results1/';
+results_folder = '../results';
 results_label = 'Centralized';
 results_fname = 'cen';
 results_overwrite = 0;

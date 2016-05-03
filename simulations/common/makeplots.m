@@ -7,6 +7,8 @@ if ~exist('saveplots','var')
     saveplots = 0;
 end
 
+
+
 % check disturbances
 udist = [];
 ulegstr = {};
@@ -151,12 +153,11 @@ Results.yref = yref;
 Results.n_barrier = n_barrier;
 Results.delta_barrier = delta_barrier;
 if exist('n_iterations','var')
-Results.n_iterations = n_iterations;
+    Results.n_iterations = n_iterations;
 end
 Results.label = results_label;
 
 if saveplots
-
 
     if (results_folder(end)~='/')
         results_folder = strcat(results_folder,'/');
@@ -171,22 +172,20 @@ if saveplots
     if ~exist([results_folder,dist_dirname],'dir')
         mkdir([results_folder,dist_dirname])
     elseif results_overwrite==0
-
-
         if (exist([basename,'.pdf'],'file') || exist([basename,'.mat'],'file') || exist([basename,'.fig'],'file'))
             n = 1;
-            while (exist([basename,num2str(n),'.pdf'],'file') || exist([basename,num2str(n),'.mat'],'file') || exist([basename,num2str(n),'.fig'],'file'))
+            basename = [results_folder,dist_dirname,results_fname,num2str(n)];
+            while (exist([basename,'.pdf'],'file') || exist([basename,'.mat'],'file') || exist([basename,'.fig'],'file'))
                 n=n+1;
+                basename = [results_folder,dist_dirname,results_fname,num2str(n)];
             end
-            basename=[basename,num2str(n)];
-
         end
     end
     saveas(fig,[basename,'.fig'])
     saveas(fig,[basename,'.pdf'])
 
     save([basename,'.mat'],'Results')
-    print_results_info(results_folder,results_label);
+    print_results_info(basename);
 end
 
 set(0,'defaultlinelinewidth',1)
