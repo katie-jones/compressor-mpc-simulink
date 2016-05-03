@@ -3,7 +3,7 @@ clear all
 addpath('../common')
 
 Td1 = [0 0;
-    5 0.1];
+    5 0];
 Td2 = [0 0];
 ur1 = [0 0];
 ur2 = [0 0];
