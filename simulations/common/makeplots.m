@@ -153,6 +153,7 @@ Results.delta_barrier = delta_barrier;
 if exist('n_iterations','var')
 Results.n_iterations = n_iterations;
 end
+Results.label = results_label;
 
 if saveplots
 
@@ -185,6 +186,7 @@ if saveplots
     saveas(fig,[basename,'.pdf'])
 
     save([basename,'.mat'],'Results')
+    print_results_info(results_folder,results_label);
 end
 
 set(0,'defaultlinelinewidth',1)
