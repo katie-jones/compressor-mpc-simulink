@@ -25,9 +25,11 @@ yref = [0.2175 0.2175 0 1.12]';
 
 
 [Ts, xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
-[n_delay,dsize,ucontrolsize,p,m,UWT,YWT] = const_mpc();
+[n_delay,dsize,ucontrolsize,p,m] = const_mpc();
 
 xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
+
+weights;
 
 
 %% Initial state
@@ -47,14 +49,7 @@ u_d = ud;
 
 u_init = zeros(2*ucontrolsize,1);
 
-[A,B,C] = get_qp_matrices(xinit, u_init);
-
-% Go back to original p2 value
-% x_init_lin = [0.899; 1.126; 0.15; 440; 0];
-x_init_lin = [0.916; 1.145; 0.152; 440; 0];
-
-xinit = [x_init_lin; x_init_lin; P_D];
-
+[A,B,C] = get_qp_matrices(xinit, u_init, UWT, YWT);
 
 
 D = zeros(ysize);
