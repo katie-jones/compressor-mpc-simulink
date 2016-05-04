@@ -7,7 +7,7 @@ Outflow_opening = u(3);
 Recycle_opening = u(4);
 In_pres = u(5); 
 Out_pres = u(6);
-
+q_in = -1;
 if length(u)>6
  q_in = u(7);
 end
