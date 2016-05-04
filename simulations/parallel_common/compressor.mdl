@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.92"
+    ComputedModelVersion    "1.95"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue May 03 14:30:37 2016"
-  RTWModifiedTimeStamp	  384186636
-  ModelVersionFormat	  "1.%<AutoIncrement:92>"
+  LastModifiedDate	  "Wed May 04 09:27:24 2016"
+  RTWModifiedTimeStamp	  384254743
+  ModelVersionFormat	  "1.%<AutoIncrement:95>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "800"
+	  StopTime		  "100"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
@@ -617,7 +617,7 @@ Model {
   }
   System {
     Name		    "compressor"
-    Location		    [27, 348, 1193, 871]
+    Location		    [42, 346, 1208, 909]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -631,7 +631,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    563
+    SIDHighWatermark	    564
     Block {
       BlockType		      FromWorkspace
       Name		      "From\nWorkspace"
@@ -698,9 +698,9 @@ Model {
       BlockType		      Reference
       Name		      "Parallel plant"
       SID		      563
-      Ports		      [4, 5]
+      Ports		      [4, 6]
       Position		      [375, 130, 570, 250]
-      LibraryVersion	      "1.19"
+      LibraryVersion	      "1.23"
       SourceBlock	      "lib_parallel_comp/Parallel plant"
       SourceType	      ""
       ShowPortLabels	      "FromPortIcon"
@@ -728,7 +728,6 @@ Model {
       Location		      [930, 56, 1254, 295]
       Open		      on
       NumInputPorts	      "1"
-      ZoomMode		      "xonly"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
@@ -747,7 +746,7 @@ Model {
       VariableName	      "SD"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
-      SaveFormat	      "Structure"
+      SaveFormat	      "Structure With Time"
     }
     Block {
       BlockType		      ToWorkspace
@@ -759,16 +758,28 @@ Model {
       VariableName	      "pout"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
-      SaveFormat	      "Structure"
+      SaveFormat	      "Structure With Time"
     }
     Block {
       BlockType		      ToWorkspace
       Name		      "To Workspace2"
       SID		      526
       Ports		      [1]
-      Position		      [665, 225, 725, 255]
+      Position		      [600, 205, 660, 235]
       ShowName		      off
       VariableName	      "x"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace3"
+      SID		      564
+      Ports		      [1]
+      Position		      [600, 250, 660, 280]
+      ShowName		      off
+      VariableName	      "PD"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
       SaveFormat	      "Structure With Time"
@@ -832,7 +843,7 @@ Model {
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      2
-      Points		      [95, 0; 0, -35]
+      Points		      [95, 0; 0, -30]
       DstBlock		      "Mux"
       DstPort		      1
     }
@@ -860,14 +871,14 @@ Model {
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      3
-      Points		      [95, 0; 0, 20]
+      Points		      [95, 0; 0, 30]
       DstBlock		      "Mux1"
       DstPort		      2
     }
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      4
-      Points		      [190, 0; 0, -65]
+      Points		      [190, 0; 0, -50]
       DstBlock		      "Mux"
       DstPort		      2
     }
@@ -875,6 +886,13 @@ Model {
       SrcBlock		      "Parallel plant"
       SrcPort		      5
       DstBlock		      "To Workspace2"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Parallel plant"
+      SrcPort		      6
+      Points		      [5, 0; 0, 25]
+      DstBlock		      "To Workspace3"
       DstPort		      1
     }
   }

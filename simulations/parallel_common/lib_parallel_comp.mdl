@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue May 03 16:15:13 2016"
-  RTWModifiedTimeStamp	  384192912
-  ModelVersionFormat	  "1.%<AutoIncrement:22>"
+  LastModifiedDate	  "Wed May 04 08:53:16 2016"
+  RTWModifiedTimeStamp	  384252792
+  ModelVersionFormat	  "1.%<AutoIncrement:23>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -694,7 +694,7 @@ Library {
       BlockType		      SubSystem
       Name		      "Parallel plant"
       SID		      78
-      Ports		      [4, 5]
+      Ports		      [4, 6]
       Position		      [50, 20, 245, 140]
       LibraryVersion	      "1.20"
       MinAlgLoopOccurrences   off
@@ -742,7 +742,7 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
-	SIDHighWatermark	562
+	SIDHighWatermark	563
 	SIDPrevWatermark	562
 	Block {
 	  BlockType		  Inport
@@ -1167,6 +1167,16 @@ Library {
 	  OutDataType		  "fixdt(1, 16)"
 	  OutScaling		  "2^0"
 	}
+	Block {
+	  BlockType		  Outport
+	  Name			  "PD"
+	  SID			  563
+	  Position		  [660, 218, 690, 232]
+	  Port			  "6"
+	  IconDisplay		  "Port number"
+	  OutDataType		  "fixdt(1, 16)"
+	  OutScaling		  "2^0"
+	}
 	Line {
 	  SrcBlock		  "Constant4"
 	  SrcPort		  1
@@ -1298,14 +1308,22 @@ Library {
 	Line {
 	  SrcBlock		  "Tank"
 	  SrcPort		  2
-	  Points		  [15, 0; 0, 105; -40, 0]
+	  Points		  [15, 0; 0, 40]
 	  Branch {
-	    Points		    [0, 110]
-	    DstBlock		    "Mux2"
-	    DstPort		    3
+	    Points		    [0, 65; -40, 0]
+	    Branch {
+	      Points		      [0, 110]
+	      DstBlock		      "Mux2"
+	      DstPort		      3
+	    }
+	    Branch {
+	      DstBlock		      "Memory"
+	      DstPort		      1
+	    }
 	  }
 	  Branch {
-	    DstBlock		    "Memory"
+	    Points		    [0, 0]
+	    DstBlock		    "PD"
 	    DstPort		    1
 	  }
 	}

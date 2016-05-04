@@ -27,7 +27,7 @@ ftank = get_tank_deriv(P_D,[m1+m2; ud; xinit(xsize+1)]);
 
 % linearize system
 [Ac,Bc,Ccorig] = linearize_tank(xinit, u);
-Cc = [Ccorig([2,4],:); Ccorig(1,:)-Ccorig(3,:); Ccorig(5,:)];
+Cc = Ccorig(1:4,:);
 
 % disturbances
 delta_x = ones(N,1)*[repmat([0.01, 0.01, 0.05, 10, 0.05],1,2),0.02];
