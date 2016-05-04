@@ -2,27 +2,25 @@ function [A,B,C,H,Ga,Gb,Gc,dx,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,upast,UWT,YW
 
 [Ts,xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
 [n_delay,dsize,usize,p,m] = const_mpc();
+[~,Pin,Pout] = const_flow();
 
 x1 = xinit(1:xsize_comp);
 x2 = xinit(xsize_comp+1:2*xsize_comp);
 pd = xinit(2*xsize_comp+1);
 
-u1 = uoff1 + [upast(1); 0; 0; upast(2); 0];
-u2 = uoff2 + [upast(usize+1); 0; 0; upast(usize+2); 0];
-
-u1(end) = pd; % give output pressure as last input
-u2(end) = pd;
+u1 = [uoff1 + [upast(1); 0; 0; upast(2)]; Pin; pd];
+u2 = [uoff2 + [upast(usize+1); 0; 0; upast(usize+2)]; pd; Pout];
 
 u = [u1; u2; ud];
 
 [Ac,Bc,Ccorig] = linearize_tank(xinit, u);
 
 % choose outputs to use
-Cc = [Ccorig([2,4],:); Ccorig(1,:)-Ccorig(3,:); Ccorig(5,:)];
+Cc = Ccorig(1:4,:);
 
 [f1,m_out1] = get_comp_deriv(x1,u1,1);
-[f2,m_out2] = get_comp_deriv(x2,u2,1);
-ftank = get_tank_deriv(pd,[m_out1+m_out2;ud]);
+[f2,~] = get_comp_deriv(x2,u2,1);
+ftank = get_tank_deriv(pd,[m_out1; ud; x2(1)]);
 
 [Ainit,Binit,Cinit,dx2] = discretize_rk4(Ac,Bc,Cc,[f1; f2; ftank],Ts);
 
