@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.281"
+    ComputedModelVersion    "1.282"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed May 04 09:32:17 2016"
-  RTWModifiedTimeStamp	  384252396
-  ModelVersionFormat	  "1.%<AutoIncrement:281>"
+  LastModifiedDate	  "Wed May 04 10:16:54 2016"
+  RTWModifiedTimeStamp	  384257799
+  ModelVersionFormat	  "1.%<AutoIncrement:282>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "600"
+	  StopTime		  "100"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -918,7 +918,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [405, 157, 755, 430]
+      Location		      [1392, 132, 1742, 405]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -926,9 +926,9 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "120"
-      YMin		      "0.25"
-      YMax		      "0.475"
+      TimeRange		      "100             "
+      YMin		      "4.425"
+      YMax		      "4.75"
       SaveName		      "SD3"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -994,7 +994,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 531, 1275, 804]
+      Location		      [1849, 561, 2187, 834]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1084,7 +1084,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[196, 194, 1083, 830]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1569,7 +1569,7 @@ Model {
       Ports		      [1]
       Position		      [860, 79, 890, 111]
       Floating		      off
-      Location		      [72, 117, 410, 390]
+      Location		      [1848, 151, 2186, 424]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1577,9 +1577,9 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "120"
-      YMin		      "-0.06"
-      YMax		      "0.05"
+      TimeRange		      "100             "
+      YMin		      "1.119"
+      YMax		      "1.137"
       SaveName		      "SD2"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1593,7 +1593,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 530, 1275, 795]
+      Location		      [1402, 569, 1740, 834]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -2014,6 +2014,8 @@ Stateflow {
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
     firstTarget		    14
+    debug {
+    }
     sfVersion		    71014000.00001
   }
   chart {
@@ -2065,13 +2067,13 @@ Stateflow {
       "\nUpast = zeros(m*usize,1);\nfor i=1:p\n    Yref(1+(i-1)*ysize:i*ysize,1) = yref - y;\nend\nfor i=1:m\n    Upast"
       "(1+(i-1)*usize:i*usize,1) = upast;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - Upast;\n\n% Calculate "
       "initial state\ndx0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2"
-      "*n_delay(2))-upast(4); zeros(2*dsize,1)];\n\n\n% Gradient vector\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*UW"
-      "T;\n\n% Solve QP\nlbA = -inf(size(Ain,1),1);\n[usol,~,exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexi"
-      "tflag_out = exitflag(1,1);\nit_out = it(1,1);\n\nif exitflag_out~=0\n    exitflag_out\n    usol = zeros(m*usize,"
-      "1);\nend\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);\nu_new = upast + delta_u;\n\n\n% value of x about w"
-      "hich we linearized\nxlin = dxaug;\nxlin(xsize+1:end) = 0;\nxlin(xsize+1) = upast(2);\nxlin(xsize+1+n_delay(2)) ="
-      " upast(4);\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n\nupast"
-      " = u_new;\n\n\n"
+      "*n_delay(2))-upast(4); xinit(end-2*dsize+1:end)];\n\n\n% Gradient vector\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% + U"
+      "past'*UWT;\n\n% Solve QP\nlbA = -inf(size(Ain,1),1);\n[usol,~,exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,"
+      "b);\nexitflag_out = exitflag(1,1);\nit_out = it(1,1);\n\nif exitflag_out~=0\n    exitflag_out\n    usol = zeros("
+      "m*usize,1);\nend\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);\nu_new = upast + delta_u;\n\n\n% value of x"
+      " about which we linearized\nxlin = dxaug;\nxlin(xsize+1:end) = 0;\nxlin(xsize+1) = upast(2);\nxlin(xsize+1+n_del"
+      "ay(2)) = upast(4);\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n"
+      "\nupast = u_new;\n\n\n"
       editorLayout	      "100 M4x1[10 5 1296 1000]"
     }
   }
