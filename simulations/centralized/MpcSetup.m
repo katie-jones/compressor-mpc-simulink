@@ -20,8 +20,8 @@ end
 
 %% Constants
 % Reference output
-yss = [0.2175 0.2175 0 1.12]';
-yref = [0.2175 0.2175 0 1.12]';
+yss = [1.096 0.3482 1.142 0.3482]';
+yref = [1.1 0.35 1.142 0.35]';
 
 
 [Ts, xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
@@ -35,14 +35,12 @@ weights;
 %% Initial state
 % global P_D
 
-P_D = 1.12;
-
-% Use increased P2 to get stable system for observer design
-% x_init_lin = [0.899; 1.126; 0.15; 440; 0];
-% x_init_lin = [0.899; 1.2; 0.15; 440; 0];
-x_init_lin = [0.98; 1.4; 0.11; 400; 0];
-
-xinit = [x_init_lin; x_init_lin; P_D];
+% linearization point
+P_D = 0.9925;
+  
+xinit = [0.898; 1.12; 0.152; 438; 0; 
+    0.903; 1.128; 0.152; 438; 0;
+    P_D];
 
 u_out = uoff1(3);
 u_d = ud;
@@ -72,12 +70,12 @@ sys_kalman = ss(A, [B G], C, [D Hkalman], Ts);
 [KEST, L, P, M, Z] = kalman(sys_kalman, Qn, Rn);
 
 %% Define upper/lower bounds
-lb = [-0.3; 0];
-ub = [0.3; 1];
+% lb = [-0.3; 0];
+% ub = [0.3; 1];
 % lb = [-0.1; 0];
 % ub = [0.1; 1];
-% lb = [0;0];
-% ub = [0;0];
+lb = [0;0];
+ub = [0;0];
 
 
 lb_rate = [0.1; 0.1];
@@ -111,7 +109,7 @@ disp('Embedded files generated.');
 % 1: output, 2: input, 3: asymmetric output, 4: asymmetric input, 5: big output
 for n_disturbance=5
     [tdist,udist1,udist2,dist_dirname] = disturbances(n_disturbance);
-    sim('closedloop');
-    makeplots;
+%     sim('closedloop');
+%     makeplots;
 end
 
