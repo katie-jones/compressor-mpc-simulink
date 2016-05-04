@@ -20,8 +20,13 @@ end
 
 %% Constants
 % Reference output
-yss = [1.12 4.648 1.128 4.648]';
-yref = [1.12 4.7 1.3 4.7]';
+xinit = [    0.8712,      1.041,     0.1736,      399.8,          0,     0.9868,      1.179,     0.1736,      399.8,          0,       1.01]';
+
+yss = [     1.041,      7.715,      1.179,      7.713]';
+
+yref = [1.041 7.71 1.18 7.71]';
+
+P_D = xinit(end);
 
 
 [Ts, xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
@@ -34,13 +39,6 @@ weights;
 
 %% Initial state
 % global P_D
-
-% linearization point
-P_D = 0.9925;
-  
-xinit = [0.898; 1.12; 0.152; 438; 0; 
-    0.903; 1.128; 0.152; 438; 0;
-    P_D];
 
 u_out = uoff1(3);
 u_d = ud;
