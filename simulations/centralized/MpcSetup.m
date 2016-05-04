@@ -20,8 +20,8 @@ end
 
 %% Constants
 % Reference output
-yss = [1.096 0.3482 1.142 0.3482]';
-yref = [1.1 0.35 1.142 0.35]';
+yss = [1.12 4.648 1.128 4.648]';
+yref = [1.12 4.7 1.3 4.7]';
 
 
 [Ts, xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
@@ -70,12 +70,12 @@ sys_kalman = ss(A, [B G], C, [D Hkalman], Ts);
 [KEST, L, P, M, Z] = kalman(sys_kalman, Qn, Rn);
 
 %% Define upper/lower bounds
-% lb = [-0.3; 0];
-% ub = [0.3; 1];
+lb = [-0.3; 0];
+ub = [0.3; 1];
 % lb = [-0.1; 0];
 % ub = [0.1; 1];
-lb = [0;0];
-ub = [0;0];
+% lb = [0;0];
+% ub = [0;0];
 
 
 lb_rate = [0.1; 0.1];
