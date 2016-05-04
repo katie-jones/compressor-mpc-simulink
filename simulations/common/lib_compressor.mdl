@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue May 03 14:26:53 2016"
-  RTWModifiedTimeStamp	  384186411
-  ModelVersionFormat	  "1.%<AutoIncrement:14>"
+  LastModifiedDate	  "Wed May 04 09:56:30 2016"
+  RTWModifiedTimeStamp	  384256581
+  ModelVersionFormat	  "1.%<AutoIncrement:16>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -716,7 +716,7 @@ Library {
   }
   System {
     Name		    "lib_compressor"
-    Location		    [1427, 302, 2207, 646]
+    Location		    [250, 340, 1030, 684]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -778,8 +778,8 @@ Library {
       "Disturbances,Disturbances"
       System {
 	Name			"Compressor2"
-	Location		[1282, 74, 2558, 1003]
-	Open			off
+	Location		[2, 82, 1278, 995]
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -791,7 +791,7 @@ Library {
 	TiledPageScale		1
 	ShowPageBoundaries	off
 	ZoomFactor		"100"
-	SIDHighWatermark	169
+	SIDHighWatermark	170
 	SIDPrevWatermark	169
 	Block {
 	  BlockType		  Inport
@@ -955,23 +955,17 @@ Library {
 	Block {
 	  BlockType		  Gain
 	  Name			  "Gain"
-	  SID			  136
-	  Position		  [865, 125, 970, 155]
+	  SID			  170
+	  Position		  [765, 564, 810, 596]
+	  ShowName		  off
+	  Gain			  "100"
 	  ParameterDataTypeMode	  "Inherit via internal rule"
+	  ParameterDataType	  "fixdt(1, 16)"
+	  ParameterScaling	  "2^0"
 	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
 	  OutDataTypeMode	  "Inherit via internal rule"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Gain
-	  Name			  "Gain1"
-	  SID			  137
-	  Position		  [860, 509, 920, 541]
-	  Gain			  "1/0.01"
-	  ParameterDataTypeMode	  "Inherit via internal rule"
-	  ParamDataTypeStr	  "Inherit: Inherit via internal rule"
-	  OutDataTypeMode	  "Inherit via internal rule"
+	  OutDataType		  "fixdt(1, 16)"
+	  OutScaling		  "2^0"
 	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
 	  SaturateOnIntegerOverflow off
 	}
@@ -1053,20 +1047,6 @@ Library {
 	}
 	Block {
 	  BlockType		  Sum
-	  Name			  "Sum10"
-	  SID			  145
-	  Ports			  [2, 1]
-	  Position		  [805, 130, 825, 150]
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "|++"
-	  InputSameDT		  off
-	  OutDataTypeMode	  "Inherit via internal rule"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Sum
 	  Name			  "Sum2"
 	  SID			  146
 	  Ports			  [3, 1]
@@ -1101,20 +1081,6 @@ Library {
 	}
 	Block {
 	  BlockType		  Sum
-	  Name			  "Sum8"
-	  SID			  148
-	  Ports			  [2, 1]
-	  Position		  [820, 515, 840, 535]
-	  ShowName		  off
-	  IconShape		  "round"
-	  Inputs		  "|++"
-	  InputSameDT		  off
-	  OutDataTypeMode	  "Inherit via internal rule"
-	  OutDataTypeStr	  "Inherit: Inherit via internal rule"
-	  SaturateOnIntegerOverflow off
-	}
-	Block {
-	  BlockType		  Sum
 	  Name			  "Sum9"
 	  SID			  149
 	  Ports			  [2, 1]
@@ -1142,18 +1108,6 @@ Library {
 	}
 	Block {
 	  BlockType		  Terminator
-	  Name			  "Terminator"
-	  SID			  151
-	  Position		  [630, 75, 650, 95]
-	}
-	Block {
-	  BlockType		  Terminator
-	  Name			  "Terminator1"
-	  SID			  152
-	  Position		  [655, 295, 675, 315]
-	}
-	Block {
-	  BlockType		  Terminator
 	  Name			  "Terminator2"
 	  SID			  153
 	  Position		  [655, 240, 675, 260]
@@ -1166,27 +1120,9 @@ Library {
 	}
 	Block {
 	  BlockType		  Terminator
-	  Name			  "Terminator4"
-	  SID			  155
-	  Position		  [655, 405, 675, 425]
-	}
-	Block {
-	  BlockType		  Terminator
-	  Name			  "Terminator5"
-	  SID			  156
-	  Position		  [630, 460, 650, 480]
-	}
-	Block {
-	  BlockType		  Terminator
 	  Name			  "Terminator6"
 	  SID			  157
-	  Position		  [630, 515, 650, 535]
-	}
-	Block {
-	  BlockType		  Terminator
-	  Name			  "Terminator7"
-	  SID			  158
-	  Position		  [655, 185, 675, 205]
+	  Position		  [655, 515, 675, 535]
 	}
 	Block {
 	  BlockType		  TransportDelay
@@ -1197,23 +1133,9 @@ Library {
 	}
 	Block {
 	  BlockType		  Constant
-	  Name			  "nom"
-	  SID			  160
-	  Position		  [750, 542, 805, 568]
-	  Value			  "-0.043"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "nom1"
-	  SID			  161
-	  Position		  [715, 157, 770, 183]
-	  Value			  "-1.126"
-	}
-	Block {
-	  BlockType		  Constant
 	  Name			  "u_in"
 	  SID			  162
-	  Position		  [35, 267, 90, 293]
+	  Position		  [35, 272, 90, 298]
 	  Value			  "u_in"
 	}
 	Block {
@@ -1234,7 +1156,7 @@ Library {
 	  BlockType		  Outport
 	  Name			  "p_out"
 	  SID			  165
-	  Position		  [1150, 133, 1180, 147]
+	  Position		  [1065, 133, 1095, 147]
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
 	  OutScaling		  "2^0"
@@ -1243,7 +1165,7 @@ Library {
 	  BlockType		  Outport
 	  Name			  "SD"
 	  SID			  166
-	  Position		  [1055, 448, 1085, 462]
+	  Position		  [1065, 573, 1095, 587]
 	  Port			  "2"
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
@@ -1263,7 +1185,7 @@ Library {
 	  BlockType		  Outport
 	  Name			  "p_in"
 	  SID			  168
-	  Position		  [1150, 83, 1180, 97]
+	  Position		  [1065, 78, 1095, 92]
 	  Port			  "4"
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
@@ -1273,7 +1195,7 @@ Library {
 	  BlockType		  Outport
 	  Name			  "m_out"
 	  SID			  169
-	  Position		  [800, 383, 830, 397]
+	  Position		  [1065, 408, 1095, 422]
 	  Port			  "5"
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
@@ -1296,7 +1218,6 @@ Library {
 	Line {
 	  SrcBlock		  "u_in"
 	  SrcPort		  1
-	  Points		  [0, 5]
 	  DstBlock		  "Sum1"
 	  DstPort		  3
 	}
@@ -1338,16 +1259,9 @@ Library {
 	  Labels		  [0, 0]
 	  SrcBlock		  "Demux2"
 	  SrcPort		  3
-	  Points		  [50, 0]
-	  Branch {
-	    DstBlock		    "Terminator7"
-	    DstPort		    1
-	  }
-	  Branch {
-	    Points		    [0, 35; 75, 0; 0, 75]
-	    DstBlock		    "Mux2"
-	    DstPort		    3
-	  }
+	  Points		  [125, 0; 0, 110]
+	  DstBlock		  "Mux2"
+	  DstPort		  3
 	}
 	Line {
 	  SrcBlock		  "Step1"
@@ -1378,30 +1292,15 @@ Library {
 	Line {
 	  SrcBlock		  "Demux2"
 	  SrcPort		  8
-	  Points		  [30, 0]
-	  Branch {
-	    DstBlock		    "Terminator5"
-	    DstPort		    1
-	  }
-	  Branch {
-	    Points		    [0, -25; 400, 0]
-	    DstBlock		    "Mux2"
-	    DstPort		    5
-	  }
+	  Points		  [430, 0]
+	  DstBlock		  "Mux2"
+	  DstPort		  5
 	}
 	Line {
 	  SrcBlock		  "Demux2"
 	  SrcPort		  7
-	  Points		  [15, 0]
-	  Branch {
-	    Points		    [0, -25]
-	    DstBlock		    "m_out"
-	    DstPort		    1
-	  }
-	  Branch {
-	    DstBlock		    "Terminator4"
-	    DstPort		    1
-	  }
+	  DstBlock		  "m_out"
+	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "u_out"
@@ -1433,32 +1332,19 @@ Library {
 	  DstPort		  4
 	}
 	Line {
-	  SrcBlock		  "nom"
-	  SrcPort		  1
-	  Points		  [20, 0]
-	  DstBlock		  "Sum8"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "Sum8"
-	  SrcPort		  1
-	  DstBlock		  "Gain1"
-	  DstPort		  1
-	}
-	Line {
 	  Name			  "p_out"
 	  Labels		  [0, 0]
 	  SrcBlock		  "Demux2"
 	  SrcPort		  2
 	  Points		  [210, 0]
 	  Branch {
-	    DstBlock		    "Sum10"
-	    DstPort		    1
-	  }
-	  Branch {
 	    Points		    [0, 140]
 	    DstBlock		    "Mux2"
 	    DstPort		    2
+	  }
+	  Branch {
+	    DstBlock		    "p_out"
+	    DstPort		    1
 	  }
 	}
 	Line {
@@ -1466,56 +1352,22 @@ Library {
 	  Labels		  [0, 0]
 	  SrcBlock		  "Demux2"
 	  SrcPort		  1
-	  Points		  [30, 0]
+	  Points		  [430, 0; 0, 0]
 	  Branch {
-	    Points		    [0, 25; 400, 0]
-	    Branch {
-	      Points		      [0, -20]
-	      DstBlock		      "p_in"
-	      DstPort		      1
-	    }
-	    Branch {
-	      DstBlock		      "Mux2"
-	      DstPort		      1
-	    }
+	    DstBlock		    "p_in"
+	    DstPort		    1
 	  }
 	  Branch {
-	    DstBlock		    "Terminator"
+	    DstBlock		    "Mux2"
 	    DstPort		    1
 	  }
 	}
 	Line {
 	  SrcBlock		  "Demux2"
 	  SrcPort		  5
-	  Points		  [45, 0]
-	  Branch {
-	    DstBlock		    "Terminator1"
-	    DstPort		    1
-	  }
-	  Branch {
-	    Points		    [0, 25]
-	    DstBlock		    "Mux2"
-	    DstPort		    4
-	  }
-	}
-	Line {
-	  SrcBlock		  "Sum10"
-	  SrcPort		  1
-	  DstBlock		  "Gain"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "nom1"
-	  SrcPort		  1
-	  Points		  [40, 0]
-	  DstBlock		  "Sum10"
-	  DstPort		  2
-	}
-	Line {
-	  SrcBlock		  "Gain"
-	  SrcPort		  1
-	  DstBlock		  "p_out"
-	  DstPort		  1
+	  Points		  [45, 0; 0, 25]
+	  DstBlock		  "Mux2"
+	  DstPort		  4
 	}
 	Line {
 	  SrcBlock		  "u_rec_offset"
@@ -1525,17 +1377,9 @@ Library {
 	  DstPort		  2
 	}
 	Line {
-	  SrcBlock		  "Gain1"
-	  SrcPort		  1
-	  Points		  [5, 0; 0, -70]
-	  DstBlock		  "SD"
-	  DstPort		  1
-	}
-	Line {
 	  SrcBlock		  "Demux2"
 	  SrcPort		  10
-	  Points		  [125, 0; 0, -55]
-	  DstBlock		  "Sum8"
+	  DstBlock		  "Gain"
 	  DstPort		  1
 	}
 	Line {
@@ -1584,6 +1428,12 @@ Library {
 	  SrcPort		  1
 	  DstBlock		  "Mux1"
 	  DstPort		  7
+	}
+	Line {
+	  SrcBlock		  "Gain"
+	  SrcPort		  1
+	  DstBlock		  "SD"
+	  DstPort		  1
 	}
 	Annotation {
 	  Position		  [144, 185]
