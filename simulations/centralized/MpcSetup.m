@@ -1,10 +1,28 @@
 % Tuning parameters for MPC controller
-
-
+clear all
 addpath('../call_qpoases_m')
 addpath('../call_qpoases_m/qpoases3/interfaces/matlab/')
 addpath('../common')
 addpath('../parallel_common')
+
+%% Results variables
+% Choose filename and directory for saving results
+% Plotting function should take care of ensuring no results are overwritten
+saveplots = 0;
+
+results_folder = '../results';
+results_fname = 'cen';
+results_overwrite = 0;
+
+if ~exist(results_folder,'dir')
+    mkdir(results_folder)
+end
+
+%% Constants
+% Reference output
+yss = [0.2175 0.2175 0 1.12]';
+yref = [0.2175 0.2175 0 1.12]';
+
 
 [Ts, xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
 [n_delay,dsize,ucontrolsize,p,m,UWT,YWT] = const_mpc();
@@ -86,13 +104,19 @@ xinit = [xinit; zeros(xtotalsize-xsize,1)];
 upast = u_init;
 deltax = zeros(xtotalsize,1);
 
-%% Define disturbances
-[tdist,udist1,udist2,dist_dirname] = disturbances(n_disturbance);
-
 
 disp('MPC Problem Formulated');
 
 generate_file_linearized;
 
 disp('Embedded files generated.');
+
+%% Define disturbances
+% Choose type of disturbance
+% 1: output, 2: input, 3: asymmetric output, 4: asymmetric input, 5: big output
+for n_disturbance=5
+    [tdist,udist1,udist2,dist_dirname] = disturbances(n_disturbance);
+    sim('closedloop');
+    makeplots;
+end
 
