@@ -9,10 +9,11 @@ P_D = x(1);
 
 % Calculate m_out from large tank
 
-[~,VolumeT,D2,m_out_c] = const_tank();
+VolumeT = const_tank();
+[~,~,~,D2,m_out_c] = comp_coeffs();
 m_out_tank = get_mass_flow(P_D,Out_pres,u_d,D2,m_out_c);
 
-[SpeedSound] = const_flow();
+SpeedSound = const_flow();
 pdot = SpeedSound * SpeedSound / VolumeT * (m_in - m_out_tank) * 1e-5; % p1
 
 

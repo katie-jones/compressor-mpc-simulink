@@ -16,7 +16,7 @@ x2 = x(xsize+1:2*xsize);
 u1 = u(1:usize);
 u2 = u(usize+1:2*usize);
 
-[~,VolumeT] = const_tank();
+VolumeT = const_tank();
 [~,~,~,C_coeff,~,~,D2] = comp_coeffs();
 
 [SpeedSound,Pin,Pout,V1,V2] = const_flow();

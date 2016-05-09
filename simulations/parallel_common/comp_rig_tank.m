@@ -66,7 +66,7 @@ m_in = u(1);
 Outflow_opening = u(2);
 Out_pres = u(3);
 
-[~,~,D2,m_out_c] = const_tank();
+[~,~,~,D2,m_out_c] = comp_coeffs();
 
 dp_sqrt2 = sqrt(abs(P_D*100 - Out_pres*100)) * sign(P_D*100 - Out_pres*100);      
 % M4 = [dp_sqrt2.^2.*u_out.^3 dp_sqrt2.^2.*u_out.^2 dp_sqrt2.^2.*u_out dp_sqrt2.^2 ...

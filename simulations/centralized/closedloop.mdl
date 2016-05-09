@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.286"
+    ComputedModelVersion    "1.290"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed May 04 10:59:55 2016"
-  RTWModifiedTimeStamp	  384260395
-  ModelVersionFormat	  "1.%<AutoIncrement:286>"
+  LastModifiedDate	  "Wed May 04 13:30:10 2016"
+  RTWModifiedTimeStamp	  384263834
+  ModelVersionFormat	  "1.%<AutoIncrement:290>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "100"
+	  StopTime		  "500"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -738,7 +738,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    684
+    SIDHighWatermark	    685
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -927,8 +927,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "7"
-      YMax		      "7.75"
+      YMin		      "6.5"
+      YMax		      "9.25"
       SaveName		      "SD3"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -994,7 +994,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1771, 505, 2109, 778]
+      Location		      [1677, 480, 2015, 753]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1002,8 +1002,8 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "120"
-      YMin		      "-0.175"
+      TimeRange		      "100             "
+      YMin		      "-0.07"
       YMax		      "0.05"
       SaveName		      "SD4"
       DataFormat	      "Array"
@@ -1084,7 +1084,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[196, 194, 1083, 830]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1523,8 +1523,8 @@ Model {
       Ports		      [1]
       Position		      [1125, 479, 1155, 511]
       Floating		      off
-      Location		      [937, 500, 1275, 773]
-      Open		      off
+      Location		      [2188, 479, 2526, 752]
+      Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
       List {
@@ -1532,8 +1532,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "200"
-      YMin		      "0.1175"
-      YMax		      "0.155"
+      YMin		      "0.165"
+      YMax		      "0.18"
       SaveName		      "SD8"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1564,10 +1564,10 @@ Model {
     }
     Block {
       BlockType		      Scope
-      Name		      "pout"
+      Name		      "pout1"
       SID		      529
       Ports		      [1]
-      Position		      [860, 79, 890, 111]
+      Position		      [775, 24, 805, 56]
       Floating		      off
       Location		      [1798, 113, 2136, 386]
       Open		      on
@@ -1579,8 +1579,31 @@ Model {
       }
       TimeRange		      "100             "
       YMin		      "1.04"
-      YMax		      "1.18"
+      YMax		      "1.0675"
       SaveName		      "SD2"
+      DataFormat	      "Array"
+      LimitDataPoints	      off
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "pout2"
+      SID		      685
+      Ports		      [1]
+      Position		      [890, 99, 920, 131]
+      Floating		      off
+      Location		      [2185, 116, 2523, 389]
+      Open		      on
+      NumInputPorts	      "1"
+      ZoomMode		      "xonly"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+      }
+      TimeRange		      "100             "
+      YMin		      "1.1575"
+      YMax		      "1.1825"
+      SaveName		      "SD1"
       DataFormat	      "Array"
       LimitDataPoints	      off
       SampleTime	      "0"
@@ -1593,7 +1616,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1358, 490, 1696, 755]
+      Location		      [1324, 482, 1662, 748]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -1601,9 +1624,9 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "120"
-      YMin		      "-0.005"
-      YMax		      "0.065"
+      TimeRange		      "100             "
+      YMin		      "-0.0025"
+      YMax		      "0.02"
       SaveName		      "SD5"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1771,16 +1794,9 @@ Model {
     Line {
       SrcBlock		      "Mux1"
       SrcPort		      1
-      Points		      [15, 0]
-      Branch {
-	DstBlock		"pout"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, -45]
-	DstBlock		"To Workspace4"
-	DstPort			1
-      }
+      Points		      [15, 0; 0, -45]
+      DstBlock		      "To Workspace4"
+      DstPort		      1
     }
     Line {
       SrcBlock		      "Mux5"
@@ -1946,9 +1962,16 @@ Model {
 	DstPort			1
       }
       Branch {
-	Points			[0, -40]
-	DstBlock		"Mux1"
-	DstPort			1
+	Points			[0, -40; 50, 0]
+	Branch {
+	  DstBlock		  "Mux1"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, -45]
+	  DstBlock		  "pout1"
+	  DstPort		  1
+	}
       }
     }
     Line {
@@ -1975,9 +1998,16 @@ Model {
 	DstPort			3
       }
       Branch {
-	Points			[0, -80]
-	DstBlock		"Mux1"
-	DstPort			2
+	Points			[0, -80; 50, 0]
+	Branch {
+	  DstBlock		  "Mux1"
+	  DstPort		  2
+	}
+	Branch {
+	  Points		  [0, 10]
+	  DstBlock		  "pout2"
+	  DstPort		  1
+	}
       }
     }
     Line {
@@ -2073,7 +2103,7 @@ Stateflow {
       " upast + delta_u;\n\n\n% value of x about which we linearized\nxlin = dxaug;\nxlin(xsize+1:end) = 0;\nxlin(xsize"
       "+1) = upast(2);\nxlin(xsize+1+n_delay(2)) = upast(4);\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3)"
       ";u_new(4)] + A*(dxaug-xlin) + df0;\n\nupast = u_new;\n\n\n"
-      editorLayout	      "100 M4x1[10 5 750 500]"
+      editorLayout	      "100 M4x1[10 5 1296 1000]"
       breakpoints	      "100 M[40]"
     }
   }
