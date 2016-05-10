@@ -4,7 +4,6 @@ function [A, B, C] = linearize_tank(x,u)
 %#eml
 
 %% Constants
-pd = x(end);
 
 xsize = 5;
 usize = 4;
@@ -12,6 +11,7 @@ ysize = 2;
 
 x1 = x(1:xsize);
 x2 = x(xsize+1:2*xsize);
+pd = x(2*xsize+1);
 
 u1 = u(1:usize);
 u2 = u(usize+1:2*usize);
