@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.95"
+    ComputedModelVersion    "1.98"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed May 04 09:27:24 2016"
-  RTWModifiedTimeStamp	  384254743
-  ModelVersionFormat	  "1.%<AutoIncrement:95>"
+  LastModifiedDate	  "Tue May 10 11:54:39 2016"
+  RTWModifiedTimeStamp	  384782077
+  ModelVersionFormat	  "1.%<AutoIncrement:98>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "100"
+	  StopTime		  "300"
 	  AbsTol		  "auto"
 	  FixedStep		  "auto"
 	  InitialStep		  "auto"
@@ -653,6 +653,7 @@ Model {
       VariableName	      "ur1"
       SampleTime	      "0"
       ZeroCross		      on
+      OutputAfterFinalValue   "Holding final value"
     }
     Block {
       BlockType		      FromWorkspace
@@ -663,6 +664,7 @@ Model {
       VariableName	      "Td2"
       SampleTime	      "0"
       ZeroCross		      on
+      OutputAfterFinalValue   "Holding final value"
     }
     Block {
       BlockType		      FromWorkspace
@@ -673,6 +675,7 @@ Model {
       VariableName	      "ur2"
       SampleTime	      "0"
       ZeroCross		      on
+      OutputAfterFinalValue   "Holding final value"
     }
     Block {
       BlockType		      Mux

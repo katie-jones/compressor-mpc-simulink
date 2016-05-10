@@ -4,7 +4,7 @@ function [a,Pin,Pout,V1,V2,AdivL] = const_flow()
 a = 340; % speed of sound
 
 Pin = 1; % pressure at inlet
-Pout = 1; % pressure in tank -- shouldn't use
+Pout = 1; % pressure at outlet
 
 V1 = 2*pi * (0.60 / 2)^2 * 2 + pi * (0.08 / 2)^2 * 8.191; % volume of the inlet pipe, 6m
 V2 =  pi * (0.60 / 2)^2 * 2 + pi * (0.08 / 2)^2 * 5.940; % volume, tank
