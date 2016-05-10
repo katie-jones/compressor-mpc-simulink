@@ -94,6 +94,8 @@ legend('Comp. 1','Comp. 2')
 subplot(3,2,2)
 plot(pout.time,pout.signals.values)
 grid on
+hold on
+plot([0 max(SD.time)], [1;1]*[yref(1) yref(3)],'-.k')
 title('Outputs','fontsize',16)
 ylabel('Output pressure')
 legend('Comp. 1','Comp. 2')
@@ -108,7 +110,7 @@ subplot(3,2,4)
 plot(SD.time,SD.signals.values)
 grid on
 hold on
-plot([0 max(SD.time)], [yref(1) yref(1)],'-.k')
+plot([0 max(SD.time)], [1;1]*[yref(2) yref(4)],'-.k')
 ylabel('Surge Distance')
 legend('Comp. 1','Comp. 2','location','southeast')
 
@@ -123,7 +125,7 @@ subplot(3,2,6)
 plot(PD.time,PD.signals.values)
 grid on
 hold on
-plot([0 max(PD.time)], [yref(4) yref(4)],'-.k')
+plot([0 max(PD.time)], [yref(5) yref(5)],'-.k')
 ylabel('Pressure')
 xlabel('Time [s]')
 
