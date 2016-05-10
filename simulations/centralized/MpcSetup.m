@@ -20,17 +20,22 @@ end
 
 %% Constants
 % Reference output
-xinit = [    0.8712,      1.041,     0.1736,      399.8,          0,     0.9868,      1.179,     0.1736,      399.8,          0,       1.01]';
+xinit = [  0.87171   1.0425  0.17319   400.38        0  0.98528   1.1784  0.17319   400.38        0   1.0116 ]';
 
-yss = [     1.041,      7.715,      1.179,      7.713]';
+% yss = [   1.0425   7.6617   1.1784   7.6617   1.0116 ]';
+yss = [   1.0425   7.6617   1.1784   7.6617   0 ]';
 
-yref = [1.041 7.72 1.18 7.72]';
+% yref = [1.041 7.72 1.18 7.72 1.01]';
+% yref = yss;
+yref = [1.0425 7.65 1.1784 7.65 0]';
 
 P_D = xinit(end);
 
 
 [Ts, xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
 [n_delay,dsize,ucontrolsize,p,m] = const_mpc();
+
+ysize = 5;
 
 xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
 
@@ -48,12 +53,12 @@ u_init = zeros(2*ucontrolsize,1);
 [A,B,C] = get_qp_matrices(xinit, u_init, UWT, YWT);
 
 
-D = zeros(ysize);
+D = zeros(ysize,2*ucontrolsize);
 
 %% Design observer
 % expectation of output disturbance
 Qn = eye(xsize);
-Rn = eye(2*dsize);
+Rn = eye(2*dsize+1);
 
 % state disturbance to state matrix
 G = [zeros(xtotalsize-2*dsize,xsize);
@@ -61,7 +66,8 @@ G = [zeros(xtotalsize-2*dsize,xsize);
     zeros(dsize,xsize_comp), zeros(dsize,1), eye(dsize)*10, zeros(dsize, xsize-xsize_comp-dsize-1)];
 
 Hkalman = [zeros(dsize, xsize_comp-dsize), eye(dsize), zeros(dsize,xsize-xsize_comp);
-    zeros(dsize,xsize_comp), zeros(dsize,xsize_comp-dsize), eye(dsize), zeros(dsize, xsize-2*xsize_comp)];
+    zeros(dsize,xsize_comp), zeros(dsize,xsize_comp-dsize), eye(dsize), zeros(dsize, xsize-2*xsize_comp);
+    zeros(ysize-2*dsize,xsize)];
 
 sys_kalman = ss(A, [B G], C, [D Hkalman], Ts);
 

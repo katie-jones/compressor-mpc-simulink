@@ -58,9 +58,14 @@ B = [B1, zeros(xsize,2);
     zeros(1,2*2)];
 
 % Outputs: p21,SD1,p22,SD2,PD
+% C = [C1, zeros(ysize,xsize), zeros(ysize,1);
+%     zeros(ysize,xsize), C2, zeros(ysize,1);
+%     zeros(1,2*xsize), 1];
+
+% Outputs: p21,SD1,p22,SD2,PD
 C = [C1, zeros(ysize,xsize), zeros(ysize,1);
     zeros(ysize,xsize), C2, zeros(ysize,1);
-    zeros(1,2*xsize), 1];
+    [0,0,1,0,0],[0,0,-1,0,0],0];
 
 
 

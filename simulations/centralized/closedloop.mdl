@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.290"
+    ComputedModelVersion    "1.297"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed May 04 13:30:10 2016"
-  RTWModifiedTimeStamp	  384263834
-  ModelVersionFormat	  "1.%<AutoIncrement:290>"
+  LastModifiedDate	  "Tue May 10 11:49:10 2016"
+  RTWModifiedTimeStamp	  384780986
+  ModelVersionFormat	  "1.%<AutoIncrement:297>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -711,6 +711,25 @@ Model {
       MinMaxOverflowLogging   "UseLocalSettings"
     }
     Block {
+      BlockType		      Sum
+      IconShape		      "rectangular"
+      Inputs		      "++"
+      CollapseMode	      "All dimensions"
+      CollapseDim	      "1"
+      InputSameDT	      on
+      AccumDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutMin		      "[]"
+      OutMax		      "[]"
+      OutDataTypeMode	      "Same as first input"
+      OutDataType	      "fixdt(1,16,0)"
+      OutScaling	      "[]"
+      OutDataTypeStr	      "Inherit: Same as first input"
+      LockScale		      off
+      RndMeth		      "Floor"
+      SaturateOnIntegerOverflow	on
+      SampleTime	      "-1"
+    }
+    Block {
       BlockType		      Terminator
     }
     Block {
@@ -738,7 +757,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    685
+    SIDHighWatermark	    689
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -776,22 +795,24 @@ Model {
       BlockType		      Mux
       Name		      "Mux2"
       SID		      413
-      Ports		      [4, 1]
-      Position		      [665, 406, 670, 444]
+      Ports		      [5, 1]
+      Position		      [665, 406, 670, 464]
       BlockMirror	      on
       NamePlacement	      "alternate"
       ShowName		      off
+      Inputs		      "5"
       DisplayOption	      "bar"
     }
     Block {
       BlockType		      Mux
       Name		      "Mux3"
       SID		      414
-      Ports		      [4, 1]
-      Position		      [705, 462, 710, 533]
+      Ports		      [5, 1]
+      Position		      [705, 464, 710, 536]
       BlockMirror	      on
       NamePlacement	      "alternate"
       ShowName		      off
+      Inputs		      "5"
       DisplayOption	      "bar"
     }
     Block {
@@ -863,6 +884,29 @@ Model {
       DisplayOption	      "bar"
     }
     Block {
+      BlockType		      Scope
+      Name		      "PD"
+      SID		      686
+      Ports		      [1]
+      Position		      [760, 234, 790, 266]
+      Floating		      off
+      Location		      [1315, 493, 1665, 766]
+      Open		      on
+      NumInputPorts	      "1"
+      ZoomMode		      "xonly"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+      }
+      TimeRange		      "100             "
+      YMin		      "1.0055"
+      YMax		      "1.012"
+      SaveName		      "SD9"
+      DataFormat	      "Array"
+      LimitDataPoints	      off
+      SampleTime	      "0"
+    }
+    Block {
       BlockType		      Reference
       Name		      "Parallel plant"
       SID		      678
@@ -918,7 +962,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1337, 115, 1687, 388]
+      Location		      [1320, 99, 1670, 372]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -927,8 +971,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "6.5"
-      YMax		      "9.25"
+      YMin		      "7.475"
+      YMax		      "7.825"
       SaveName		      "SD3"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -975,6 +1019,19 @@ Model {
     }
     Block {
       BlockType		      Step
+      Name		      "Step4"
+      SID		      687
+      Position		      [820, 645, 850, 675]
+      BlockMirror	      on
+      NamePlacement	      "alternate"
+      ShowName		      off
+      Time		      "0"
+      Before		      "yref(5)"
+      After		      "yref(5)"
+      SampleTime	      "0"
+    }
+    Block {
+      BlockType		      Step
       Name		      "Step5"
       SID		      428
       Position		      [820, 460, 850, 490]
@@ -987,6 +1044,23 @@ Model {
       SampleTime	      "0"
     }
     Block {
+      BlockType		      Sum
+      Name		      "Sum"
+      SID		      689
+      Ports		      [2, 1]
+      Position		      [785, 435, 805, 455]
+      BlockMirror	      on
+      ShowName		      off
+      IconShape		      "round"
+      Inputs		      "|+-"
+      InputSameDT	      off
+      OutDataTypeMode	      "Inherit via internal rule"
+      OutDataType	      "fixdt(1, 16)"
+      OutScaling	      "2^0"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
       BlockType		      Scope
       Name		      "Td"
       SID		      534
@@ -994,7 +1068,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1677, 480, 2015, 753]
+      Location		      [1728, 506, 2066, 779]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1003,8 +1077,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "-0.07"
-      YMax		      "0.05"
+      YMin		      "-0.004"
+      YMax		      "0.014"
       SaveName		      "SD4"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1062,6 +1136,18 @@ Model {
       Position		      [920, 35, 980, 65]
       ShowName		      off
       VariableName	      "pout"
+      MaxDataPoints	      "inf"
+      SampleTime	      "-1"
+      SaveFormat	      "Structure With Time"
+    }
+    Block {
+      BlockType		      ToWorkspace
+      Name		      "To Workspace5"
+      SID		      688
+      Ports		      [1]
+      Position		      [860, 260, 920, 290]
+      ShowName		      off
+      VariableName	      "PD"
       MaxDataPoints	      "inf"
       SampleTime	      "-1"
       SaveFormat	      "Structure With Time"
@@ -1523,7 +1609,7 @@ Model {
       Ports		      [1]
       Position		      [1125, 479, 1155, 511]
       Floating		      off
-      Location		      [2188, 479, 2526, 752]
+      Location		      [1977, 795, 2315, 1068]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -1532,8 +1618,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "200"
-      YMin		      "0.165"
-      YMax		      "0.18"
+      YMin		      "0.17308"
+      YMax		      "0.17321"
       SaveName		      "SD8"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1569,7 +1655,7 @@ Model {
       Ports		      [1]
       Position		      [775, 24, 805, 56]
       Floating		      off
-      Location		      [1798, 113, 2136, 386]
+      Location		      [1742, 102, 2080, 375]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1578,8 +1664,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "1.04"
-      YMax		      "1.0675"
+      YMin		      "1.04075"
+      YMax		      "1.04275"
       SaveName		      "SD2"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1592,7 +1678,7 @@ Model {
       Ports		      [1]
       Position		      [890, 99, 920, 131]
       Floating		      off
-      Location		      [2185, 116, 2523, 389]
+      Location		      [2155, 104, 2493, 377]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1601,7 +1687,7 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "1.1575"
+      YMin		      "1.177"
       YMax		      "1.1825"
       SaveName		      "SD1"
       DataFormat	      "Array"
@@ -1616,7 +1702,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1324, 482, 1662, 748]
+      Location		      [2177, 503, 2515, 769]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -1665,12 +1751,14 @@ Model {
     Line {
       SrcBlock		      "Mux2"
       SrcPort		      1
+      Points		      [0, -10]
       DstBlock		      "Rate Transition"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Mux3"
       SrcPort		      1
+      Points		      [0, -5]
       DstBlock		      "Rate Transition1"
       DstPort		      1
     }
@@ -1753,27 +1841,28 @@ Model {
     Line {
       SrcBlock		      "Step5"
       SrcPort		      1
+      Points		      [-90, 0]
       DstBlock		      "Mux3"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Step1"
       SrcPort		      1
-      Points		      [-35, 0; 0, -30]
+      Points		      [-35, 0; 0, -35]
       DstBlock		      "Mux3"
       DstPort		      2
     }
     Line {
       SrcBlock		      "Step2"
       SrcPort		      1
-      Points		      [-50, 0; 0, -60]
+      Points		      [-50, 0; 0, -65]
       DstBlock		      "Mux3"
       DstPort		      3
     }
     Line {
       SrcBlock		      "Step3"
       SrcPort		      1
-      Points		      [-65, 0; 0, -95]
+      Points		      [-65, 0; 0, -100]
       DstBlock		      "Mux3"
       DstPort		      4
     }
@@ -1872,9 +1961,17 @@ Model {
 	DstPort			2
       }
       Branch {
-	Points			[0, 120]
-	DstBlock		"Mux9"
-	DstPort			1
+	Points			[0, 100]
+	Branch {
+	  Points		  [0, 20]
+	  DstBlock		  "Mux9"
+	  DstPort		  1
+	}
+	Branch {
+	  Points		  [0, -10; -195, 0]
+	  DstBlock		  "Sum"
+	  DstPort		  1
+	}
       }
     }
     Line {
@@ -1909,8 +2006,15 @@ Model {
       }
       Branch {
 	Points			[0, 90]
-	DstBlock		"Mux9"
-	DstPort			2
+	Branch {
+	  DstBlock		  "Mux9"
+	  DstPort		  2
+	}
+	Branch {
+	  Points		  [-200, 0]
+	  DstBlock		  "Sum"
+	  DstPort		  2
+	}
       }
     }
     Line {
@@ -1957,7 +2061,7 @@ Model {
       SrcPort		      1
       Points		      [40, 0]
       Branch {
-	Points			[0, 0; 0, 285]
+	Points			[0, 290]
 	DstBlock		"Mux2"
 	DstPort			1
       }
@@ -1979,7 +2083,7 @@ Model {
       SrcPort		      2
       Points		      [0, 5; 50, 0]
       Branch {
-	Points			[0, 0; 0, 265]
+	Points			[0, 270]
 	DstBlock		"Mux2"
 	DstPort			2
       }
@@ -1993,7 +2097,7 @@ Model {
       SrcPort		      3
       Points		      [0, 10; 60, 0]
       Branch {
-	Points			[0, 0; 0, 245]
+	Points			[0, 250]
 	DstBlock		"Mux2"
 	DstPort			3
       }
@@ -2015,7 +2119,7 @@ Model {
       SrcPort		      4
       Points		      [0, 15; 70, 0]
       Branch {
-	Points			[0, 0; 0, 225]
+	Points			[0, 230]
 	DstBlock		"Mux2"
 	DstPort			4
       }
@@ -2024,6 +2128,34 @@ Model {
 	DstBlock		"Mux4"
 	DstPort			2
       }
+    }
+    Line {
+      SrcBlock		      "Parallel plant"
+      SrcPort		      6
+      Points		      [80, 0]
+      Branch {
+	DstBlock		"PD"
+	DstPort			1
+      }
+      Branch {
+	Points			[0, 25]
+	DstBlock		"To Workspace5"
+	DstPort			1
+      }
+    }
+    Line {
+      SrcBlock		      "Step4"
+      SrcPort		      1
+      Points		      [-90, 0]
+      DstBlock		      "Mux3"
+      DstPort		      5
+    }
+    Line {
+      SrcBlock		      "Sum"
+      SrcPort		      1
+      Points		      [-35, 0; 0, 10]
+      DstBlock		      "Mux2"
+      DstPort		      5
     }
     Annotation {
       Position		      [881, 100]
@@ -2087,24 +2219,24 @@ Stateflow {
       "a Gb Gc H Ain b A B upast xinit\npersistent M LB UB Ain b upast xinit dxaug y_old C %x_init_lin\neml.extrinsic('"
       "disp');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\nem"
       "l.extrinsic('quadprog');\n\n\n\n[n_delay,dsize,ucontrolsize,p,m] = const_mpc();\n[~, ~, xsize, ~, ysize] = const"
-      "_sim();\nusize=2*ucontrolsize;\n\nif isempty(M)\n    tic\n    [C,M,UB,LB,b,Ain,xinit,upast,y_old] = get_constant"
-      "_matrices();\n    dxaug = zeros(size(xinit));\n    time = toc;\n    disp(['Preparation time: ' num2str(time)]);\n"
-      "end\n\n\ny = u(1:ysize);\n\n% Estimate state info\ndxaug = dxaug + M*(y - y_old - C*(dxaug));\n\n% Use state inp"
-      "ut info to calculate x, y\nxinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:e"
-      "nd);\nx_out = xinit;\n\ny_old = y;\n\nyref = u(ysize+1:end);\n\n% Get matrices - linearize about delayed rec.ope"
-      "n input\n[A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf] = get_qp_matrices(xinit,upast,UWT,YWT);\n\n\n\n% Get reference and inpu"
-      "t vector\n\nYref = zeros(p*ysize,1);\nUpast = zeros(m*usize,1);\nfor i=1:p\n    Yref(1+(i-1)*ysize:i*ysize,1) = "
-      "yref - y;\nend\nfor i=1:m\n    Upast(1+(i-1)*usize:i*usize,1) = upast;\nend\n\n% Update bounds\nLBa = LB - Upast"
-      ";\nUBa = UB - Upast;\n\n% Calculate initial state\ndx0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast("
-      "2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(4); xinit(end-2*dsize+1:end)];\n\n\n% Gradient vector\nf "
-      "= df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*UWT;\n\n% Solve QP\nlbA = -inf(size(Ain,1),1);\n[usol,~,exitflag,it] ="
-      " call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_out = exitflag(1,1);\nit_out = it(1,1);\n\nif exitflag_out~=0\n"
-      "    exitflag_out\n    usol = zeros(m*usize,1);\nend\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);\nu_new ="
-      " upast + delta_u;\n\n\n% value of x about which we linearized\nxlin = dxaug;\nxlin(xsize+1:end) = 0;\nxlin(xsize"
-      "+1) = upast(2);\nxlin(xsize+1+n_delay(2)) = upast(4);\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3)"
-      ";u_new(4)] + A*(dxaug-xlin) + df0;\n\nupast = u_new;\n\n\n"
+      "_sim();\nusize=2*ucontrolsize;\n\nysize = 5;\n\nif isempty(M)\n    tic\n    [C,M,UB,LB,b,Ain,xinit,upast,y_old] "
+      "= get_constant_matrices();\n    dxaug = zeros(size(xinit));\n    time = toc;\n    disp(['Preparation time: ' num"
+      "2str(time)]);\nend\n\n\ny = u(1:ysize);\n\n% Estimate state info\ndxaug = dxaug + M*(y - y_old - C*(dxaug));\n\n"
+      "% Use state input info to calculate x, y\nxinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxinit(xsize+1:end) = "
+      "dxaug(xsize+1:end);\nx_out = xinit;\n\ny_old = y;\n\nyref = u(ysize+1:end);\n\n% Get matrices - linearize about "
+      "delayed rec.open input\n[A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf] = get_qp_matrices(xinit,upast,UWT,YWT);\n\n\n\n% Get ref"
+      "erence and input vector\n\nYref = zeros(p*ysize,1);\nUpast = zeros(m*usize,1);\nfor i=1:p\n    Yref(1+(i-1)*ysiz"
+      "e:i*ysize,1) = yref - y;\nend\nfor i=1:m\n    Upast(1+(i-1)*usize:i*usize,1) = upast;\nend\n\n% Update bounds\nL"
+      "Ba = LB - Upast;\nUBa = UB - Upast;\n\n% Calculate initial state\ndx0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_d"
+      "elay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(4); xinit(end-2*dsize+1:end)];\n\n\n% Grad"
+      "ient vector\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*UWT;\n\n% Solve QP\nlbA = -inf(size(Ain,1),1);\n[usol,~"
+      ",exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_out = exitflag(1,1);\nit_out = it(1,1);\n\nif e"
+      "xitflag_out~=0\n    exitflag_out\n    usol = zeros(m*usize,1);\nend\n\n\n% Apply next input\ndelta_u = usol(1:us"
+      "ize,1);\nu_new = upast + delta_u;\n\n\n% value of x about which we linearized\nxlin = dxaug;\nxlin(xsize+1:end) "
+      "= 0;\nxlin(xsize+1) = upast(2);\nxlin(xsize+1+n_delay(2)) = upast(4);\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u"
+      "_new(3)-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n\nupast = u_new;\n\n\n"
       editorLayout	      "100 M4x1[10 5 1296 1000]"
-      breakpoints	      "100 M[40]"
+      breakpoints	      "100 M1x2[40 50]"
     }
   }
   junction {

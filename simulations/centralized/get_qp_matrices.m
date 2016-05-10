@@ -4,6 +4,8 @@ function [A,B,C,H,Ga,Gb,Gc,dx,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,upast,UWT,YW
 [n_delay,dsize,usize,p,m] = const_mpc();
 [~,Pin,Pout] = const_flow();
 
+ysize = 5;
+
 x1 = xinit(1:xsize_comp);
 x2 = xinit(xsize_comp+1:2*xsize_comp);
 pd = xinit(2*xsize_comp+1);
@@ -16,7 +18,8 @@ u = [u1; u2; ud];
 [Ac,Bc,Ccorig] = linearize_tank(xinit, u);
 
 % choose outputs to use
-Cc = Ccorig(1:4,:);
+% Cc = Ccorig(1:4,:);
+Cc = Ccorig;
 
 [f1,m_out1] = get_comp_deriv(x1,u1,1);
 [f2,~] = get_comp_deriv(x2,u2,1);
