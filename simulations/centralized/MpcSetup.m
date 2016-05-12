@@ -95,7 +95,7 @@ upast = u_init;
 deltax = zeros(xtotalsize,1);
 
 %% Define disturbances
-for n_disturbance=1:4
+for n_disturbance=1
 [tdist,udist1,udist2,dist_dirname] = disturbances(n_disturbance);
 
 
@@ -105,6 +105,6 @@ generate_file_linearized;
 
 disp('Embedded files generated.');
 
-sim('closedloop.mdl');
-makeplots;
+% sim('closedloop.mdl');
+% makeplots;
 end
