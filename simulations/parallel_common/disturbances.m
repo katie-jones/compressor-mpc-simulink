@@ -15,7 +15,7 @@ switch n_disturbance
     case 1 % output disturbance
         % in1, out1, outtank, in2, out2
         udist1 = [0 0 -0.2 0 0];
-        udist2 = udist1;
+        udist2 = 0.5*udist1;
         fname = 'output_dist';
     case 2 % input disturbance
         udist1 = [-0.2 0 0 -0.2 0];

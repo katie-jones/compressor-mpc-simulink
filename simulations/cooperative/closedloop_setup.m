@@ -10,11 +10,11 @@ n_controller_iterations = 3;
 
 % Choose filename and directory for saving results
 % Plotting function should take care of ensuring no results are overwritten
-results_folder = '../results1/';
+results_folder = '../results';
 results_label = 'Cooperative';
 results_fname = ['coop',num2str(n_controller_iterations),'it'];
 results_overwrite = 0;
-saveplots = 0;
+saveplots = 1;
 
 if ~exist(results_folder,'dir')
     mkdir(results_folder)
@@ -24,9 +24,9 @@ end
 weights;
 
 % Run MpcSetup script, perform simulation and plot results
-for n_disturbance=5
+for n_disturbance=1:4
     MpcSetup;
-%     sim('decentralized_closedloop');
-%     makeplots;
+    sim('decentralized_closedloop');
+    makeplots;
 end
 

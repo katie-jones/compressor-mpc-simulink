@@ -14,16 +14,16 @@ results_folder = '../results';
 results_label = 'Non-cooperative';
 results_fname = ['noncoop',num2str(n_controller_iterations),'it'];
 results_overwrite = 0;
-saveplots = 0;
+saveplots = 1;
 
 
 
 weights;
 
-for n_disturbance=5
-% Run MpcSetup script, perform simulation and plot results
-MpcSetup;
-% sim('decentralized_closedloop');
-% makeplots;
+for n_disturbance=1:4
+    % Run MpcSetup script, perform simulation and plot results
+    MpcSetup;
+    sim('decentralized_closedloop');
+    makeplots;
 end
 

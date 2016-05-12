@@ -6,8 +6,6 @@ addpath('../call_qpoases_m/qpoases3/interfaces/matlab/')
 addpath('../common')
 addpath('../parallel_common')
 
-n_disturbance = 5;
-
 %% Parameters for saving results
 % Choose filename and directory for saving results
 % Plotting function should take care of ensuring no results are overwritten
@@ -97,6 +95,7 @@ upast = u_init;
 deltax = zeros(xtotalsize,1);
 
 %% Define disturbances
+for n_disturbance=1:4
 [tdist,udist1,udist2,dist_dirname] = disturbances(n_disturbance);
 
 
@@ -108,3 +107,4 @@ disp('Embedded files generated.');
 
 sim('closedloop.mdl');
 makeplots;
+end
