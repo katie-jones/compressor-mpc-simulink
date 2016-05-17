@@ -11,6 +11,9 @@ load sys.mat
 
 [xsizea,ysize,dsize,usize,n_delay,xsize,Ts,p,m,UWT,YWT] = const_mpc();
 
+yss = [0, 0];
+yref = [0, 0];
+
 
 
 %% Define augmented system
