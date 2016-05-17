@@ -65,22 +65,23 @@ end
 
 Su = zeros(ysize*p,2*usize*m);
 
-
 for i=1:p
-    for j=1:i
-        % for first m inputs, make new columns
-        if j<=m
-            Su(1+(i-1)*ysize:i*ysize,1+(j-1)*2*usize:j*2*usize) = CxA(:,:,i-j+1)*B;
-            
-        % m+1:p inputs are the same as input m
+    for j=1:p-i+1
+        toadd = CxA(:,:,i)*B;
+        rows = 1+(i-2+j)*ysize:(i+j-1)*ysize;
+        if j <= m
+            cols = 1+(j-1)*2*usize:j*2*usize;
         else
-            toadd = CxA(:,:,i-j+1)*B;
-            for k=1:ysize
-                Su(k+(i-1)*ysize,1+(m-1)*2*usize:m*2*usize) = Su(k+(i-1)*ysize,1+(m-1)*2*usize:m*2*usize) + toadd(k,:);
+            cols = 1+(m-1)*2*usize:m*2*usize;
+        end
+        for k=1:ysize
+            for l=1:2*usize
+                Su(rows(k),cols(l)) = Su(rows(k),cols(l)) + toadd(k,l);
             end
         end
     end
 end
+        
 
 
 Sx = zeros(ysize*p,xsize);
