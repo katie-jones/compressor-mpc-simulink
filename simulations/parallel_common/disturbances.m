@@ -12,11 +12,11 @@ tdist = [50 100]; % disturbance times
 switch n_disturbance
     case 1 % output disturbance
         % in1, out1, outtank, out2
-        udist1 = [0 0 -0.2];
+        udist1 = [0 0 -0.1];
         udist2 = 0*udist1;
         fname = 'output_dist';
     case 2 % input disturbance
-        udist1 = [-0.2 0 0];
+        udist1 = [-0.1 0 0];
         udist2 = 0*udist1;
         fname = 'input_dist';
     case 3 % asymmetric output disturbance
