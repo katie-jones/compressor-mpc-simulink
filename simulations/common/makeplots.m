@@ -10,67 +10,41 @@ end
 % check disturbances
 udist = [];
 ulegstr = {};
-input_added = [0 0];
-output_added = [0 0];
+
 for i=1:length(udist1)
     if udist1(i)~=0
         switch mod(i,3)
         case 1
-            if ~input_added(1)
-                input_added(1) = 1;
                 udist = cat(1,udist,uoff1(2)+udist1(1)*[0 0 1 1 1 1]);
                 if udist2(1)~=0
                     udist(end,:) = udist(end,:) + udist2(i)*[0 0 0 0 1 1];
                 end
                 ulegstr{end+1} = 'Input valve 1';
-                udist = cat(1,udist,uoff2(2)+udist1(4)*[0 0 1 1 1 1]);
-                if udist2(4)~=0
-                    udist(end,:) = udist(end,:) + udist2(i)*[0 0 0 0 1 1];
-                end
-                ulegstr{end+1} = 'Input valve 2';
-            end
         case 2
-            if ~output_added(1)
-                output_added(1) = 1;
                 udist = cat(1,udist,uoff1(3)+udist1(2)*[0 0 1 1 1 1]);
                 if udist2(2)~=0
                     udist(end,:) = udist(end,:) + udist2(i)*[0 0 0 0 1 1];
                 end
                 ulegstr{end+1} = 'Output valve 1';
-                udist = cat(1,udist,uoff2(3)+udist1(5)*[0 0 1 1 1 1]);
-                if udist2(5)~=0
-                    udist(end,:) = udist(end,:) + udist2(i)*[0 0 0 0 1 1];
-                end
-                ulegstr{end+1} = 'Output valve 2';
-            end
+
         case 0
-            udist = cat(1,udist,ud+udist1(3)*[0 0 1 1 1 1]);
+            udist = cat(1,udist,uoff2(3)+udist1(3)*[0 0 1 1 1 1]);
             if udist2(3)~=0
                 udist(end,:) = udist(end,:) + udist2(i)*[0 0 0 0 1 1];
             end
-            ulegstr{end+1} = 'Output valve (tank)';
+            ulegstr{end+1} = 'Output valve 2';
         end
     elseif udist2(i)~=0
         switch mod(i,3)
         case 1
-            if ~input_added(2)
-                input_added(2) = 1;
                 udist = cat(1,udist,uoff1(2)+udist2(1)*[0 0 1 1 1 1]);
                 ulegstr{end+1} = 'Input valve 1';
-                udist = cat(1,udist,uoff2(2)+udist2(4)*[0 0 1 1 1 1]);
-                ulegstr{end+1} = 'Input valve 2';
-            end
         case 2
-            if ~output_added(2)
-                output_added(2) = 1;
                 udist = cat(1,udist,uoff1(3)+udist2(2)*[0 0 1 1 1 1]);
                 ulegstr{end+1} = 'Output valve 1';
-                udist = cat(1,udist,uoff2(3)+udist2(5)*[0 0 1 1 1 1]);
-                ulegstr{end+1} = 'Output valve 2';
-            end
         case 3
-            udist = cat(1,udist,ud+udist2(3)*[0 0 1 1 1 1]);
-            ulegstr{end+1} = 'Output valve (tank)';
+            udist = cat(1,udist,uoff2(3)+udist2(3)*[0 0 1 1 1 1]);
+            ulegstr{end+1} = 'Output valve 2';
         end
     end
 end
@@ -92,13 +66,12 @@ ylabel('Torque setting')
 legend('Comp. 1','Comp. 2')
 
 subplot(3,2,2)
-plot(pout.time,pout.signals.values)
+plot(pout.time,pout.signals.values(:,1))
 grid on
 hold on
-plot([0 max(SD.time)], [1;1]*[yref(1) yref(3)],'-.k')
+plot([0 max(SD.time)], [1;1]*yref(1),'-.k')
 title('Outputs','fontsize',16)
-ylabel('Output pressure')
-legend('Comp. 1','Comp. 2')
+ylabel('Output pressure (Comp. 1)')
 
 subplot(3,2,3)
 plot(u_rec.time,u_rec.signals.values)
@@ -107,12 +80,11 @@ ylabel('Recycle opening')
 legend('Comp. 1','Comp. 2')
 
 subplot(3,2,4)
-plot(SD.time,SD.signals.values)
+plot(pout.time,pout.signals.values(:,2))
 grid on
 hold on
-plot([0 max(SD.time)], [1;1]*[yref(2) yref(4)],'-.k')
-ylabel('Surge Distance')
-legend('Comp. 1','Comp. 2','location','southeast')
+plot([0 max(SD.time)], [1;1]*yref(3),'-.k')
+ylabel('Output pressure (Comp. 2)')
 
 subplot(3,2,5)
 plot([0 tdist(1) tdist(1) tdist(2) tdist(2) SD.time(end)],udist);
@@ -122,12 +94,15 @@ ylabel('Valve setting')
 xlabel('Time [s]')
 
 subplot(3,2,6)
-plot(PD.time,PD.signals.values)
+plot(SD.time,SD.signals.values)
 grid on
 hold on
-plot([0 max(PD.time)], [yref(5) yref(5)],'-.k')
-ylabel('Pressure')
+plot([0 max(SD.time)], [1;1]*[yref(2) yref(4)],'-.k')
+ylabel('Surge Distance')
 xlabel('Time [s]')
+legend('Comp. 1','Comp. 2','location','southeast')
+
+
 
 if saveplots
 
