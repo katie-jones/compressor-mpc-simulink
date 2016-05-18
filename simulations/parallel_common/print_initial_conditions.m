@@ -7,5 +7,5 @@ end
 fprintf(']'';\n\n');
 
 fprintf('yss = [ ');
-fprintf(formatstring,pout.signals.values(end,1),SD.signals.values(end,1),pout.signals.values(end,2),SD.signals.values(end,2),PD.signals.values(end,1));
+fprintf(formatstring,pout.signals.values(end,1),SD.signals.values(end,1),pout.signals.values(end,2),SD.signals.values(end,2));
 fprintf(']'';\n\n');

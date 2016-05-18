@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed May 04 08:53:16 2016"
-  RTWModifiedTimeStamp	  384252792
-  ModelVersionFormat	  "1.%<AutoIncrement:23>"
+  LastModifiedDate	  "Wed May 18 08:56:57 2016"
+  RTWModifiedTimeStamp	  385462614
+  ModelVersionFormat	  "1.%<AutoIncrement:25>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -568,12 +568,6 @@ Library {
       FramePeriod	      "inf"
     }
     Block {
-      BlockType		      Demux
-      Outputs		      "4"
-      DisplayOption	      "none"
-      BusSelectionMode	      off
-    }
-    Block {
       BlockType		      From
       IconDisplay	      "Tag"
       TagVisibility	      "local"
@@ -644,13 +638,6 @@ Library {
       InitialOutput	      "[]"
     }
     Block {
-      BlockType		      "S-Function"
-      FunctionName	      "system"
-      SFunctionModules	      "''"
-      PortCounts	      "[]"
-      SFunctionDeploymentMode off
-    }
-    Block {
       BlockType		      SubSystem
       ShowPortLabels	      "FromPortIcon"
       Permissions	      "ReadWrite"
@@ -694,7 +681,7 @@ Library {
       BlockType		      SubSystem
       Name		      "Parallel plant"
       SID		      78
-      Ports		      [4, 6]
+      Ports		      [4, 5]
       Position		      [50, 20, 245, 140]
       LibraryVersion	      "1.20"
       MinAlgLoopOccurrences   off
@@ -767,7 +754,7 @@ Library {
 	  BlockType		  Inport
 	  Name			  "Td2"
 	  SID			  531
-	  Position		  [750, 103, 780, 117]
+	  Position		  [655, 108, 685, 122]
 	  Port			  "3"
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
@@ -777,7 +764,7 @@ Library {
 	  BlockType		  Inport
 	  Name			  "u_r2"
 	  SID			  532
-	  Position		  [710, 128, 740, 142]
+	  Position		  [615, 133, 645, 147]
 	  Port			  "4"
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
@@ -789,7 +776,7 @@ Library {
 	  SID			  533
 	  Ports			  [5, 5]
 	  Position		  [205, 100, 305, 230]
-	  LibraryVersion	  "1.14"
+	  LibraryVersion	  "1.16"
 	  SourceBlock		  "lib_compressor/Compressor2"
 	  SourceType		  "Compressor"
 	  ShowPortLabels	  "FromPortIcon"
@@ -817,8 +804,8 @@ Library {
 	  Name			  "Compressor2"
 	  SID			  534
 	  Ports			  [5, 5]
-	  Position		  [805, 95, 905, 225]
-	  LibraryVersion	  "1.14"
+	  Position		  [710, 100, 810, 230]
+	  LibraryVersion	  "1.16"
 	  SourceBlock		  "lib_compressor/Compressor2"
 	  SourceType		  "Compressor"
 	  ShowPortLabels	  "FromPortIcon"
@@ -854,18 +841,8 @@ Library {
 	  BlockType		  Constant
 	  Name			  "Constant1"
 	  SID			  536
-	  Position		  [710, 170, 740, 200]
+	  Position		  [615, 175, 645, 205]
 	  ShowName		  off
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
-	}
-	Block {
-	  BlockType		  Constant
-	  Name			  "Constant2"
-	  SID			  537
-	  Position		  [445, 140, 475, 170]
-	  ShowName		  off
-	  Value			  "uoff2(2)"
 	  OutDataType		  "fixdt(1, 16)"
 	  OutScaling		  "2^0"
 	}
@@ -873,7 +850,7 @@ Library {
 	  BlockType		  Constant
 	  Name			  "Constant3"
 	  SID			  538
-	  Position		  [750, 145, 780, 175]
+	  Position		  [655, 150, 685, 180]
 	  ShowName		  off
 	  Value			  "-1"
 	  OutDataType		  "fixdt(1, 16)"
@@ -893,7 +870,7 @@ Library {
 	  BlockType		  From
 	  Name			  "From"
 	  SID			  540
-	  Position		  [660, 351, 700, 369]
+	  Position		  [565, 356, 605, 374]
 	  ShowName		  off
 	  GotoTag		  "xout1"
 	}
@@ -901,7 +878,7 @@ Library {
 	  BlockType		  From
 	  Name			  "From1"
 	  SID			  541
-	  Position		  [660, 371, 700, 389]
+	  Position		  [565, 386, 605, 404]
 	  ShowName		  off
 	  GotoTag		  "xout2"
 	}
@@ -918,24 +895,16 @@ Library {
 	  BlockType		  Goto
 	  Name			  "Goto1"
 	  SID			  543
-	  Position		  [955, 145, 995, 175]
+	  Position		  [860, 150, 900, 180]
 	  ShowName		  off
 	  GotoTag		  "xout2"
 	  TagVisibility		  "local"
 	}
 	Block {
 	  BlockType		  Memory
-	  Name			  "Memory"
-	  SID			  544
-	  Position		  [535, 275, 565, 305]
-	  BlockMirror		  on
-	  X0			  "P_D"
-	}
-	Block {
-	  BlockType		  Memory
 	  Name			  "Memory1"
 	  SID			  545
-	  Position		  [690, 240, 720, 270]
+	  Position		  [595, 275, 625, 305]
 	  BlockMirror		  on
 	  X0			  "x_init_total(6)"
 	}
@@ -943,166 +912,11 @@ Library {
 	  BlockType		  Mux
 	  Name			  "Mux2"
 	  SID			  546
-	  Ports			  [3, 1]
-	  Position		  [765, 351, 770, 409]
+	  Ports			  [2, 1]
+	  Position		  [670, 351, 675, 409]
 	  ShowName		  off
-	  Inputs		  "3"
+	  Inputs		  "2"
 	  DisplayOption		  "bar"
-	}
-	Block {
-	  BlockType		  SubSystem
-	  Name			  "Tank"
-	  SID			  547
-	  Ports			  [3, 2]
-	  Position		  [500, 93, 620, 217]
-	  MinAlgLoopOccurrences	  off
-	  PropExecContextOutsideSubsystem off
-	  RTWSystemCode		  "Auto"
-	  FunctionWithSeparateData off
-	  Opaque		  off
-	  RequestExecContextInheritance	off
-	  MaskHideContents	  off
-	  System {
-	    Name		    "Tank"
-	    Location		    [580, 163, 1078, 459]
-	    Open		    off
-	    ModelBrowserVisibility  off
-	    ModelBrowserWidth	    200
-	    ScreenColor		    "white"
-	    PaperOrientation	    "landscape"
-	    PaperPositionMode	    "auto"
-	    PaperType		    "A4"
-	    PaperUnits		    "centimeters"
-	    TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
-	    TiledPageScale	    1
-	    ShowPageBoundaries	    off
-	    ZoomFactor		    "100"
-	    Block {
-	      BlockType		      Inport
-	      Name		      "m_in"
-	      SID		      548
-	      Position		      [75, 143, 105, 157]
-	      IconDisplay	      "Port number"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "u_D"
-	      SID		      549
-	      Position		      [75, 198, 105, 212]
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
-	    }
-	    Block {
-	      BlockType		      Inport
-	      Name		      "p_out"
-	      SID		      550
-	      Position		      [75, 233, 105, 247]
-	      Port		      "3"
-	      IconDisplay	      "Port number"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
-	    }
-	    Block {
-	      BlockType		      Demux
-	      Name		      "Demux"
-	      SID		      551
-	      Ports		      [1, 2]
-	      Position		      [365, 161, 370, 199]
-	      ShowName		      off
-	      Outputs		      "2"
-	      DisplayOption	      "bar"
-	    }
-	    Block {
-	      BlockType		      Mux
-	      Name		      "Mux"
-	      SID		      552
-	      Ports		      [3, 1]
-	      Position		      [140, 161, 145, 199]
-	      ShowName		      off
-	      Inputs		      "3"
-	      DisplayOption	      "bar"
-	    }
-	    Block {
-	      BlockType		      "S-Function"
-	      Name		      "S-Function1"
-	      SID		      553
-	      Ports		      [1, 1]
-	      Position		      [185, 164, 340, 196]
-	      FunctionName	      "comp_rig_tank"
-	      Parameters	      "[], P_D"
-	      EnableBusSupport	      off
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "m_out"
-	      SID		      554
-	      Position		      [400, 143, 430, 157]
-	      IconDisplay	      "Port number"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
-	    }
-	    Block {
-	      BlockType		      Outport
-	      Name		      "p_D"
-	      SID		      555
-	      Position		      [400, 198, 430, 212]
-	      Port		      "2"
-	      IconDisplay	      "Port number"
-	      OutDataType	      "fixdt(1, 16)"
-	      OutScaling	      "2^0"
-	    }
-	    Line {
-	      SrcBlock		      "u_D"
-	      SrcPort		      1
-	      Points		      [5, 0; 0, -25]
-	      DstBlock		      "Mux"
-	      DstPort		      2
-	    }
-	    Line {
-	      SrcBlock		      "m_in"
-	      SrcPort		      1
-	      Points		      [5, 0; 0, 20]
-	      DstBlock		      "Mux"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Mux"
-	      SrcPort		      1
-	      DstBlock		      "S-Function1"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Demux"
-	      SrcPort		      2
-	      Points		      [5, 0; 0, 15]
-	      DstBlock		      "p_D"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "Demux"
-	      SrcPort		      1
-	      Points		      [5, 0; 0, -20]
-	      DstBlock		      "m_out"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "S-Function1"
-	      SrcPort		      1
-	      DstBlock		      "Demux"
-	      DstPort		      1
-	    }
-	    Line {
-	      SrcBlock		      "p_out"
-	      SrcPort		      1
-	      Points		      [15, 0]
-	      DstBlock		      "Mux"
-	      DstPort		      3
-	    }
-	  }
 	}
 	Block {
 	  BlockType		  Terminator
@@ -1115,7 +929,7 @@ Library {
 	  BlockType		  Terminator
 	  Name			  "Terminator1"
 	  SID			  557
-	  Position		  [965, 200, 985, 220]
+	  Position		  [870, 205, 890, 225]
 	  ShowName		  off
 	}
 	Block {
@@ -1141,7 +955,7 @@ Library {
 	  BlockType		  Outport
 	  Name			  "pout2"
 	  SID			  560
-	  Position		  [965, 103, 995, 117]
+	  Position		  [870, 108, 900, 122]
 	  Port			  "3"
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
@@ -1151,7 +965,7 @@ Library {
 	  BlockType		  Outport
 	  Name			  "SD2"
 	  SID			  561
-	  Position		  [930, 128, 960, 142]
+	  Position		  [835, 133, 865, 147]
 	  Port			  "4"
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
@@ -1161,18 +975,8 @@ Library {
 	  BlockType		  Outport
 	  Name			  "x"
 	  SID			  562
-	  Position		  [795, 373, 825, 387]
+	  Position		  [700, 373, 730, 387]
 	  Port			  "5"
-	  IconDisplay		  "Port number"
-	  OutDataType		  "fixdt(1, 16)"
-	  OutScaling		  "2^0"
-	}
-	Block {
-	  BlockType		  Outport
-	  Name			  "PD"
-	  SID			  563
-	  Position		  [660, 218, 690, 232]
-	  Port			  "6"
 	  IconDisplay		  "Port number"
 	  OutDataType		  "fixdt(1, 16)"
 	  OutScaling		  "2^0"
@@ -1202,13 +1006,6 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "Memory"
-	  SrcPort		  1
-	  Points		  [-360, 0; 0, -100]
-	  DstBlock		  "Compressor1"
-	  DstPort		  4
-	}
-	Line {
 	  SrcBlock		  "Compressor2"
 	  SrcPort		  5
 	  DstBlock		  "Terminator1"
@@ -1218,13 +1015,6 @@ Library {
 	  SrcBlock		  "Compressor1"
 	  SrcPort		  4
 	  DstBlock		  "Terminator"
-	  DstPort		  1
-	}
-	Line {
-	  SrcBlock		  "Compressor1"
-	  SrcPort		  5
-	  Points		  [125, 0; 0, -100]
-	  DstBlock		  "Tank"
 	  DstPort		  1
 	}
 	Line {
@@ -1306,53 +1096,24 @@ Library {
 	  DstPort		  1
 	}
 	Line {
-	  SrcBlock		  "Tank"
-	  SrcPort		  2
-	  Points		  [15, 0; 0, 40]
-	  Branch {
-	    Points		    [0, 65; -40, 0]
-	    Branch {
-	      Points		      [0, 110]
-	      DstBlock		      "Mux2"
-	      DstPort		      3
-	    }
-	    Branch {
-	      DstBlock		      "Memory"
-	      DstPort		      1
-	    }
-	  }
-	  Branch {
-	    Points		    [0, 0]
-	    DstBlock		    "PD"
-	    DstPort		    1
-	  }
-	}
-	Line {
-	  SrcBlock		  "Tank"
-	  SrcPort		  1
-	  Points		  [40, 0; 0, 85]
-	  DstBlock		  "Compressor2"
-	  DstPort		  5
-	}
-	Line {
-	  SrcBlock		  "Constant2"
-	  SrcPort		  1
-	  DstBlock		  "Tank"
-	  DstPort		  2
-	}
-	Line {
 	  SrcBlock		  "Compressor2"
 	  SrcPort		  4
-	  Points		  [15, 0; 0, 70]
+	  Points		  [15, 0; 0, 100]
 	  DstBlock		  "Memory1"
 	  DstPort		  1
 	}
 	Line {
 	  SrcBlock		  "Memory1"
 	  SrcPort		  1
-	  Points		  [-200, 0]
-	  DstBlock		  "Tank"
-	  DstPort		  3
+	  Points		  [-500, 0; 0, -100]
+	  DstBlock		  "Compressor1"
+	  DstPort		  4
+	}
+	Line {
+	  SrcBlock		  "Compressor1"
+	  SrcPort		  5
+	  DstBlock		  "Compressor2"
+	  DstPort		  5
 	}
       }
     }

@@ -1,5 +1,5 @@
 % Tuning parameters for MPC controller
-clear all
+% clear all
 addpath('../call_qpoases_m')
 addpath('../call_qpoases_m/qpoases3/interfaces/matlab/')
 addpath('../common')
@@ -20,22 +20,14 @@ end
 
 %% Constants
 % Reference output
-xinit = [  0.87171   1.0425  0.17319   400.38        0  0.98528   1.1784  0.17319   400.38        0   1.0116 ]';
+xinit = [  0.86733   1.0308  0.17648   394.96        0  0.99889   1.1872  0.17648   394.96        0 ]';
 
-% yss = [   1.0425   7.6617   1.1784   7.6617   1.0116 ]';
-yss = [   1.0425   7.6617   1.1784   7.6617   0 ]';
+yss = [   1.0308   8.1258   1.1872   8.1258 ]';
 
-% yref = [1.041 7.72 1.18 7.72 1.01]';
-% yref = yss;
-yref = [1.0425 7.65 1.1784 7.65 0]';
+yref = yss;
 
-P_D = xinit(end);
-
-
-[Ts, xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
+[Ts, xsize_comp, xsize, ~, ysize, uoff1, uoff2] = const_sim();
 [n_delay,dsize,ucontrolsize,p,m] = const_mpc();
-
-ysize = 5;
 
 xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
 
@@ -46,7 +38,6 @@ weights;
 % global P_D
 
 u_out = uoff1(3);
-u_d = ud;
 
 u_init = zeros(2*ucontrolsize,1);
 
@@ -58,7 +49,7 @@ D = zeros(ysize,2*ucontrolsize);
 %% Design observer
 % expectation of output disturbance
 Qn = eye(xsize);
-Rn = eye(2*dsize+1);
+Rn = eye(2*dsize);
 
 % state disturbance to state matrix
 G = [zeros(xtotalsize-2*dsize,xsize);
@@ -74,12 +65,12 @@ sys_kalman = ss(A, [B G], C, [D Hkalman], Ts);
 [KEST, L, P, M, Z] = kalman(sys_kalman, Qn, Rn);
 
 %% Define upper/lower bounds
-lb = [-0.3; 0];
-ub = [0.3; 1];
+% lb = [-0.3; 0];
+% ub = [0.3; 1];
 % lb = [-0.1; 0];
 % ub = [0.1; 1];
-% lb = [0;0];
-% ub = [0;0];
+lb = [0;0];
+ub = [0;0];
 
 
 lb_rate = [0.1; 0.1];

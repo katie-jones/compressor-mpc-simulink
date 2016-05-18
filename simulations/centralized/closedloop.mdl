@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.311"
+    ComputedModelVersion    "1.317"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue May 17 14:38:13 2016"
-  RTWModifiedTimeStamp	  385396692
-  ModelVersionFormat	  "1.%<AutoIncrement:311>"
+  LastModifiedDate	  "Wed May 18 09:50:32 2016"
+  RTWModifiedTimeStamp	  385465829
+  ModelVersionFormat	  "1.%<AutoIncrement:317>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -743,7 +743,7 @@ Model {
   }
   System {
     Name		    "closedloop"
-    Location		    [10, 82, 1270, 938]
+    Location		    [2, 74, 1278, 963]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -757,7 +757,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    690
+    SIDHighWatermark	    691
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -773,11 +773,11 @@ Model {
       BlockType		      Demux
       Name		      "Demux1"
       SID		      663
-      Ports		      [1, 11]
+      Ports		      [1, 10]
       Position		      [975, 340, 980, 450]
       NamePlacement	      "alternate"
       ShowName		      off
-      Outputs		      "11"
+      Outputs		      "10"
       DisplayOption	      "bar"
     }
     Block {
@@ -795,24 +795,22 @@ Model {
       BlockType		      Mux
       Name		      "Mux2"
       SID		      413
-      Ports		      [5, 1]
-      Position		      [665, 406, 670, 464]
+      Ports		      [4, 1]
+      Position		      [665, 408, 670, 467]
       BlockMirror	      on
       NamePlacement	      "alternate"
       ShowName		      off
-      Inputs		      "5"
       DisplayOption	      "bar"
     }
     Block {
       BlockType		      Mux
       Name		      "Mux3"
       SID		      414
-      Ports		      [5, 1]
-      Position		      [705, 464, 710, 536]
+      Ports		      [4, 1]
+      Position		      [705, 479, 710, 551]
       BlockMirror	      on
       NamePlacement	      "alternate"
       ShowName		      off
-      Inputs		      "5"
       DisplayOption	      "bar"
     }
     Block {
@@ -865,11 +863,11 @@ Model {
       BlockType		      Mux
       Name		      "Mux8"
       SID		      666
-      Ports		      [9, 1]
-      Position		      [1185, 375, 1190, 415]
+      Ports		      [8, 1]
+      Position		      [1185, 377, 1190, 418]
       NamePlacement	      "alternate"
       ShowName		      off
-      Inputs		      "9"
+      Inputs		      "8"
       DisplayOption	      "bar"
     }
     Block {
@@ -884,35 +882,12 @@ Model {
       DisplayOption	      "bar"
     }
     Block {
-      BlockType		      Scope
-      Name		      "PD"
-      SID		      686
-      Ports		      [1]
-      Position		      [760, 234, 790, 266]
-      Floating		      off
-      Location		      [923, 493, 1273, 766]
-      Open		      on
-      NumInputPorts	      "1"
-      ZoomMode		      "xonly"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      TimeRange		      "100             "
-      YMin		      "1.0055"
-      YMax		      "1.012"
-      SaveName		      "SD9"
-      DataFormat	      "Array"
-      LimitDataPoints	      off
-      SampleTime	      "0"
-    }
-    Block {
       BlockType		      Reference
       Name		      "Parallel plant"
       SID		      678
-      Ports		      [4, 6]
-      Position		      [365, 116, 660, 259]
-      LibraryVersion	      "1.23"
+      Ports		      [4, 5]
+      Position		      [365, 118, 660, 262]
+      LibraryVersion	      "1.25"
       SourceBlock	      "lib_parallel_comp/Parallel plant"
       SourceType	      ""
       ShowPortLabels	      "FromPortIcon"
@@ -934,7 +909,7 @@ Model {
       BlockType		      RateTransition
       Name		      "Rate Transition"
       SID		      415
-      Position		      [600, 409, 635, 441]
+      Position		      [600, 424, 635, 456]
       BlockMirror	      on
       NamePlacement	      "alternate"
       X0		      "yss"
@@ -943,7 +918,7 @@ Model {
       BlockType		      RateTransition
       Name		      "Rate Transition1"
       SID		      416
-      Position		      [615, 484, 650, 516]
+      Position		      [615, 499, 650, 531]
       BlockMirror	      on
       X0		      "yref"
     }
@@ -995,7 +970,7 @@ Model {
       BlockType		      Step
       Name		      "Step2"
       SID		      430
-      Position		      [820, 550, 850, 580]
+      Position		      [820, 545, 850, 575]
       BlockMirror	      on
       NamePlacement	      "alternate"
       ShowName		      off
@@ -1008,7 +983,7 @@ Model {
       BlockType		      Step
       Name		      "Step3"
       SID		      431
-      Position		      [820, 600, 850, 630]
+      Position		      [820, 585, 850, 615]
       BlockMirror	      on
       NamePlacement	      "alternate"
       ShowName		      off
@@ -1019,22 +994,9 @@ Model {
     }
     Block {
       BlockType		      Step
-      Name		      "Step4"
-      SID		      687
-      Position		      [820, 645, 850, 675]
-      BlockMirror	      on
-      NamePlacement	      "alternate"
-      ShowName		      off
-      Time		      "0"
-      Before		      "yref(5)"
-      After		      "yref(5)"
-      SampleTime	      "0"
-    }
-    Block {
-      BlockType		      Step
       Name		      "Step5"
       SID		      428
-      Position		      [820, 460, 850, 490]
+      Position		      [820, 470, 850, 500]
       BlockMirror	      on
       NamePlacement	      "alternate"
       ShowName		      off
@@ -1048,7 +1010,7 @@ Model {
       Name		      "Sum"
       SID		      689
       Ports		      [2, 1]
-      Position		      [785, 435, 805, 455]
+      Position		      [920, 445, 940, 465]
       BlockMirror	      on
       ShowName		      off
       IconShape		      "round"
@@ -1089,6 +1051,13 @@ Model {
       Name		      "Terminator"
       SID		      665
       Position		      [1235, 385, 1255, 405]
+    }
+    Block {
+      BlockType		      Terminator
+      Name		      "Terminator1"
+      SID		      691
+      Position		      [875, 445, 895, 465]
+      BlockMirror	      on
     }
     Block {
       BlockType		      ToWorkspace
@@ -1141,18 +1110,6 @@ Model {
       SaveFormat	      "Structure With Time"
     }
     Block {
-      BlockType		      ToWorkspace
-      Name		      "To Workspace5"
-      SID		      688
-      Ports		      [1]
-      Position		      [860, 260, 920, 290]
-      ShowName		      off
-      VariableName	      "PD"
-      MaxDataPoints	      "inf"
-      SampleTime	      "-1"
-      SaveFormat	      "Structure With Time"
-    }
-    Block {
       BlockType		      SubSystem
       Name		      "controller"
       SID		      418
@@ -1170,7 +1127,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[196, 194, 1083, 830]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1759,35 +1716,31 @@ Model {
     Line {
       SrcBlock		      "controller"
       SrcPort		      1
-      Points		      [0, -15]
+      Points		      [-30, 0]
       DstBlock		      "Rate Transition2"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Mux2"
       SrcPort		      1
-      Points		      [0, -10]
       DstBlock		      "Rate Transition"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Mux3"
       SrcPort		      1
-      Points		      [0, -5]
       DstBlock		      "Rate Transition1"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Rate Transition"
       SrcPort		      1
-      Points		      [-20, 0]
       DstBlock		      "controller"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Rate Transition1"
       SrcPort		      1
-      Points		      [-35, 0]
       DstBlock		      "controller"
       DstPort		      2
     }
@@ -1800,7 +1753,7 @@ Model {
     Line {
       SrcBlock		      "Demux"
       SrcPort		      1
-      Points		      [-10, 0; 0, -290]
+      Points		      [-10, 0; 0, -285]
       Branch {
 	Points			[-90, 0]
 	DstBlock		"Mux5"
@@ -1814,7 +1767,7 @@ Model {
     Line {
       SrcBlock		      "Demux"
       SrcPort		      2
-      Points		      [-20, 0; 0, -280]
+      Points		      [-20, 0; 0, -275]
       Branch {
 	Points			[-80, 0]
 	DstBlock		"Mux6"
@@ -1828,9 +1781,9 @@ Model {
     Line {
       SrcBlock		      "Demux"
       SrcPort		      3
-      Points		      [-30, 0; 0, -270]
+      Points		      [-30, 0; 0, -265]
       Branch {
-	Points			[0, -55]
+	Points			[0, -60]
 	DstBlock		"Mux5"
 	DstPort			2
       }
@@ -1842,9 +1795,9 @@ Model {
     Line {
       SrcBlock		      "Demux"
       SrcPort		      4
-      Points		      [-40, 0; 0, -260]
+      Points		      [-40, 0; 0, -255]
       Branch {
-	Points			[0, -20]
+	Points			[0, -25]
 	DstBlock		"Mux6"
 	DstPort			2
       }
@@ -1856,28 +1809,27 @@ Model {
     Line {
       SrcBlock		      "Step5"
       SrcPort		      1
-      Points		      [-90, 0]
       DstBlock		      "Mux3"
       DstPort		      1
     }
     Line {
       SrcBlock		      "Step1"
       SrcPort		      1
-      Points		      [-35, 0; 0, -35]
+      Points		      [-35, 0; 0, -15]
       DstBlock		      "Mux3"
       DstPort		      2
     }
     Line {
       SrcBlock		      "Step2"
       SrcPort		      1
-      Points		      [-50, 0; 0, -65]
+      Points		      [-50, 0; 0, -35]
       DstBlock		      "Mux3"
       DstPort		      3
     }
     Line {
       SrcBlock		      "Step3"
       SrcPort		      1
-      Points		      [-65, 0; 0, -100]
+      Points		      [-65, 0; 0, -55]
       DstBlock		      "Mux3"
       DstPort		      4
     }
@@ -1933,7 +1885,7 @@ Model {
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      5
-      Points		      [0, 120; 95, 0]
+      Points		      [0, 95; 95, 0]
       Branch {
 	Points			[0, -50]
 	DstBlock		"x"
@@ -1955,7 +1907,7 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      6
-      Points		      [50, 0; 0, -95]
+      Points		      [50, 0; 0, -100]
       DstBlock		      "Mux7"
       DstPort		      2
     }
@@ -1969,9 +1921,9 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      3
-      Points		      [30, 0]
+      Points		      [0, -5; 30, 0]
       Branch {
-	Points			[115, 0; 0, 15]
+	Points			[115, 0; 0, 20]
 	DstBlock		"Mux8"
 	DstPort			2
       }
@@ -1983,7 +1935,7 @@ Model {
 	  DstPort		  1
 	}
 	Branch {
-	  Points		  [0, -10; -195, 0]
+	  Points		  [0, -10]
 	  DstBlock		  "Sum"
 	  DstPort		  1
 	}
@@ -1999,7 +1951,7 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      5
-      Points		      [125, 0; 0, 5]
+      Points		      [185, 0]
       DstBlock		      "Mux8"
       DstPort		      4
     }
@@ -2013,9 +1965,9 @@ Model {
     Line {
       SrcBlock		      "Demux1"
       SrcPort		      8
-      Points		      [10, 0]
+      Points		      [0, -5; 10, 0]
       Branch {
-	Points			[120, 0; 0, -15]
+	Points			[120, 0; 0, -10]
 	DstBlock		"Mux8"
 	DstPort			6
       }
@@ -2026,7 +1978,7 @@ Model {
 	  DstPort		  2
 	}
 	Branch {
-	  Points		  [-200, 0]
+	  Points		  [-65, 0]
 	  DstBlock		  "Sum"
 	  DstPort		  2
 	}
@@ -2047,15 +1999,9 @@ Model {
       DstPort		      8
     }
     Line {
-      SrcBlock		      "Demux1"
-      SrcPort		      11
-      Points		      [160, 0; 0, -30]
-      DstBlock		      "Mux8"
-      DstPort		      9
-    }
-    Line {
       SrcBlock		      "Mux8"
       SrcPort		      1
+      Points		      [0, -5]
       DstBlock		      "Terminator"
       DstPort		      1
     }
@@ -2074,7 +2020,7 @@ Model {
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      1
-      Points		      [40, 0]
+      Points		      [0, -5; 40, 0]
       Branch {
 	Points			[0, 290]
 	DstBlock		"Mux2"
@@ -2096,9 +2042,9 @@ Model {
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      2
-      Points		      [0, 5; 50, 0]
+      Points		      [0, -5; 50, 0]
       Branch {
-	Points			[0, 270]
+	Points			[0, 275]
 	DstBlock		"Mux2"
 	DstPort			2
       }
@@ -2110,9 +2056,9 @@ Model {
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      3
-      Points		      [0, 10; 60, 0]
+      Points		      [0, -5; 60, 0]
       Branch {
-	Points			[0, 250]
+	Points			[0, 260]
 	DstBlock		"Mux2"
 	DstPort			3
       }
@@ -2132,9 +2078,9 @@ Model {
     Line {
       SrcBlock		      "Parallel plant"
       SrcPort		      4
-      Points		      [0, 15; 70, 0]
+      Points		      [0, -5; 70, 0]
       Branch {
-	Points			[0, 230]
+	Points			[0, 245]
 	DstBlock		"Mux2"
 	DstPort			4
       }
@@ -2145,32 +2091,10 @@ Model {
       }
     }
     Line {
-      SrcBlock		      "Parallel plant"
-      SrcPort		      6
-      Points		      [80, 0]
-      Branch {
-	DstBlock		"PD"
-	DstPort			1
-      }
-      Branch {
-	Points			[0, 25]
-	DstBlock		"To Workspace5"
-	DstPort			1
-      }
-    }
-    Line {
-      SrcBlock		      "Step4"
-      SrcPort		      1
-      Points		      [-90, 0]
-      DstBlock		      "Mux3"
-      DstPort		      5
-    }
-    Line {
       SrcBlock		      "Sum"
       SrcPort		      1
-      Points		      [-35, 0; 0, 10]
-      DstBlock		      "Mux2"
-      DstPort		      5
+      DstBlock		      "Terminator1"
+      DstPort		      1
     }
     Annotation {
       Position		      [881, 100]
@@ -2231,22 +2155,22 @@ Stateflow {
       script		      "function [u_new,exitflag_out,time_out,x_out]  = fcn(u,UWT,YWT)\n%#eml\n% persistent C_new M LB UB"
       " Ga Gb Gc H Ain b A B upast xinit\npersistent M LB UB Ain b upast xinit dxaug y_old C %x_init_lin\neml.extrinsic"
       "('tic');\neml.extrinsic('toc');\n\ntic\n\n[n_delay,dsize,ucontrolsize,p,m] = const_mpc();\n[~, ~, xsize, ~, ysiz"
-      "e] = const_sim();\nusize=2*ucontrolsize;\n\nysize = 5;\n\nif isempty(M)\n    [C,M,UB,LB,b,Ain,xinit,upast,y_old]"
-      " = get_constant_matrices();\n    dxaug = zeros(size(xinit));\nend\n\n\ny = u(1:ysize);\n\n% Estimate state info\n"
-      "dxaug = dxaug + M*(y - y_old - C*(dxaug));\n\n% Use state input info to calculate x, y\nxinit(1:xsize) = xinit(1"
-      ":xsize)+dxaug(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\nx_out = xinit;\n\ny_old = y;\n\nyref = u(ysiz"
-      "e+1:end);\n\n% Get matrices - linearize about delayed rec.open input\n[A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf] = get_qp_m"
-      "atrices(xinit,upast,UWT,YWT);\n\n\n\n% Get reference and input vector\n\nYref = zeros(p*ysize,1);\nUpast = zeros"
-      "(m*usize,1);\nfor i=1:p\n    Yref(1+(i-1)*ysize:i*ysize,1) = yref - y;\nend\nfor i=1:m\n    Upast(1+(i-1)*usize:"
-      "i*usize,1) = upast;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - Upast;\n\n% Calculate initial state\n"
-      "dx0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-up"
-      "ast(4); xinit(end-2*dsize+1:end)];\n\n\n% Gradient vector\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*UWT;\n\n%"
-      " Solve QP\nlbA = -inf(size(Ain,1),1);\n[usol,~,exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_o"
-      "ut = exitflag(1,1);\nit_out = it(1,1);\n\nif exitflag_out~=0\n    exitflag_out\n    usol = zeros(m*usize,1);\nen"
-      "d\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);\nu_new = upast + delta_u;\n\n\n% value of x about which we"
-      " linearized\nxlin = dxaug;\nxlin(xsize+1:end) = 0;\nxlin(xsize+1) = upast(2);\nxlin(xsize+1+n_delay(2)) = upast("
-      "4);\n\ndxaug = B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n\nupast = u_ne"
-      "w;\n\ntime_out = 0;\ntime_out = toc;\n\n"
+      "e] = const_sim();\nusize=2*ucontrolsize;\n\nif isempty(M)\n    [C,M,UB,LB,b,Ain,xinit,upast,y_old] = get_constan"
+      "t_matrices();\n    dxaug = zeros(size(xinit));\nend\n\n\ny = u(1:ysize);\n\n% Estimate state info\ndxaug = dxaug"
+      " + M*(y - y_old - C*(dxaug));\n\n% Use state input info to calculate x, y\nxinit(1:xsize) = xinit(1:xsize)+dxaug"
+      "(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\nx_out = xinit;\n\ny_old = y;\n\nyref = u(ysize+1:end);\n\n"
+      "% Get matrices - linearize about delayed rec.open input\n[A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf] = get_qp_matrices(xinit"
+      ",upast,UWT,YWT);\n\n\n\n% Get reference and input vector\n\nYref = zeros(p*ysize,1);\nUpast = zeros(m*usize,1);\n"
+      "for i=1:p\n    Yref(1+(i-1)*ysize:i*ysize,1) = yref - y;\nend\nfor i=1:m\n    Upast(1+(i-1)*usize:i*usize,1) = u"
+      "past;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - Upast;\n\n% Calculate initial state\ndx0 = [zeros(x"
+      "size,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(4); xinit("
+      "end-2*dsize+1:end)];\n\n\n% Gradient vector\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*UWT;\n\n% Solve QP\nlbA"
+      " = -inf(size(Ain,1),1);\n[usol,~,exitflag,it] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_out = exitflag("
+      "1,1);\nit_out = it(1,1);\n\nif exitflag_out~=0\n    exitflag_out\n    usol = zeros(m*usize,1);\nend\n\n\n% Apply"
+      " next input\ndelta_u = usol(1:usize,1);\nu_new = upast + delta_u;\n\n\n% value of x about which we linearized\nx"
+      "lin = dxaug;\nxlin(xsize+1:end) = 0;\nxlin(xsize+1) = upast(2);\nxlin(xsize+1+n_delay(2)) = upast(4);\n\ndxaug ="
+      " B*[u_new(1)-upast(1);u_new(2);u_new(3)-upast(3);u_new(4)] + A*(dxaug-xlin) + df0;\n\nupast = u_new;\n\ntime_out"
+      " = 0;\ntime_out = toc;\n\n"
       editorLayout	      "100 M4x1[10 5 1296 1000]"
       breakpoints	      "100 M[40]"
     }
