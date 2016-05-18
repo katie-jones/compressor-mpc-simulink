@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.317"
+    ComputedModelVersion    "1.320"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed May 18 09:50:32 2016"
-  RTWModifiedTimeStamp	  385465829
-  ModelVersionFormat	  "1.%<AutoIncrement:317>"
+  LastModifiedDate	  "Wed May 18 11:42:00 2016"
+  RTWModifiedTimeStamp	  385472519
+  ModelVersionFormat	  "1.%<AutoIncrement:320>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "100"
+	  StopTime		  "500"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -887,7 +887,7 @@ Model {
       SID		      678
       Ports		      [4, 5]
       Position		      [365, 118, 660, 262]
-      LibraryVersion	      "1.25"
+      LibraryVersion	      "1.30"
       SourceBlock	      "lib_parallel_comp/Parallel plant"
       SourceType	      ""
       ShowPortLabels	      "FromPortIcon"
@@ -900,10 +900,9 @@ Model {
       RTWMemSecDataParameters "Inherit from model"
       x_init_total	      "xinit"
       disturbances_on	      on
-      disturbances_symm	      off
       dist_t_in		      "tdist"
-      dist1_in		      "0*udist1"
-      dist2_in		      "0*udist2"
+      dist1_in		      "udist1"
+      dist2_in		      "udist2"
     }
     Block {
       BlockType		      RateTransition
@@ -937,17 +936,16 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [923, 99, 1273, 372]
+      Location		      [1428, 108, 1778, 381]
       Open		      on
       NumInputPorts	      "1"
-      ZoomMode		      "xonly"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "7.475"
-      YMax		      "7.825"
+      YMin		      "7.5"
+      YMax		      "8.8"
       SaveName		      "SD3"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1030,7 +1028,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [935, 506, 1273, 779]
+      Location		      [1860, 505, 2198, 778]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1039,8 +1037,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "-0.004"
-      YMax		      "0.014"
+      YMin		      "-0.3"
+      YMax		      "0.125"
       SaveName		      "SD4"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1127,7 +1125,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[196, 194, 1083, 830]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1195,6 +1193,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -1581,7 +1584,7 @@ Model {
       Ports		      [1]
       Position		      [1125, 479, 1155, 511]
       Floating		      off
-      Location		      [935, 702, 1273, 975]
+      Location		      [2249, 492, 2587, 765]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -1589,9 +1592,9 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "200"
-      YMin		      "0.17308"
-      YMax		      "0.17321"
+      TimeRange		      "100             "
+      YMin		      "0.1475"
+      YMax		      "0.1825"
       SaveName		      "SD8"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1604,7 +1607,7 @@ Model {
       Ports		      [1]
       Position		      [1125, 274, 1155, 306]
       Floating		      off
-      Location		      [937, 493, 1275, 766]
+      Location		      [2223, 502, 2561, 775]
       Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1612,8 +1615,8 @@ Model {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
-      TimeRange		      "200"
-      YMin		      "0.89"
+      TimeRange		      "100             "
+      YMin		      "0.86"
       YMax		      "1"
       SaveName		      "SD7"
       DataFormat	      "Array"
@@ -1627,17 +1630,16 @@ Model {
       Ports		      [1]
       Position		      [775, 24, 805, 56]
       Floating		      off
-      Location		      [935, 102, 1273, 375]
+      Location		      [1844, 108, 2182, 381]
       Open		      on
       NumInputPorts	      "1"
-      ZoomMode		      "xonly"
       List {
 	ListType		AxesTitles
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "1.04075"
-      YMax		      "1.04275"
+      YMin		      "1.016"
+      YMax		      "1.034"
       SaveName		      "SD2"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1650,7 +1652,7 @@ Model {
       Ports		      [1]
       Position		      [890, 99, 920, 131]
       Floating		      off
-      Location		      [935, 104, 1273, 377]
+      Location		      [2227, 105, 2565, 378]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1659,8 +1661,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "1.177"
-      YMax		      "1.1825"
+      YMin		      "1.05"
+      YMax		      "1.19"
       SaveName		      "SD1"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1674,7 +1676,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [935, 503, 1273, 769]
+      Location		      [1455, 494, 1793, 760]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -1683,8 +1685,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "-0.0025"
-      YMax		      "0.02"
+      YMin		      "-0.01"
+      YMax		      "0.15"
       SaveName		      "SD5"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -2115,6 +2117,8 @@ Stateflow {
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
     firstTarget		    14
+    debug {
+    }
     sfVersion		    71014000.00001
   }
   chart {

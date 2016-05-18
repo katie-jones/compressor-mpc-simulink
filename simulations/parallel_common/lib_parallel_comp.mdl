@@ -15,9 +15,9 @@ Library {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed May 18 08:56:57 2016"
-  RTWModifiedTimeStamp	  385462614
-  ModelVersionFormat	  "1.%<AutoIncrement:25>"
+  LastModifiedDate	  "Wed May 18 11:40:56 2016"
+  RTWModifiedTimeStamp	  385472454
+  ModelVersionFormat	  "1.%<AutoIncrement:30>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -691,33 +691,30 @@ Library {
       Opaque		      off
       RequestExecContextInheritance off
       MaskHideContents	      off
-      MaskPromptString	      "Initial state|Activate disturbances|Symmetric disturbances|Disturbance times (up to 2)|D"
-      "isturbance 1 values (u1in, u1out, ud[, u2in, u2out])|Disturbance 2 values"
-      MaskStyleString	      "edit,checkbox,checkbox,edit,edit,edit"
-      MaskTunableValueString  "on,on,on,on,on,on"
-      MaskCallbackString      "|||||"
-      MaskEnableString	      "on,on,on,on,on,on"
-      MaskVisibilityString    "on,on,on,on,on,on"
-      MaskToolTipString	      "on,on,on,on,on,on"
-      MaskVariables	      "x_init_total=@1;disturbances_on=@2;disturbances_symm=@3;dist_t_in=@4;dist1_in=@5;dist2_in=@"
-      "6;"
-      MaskInitialization      "dist1 = zeros(5,1);\ndist2 = dist1;\ndist_t = zeros(2,1);\n\nif disturbances_on\n    fo"
-      "r i=1:min(5,length(dist1_in))\n        dist1(i) = dist1_in(i);\n    end\n    for i=1:min(5,length(dist2_in))\n  "
+      MaskPromptString	      "Initial state|Activate disturbances|Disturbance times (up to 2)|Disturbance 1 values (u1"
+      "in, u1out, u2out)|Disturbance 2 values"
+      MaskStyleString	      "edit,checkbox,edit,edit,edit"
+      MaskTunableValueString  "on,on,on,on,on"
+      MaskCallbackString      "||||"
+      MaskEnableString	      "on,on,on,on,on"
+      MaskVisibilityString    "on,on,on,on,on"
+      MaskToolTipString	      "on,on,on,on,on"
+      MaskVariables	      "x_init_total=@1;disturbances_on=@2;dist_t_in=@3;dist1_in=@4;dist2_in=@5;"
+      MaskInitialization      "dist1 = zeros(3,1);\ndist2 = dist1;\ndist_t = zeros(2,1);\n\nif disturbances_on\n    fo"
+      "r i=1:min(3,length(dist1_in))\n        dist1(i) = dist1_in(i);\n    end\n    for i=1:min(3,length(dist2_in))\n  "
       "      dist2(i) = dist2_in(i);\n    end\n    for i=1:min(2,length(dist_t_in))\n        dist_t(i) = dist_t_in(i);\n"
-      "    end\n    \n    if disturbances_symm\n        dist1(4) = dist1(1);\n        dist1(5) = dist1(2);\n        dis"
-      "t2(4) = dist2(1);\n        dist2(5) = dist2(2);\n    end\nend\n\nx_init1 = x_init_total(1:5);\nx_init2 = x_init_"
-      "total(6:10);\n"
+      "    end\nend\n\nx_init1 = x_init_total(1:5);\nx_init2 = x_init_total(6:10);\n"
       MaskSelfModifiable      on
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "none"
       MaskPortRotate	      "default"
       MaskIconUnits	      "autoscale"
-      MaskValueString	      "xinit|off|off|0|0|0"
+      MaskValueString	      "xinit|off||0|0"
       System {
 	Name			"Parallel plant"
 	Location		[105, 183, 1148, 972]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -823,9 +820,9 @@ Library {
 	  u_rec			  "uoff2(4)"
 	  t_delay		  "n_delay(2)*Ts"
 	  use_dist		  on
-	  u_out_dist		  "[dist1(4); dist2(4)]"
+	  u_out_dist		  "[dist1(3); dist2(3)]"
 	  u_out_time		  "dist_t"
-	  u_in_dist		  "[dist1(5); dist2(5)]"
+	  u_in_dist		  "[0;0]"
 	  u_in_time		  "dist_t"
 	}
 	Block {
