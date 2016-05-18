@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.320"
+    ComputedModelVersion    "1.322"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed May 18 11:42:00 2016"
+  LastModifiedDate	  "Wed May 18 14:49:14 2016"
   RTWModifiedTimeStamp	  385472519
-  ModelVersionFormat	  "1.%<AutoIncrement:320>"
+  ModelVersionFormat	  "1.%<AutoIncrement:322>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -944,8 +944,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "7.5"
-      YMax		      "8.8"
+      YMin		      "3"
+      YMax		      "9.5"
       SaveName		      "SD3"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1037,8 +1037,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "-0.3"
-      YMax		      "0.125"
+      YMin		      "-0.025"
+      YMax		      "0.325"
       SaveName		      "SD4"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1584,7 +1584,7 @@ Model {
       Ports		      [1]
       Position		      [1125, 479, 1155, 511]
       Floating		      off
-      Location		      [2249, 492, 2587, 765]
+      Location		      [2215, 492, 2553, 765]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -1593,8 +1593,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "0.1475"
-      YMax		      "0.1825"
+      YMin		      "0.12"
+      YMax		      "0.24"
       SaveName		      "SD8"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1638,8 +1638,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "1.016"
-      YMax		      "1.034"
+      YMin		      "1"
+      YMax		      "1.55"
       SaveName		      "SD2"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1652,7 +1652,7 @@ Model {
       Ports		      [1]
       Position		      [890, 99, 920, 131]
       Floating		      off
-      Location		      [2227, 105, 2565, 378]
+      Location		      [2215, 105, 2553, 378]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1661,8 +1661,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "1.05"
-      YMax		      "1.19"
+      YMin		      "1.1"
+      YMax		      "2.4"
       SaveName		      "SD1"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1685,8 +1685,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "-0.01"
-      YMax		      "0.15"
+      YMin		      "-0.0025"
+      YMax		      "0.035"
       SaveName		      "SD5"
       DataFormat	      "Array"
       LimitDataPoints	      off

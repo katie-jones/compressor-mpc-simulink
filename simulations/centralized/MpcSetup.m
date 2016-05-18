@@ -24,7 +24,7 @@ xinit = [  0.86733   1.0308  0.17648   394.96        0  0.99889   1.1872  0.1764
 
 yss = [   1.0308   8.1258   1.1872   8.1258 ]';
 
-yref = yss;
+yref = [1.03 8.12 1.1872 8.12];
 
 [Ts, xsize_comp, xsize, ~, ysize, uoff1, uoff2] = const_sim();
 [n_delay,dsize,ucontrolsize,p,m] = const_mpc();
@@ -65,12 +65,12 @@ sys_kalman = ss(A, [B G], C, [D Hkalman], Ts);
 [KEST, L, P, M, Z] = kalman(sys_kalman, Qn, Rn);
 
 %% Define upper/lower bounds
-% lb = [-0.3; 0];
-% ub = [0.3; 1];
+lb = [-0.3; 0];
+ub = [0.3; 1];
 % lb = [-0.1; 0];
 % ub = [0.1; 1];
-lb = [0;0];
-ub = [0;0];
+% lb = [0;0];
+% ub = [0;0];
 
 
 lb_rate = [0.1; 0.1];
@@ -102,7 +102,7 @@ disp('Embedded files generated.');
 %% Define disturbances
 % Choose type of disturbance
 % 1: output, 2: input, 3: asymmetric output, 4: asymmetric input, 5: big output
-for n_disturbance=5
+for n_disturbance=1
     [tdist,udist1,udist2,dist_dirname] = disturbances(n_disturbance);
 %     sim('closedloop');
 %     makeplots;
