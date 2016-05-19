@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.322"
+    ComputedModelVersion    "1.323"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed May 18 14:49:14 2016"
-  RTWModifiedTimeStamp	  385472519
-  ModelVersionFormat	  "1.%<AutoIncrement:322>"
+  LastModifiedDate	  "Thu May 19 11:48:20 2016"
+  RTWModifiedTimeStamp	  385559295
+  ModelVersionFormat	  "1.%<AutoIncrement:323>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "500"
+	  StopTime		  "200"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -936,7 +936,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1428, 108, 1778, 381]
+      Location		      [925, 108, 1275, 381]
       Open		      on
       NumInputPorts	      "1"
       List {
@@ -1028,7 +1028,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1860, 505, 2198, 778]
+      Location		      [937, 505, 1275, 778]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1193,11 +1193,6 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
-	  Array {
-	    Type		    "Handle"
-	    Dimension		    0
-	    PropName		    "AvailSigsLoadSave"
-	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -1584,7 +1579,7 @@ Model {
       Ports		      [1]
       Position		      [1125, 479, 1155, 511]
       Floating		      off
-      Location		      [2215, 492, 2553, 765]
+      Location		      [937, 492, 1275, 765]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -1630,7 +1625,7 @@ Model {
       Ports		      [1]
       Position		      [775, 24, 805, 56]
       Floating		      off
-      Location		      [1844, 108, 2182, 381]
+      Location		      [937, 108, 1275, 381]
       Open		      on
       NumInputPorts	      "1"
       List {
@@ -1652,7 +1647,7 @@ Model {
       Ports		      [1]
       Position		      [890, 99, 920, 131]
       Floating		      off
-      Location		      [2215, 105, 2553, 378]
+      Location		      [937, 105, 1275, 378]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1676,7 +1671,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1455, 494, 1793, 760]
+      Location		      [937, 494, 1275, 760]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -2117,8 +2112,6 @@ Stateflow {
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
     firstTarget		    14
-    debug {
-    }
     sfVersion		    71014000.00001
   }
   chart {
