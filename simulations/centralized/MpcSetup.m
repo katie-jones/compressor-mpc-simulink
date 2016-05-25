@@ -3,7 +3,6 @@
 addpath('../call_qpoases_m')
 addpath('../call_qpoases_m/qpoases3/interfaces/matlab/')
 addpath('../common')
-addpath('../parallel_common')
 
 %% Results variables
 % Choose filename and directory for saving results
