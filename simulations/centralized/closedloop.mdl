@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.323"
+    ComputedModelVersion    "1.324"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu May 19 11:48:20 2016"
-  RTWModifiedTimeStamp	  385559295
-  ModelVersionFormat	  "1.%<AutoIncrement:323>"
+  LastModifiedDate	  "Wed May 25 15:21:49 2016"
+  RTWModifiedTimeStamp	  386086516
+  ModelVersionFormat	  "1.%<AutoIncrement:324>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "200"
+	  StopTime		  "500"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -743,7 +743,7 @@ Model {
   }
   System {
     Name		    "closedloop"
-    Location		    [2, 74, 1278, 963]
+    Location		    [2, 82, 1278, 971]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -936,7 +936,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [925, 108, 1275, 381]
+      Location		      [1400, 115, 1750, 388]
       Open		      on
       NumInputPorts	      "1"
       List {
@@ -944,8 +944,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "3"
-      YMax		      "9.5"
+      YMin		      "2.5"
+      YMax		      "10"
       SaveName		      "SD3"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1028,7 +1028,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 505, 1275, 778]
+      Location		      [1830, 512, 2168, 785]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1037,8 +1037,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "-0.025"
-      YMax		      "0.325"
+      YMin		      "-0.2"
+      YMax		      "0.2"
       SaveName		      "SD4"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1193,6 +1193,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -1625,7 +1630,7 @@ Model {
       Ports		      [1]
       Position		      [775, 24, 805, 56]
       Floating		      off
-      Location		      [937, 108, 1275, 381]
+      Location		      [1812, 120, 2150, 393]
       Open		      on
       NumInputPorts	      "1"
       List {
@@ -1647,7 +1652,7 @@ Model {
       Ports		      [1]
       Position		      [890, 99, 920, 131]
       Floating		      off
-      Location		      [937, 105, 1275, 378]
+      Location		      [2194, 119, 2532, 392]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1656,8 +1661,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "1.1"
-      YMax		      "2.4"
+      YMin		      "1.15"
+      YMax		      "1.375"
       SaveName		      "SD1"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1671,7 +1676,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [937, 494, 1275, 760]
+      Location		      [1401, 504, 1739, 770]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -1680,8 +1685,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100             "
-      YMin		      "-0.0025"
-      YMax		      "0.035"
+      YMin		      "-0.005"
+      YMax		      "0.075"
       SaveName		      "SD5"
       DataFormat	      "Array"
       LimitDataPoints	      off
