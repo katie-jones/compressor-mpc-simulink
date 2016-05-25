@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.404"
+    ComputedModelVersion    "1.406"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -19,16 +19,16 @@ Model {
   MinMaxOverflowLogging	  "UseLocalSettings"
   MinMaxOverflowArchiveMode "Overwrite"
   MaxMDLFileLineLength	  120
-  InitFcn		  "MpcSetup\n"
+  InitFcn		  "\n"
   Created		  "Thu Feb 18 14:48:34 2016"
   Creator		  "chkajon"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Mar 21 13:35:21 2016"
-  RTWModifiedTimeStamp	  380468119
-  ModelVersionFormat	  "1.%<AutoIncrement:404>"
+  LastModifiedDate	  "Thu May 19 15:37:46 2016"
+  RTWModifiedTimeStamp	  385573060
+  ModelVersionFormat	  "1.%<AutoIncrement:406>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -889,7 +889,7 @@ Model {
       System {
 	Name			"Sim Model"
 	Location		[99, 110, 1375, 982]
-	Open			on
+	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -938,7 +938,7 @@ Model {
 	  System {
 	    Name		    "Compresion plant"
 	    Location		    [637, 82, 2535, 995]
-	    Open		    on
+	    Open		    off
 	    ModelBrowserVisibility  off
 	    ModelBrowserWidth	    200
 	    ScreenColor		    "white"
@@ -1995,7 +1995,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[651, 162, 1272, 614]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -2041,6 +2041,11 @@ Model {
 	  RTWSystemCode		  "Auto"
 	  FunctionWithSeparateData off
 	  Opaque		  off
+	  Array {
+	    Type		    "Handle"
+	    Dimension		    0
+	    PropName		    "AvailSigsLoadSave"
+	  }
 	  RequestExecContextInheritance	off
 	  MaskHideContents	  off
 	  MaskType		  "Stateflow"
@@ -2529,6 +2534,8 @@ Stateflow {
     created		    "18-Feb-2016 14:48:53"
     isLibrary		    0
     firstTarget		    12
+    debug {
+    }
     sfVersion		    71014000.00001
   }
   chart {
@@ -2569,29 +2576,29 @@ Stateflow {
       script		      "function [u_new,exitflag_out,it_out,x_out]  = fcn(u)\n%#eml\n% persistent C_new M LB UB Ga Gb Gc "
       "H Ain b A B upast xinit\npersistent M LB UB Ain b upast xinit dxaug y_old C %x_init_lin\neml.extrinsic('disp');\n"
       "eml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\neml.extrins"
-      "ic('quadprog');\n\np = 100;\nm = 2;\nysize = 2;\nusize = 2;\n\nif isempty(M)\n    tic\n    [C,M,UB,LB,b,Ain,xini"
-      "t,upast] = get_constant_matrices();\n    dxaug = zeros(size(xinit));\n    y_old = [0; 0];\n    time = toc;\n    "
-      "disp(['Preparation time: ' num2str(time)]);\nend\n\n\ny = u(1:2);\n\n% Estimate state info\ndxaug = dxaug + M*(y"
-      " - y_old - C*(dxaug));\nxinit(1:5) = xinit(1:5) + dxaug(1:5);\nxinit(6:end) = dxaug(6:end);\nx_out = xinit;\n\ny"
-      "_old = y;\n\nyref = u(3:4);\n\n% Get matrices - linearize about delayed rec.open input\n% [A,B,C,H,Ga,Gb,Gc,df0,"
-      "Sx,Su,Sf,UWT] = get_qp_matrices(xinit,[upast(1); dxaug(6)]);\n[A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf,UWT] = get_qp_matri"
-      "ces(xinit,upast);\n% [A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,[upast(1); 0]);\n\n\n\n% Get re"
-      "ference and input vector\n\nYref = zeros(p*ysize,1);\nUpast = zeros(m*usize,1);\nfor i=1:p\n    Yref(1+(i-1)*ysi"
-      "ze:i*ysize,1) = yref - y;\nend\nfor i=1:m\n    % use delayed recycle opening as reference input\n    Upast(1+(i-"
-      "1)*usize,1) = upast(1);\n    Upast(i*usize,1) = upast(2);\n%     Upast(i*usize,1) = xinit(6);\n%     Upast(i*usi"
-      "ze,1) = 0;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - Upast;\n\n% Calculate initial state\n% dx0 = ["
-      "zeros(5,1); xinit(6:end-2)-xinit(6); xinit(end-1:end)];\n% dx0 = [zeros(5,1); xinit(6:end-2)-upast(2); xinit(end"
-      "-1:end)];\ndx0 = [zeros(5,1); xinit(6:end-2)-upast(2); zeros(2,1)];\n% dx0 = [zeros(5,1); xinit(6:end-2)-xinit(6"
-      "); zeros(2,1)];\n% dx0 = [zeros(5,1); xinit(6:end-2); zeros(2,1)];\n% dx0 = [zeros(5,1); xinit(6:end)];\n\n\n\n%"
-      " Gradient vector\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*UWT;\n\n% Solve QP\nlbA = -inf(size(Ain,1),1);\n[u"
-      "sol,cost,exitflag,it,lambda] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_out = exitflag(1,1);\nit_out = i"
-      "t(1,1);\n\nif exitflag_out~=0\n%     usol=quadprog(H,f,[eye(4); -eye(4); Ain],[UBa; -LBa; b]);\n    exitflag_out"
-      "\n    usol = zeros(4,1);\nend\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);\n% u_new = [upast(1); dxaug(6)"
-      "] + delta_u;\nu_new = upast + delta_u;\n% u_new = [upast(1); 0] + delta_u;\n\n\n% value of x about which we line"
-      "arized\nxlin = dxaug;\n% xlin(6) = xinit(6);\nxlin(6) = upast(2);\n% xlin(6) = 0;\nxlin(7:end) = 0;\n\ndxaug = B"
-      "*[u_new(1)-upast(1);u_new(2)] + A*(dxaug-xlin) + df0;\n\nupast = u_new;\n\n\n"
-      editorLayout	      "100 M4x1[10 5 1296 1000]"
-      breakpoints	      "100 M[106]"
+      "ic('quadprog');\n\n\n[~,ysize,~,usize,~,~,~,p,m] = const_mpc();\n\nif isempty(M)\n    tic\n    [C,M,UB,LB,b,Ain,"
+      "xinit,upast] = get_constant_matrices();\n    dxaug = zeros(size(xinit));\n    y_old = [0; 0];\n    time = toc;\n"
+      "    disp(['Preparation time: ' num2str(time)]);\nend\n\n\ny = u(1:2);\n\n% Estimate state info\ndxaug = dxaug + "
+      "M*(y - y_old - C*(dxaug));\nxinit(1:5) = xinit(1:5) + dxaug(1:5);\nxinit(6:end) = dxaug(6:end);\nx_out = xinit;\n"
+      "\ny_old = y;\n\nyref = u(3:4);\n\n% Get matrices - linearize about delayed rec.open input\n% [A,B,C,H,Ga,Gb,Gc,d"
+      "f0,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,[upast(1); dxaug(6)]);\n[A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf,UWT] = get_qp_ma"
+      "trices(xinit,upast);\n% [A,B,C,H,Ga,Gb,Gc,df0,Sx,Su,Sf,UWT] = get_qp_matrices(xinit,[upast(1); 0]);\n\n\n\n% Get"
+      " reference and input vector\n\nYref = zeros(p*ysize,1);\nUpast = zeros(m*usize,1);\nfor i=1:p\n    Yref(1+(i-1)*"
+      "ysize:i*ysize,1) = yref - y;\nend\nfor i=1:m\n    % use delayed recycle opening as reference input\n    Upast(1+"
+      "(i-1)*usize,1) = upast(1);\n    Upast(i*usize,1) = upast(2);\n%     Upast(i*usize,1) = xinit(6);\n%     Upast(i*"
+      "usize,1) = 0;\nend\n\n% Update bounds\nLBa = LB - Upast;\nUBa = UB - Upast;\n\n% Calculate initial state\n% dx0 "
+      "= [zeros(5,1); xinit(6:end-2)-xinit(6); xinit(end-1:end)];\n% dx0 = [zeros(5,1); xinit(6:end-2)-upast(2); xinit("
+      "end-1:end)];\ndx0 = [zeros(5,1); xinit(6:end-2)-upast(2); zeros(2,1)];\n% dx0 = [zeros(5,1); xinit(6:end-2)-xini"
+      "t(6); zeros(2,1)];\n% dx0 = [zeros(5,1); xinit(6:end-2); zeros(2,1)];\n% dx0 = [zeros(5,1); xinit(6:end)];\n\n\n"
+      "\n% Gradient vector\nf = df0'*Gc - Yref'*Ga + dx0'*Gb;% + Upast'*UWT;\n\n% Solve QP\nlbA = -inf(size(Ain,1),1);\n"
+      "[usol,cost,exitflag,it,lambda] = call_qpoases_m(H,f,Ain,LBa,UBa,lbA,b);\nexitflag_out = exitflag(1,1);\nit_out ="
+      " it(1,1);\n\nif exitflag_out~=0\n%     usol=quadprog(H,f,[eye(4); -eye(4); Ain],[UBa; -LBa; b]);\n    exitflag_o"
+      "ut\n    usol = zeros(4,1);\nend\n\n\n% Apply next input\ndelta_u = usol(1:usize,1);\n% u_new = [upast(1); dxaug("
+      "6)] + delta_u;\nu_new = upast + delta_u;\n% u_new = [upast(1); 0] + delta_u;\n\n\n% value of x about which we li"
+      "nearized\nxlin = dxaug;\n% xlin(6) = xinit(6);\nxlin(6) = upast(2);\n% xlin(6) = 0;\nxlin(7:end) = 0;\n\ndxaug ="
+      " B*[u_new(1)-upast(1);u_new(2)] + A*(dxaug-xlin) + df0;\n\nupast = u_new;\n\n\n"
+      editorLayout	      "100 M4x1[10 5 750 500]"
+      breakpoints	      "100 M1x3[106 39 78]"
     }
   }
   junction {
