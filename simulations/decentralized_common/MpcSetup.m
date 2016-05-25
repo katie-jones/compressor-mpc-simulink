@@ -4,32 +4,16 @@ addpath('../call_qpoases_m')
 addpath('../call_qpoases_m/qpoases3/interfaces/matlab/')
 addpath('../common')
 
-[Ts, xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
+[Ts, xsize_comp, xsize, ~, ysize, uoff1, uoff2] = const_sim();
 [n_delay,dsize,ucontrolsize,p,m] = const_mpc();
 
 xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
 
 
 %% Initial state
-% global P_D
-
-P_D = 1.12;
-
-% get stable system for observer design
-x_init_lin = [0.98; 1.4; 0.11; 400; 0];
-
-xinit = [x_init_lin; x_init_lin; P_D; zeros(xtotalsize-xsize,1)];
-
-u_out = uoff1(3);
-u_d = ud;
-
 u_init = zeros(2*ucontrolsize,1);
-
+xinit = [xinit; zeros(xtotalsize-xsize,1)];
 [A,B,C] = get_qp_matrices(xinit, u_init, zeros(ysize,1),UWT,YWT);
-
-% Go back to original p2 value
-x_init_lin = [0.916; 1.145; 0.152; 440; 0];
-xinit = [x_init_lin; x_init_lin; P_D];
 
 D = zeros(ysize);
 
@@ -74,7 +58,6 @@ Ain = [Ain; -Ain];
 b = [LBrate; UBrate];
 
 %% Initialize system state
-xinit = [xinit; zeros(xtotalsize-xsize,1)];
 upast = u_init;
 deltax = zeros(xtotalsize,1);
 

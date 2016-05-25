@@ -1,5 +1,5 @@
 % Setup simulation parameters for controller
-clear all
+% clear all
 addpath('../decentralized_common/')
 
 % Choose type of disturbance
@@ -19,16 +19,17 @@ if ~exist(results_folder,'dir')
     mkdir(results_folder)
 end
 
-% Reference output
-yss = [0.2175 0.2175 0 1.12]';
-yref = [0.2175 0.2175 0 1.12]';
+% Reference state
+xinit = [  0.86733   1.0308  0.17648   394.96        0  0.99889   1.1872  0.17648   394.96        0 ]';
+yss = [   1.0308   8.1258   1.1872   8.1258 ]';
+yref = [1.03 8.12 1.1872 8.12];
 
 weights;
 
 % Run MpcSetup script, perform simulation and plot results
-for n_disturbance=5
+for n_disturbance=1
     MpcSetup;
-    sim('decentralized_closedloop');
-    makeplots;
+%     sim('decentralized_closedloop');
+%     makeplots;
 end
 

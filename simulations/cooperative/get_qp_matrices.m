@@ -1,31 +1,27 @@
 function [A,B,C,dx,H1,H2,f0_1,f0_2,Gd1,Gd2] = get_qp_matrices(xinit,upast,dyref,UWT,YWT)
 
 %% Constants
-[Ts,xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
+[Ts,xsize_comp, xsize, ~, ysize, uoff1, uoff2] = const_sim();
 [n_delay,dsize,usize,p,m] = const_mpc();
+[~,Pin,Pout] = const_flow();
 
 x1 = xinit(1:xsize_comp);
 x2 = xinit(xsize_comp+1:2*xsize_comp);
-pd = xinit(2*xsize_comp+1);
 
-u1 = uoff1 + [upast(1); 0; 0; upast(2); 0];
-u2 = uoff2 + [upast(usize+1); 0; 0; upast(usize+2); 0];
+u1 = [uoff1 + [upast(1); 0; 0; upast(2)]; Pin; x2(1)];
+u2 = [uoff2 + [upast(usize+1); 0; 0; upast(usize+2)]; -1; Pout;];
 
-u1(end) = pd; % give output pressure as last input
-u2(end) = pd;
+[f1,m_out1] = get_comp_deriv(x1,u1,1);
+[f2,~] = get_comp_deriv(x2,[u2; m_out1],1);
 
-u = [u1; u2; ud];
+u = [u1; u2];
 
 %% Linearization
 
-[Ac,Bc,Ccorig] = linearize_tank(xinit, u);
-Cc = [Ccorig([2,4],:); Ccorig(1,:)-Ccorig(3,:); Ccorig(5,:)];
+[Ac,Bc,Ccorig] = linearize_serial(xinit, u);
+Cc = Ccorig(1:ysize,:);
 
-f1 = get_comp_deriv(x1,u1,1);
-f2 = get_comp_deriv(x2,u2,1);
-ftank = get_tank_deriv(xinit,u);
-
-[Ainit,Binit,Cinit,dx2] = discretize_rk4(Ac,Bc,Cc,[f1; f2; ftank],Ts);
+[Ainit,Binit,Cinit,dx2] = discretize_rk4(Ac,Bc,Cc,[f1; f2],Ts);
 
 %% Augment matrices
 
@@ -108,7 +104,7 @@ end
 
 %% Calculate QP matrices for two compressors
 % deltax0 (augmented)
-deltax0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(usize+2); zeros(2*dsize,1)];
+deltax0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(usize+2); xinit(end-2*dsize+1:end)];
 
 % reference vector
 Yref = zeros(p*ysize,1);

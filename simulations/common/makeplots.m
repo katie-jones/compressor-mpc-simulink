@@ -147,7 +147,6 @@ if saveplots
     Results.ur = u_rec;
     Results.SD = SD;
     Results.pout = pout;
-    Results.pd = PD;
     Results.tdist = tdist;
     Results.udist = [udist1; udist2];
     Results.yref = yref;
