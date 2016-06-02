@@ -50,11 +50,21 @@ end
 % end
 
 %%
+set(0,'DefaultAxesFontSize',14)
+set(0,'DefaultLineLineWidth',2)
+figure; 
+plot(t,y1(:,1:2));
+grid on
+hold on
+plot([min(t),max(t)],[yref yref],'-.k')
+title('Predicted surge distance')
+xlabel({'Horizon length (m)'; 'x = [0.92 1.15 0.15 440 0]'''})
+ylabel('Relative surge distance [%]')
+legend('Comp. 1','Comp. 2','Ref','location','best')
 
 fig=figure; 
 set(fig,'units','centimeters','position',[35 5 28 15])
-set(0,'DefaultAxesFontSize',14)
-set(0,'DefaultLineLineWidth',2)
+
 subplot(1,2,1)
 plot(t,y1(:,1:2));
 grid on

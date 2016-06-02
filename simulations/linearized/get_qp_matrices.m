@@ -10,7 +10,7 @@ Outflow_opening = 0.393;
 u = [0.304+upast(1),Inflow_opening,Outflow_opening,upast(2),0]; % include inflow/outflow openings
 [Ac,Bc,Cc] = get_linearized_matrices(xinit,u);
 
-f = get_comp_deriv(xinit(1:5),u,0);
+f = get_comp_deriv(xinit(1:5),u,1);
 
 [Ainit,Binit,Cinit,dx2] = discretize_rk4(Ac,Bc,Cc,f,Ts);
 
