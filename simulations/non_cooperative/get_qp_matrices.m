@@ -1,31 +1,27 @@
 function [A,B,C,dx,H1,H2,f0_1,f0_2,Gd1,Gd2] = get_qp_matrices(xinit,upast,dyref,UWT,YWT)
 
 %% Constants
-[Ts,xsize_comp, xsize, ~, ysize, uoff1, uoff2, ud] = const_sim();
+[Ts,xsize_comp, xsize, ~, ysize, uoff1, uoff2] = const_sim();
 [n_delay,dsize,usize,p,m] = const_mpc();
+[~,Pin,Pout] = const_flow();
 
 x1 = xinit(1:xsize_comp);
 x2 = xinit(xsize_comp+1:2*xsize_comp);
-pd = xinit(2*xsize_comp+1);
 
-u1 = uoff1 + [upast(1); 0; 0; upast(2); 0];
-u2 = uoff2 + [upast(usize+1); 0; 0; upast(usize+2); 0];
+u1 = [uoff1 + [upast(1); 0; 0; upast(2)]; Pin; x2(1)];
+u2 = [uoff2 + [upast(usize+1); 0; 0; upast(usize+2)]; -1; Pout;];
 
-u1(end) = pd; % give output pressure as last input
-u2(end) = pd;
+[f1,m_out1] = get_comp_deriv(x1,u1,1);
+[f2,~] = get_comp_deriv(x2,[u2; m_out1],1);
 
-u = [u1; u2; ud];
+u = [u1; u2];
 
 %% Linearization
 
-[Ac,Bc,Ccorig] = linearize_tank(xinit, u);
-Cc = [Ccorig([2,4],:); Ccorig(1,:)-Ccorig(3,:); Ccorig(5,:)];
+[Ac,Bc,Ccorig] = linearize_serial(xinit, u);
+Cc = Ccorig(1:ysize,:);
 
-f1 = get_comp_deriv(x1,u1,0);
-f2 = get_comp_deriv(x2,u2,0);
-ftank = get_tank_deriv(xinit,u);
-
-[Ainit,Binit,Cinit,dx2] = discretize_rk4(Ac,Bc,Cc,[f1; f2; ftank],Ts);
+[Ainit,Binit,Cinit,dx2] = discretize_rk4(Ac,Bc,Cc,[f1; f2],Ts);
 
 %% Augment matrices
 
@@ -47,8 +43,8 @@ B = [Binit(:,1), zeros(xsize,1), Binit(:,usize+1), zeros(xsize,1);
 Cdist = eye(ysize,2*dsize);
 C = [Cinit(1:ysize,:), zeros(ysize,2*sum(n_delay)), Cdist];
 
-C1 = C([1,3,4],:);
-C2 = C([2,3,4],:);
+C1 = C(1:2,:);
+C2 = C(3:4,:);
 
 y_comp_size = size(C1,1);
 
@@ -121,7 +117,7 @@ end
 
 %% Calculate QP matrices for two compressors
 % deltax0 (augmented)
-deltax0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(usize+2); zeros(2*dsize,1)];
+deltax0 = [zeros(xsize,1); xinit(xsize+1:xsize+n_delay(2))-upast(2); xinit(xsize+n_delay(2)+1:xsize+2*n_delay(2))-upast(usize+2); xinit(end+1-2*dsize:end,1)];
 
 % reference vector
 Yref1 = zeros(p*y_comp_size,1);
@@ -131,20 +127,27 @@ for i=1:p
     Yref2(1+(i-1)*y_comp_size:i*y_comp_size,1) = dyref(y_comp_size+1:end);
 end
 
+YW1 = [500 5];
+YW2 = [1000 5];
+
+
+YWT1 = kron(eye(p),diag(YW1'));
+YWT2 = kron(eye(p),diag(YW2'));
+
 % Quadratic term for each compressor
-H1 = Su1'*YWT*Su1 + UWT;
-H2 = Su2'*YWT*Su2 + UWT;
+H1 = Su1'*YWT1*Su1 + UWT;
+H2 = Su2'*YWT2*Su2 + UWT;
 
 % Cross terms
-Ga1 = YWT*Su1; % yref cross term
-Gb1 = Sx1'*YWT*Su1; % deltax0 cross term
-Gc1 = Sf1'*YWT*Su1; % dx (derivative at lin. pt.) cross term
-Gd1 = Su2'*YWT*Su1; % u_other cross term
+Ga1 = YWT1*Su1; % yref cross term
+Gb1 = Sx1'*YWT1*Su1; % deltax0 cross term
+Gc1 = Sf1'*YWT1*Su1; % dx (derivative at lin. pt.) cross term
+Gd1 = Su2'*YWT1*Su1; % u_other cross term
 
-Ga2 = YWT*Su2;
-Gb2 = Sx2'*YWT*Su2;
-Gc2 = Sf2'*YWT*Su2;
-Gd2 = Su1'*YWT*Su2;
+Ga2 = YWT2*Su2;
+Gb2 = Sx2'*YWT2*Su2;
+Gc2 = Sf2'*YWT2*Su2;
+Gd2 = Su1'*YWT2*Su2;
 
 % Gradient vector
 f0_1 = dx'*Gc1 - Yref1'*Ga1 + deltax0'*Gb1;
