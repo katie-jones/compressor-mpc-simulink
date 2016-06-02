@@ -10,7 +10,7 @@ n_controller_iterations = 3;
 
 % Choose filename and directory for saving results
 % Plotting function should take care of ensuring no results are overwritten
-results_folder = '../results/cooperative_barrier/';
+results_folder = '../results/cooperative/';
 results_fname = [num2str(n_controller_iterations),'it'];
 results_overwrite = 0;
 saveplots = 1;
