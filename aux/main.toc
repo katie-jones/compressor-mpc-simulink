@@ -1,0 +1,31 @@
+\contentsline {section}{Abstract}{i}{Doc-Start}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}Literature Review}{2}{chapter.2}
+\contentsline {section}{\numberline {2.1}Compressor Models}{2}{section.2.1}
+\contentsline {section}{\numberline {2.2}Model Predictive Control of Compressor Systems}{2}{section.2.2}
+\contentsline {section}{\numberline {2.3}Distributed Model Predictive Control}{2}{section.2.3}
+\contentsline {chapter}{\numberline {3}Modelling \& Simulation}{3}{chapter.3}
+\contentsline {section}{\numberline {3.1}Single Compressor}{3}{section.3.1}
+\contentsline {section}{\numberline {3.2}Parallel Compressor System}{3}{section.3.2}
+\contentsline {section}{\numberline {3.3}Serial Compressor System}{3}{section.3.3}
+\contentsline {chapter}{\numberline {4}Model Predictive Control}{4}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introduction? Fundamental Equations?}{4}{section.4.1}
+\contentsline {section}{\numberline {4.2}Centralized Approach}{4}{section.4.2}
+\contentsline {section}{\numberline {4.3}Distributed MPC}{4}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Cooperative Control}{4}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Non-cooperative Control}{4}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Distributed State Estimation?}{4}{subsection.4.3.3}
+\contentsline {chapter}{\numberline {5}Implementation}{5}{chapter.5}
+\contentsline {section}{\numberline {5.1}Quadratic Programming Solver}{5}{section.5.1}
+\contentsline {section}{\numberline {5.2}Embedded MATLAB Implementation}{5}{section.5.2}
+\contentsline {section}{\numberline {5.3}C++ Implementation}{5}{section.5.3}
+\contentsline {chapter}{\numberline {6}Results}{6}{chapter.6}
+\contentsline {section}{\numberline {6.1}Parallel Compressor System}{6}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Benchmark Tests}{6}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Comparison: Controller Performance}{6}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Comparison: Computation Time}{6}{subsection.6.1.3}
+\contentsline {section}{\numberline {6.2}Serial Compressor System}{6}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Benchmark Tests}{6}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Comparison: Controller Performance}{6}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Comparison: Computation Time}{6}{subsection.6.2.3}
+\contentsline {chapter}{\numberline {7}Conclusion}{7}{chapter.7}
