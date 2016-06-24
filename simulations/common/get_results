@@ -1,0 +1,11 @@
+filename = '../../../cpp/build/cent_output.dat';
+res_cent = read_cpp_results(filename,11,4,4);
+res_cent.yref = [4.5,4.5,0,1.12];
+
+filename = '../../../cpp/build/coop_output3.dat';
+res_coop = read_cpp_results(filename,11,4,4);
+res_coop.yref = [4.5,4.5,0,1.12];
+
+filename = '../../../cpp/build/noncoop_output3.dat';
+res_ncoop = read_cpp_results(filename,11,4,4);
+res_ncoop.yref = [4.5,4.5,0,1.12];
