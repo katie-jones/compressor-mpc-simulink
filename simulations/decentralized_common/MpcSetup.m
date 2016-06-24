@@ -13,7 +13,7 @@ xtotalsize = xsize + 2*sum(n_delay) + 2*dsize;
 %% Initial state
 u_init = zeros(2*ucontrolsize,1);
 xinit = [xinit; zeros(xtotalsize-xsize,1)];
-[A,B,C] = get_qp_matrices(xinit, u_init, zeros(ysize,1),UWT,YWT);
+[A,B,C] = get_qp_matrices(xinit, u_init, zeros(ysize,1),UWT,YWT1,YWT2);
 
 D = zeros(ysize);
 

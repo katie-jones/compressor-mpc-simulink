@@ -1,4 +1,4 @@
-function [A,B,C,dx,H1,H2,f0_1,f0_2,Gd1,Gd2] = get_qp_matrices(xinit,upast,dyref,UWT,YWT)
+function [A,B,C,dx,H1,H2,f0_1,f0_2,Gd1,Gd2] = get_qp_matrices(xinit,upast,dyref,UWT,YWT1,YWT2)
 
 %% Constants
 [Ts,xsize_comp, xsize, ~, ysize, uoff1, uoff2] = const_sim();
@@ -127,12 +127,6 @@ for i=1:p
     Yref2(1+(i-1)*y_comp_size:i*y_comp_size,1) = dyref(y_comp_size+1:end);
 end
 
-YW1 = [500 5];
-YW2 = [1000 5];
-
-
-YWT1 = kron(eye(p),diag(YW1'));
-YWT2 = kron(eye(p),diag(YW2'));
 
 % Quadratic term for each compressor
 H1 = Su1'*YWT1*Su1 + UWT;

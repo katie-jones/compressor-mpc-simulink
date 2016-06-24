@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.418"
+    ComputedModelVersion    "1.421"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Wed May 25 14:11:57 2016"
-  RTWModifiedTimeStamp	  386081773
-  ModelVersionFormat	  "1.%<AutoIncrement:418>"
+  LastModifiedDate	  "Mon Jun 13 11:24:17 2016"
+  RTWModifiedTimeStamp	  387717852
+  ModelVersionFormat	  "1.%<AutoIncrement:421>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -110,7 +110,7 @@ Model {
 	  $ObjectID		  2
 	  Version		  "1.6.0"
 	  StartTime		  "0.0"
-	  StopTime		  "500"
+	  StopTime		  "1000"
 	  AbsTol		  "auto"
 	  FixedStep		  "0.05"
 	  InitialStep		  "auto"
@@ -747,7 +747,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    895
+    SIDHighWatermark	    896
     Block {
       BlockType		      Demux
       Name		      "Demux"
@@ -926,7 +926,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1422, 120, 1760, 393]
+      Location		      [1387, 144, 1725, 417]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -1002,7 +1002,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1827, 497, 2158, 770]
+      Location		      [1848, 523, 2179, 796]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -1011,8 +1011,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "-0.025"
-      YMax		      "0.3"
+      YMin		      "-0.12"
+      YMax		      "0.02"
       SaveName		      "SD4"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -1089,7 +1089,7 @@ Model {
       System {
 	Name			"controller"
 	Location		[10, 82, 1270, 900]
-	Open			off
+	Open			on
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
 	ScreenColor		"white"
@@ -1122,7 +1122,7 @@ Model {
 	  BlockType		  Constant
 	  Name			  "Constant"
 	  SID			  869
-	  Position		  [940, 435, 970, 465]
+	  Position		  [940, 370, 970, 400]
 	  BlockMirror		  on
 	  ShowName		  off
 	  Value			  "UWT"
@@ -1133,10 +1133,10 @@ Model {
 	  BlockType		  Constant
 	  Name			  "Constant1"
 	  SID			  870
-	  Position		  [935, 545, 965, 575]
+	  Position		  [940, 460, 970, 490]
 	  BlockMirror		  on
 	  ShowName		  off
-	  Value			  "YWT"
+	  Value			  "YWT1"
 	  OutDataType		  "fixdt(1, 16)"
 	  OutScaling		  "2^0"
 	}
@@ -1152,10 +1152,21 @@ Model {
 	  OutScaling		  "2^0"
 	}
 	Block {
+	  BlockType		  Constant
+	  Name			  "Constant3"
+	  SID			  896
+	  Position		  [940, 550, 970, 580]
+	  BlockMirror		  on
+	  ShowName		  off
+	  Value			  "YWT2"
+	  OutDataType		  "fixdt(1, 16)"
+	  OutScaling		  "2^0"
+	}
+	Block {
 	  BlockType		  SubSystem
 	  Name			  "Linearization"
 	  SID			  421
-	  Ports			  [5, 11]
+	  Ports			  [6, 11]
 	  Position		  [760, 69, 910, 611]
 	  BlockMirror		  on
 	  NamePlacement		  "alternate"
@@ -1198,7 +1209,7 @@ Model {
 	    TiledPageScale	    1
 	    ShowPageBoundaries	    off
 	    ZoomFactor		    "100"
-	    SIDHighWatermark	    36
+	    SIDHighWatermark	    37
 	    Block {
 	      BlockType		      Inport
 	      Name		      "yin"
@@ -1234,10 +1245,18 @@ Model {
 	    }
 	    Block {
 	      BlockType		      Inport
-	      Name		      "YWT"
+	      Name		      "YWT1"
 	      SID		      36
 	      Position		      [20, 246, 40, 264]
 	      Port		      "5"
+	      IconDisplay	      "Port number"
+	    }
+	    Block {
+	      BlockType		      Inport
+	      Name		      "YWT2"
+	      SID		      37
+	      Position		      [20, 281, 40, 299]
+	      Port		      "6"
 	      IconDisplay	      "Port number"
 	    }
 	    Block {
@@ -1253,10 +1272,10 @@ Model {
 	      Name		      " SFunction "
 	      SID		      6
 	      Tag		      "Stateflow S-Function decentralized_closedloop 2"
-	      Ports		      [5, 12]
+	      Ports		      [6, 12]
 	      Position		      [180, 135, 230, 395]
 	      FunctionName	      "sf_sfun"
-	      PortCounts	      "[5 12]"
+	      PortCounts	      "[6 12]"
 	      EnableBusSupport	      on
 	      Port {
 		PortNumber		2
@@ -1451,10 +1470,16 @@ Model {
 	      DstPort		      4
 	    }
 	    Line {
-	      SrcBlock		      "YWT"
+	      SrcBlock		      "YWT1"
 	      SrcPort		      1
 	      DstBlock		      " SFunction "
 	      DstPort		      5
+	    }
+	    Line {
+	      SrcBlock		      "YWT2"
+	      SrcPort		      1
+	      DstBlock		      " SFunction "
+	      DstPort		      6
 	    }
 	    Line {
 	      Name		      "H1"
@@ -2110,7 +2135,7 @@ Model {
 	  SrcPort		  1
 	  Points		  [140, 0]
 	  Branch {
-	    Points		    [405, 0; 0, -500]
+	    Points		    [405, 0; 0, -525]
 	    DstBlock		    "Linearization"
 	    DstPort		    2
 	  }
@@ -2123,7 +2148,7 @@ Model {
 	Line {
 	  SrcBlock		  "Memory2"
 	  SrcPort		  1
-	  Points		  [495, 0; 0, -310]
+	  Points		  [495, 0; 0, -355]
 	  DstBlock		  "Linearization"
 	  DstPort		  3
 	}
@@ -2224,6 +2249,7 @@ Model {
 	Line {
 	  SrcBlock		  "Mux"
 	  SrcPort		  1
+	  Points		  [-20, 0]
 	  DstBlock		  "Linearization"
 	  DstPort		  1
 	}
@@ -2257,6 +2283,12 @@ Model {
 	  DstBlock		  "Output1"
 	  DstPort		  1
 	}
+	Line {
+	  SrcBlock		  "Constant3"
+	  SrcPort		  1
+	  DstBlock		  "Linearization"
+	  DstPort		  6
+	}
 	Annotation {
 	  Position		  [793, 303]
 	}
@@ -2272,8 +2304,8 @@ Model {
       Ports		      [1]
       Position		      [1125, 479, 1155, 511]
       Floating		      off
-      Location		      [2213, 498, 2551, 771]
-      Open		      on
+      Location		      [937, 498, 1275, 771]
+      Open		      off
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
       List {
@@ -2281,8 +2313,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "200"
-      YMin		      "0.16"
-      YMax		      "0.174"
+      YMin		      "0.125"
+      YMax		      "0.185"
       SaveName		      "SD8"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -2318,7 +2350,7 @@ Model {
       Ports		      [1]
       Position		      [750, 29, 780, 61]
       Floating		      off
-      Location		      [1816, 117, 2154, 409]
+      Location		      [2201, 123, 2539, 415]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2341,7 +2373,7 @@ Model {
       Ports		      [1]
       Position		      [750, 109, 780, 141]
       Floating		      off
-      Location		      [2240, 114, 2578, 406]
+      Location		      [1834, 123, 2172, 415]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2350,8 +2382,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "1.175"
-      YMax		      "1.425"
+      YMin		      "1.179"
+      YMax		      "1.195"
       SaveName		      "SD1"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -2365,7 +2397,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1430, 495, 1768, 760]
+      Location		      [1350, 553, 1688, 818]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2374,8 +2406,8 @@ Model {
 	axes1			"%<SignalLabel>"
       }
       TimeRange		      "100"
-      YMin		      "0.045"
-      YMax		      "0.0545"
+      YMin		      "0.04125"
+      YMax		      "0.04475"
       SaveName		      "SD5"
       DataFormat	      "Array"
       LimitDataPoints	      off
@@ -2771,9 +2803,7 @@ Stateflow {
     name		    "decentralized_closedloop"
     created		    "22-Mar-2016 14:20:31"
     isLibrary		    0
-    firstTarget		    51
-    debug {
-    }
+    firstTarget		    52
     sfVersion		    71014000.00001
   }
   chart {
@@ -3019,7 +3049,7 @@ Stateflow {
     firstJunction	    16
     viewObj		    14
     machine		    1
-    ssIdHighWaterMark	    32
+    ssIdHighWaterMark	    33
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
     firstData		    18
@@ -3044,14 +3074,15 @@ Stateflow {
     eml {
       isEML		      1
       script		      "function [H1, f0_1, Gd1, H2, f0_2, Gd2, xout, A, B, df0, dxaug]  = fcn(yin, upast, dxaug_in,UWT,Y"
-      "WT)\n%#eml\n% persistent C_new M LB UB Ga Gb Gc H Ain b A B upast xinit\npersistent M xinit y_old C \neml.extrin"
-      "sic('disp');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard')"
-      ";\neml.extrinsic('quadprog');\n\n\n\n[~, ~, xsize, ~, ysize] = const_sim();\n% [n_delay,dsize,~,p] = const_mpc()"
-      ";\n\nif isempty(M)\n    tic\n    [C,M,~,~,~,~,xinit,~,y_old] = get_constant_matrices();\n    time = toc;\n    di"
-      "sp(['Preparation time: ' num2str(time)]);\nend\n\n\ny = yin(1:ysize);\nyref = yin(ysize+1:end);\n\n% Estimate st"
-      "ate info\ndxaug = dxaug_in + M*(y - y_old - C*(dxaug_in));\n\ny_old = y;\n\n% Use state input info to calculate "
-      "x, y\nxinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\n\nxout = xinit;"
-      "\n\n% get matrices\n[A,B,C,df0,H1,H2,f0_1,f0_2,Gd1,Gd2] = get_qp_matrices(xinit,upast,yref-y,UWT,YWT);\n\n\n"
+      "WT1,YWT2)\n%#eml\n% persistent C_new M LB UB Ga Gb Gc H Ain b A B upast xinit\npersistent M xinit y_old C \neml."
+      "extrinsic('disp');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyb"
+      "oard');\neml.extrinsic('quadprog');\n\n\n\n[~, ~, xsize, ~, ysize] = const_sim();\n% [n_delay,dsize,~,p] = const"
+      "_mpc();\n\nif isempty(M)\n    tic\n    [C,M,~,~,~,~,xinit,~,y_old] = get_constant_matrices();\n    time = toc;\n"
+      "    disp(['Preparation time: ' num2str(time)]);\nend\n\n\ny = yin(1:ysize);\nyref = yin(ysize+1:end);\n\n% Estim"
+      "ate state info\ndxaug = dxaug_in + M*(y - y_old - C*(dxaug_in));\n\ny_old = y;\n\n% Use state input info to calc"
+      "ulate x, y\nxinit(1:xsize) = xinit(1:xsize)+dxaug(1:xsize);\nxinit(xsize+1:end) = dxaug(xsize+1:end);\n\nxout = "
+      "xinit;\n\n% get matrices\n[A,B,C,df0,H1,H2,f0_1,f0_2,Gd1,Gd2] = get_qp_matrices(xinit,upast,yref-y,UWT,YWT1,YWT2"
+      ");\n\n\n"
       editorLayout	      "100 M4x1[1272 65 1296 1000]"
       breakpoints	      "100 M[41]"
     }
@@ -3414,8 +3445,30 @@ Stateflow {
   data {
     id			    33
     ssIdNumber		    32
-    name		    "YWT"
-    linkNode		    [14 32 0]
+    name		    "YWT1"
+    linkNode		    [14 32 34]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    34
+    ssIdNumber		    33
+    name		    "YWT2"
+    linkNode		    [14 33 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -3434,26 +3487,26 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   instance {
-    id			    34
+    id			    35
     name		    "controller/Linearization"
     machine		    1
     chart		    14
   }
   chart {
-    id			    35
+    id			    36
     name		    "controller/Output1"
     windowPosition	    [363.062 278.725 200.25 189.75]
     viewLimits		    [0 156.75 0 153.75]
     screen		    [1 1 1280 1024 1.333333333333333]
-    treeNode		    [0 36 0 0]
-    firstTransition	    38
-    firstJunction	    37
-    viewObj		    35
+    treeNode		    [0 37 0 0]
+    firstTransition	    39
+    firstJunction	    38
+    viewObj		    36
     machine		    1
     ssIdHighWaterMark	    30
     decomposition	    CLUSTER_CHART
     type		    EML_CHART
-    firstData		    39
+    firstData		    40
     chartFileNumber	    3
     disableImplicitCasting  1
     eml {
@@ -3461,14 +3514,14 @@ Stateflow {
     }
   }
   state {
-    id			    36
+    id			    37
     labelString		    "eML_blk_kernel()"
     position		    [18 64.5 118 66]
     fontSize		    12
-    chart		    35
-    treeNode		    [35 0 0 0]
+    chart		    36
+    treeNode		    [36 0 0 0]
     superState		    SUBCHART
-    subviewer		    35
+    subviewer		    36
     ssIdNumber		    1
     type		    FUNC_STATE
     decomposition	    CLUSTER_STATE
@@ -3496,16 +3549,16 @@ Stateflow {
     }
   }
   junction {
-    id			    37
+    id			    38
     position		    [23.5747 49.5747 7]
-    chart		    35
-    linkNode		    [35 0 0]
-    subviewer		    35
+    chart		    36
+    linkNode		    [36 0 0]
+    subviewer		    36
     ssIdNumber		    3
     type		    CONNECTIVE_JUNCTION
   }
   transition {
-    id			    38
+    id			    39
     labelString		    "{eML_blk_kernel();}"
     labelPosition	    [32.125 19.875 102.544 14.964]
     fontSize		    12
@@ -3513,23 +3566,23 @@ Stateflow {
       intersection	      [0 0 1 0 23.5747 14.625 0 0]
     }
     dst {
-      id		      37
+      id		      38
       intersection	      [7 0 -1 -1 23.5747 42.5747 0 0]
     }
     midPoint		    [23.5747 24.9468]
-    chart		    35
-    linkNode		    [35 0 0]
+    chart		    36
+    linkNode		    [36 0 0]
     dataLimits		    [23.575 23.575 14.625 34.575]
-    subviewer		    35
+    subviewer		    36
     drawStyle		    SMART
     executionOrder	    1
     ssIdNumber		    2
   }
   data {
-    id			    39
+    id			    40
     ssIdNumber		    30
     name		    "n_iterations"
-    linkNode		    [35 0 40]
+    linkNode		    [36 0 41]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -3544,33 +3597,14 @@ Stateflow {
       }
       complexity	      SF_COMPLEX_INHERITED
       frame		      SF_FRAME_INHERITED
-    }
-    dataType		    "Inherit: Same as Simulink"
-  }
-  data {
-    id			    40
-    ssIdNumber		    4
-    name		    "H1"
-    linkNode		    [35 39 41]
-    scope		    INPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"-1"
-      }
-      type {
-	method			SF_INHERITED_TYPE
-	primitive		SF_DOUBLE_TYPE
-      }
-      complexity	      SF_COMPLEX_INHERITED
     }
     dataType		    "Inherit: Same as Simulink"
   }
   data {
     id			    41
-    ssIdNumber		    26
-    name		    "f01"
-    linkNode		    [35 40 42]
+    ssIdNumber		    4
+    name		    "H1"
+    linkNode		    [36 40 42]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -3580,19 +3614,16 @@ Stateflow {
       type {
 	method			SF_INHERITED_TYPE
 	primitive		SF_DOUBLE_TYPE
-	isSigned		1
-	wordLength		"16"
       }
       complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_INHERITED
     }
     dataType		    "Inherit: Same as Simulink"
   }
   data {
     id			    42
-    ssIdNumber		    16
-    name		    "Gd1"
-    linkNode		    [35 41 43]
+    ssIdNumber		    26
+    name		    "f01"
+    linkNode		    [36 41 43]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -3606,15 +3637,15 @@ Stateflow {
 	wordLength		"16"
       }
       complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_NO
+      frame		      SF_FRAME_INHERITED
     }
     dataType		    "Inherit: Same as Simulink"
   }
   data {
     id			    43
-    ssIdNumber		    25
-    name		    "H2"
-    linkNode		    [35 42 44]
+    ssIdNumber		    16
+    name		    "Gd1"
+    linkNode		    [36 42 44]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -3628,16 +3659,16 @@ Stateflow {
 	wordLength		"16"
       }
       complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_INHERITED
+      frame		      SF_FRAME_NO
     }
     dataType		    "Inherit: Same as Simulink"
   }
   data {
     id			    44
-    ssIdNumber		    5
-    name		    "uout"
-    linkNode		    [35 43 45]
-    scope		    OUTPUT_DATA
+    ssIdNumber		    25
+    name		    "H2"
+    linkNode		    [36 43 45]
+    scope		    INPUT_DATA
     machine		    1
     props {
       array {
@@ -3646,18 +3677,20 @@ Stateflow {
       type {
 	method			SF_INHERITED_TYPE
 	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
       }
       complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_NO
+      frame		      SF_FRAME_INHERITED
     }
     dataType		    "Inherit: Same as Simulink"
   }
   data {
     id			    45
-    ssIdNumber		    21
-    name		    "f02"
-    linkNode		    [35 44 46]
-    scope		    INPUT_DATA
+    ssIdNumber		    5
+    name		    "uout"
+    linkNode		    [36 44 46]
+    scope		    OUTPUT_DATA
     machine		    1
     props {
       array {
@@ -3666,41 +3699,17 @@ Stateflow {
       type {
 	method			SF_INHERITED_TYPE
 	primitive		SF_DOUBLE_TYPE
-	isSigned		1
-	wordLength		"16"
       }
       complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_INHERITED
+      frame		      SF_FRAME_NO
     }
     dataType		    "Inherit: Same as Simulink"
   }
   data {
     id			    46
-    ssIdNumber		    23
-    name		    "exitflag_out"
-    linkNode		    [35 45 47]
-    scope		    OUTPUT_DATA
-    machine		    1
-    props {
-      array {
-	size			"-1"
-      }
-      type {
-	method			SF_INHERITED_TYPE
-	primitive		SF_DOUBLE_TYPE
-	isSigned		1
-	wordLength		"16"
-      }
-      complexity	      SF_COMPLEX_INHERITED
-      frame		      SF_FRAME_NO
-    }
-    dataType		    "Inherit: Same as Simulink"
-  }
-  data {
-    id			    47
-    ssIdNumber		    27
-    name		    "Gd2"
-    linkNode		    [35 46 48]
+    ssIdNumber		    21
+    name		    "f02"
+    linkNode		    [36 45 47]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -3719,10 +3728,10 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
-    id			    48
-    ssIdNumber		    28
-    name		    "J_out"
-    linkNode		    [35 47 49]
+    id			    47
+    ssIdNumber		    23
+    name		    "exitflag_out"
+    linkNode		    [36 46 48]
     scope		    OUTPUT_DATA
     machine		    1
     props {
@@ -3741,10 +3750,54 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   data {
+    id			    48
+    ssIdNumber		    27
+    name		    "Gd2"
+    linkNode		    [36 47 49]
+    scope		    INPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_INHERITED
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
     id			    49
+    ssIdNumber		    28
+    name		    "J_out"
+    linkNode		    [36 48 50]
+    scope		    OUTPUT_DATA
+    machine		    1
+    props {
+      array {
+	size			"-1"
+      }
+      type {
+	method			SF_INHERITED_TYPE
+	primitive		SF_DOUBLE_TYPE
+	isSigned		1
+	wordLength		"16"
+      }
+      complexity	      SF_COMPLEX_INHERITED
+      frame		      SF_FRAME_NO
+    }
+    dataType		    "Inherit: Same as Simulink"
+  }
+  data {
+    id			    50
     ssIdNumber		    29
     name		    "upast"
-    linkNode		    [35 48 0]
+    linkNode		    [36 49 0]
     scope		    INPUT_DATA
     machine		    1
     props {
@@ -3763,13 +3816,13 @@ Stateflow {
     dataType		    "Inherit: Same as Simulink"
   }
   instance {
-    id			    50
+    id			    51
     name		    "controller/Output1"
     machine		    1
-    chart		    35
+    chart		    36
   }
   target {
-    id			    51
+    id			    52
     name		    "sfun"
     description		    "Default Simulink S-Function Target."
     machine		    1
