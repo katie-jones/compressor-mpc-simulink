@@ -5,3 +5,6 @@ YW = [200 1 1000 5];
 
 UWT = kron(eye(m),diag(UW));
 YWT = kron(eye(p),diag(YW'));
+
+YWT1 = YWT;
+YWT2 = YWT;

@@ -1,4 +1,4 @@
-function [A,B,C,dx,H1,H2,f0_1,f0_2,Gd1,Gd2] = get_qp_matrices(xinit,upast,dyref,UWT,YWT)
+function [A,B,C,dx,H1,H2,f0_1,f0_2,Gd1,Gd2] = get_qp_matrices(xinit,upast,dyref,UWT,YWT,~)
 
 %% Constants
 [Ts,xsize_comp, xsize, ~, ysize, uoff1, uoff2] = const_sim();
