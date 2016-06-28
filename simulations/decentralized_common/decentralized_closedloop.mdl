@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.421"
+    ComputedModelVersion    "1.422"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -25,9 +25,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "chkajon"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Mon Jun 13 11:24:17 2016"
-  RTWModifiedTimeStamp	  387717852
-  ModelVersionFormat	  "1.%<AutoIncrement:421>"
+  LastModifiedDate	  "Tue Jun 28 12:21:25 2016"
+  RTWModifiedTimeStamp	  389017283
+  ModelVersionFormat	  "1.%<AutoIncrement:422>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -926,7 +926,7 @@ Model {
       Ports		      [1]
       Position		      [860, 149, 890, 181]
       Floating		      off
-      Location		      [1387, 144, 1725, 417]
+      Location		      [937, 144, 1275, 417]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "yonly"
@@ -1002,7 +1002,7 @@ Model {
       Position		      [130, 124, 160, 156]
       BlockMirror	      on
       Floating		      off
-      Location		      [1848, 523, 2179, 796]
+      Location		      [944, 523, 1275, 796]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2350,7 +2350,7 @@ Model {
       Ports		      [1]
       Position		      [750, 29, 780, 61]
       Floating		      off
-      Location		      [2201, 123, 2539, 415]
+      Location		      [937, 123, 1275, 415]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2373,7 +2373,7 @@ Model {
       Ports		      [1]
       Position		      [750, 109, 780, 141]
       Floating		      off
-      Location		      [1834, 123, 2172, 415]
+      Location		      [937, 123, 1275, 415]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -2397,7 +2397,7 @@ Model {
       Position		      [130, 194, 160, 226]
       BlockMirror	      on
       Floating		      off
-      Location		      [1350, 553, 1688, 818]
+      Location		      [937, 553, 1275, 818]
       Open		      on
       NumInputPorts	      "1"
       ZoomMode		      "xonly"
@@ -3532,10 +3532,10 @@ Stateflow {
       "disp');\neml.extrinsic('toc');\neml.extrinsic('tic');\neml.extrinsic('num2str');\neml.extrinsic('keyboard');\n\n"
       "[~,~,usize,~,m] = const_mpc();\n\n\nif isempty(LB)\n    tic\n    [~,~,UB,LB,b,Ain] = get_constant_matrices();\n "
       "   usol_past = zeros(m*usize, 2);\n    time = toc;\n    disp(['Preparation time: ' num2str(time)]);\nend\n\nn_ma"
-      "x_iterations = 4;\n\ndu_other1 = usol_past(:,1);\ndu_other2 = usol_past(:,2);\n\n% Get reference and input vecto"
-      "r\nUpast1 = zeros(m*usize,1);\nUpast2 = zeros(m*usize,1);\nfor i=1:m\n    Upast1(1+(i-1)*usize:i*usize,1) = upas"
-      "t(1:usize);\n    Upast2(1+(i-1)*usize:i*usize,1) = upast(usize+1:2*usize);\nend\n\n% Update bounds\nLBa1 = LB - "
-      "Upast1;\nUBa1 = UB - Upast1;\n\nLBa2 = LB - Upast2;\nUBa2 = UB - Upast2;\n\nJ_out = zeros(n_max_iterations,2);\n"
+      "x_iterations = 10;\n\ndu_other1 = usol_past(:,1);\ndu_other2 = usol_past(:,2);\n\n% Get reference and input vect"
+      "or\nUpast1 = zeros(m*usize,1);\nUpast2 = zeros(m*usize,1);\nfor i=1:m\n    Upast1(1+(i-1)*usize:i*usize,1) = upa"
+      "st(1:usize);\n    Upast2(1+(i-1)*usize:i*usize,1) = upast(usize+1:2*usize);\nend\n\n% Update bounds\nLBa1 = LB -"
+      " Upast1;\nUBa1 = UB - Upast1;\n\nLBa2 = LB - Upast2;\nUBa2 = UB - Upast2;\n\nJ_out = zeros(n_max_iterations,2);\n"
       "\nuout = zeros(2*m*usize,1);\n\nexitflag_out = 0;\n\n\nfor i=1:n_max_iterations\n    % Update linear term to add"
       " effect of other compressor\n    f1 = f01 + du_other1'*Gd1;\n    f2 = f02 + du_other2'*Gd2;\n    \n    % Solve Q"
       "P\n    lbA = -inf(size(Ain,1),1);\n    [usol1,J1] = call_qpoases_m(H1,f1,Ain,LBa1,UBa1,lbA,b);\n    [usol2,J2,ex"
