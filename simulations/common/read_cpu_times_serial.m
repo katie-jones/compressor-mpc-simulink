@@ -8,7 +8,7 @@ noncoop_times = coop_times;
 noncoop_smoothed_times = coop_smoothed_times;
 
 for i=1:N
-    filename = ['/home/katie/school/MasterThesis/cpp/parallel/output/coop_cpu_times',num2str(i),'.dat'];
+    filename = ['/home/katie/school/MasterThesis/cpp/serial/output/coop_cpu_times',num2str(i),'.dat'];
     f = fopen(filename,'r');
     A = fscanf(f,'%g'); 
     fclose(f);
@@ -17,7 +17,7 @@ for i=1:N
         coop_smoothed_times(j,i) = mean(coop_times((j-1)*10+1:j*10,i));
     end
     
-    filename = ['/home/katie/school/MasterThesis/cpp/parallel/output/noncoop_cpu_times',num2str(i),'.dat'];
+    filename = ['/home/katie/school/MasterThesis/cpp/serial/output/ncoop_cpu_times',num2str(i),'.dat'];
     f = fopen(filename,'r');
     A = fscanf(f,'%g'); 
     fclose(f);
@@ -27,7 +27,7 @@ for i=1:N
     end
 end
 
-filename = '/home/katie/school/MasterThesis/cpp/parallel/output/cent_cpu_times.dat';
+filename = '/home/katie/school/MasterThesis/cpp/serial/output/cent_cpu_times.dat';
 f = fopen(filename,'r');
 A = fscanf(f,'%g'); 
 fclose(f);
@@ -46,7 +46,7 @@ xlabel('Number of solver iterations')
 ylabel('Average computation time [ms]')
 legend('Centralized','Cooperative','Non-cooperative','location','best')
 fig=printplot(fig);
-if saveplots
-    saveas(fig,'computation_cost.fig')
-    saveas(fig,'computation_cost.pdf')
+if exist('saveplots','var') && saveplots~=0
+    saveas(fig,'serial_computation_cost.fig')
+    saveas(fig,'serial_computation_cost.pdf')
 end
