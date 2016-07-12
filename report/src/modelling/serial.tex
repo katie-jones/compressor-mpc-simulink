@@ -2,3 +2,81 @@
 \label{sec:mod:serial}
 
 In the serial compressor system, the two compressors are arranged such that the discharge tank of the first compressor feeds into the suction tank of the second compressor, as shown in Figure~\ref{fig:mod:serial}.
+The inlet pressure of Compressor 1 as well as the outlet pressure of Compressor 2 ($p\ut{in,1}$ and $p\ut{out,2}$) are constrained to be at atmospheric pressure.
+Furthermore, the inlet valve to Compressor 2 has been replaced by the outlet valve of Compressor 1. The state equations for this system are thus given by:
+
+\begin{equation}
+  \dt{}
+  \begin{bmatrix}
+    \bm{x_1}\\
+    \bm{x_2}\\
+  \end{bmatrix} =
+  \begin{bmatrix}
+    \bm{f_1}\\
+    \bm{f_2}
+  \end{bmatrix},
+  \label{eq:mod:serial-state-eq}
+\end{equation}
+
+where $\bm{x_i}$ and $\bm{f_i}$ for $i=1,\ 2$ are defined in \eqref{eq:mod:single_comp_states}, and the following constraints are applied representing the interconnection of the two compressors:
+
+\begin{equation}
+  \begin{split}
+    p\ut{out,1} & = p\ut{s,2}\\
+    p\ut{in,2} & = p\ut{d,1}\\
+    \bm{\gamma_2} & = \bm{\varepsilon_1}\\
+    u\ut{s,2} & = u\ut{d,1}.
+  \end{split}
+  \label{eq:mod:serial-constraints}
+\end{equation}
+
+The valve connecting the two compressors (controlled by $u\ut{d,1}$) is fixed at a fully open position in order to minimize pressure losses in the system.
+
+
+\begin{figure}[]
+  \centering
+  \togglefalse{compleg}
+  \togglefalse{complabel}
+  \newdimen\xcoord
+  \newdimen\ycoord
+  \newdimen\xcoordb
+  \newdimen\ycoordb
+
+  \resizebox{\linewidth}{!}{%
+    \begin{tikzpicture}
+      \renewcommand{\complabelsuffix}{,1}
+      % draw first compressor
+      \drawcomp
+      % \draw (current bounding box.south west) rectangle (current bounding box.north east);
+
+      \togglefalse{compfirstvalve}
+
+      \pgfgetlastxy{\xcoord}{\ycoord}
+      \renewcommand{\complabelsuffix}{,2}
+
+      % Draw second compressor shifted
+      \begin{scope}[yscale=-1,xscale=1,shift={($(\xcoord,\ycoord) - (0.5*\tankdim,6.65)$)}]
+        \drawcomp
+      \end{scope}
+
+      \pgfgetlastxy{\xcoordb}{\ycoordb}
+
+    \end{tikzpicture}
+  }
+  \begin{tikzpicture}[overlay]
+    \coordinate (origin) at (0.2,6.5);
+    % Label compressors
+    \node at ($(origin) - (3.1,0)$) {Compressor 1};
+    \node at ($(origin) + (3.1,0)$) {Compressor 2};
+    \node at ($(origin) + (6.2,-0.2)$) {\bctext{p_\text{a}}};
+    \node at ($(origin) - (6.0,-2.7)$) {\bctext{p_\text{a}}};
+
+    % Legend
+    \drawlegend{($(origin)+(4.5,-4)$)}
+
+  \end{tikzpicture}
+
+
+  \caption{Diagram of serial compressor system with inputs and states labelled. $p_\text{a}$ represents atmospheric pressure.}
+  \label{fig:mod:serial}
+\end{figure}

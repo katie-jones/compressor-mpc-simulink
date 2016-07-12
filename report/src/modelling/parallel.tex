@@ -6,47 +6,100 @@ For simplicity, the two compressors are assumed to have identical parameters and
 
 \begin{figure}[]
   \centering
-  \includegraphics[width=\linewidth]{modelling/parallel_diagram.png}
-  \caption{Diagram of parallel compressor system}
+  \togglefalse{compleg}
+  \togglefalse{complabel}
+  \resizebox{0.8\linewidth}{!}{%
+    \begin{tikzpicture}
+      % draw first compressor
+      \renewcommand{\complabelsuffix}{,1}
+      \drawcomp
+
+      % Draw second compressor shifted
+      \begin{scope}[yscale=1,xscale=-1,shift={(-25,0)}]
+      \renewcommand{\complabelsuffix}{,2}
+        \drawcomp
+      \end{scope}
+
+      % Increase size of bounding box
+      \useasboundingbox ($(current bounding box.south east) - (0,2)$) rectangle (current bounding box.north west |- 0,17);
+
+    \end{tikzpicture}
+  }
+  \begin{tikzpicture}[overlay]
+    \node[align=center] (origin) at (-6.25,6.0) {Common\\Tank\\\statetext{p_\text{t}}};
+
+    % Coordinates
+    \coordinate (ctank-bl) at ($(origin)-(1.75,1.25)$);
+    \coordinate (ctank-tr) at ($(ctank-bl) + (3.5,2.5)$);
+    \coordinate (ovalve) at ($0.5*(ctank-tr)+0.5*(ctank-tr -| ctank-bl) + (0,\valvewidth) + (0,1)$);
+
+    % Draw common tank and valve
+    \drawtank{(ctank-bl)}{(ctank-tr)}
+    \drawvalve[rotate=90, transform shape]{ovalve}{0.4}
+    \node[below, rotate=90, transform shape, align=center] at ($(ovalve)+(\valveheight,0)$) {Common\\Tank Valve};
+
+    % Draw flow arrows
+    \drawflow[<-]{($(ovalve)-(0,\valvewidth)-(0,0.5*\valvethick)$)}{($(ovalve |- ctank-tr) + (0, 0.5*\tankthick)$)}
+    \drawflow[->]{($(ovalve)+(0,\valvewidth)+(0,0.5*\valvethick)$)}{+(0,1)}
+
+    % Label valve
+    \draw[<-,draw=inputcolor,line width=2pt] ($(ovalve)-(2*\valveheight,0)$) -- ++(-1,0) node[below right]{\inputtext{u_\text{t}}};
+
+    % Legend
+    \drawlegend{($(ovalve)+(3.5,0)$)}
+
+    % Label boundary conditions
+    \node at ($(ovalve)+(0,2)$) {\bctext{p_\text{a}}};
+    \node at ($(origin)+(5,0.5)$) {\bctext{p_\text{a}}};
+    \node at ($(origin)+(-5,0.5)$) {\bctext{p_\text{a}}};
+
+    % Label individual compressors
+    \node[align=center] at ($(origin)-(3,5.5)$) {Compressor 1};
+    \node[align=center] at ($(origin)+(3,-5.5)$) {Compressor 2};
+
+  \end{tikzpicture}
+
+  \caption{Diagram of parallel compressor system with inputs and states labelled.}
   \label{fig:mod:parallel}
 \end{figure}
+
 
 
 The model used has 11 states in total: 5 states for each compressor, as described above, and another state for the pressure in the common tank. It's dynamics are given by:
 
 \begin{equation}
   \dt{}\begin{bmatrix}
-    \vec{x_1}\\
-    \vec{x_2}\\
+    \bm{x_1}\\
+    \bm{x_2}\\
     p_\text{t}
   \end{bmatrix}
   =
   \begin{bmatrix}
-    \vec{f_1}\\
-    \vec{f_2}\\
+    \bm{f_1}\\
+    \bm{f_2}\\
     \frac{a^2}{V_\text{t}}\left(q_{\text{d,1}}+q_{\text{d,2}}-q_{\text{d,t}}\right)
   \end{bmatrix},
 \end{equation}
 
 \begin{equation}
   \begin{split}
-    q_{\text{d,1}} & = q_{\text{d,1}}(\vec{\varepsilon_1},\ u_{\text{out},1},\ p_{\text{t}},\ p_{\text{d,1}})\\
-    q_{\text{d,2}} & = q_{\text{d,2}}(\vec{\varepsilon_2},\ u_{\text{\text{out}},2},\ p_{\text{t}},\ p_{\text{d,2}})\\
-    q_{\text{d,t}} & = q_{\text{d,t}}(\vec{\rho},\ u_{\text{t}},\ p_\text{t},\ p_{\text{out}})
+    q_{\text{d,1}} & = q_{\text{d,1}}(\bm{\varepsilon_1},\ u_{\text{d},1},\ p_{\text{t}},\ p_{\text{d,1}})\\
+    q_{\text{d,2}} & = q_{\text{d,2}}(\bm{\varepsilon_2},\ u_{\text{\text{d}},2},\ p_{\text{t}},\ p_{\text{d,2}})\\
+    q_{\text{d,t}} & = q_{\text{d,t}}(\bm{\rho},\ u_{\text{t}},\ p_\text{t},\ p_{\text{out}})
   \end{split}
 \end{equation}
 
 where:
 
 \begin{itemize}
-  \item $\vec{x}$ and $\vec{f}$ are the states and derivatives of a single compressor, defined in \eqref{eq:mod:single_comp_states};
-  \item $p_\text{t}$ and $V_\text{t}$ are the pressure and the volume of the common tank, respectively; 
-  \item $q_{\text{d,t}}$ is the mass flow across the common tank discharge valve;
-  \item $\vec{\rho}$ contains the coefficients mapping the mass flow through the common tank discharge valve to the pressure differential across the valve;
-  \item $u_\text{t}$ is the discharge valve opening of the common tank; and
+  \item $\bm{x}$ and $\bm{f}$ are the states and derivatives of a single compressor, defined in \eqref{eq:mod:single_comp_states};
+  \item \addsym{$p_\text{t}$}{Common tank pressure (parallel system)} and \addsym{$V_\text{t}$}{Common tank volume (parallel system} are the pressure and the volume of the common tank, respectively;
+  \item \addsym{$q_{\text{d,t}}$}{Mass flow rate through common tank discharge valve (parallel system)} is the mass flow across the common tank discharge valve;
+  \item \addsym{$\bm{\rho}$}{Coefficients mapping mass flow across common tank discharge valve to its pressure differential (parallel system)} contains the coefficients mapping the mass flow through the common tank discharge valve to the pressure differential across the valve;
+  \item \addsym{$u_\text{t}$}{Position of common tank discharge valve (parallel system)} is the discharge valve opening of the common tank; and
   \item the subscripts 1 and 2 refer to values for the first and second compressor, respectively.
 \end{itemize}
 
 The inputs to the system are thus the suction, discharge and recycle valve positions for each compressor, the torque input for each compressor, and the common tank discharge valve position.
-The discharge valves linking each compressor to the common tank ($u_{\text{out},1}$ and $u_{\text{out},2}$) are, however, kept in a fully open position in order to reduce the pressure losses in the system.
+The discharge valves linking each compressor to the common tank ($u_{\text{d},1}$ and $u_{\text{d},2}$) are, however, kept in a fully open position in order to reduce the pressure losses in the system.
 

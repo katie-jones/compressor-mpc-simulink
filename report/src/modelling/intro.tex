@@ -1,34 +1,8 @@
 \section{Introduction}
 
 The controllers presented in this work were evaluated in simulation, using a model based on a two-compressor system at the ABB Research Facility *** citation here ***. 
+The simulations were performed using the Dormand-Prince adaptive step-size algorithm for numerical integration of the state equations.
 In order to isolate the effects of changing controller types and parameters, the model was kept as simple as possible and the two compressors were assumed to be identical.
 Two different configurations were tested: a parallel configuration and a serial configuration, described in further detail below.
 
-The simulations were performed using the Dormand-Prince adaptive step-size algorithm for numerical integration of the state equations.
-% Any more info on simulation stuff?
-
-% - two compressors are identical
-% - atmospheric input and output pressure
-% - ode45 algorithm
-% - same model for simulation and for MPC (linearized -- presented in MPC section)
-
-
-% \begin{figure}
-  % \centering
-  % \begin{subfigure}{\linewidth}
-    % \centering
-    % \vspace{2em}
-    % \Large PARALLEL SYSTEM HERE
-    % \vspace{2em}
-  % \end{subfigure}
-  % \begin{subfigure}{\linewidth}
-    % \centering
-    % \vspace{2em}
-    % \Large SERIAL SYSTEM HERE
-    % \vspace{2em}
-  % \end{subfigure}
-  
-  % \caption{Configurations of two-compressor system}
-  % \label{fig:mod:configurations}
-% \end{figure}
 

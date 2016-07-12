@@ -1,10 +1,10 @@
 \section{Compressor Model}
 \label{sec:mod:comp}
 
-The single compressor unit used in this work, depicted in Figure~\ref{fig:mod:single_comp}, refers to a centrifugal compressor driven by a variable-speed electric motor, with a tank at both the inlet and outlet. 
-Both the inlet and outlet tanks are connected to atmospheric pressure by a valve.
-These two valves represent the flow conditions upstream and downstream of the compressor such that various flow conditions and disturbances can be simulated by simply changing the position of the valves. 
-A third, recycle (or anti-surge) valve connects the outlet tank to the inlet tank. Its primary purpose is to open when the compressor approaches surge in order to decrease the compressor load and increase the mass flow through the compressor, thus pulling it away from the surge line. 
+The single compressor unit used in this work, depicted in Figure~\ref{fig:mod:single_comp}, refers to a centrifugal compressor driven by a variable-speed electric motor, with a tank at both the inlet (suction) and outlet (discharge).
+Both the suction and discharge tanks are connected to atmospheric pressure by a valve.
+These suction and discharge valves represent the flow conditions upstream and downstream of the compressor, respectively, such that various flow conditions and disturbances can be simulated by simply changing the position of the valves.
+A third, recycle (or anti-surge) valve connects the outlet tank to the inlet tank. Its primary purpose is to open when the compressor approaches surge in order to decrease the compressor load and increase the mass flow through the compressor, thus pulling it away from the surge line.
 
 \begin{figure}
   \centering
@@ -18,16 +18,18 @@ A third, recycle (or anti-surge) valve connects the outlet tank to the inlet tan
 \end{figure}
 
 
-The input to the motor driving the compressor is the target motor torque. 
-It is assumed that a cascaded regulator maintains the torque at the desired setpoint.
-Torque is chosen as the input variable as it allows a faster response time compared to motor speed, which would require a second, cascaded speed regulator whose dynamics would be on a similar scale to the processes being controlled.
-The inputs to the compressor are thus the positions of the inlet, outlet and recycle valves, as well as the motor torque. It should be noted that the torque can be adjusted in time scales on the order of tens of milliseconds while the valves move on the order of seconds. In particular, the recycle valve has a dead time that is a function of the valve opening. For simplification, it was assumed constant and equal to the worst-case dead-time, identified in \ref{Cortinovis2015} to be \u{2}{s}.
+The input to the motor driving the compressor is the target motor torque.
+It is assumed that a cascaded regulator maintains the torque at the desired setpoint with a dynamic response fast enough to be neglected at the time scales considered (on the order of 10s of ms).
+Torque is chosen as the input variable as it allows a faster response time compared to motor speed, which would require a second, cascaded speed regulator whose dynamics would not be slow enough to be neglected.
+The inputs to the compressor are thus the positions of the inlet, outlet and recycle valves, as well as the motor torque.
+It should be noted that the torque can be adjusted in time scales on the order of tens of milliseconds while the valves move on the order of seconds.
+In particular, the recycle valve has a dead time that varies as a function of the valve opening. For simplification, it was assumed constant and equal to the worst-case dead-time, identified in \ref{Cortinovis2015} to be \u{2}{s}.
 
 
-The compressor model used is based on the Gravdahl-Greitzer model described in \ref{Gravdahl}. It is defined by five states: the suction (\addsym{$p_\text{s}$}{Compressor inlet pressure}) and discharge (\addsym{$p_\text{d}$}{Compressor inlet pressure}) pressures, the mass flow through the compressor (\addsym{$q_\text{c}$}{Mass flow rate through compressor}), the rotational speed of the compressor (\addsym{$\omega_\text{c}$}{Rotational speed of the compressor}), and the mass flow rate through the recycle valve (\addsym{$q_\text{r}$}{Mass flow rate through recycle valve of compressor}).
-The differential equations governing these states are given by: 
+The compressor model used is based on the Gravdahl-Greitzer model described in \ref{Gravdahl}. It is defined by five states: the suction (\addsym{$p_\text{s}$}{Compressor inlet pressure}) and discharge (\addsym{$p_\text{d}$}{Compressor inlet pressure}) pressures, the mass flow through the compressor (\addsym{$q_\text{c}$}{Mass flow rate through compressor}), the rotational speed of the compressor (\addsym{$\omega_\text{c}$}{Rotational speed of the compressor}), and the mass flow rate through the recycle valve (\addsym{$q_\text{r}$}{Mass flow rate through recycle valve}).
+The differential equations governing these states are given by:
 
-\begin{equation} 
+\begin{equation}
   \begin{split}
     \dt{} \begin{bmatrix}
       p_\text{s}\\
@@ -35,7 +37,7 @@ The differential equations governing these states are given by:
       q_\text{c}\\
       \omega_\text{c}\\
       q_\text{r}
-    \end{bmatrix} & = 
+    \end{bmatrix} & =
     \begin{bmatrix}
       \frac{a^2}{V_\text{s}}\left(q_\text{s}+q_\text{r}-q_\text{c}\right)\\
       \frac{a^2}{V_\text{d}}\left(q_\text{c}-q_\text{r}-q_\text{d}\right)\\
@@ -46,13 +48,13 @@ The differential equations governing these states are given by:
     \dt{\bm{x}} & = \bm{f}
   \end{split}
   \label{eq:mod:single_comp_states}
-\end{equation}    
+\end{equation}
 
 \begin{equation}
   \begin{split}
-    q_\text{s} & = q_\text{s}(\bm{\gamma},\ u_{\text{in}},\ p_\text{s},\ p_{\text{in}})\\
+    q_\text{s} & = q_\text{s}(\bm{\gamma},\ u_{\text{s}},\ p_\text{s},\ p_{\text{in}})\\
     q_\text{r} & = q_\text{r}(\bm{\delta},\ u_\text{r},\ p_\text{s},\ p_\text{d})\\
-    q_\text{d} & = q_\text{d}(\bm{\varepsilon},\ u_{\text{out}},\ p_{\text{out}},\ p_\text{d}),
+    q_\text{d} & = q_\text{d}(\bm{\varepsilon},\ u_{\text{d}},\ p_{\text{out}},\ p_\text{d}),
   \end{split}
 \end{equation}
 
@@ -67,17 +69,18 @@ The differential equations governing these states are given by:
 where:
 
 \begin{itemize}[noitemsep]
-  \item $a$ is the speed of sound; 
-  \item $V_\text{s}$ and $V_\text{d}$ are the suction and discharge tank volumes, respectively;
-  \item $q_\text{s}$, $q_\text{r}$, $q_\text{d}$, and $q_\text{c}$ are the mass flows across the suction valve, recycle valve, discharge valve and through the compressor, respectively;
-  \item $A$ is the cross-sectional area of the piping after the compressor and $l_\text{c}$ the duct length;
-  \item $\Pi_{\text{ss}}\left(\alpha,\omega_\text{c}, q_\text{c} \right)$ is a polynomial mapping giving the pressure ratio across the compressor;
-  \item $J$ is the inertia of the system;
-  \item $\bm{\beta}$ contains the parameters mapping the steady-state torque results from air compression to the mass flow and rotational speed of the compressor;
-  \item $\tau_\text{r}$ and $u_{\text{r,SP}}$ the time constant of the recycle valve and its setpoint, respectively;
-  \item $\bm{\gamma}$, $\bm{\delta}$ and $\bm{\varepsilon}$ are the coefficients mapping mass flow through the suction, recycle and discharge valves, respectively, to the pressure differential across the valve;
-  \item $p_{\text{in}}$ and $p_{\text{out}}$ are the pressures upstream and downstream of the compressor, respectively; and
-  \item $\bm{x}$ and $\bm{f}$ are vectors representing the state and state derivative of the system, respectively.
+  \item \addsym{$a$}{Speed of sound (\u{340}{m\per s})} is the speed of sound;
+  \item \addsym{$V_\text{s}$}{Compressor suction tank volume} and \addsym{$V_\text{d}$}{Compressor discharge tank volume} are the suction and discharge tank volumes, respectively;
+  \item \addsym{$q_\text{s}$}{Mass flow rate through suction valve}, $q_\text{r}$, and \addsym{$q_\text{d}$}{Mass flow rate through discharge valve} are the mass flows across the suction valve, recycle valve, and discharge valve, respectively;
+  \item \addsym{$A$}{Cross-sectional piping area after compressor} is the cross-sectional area of the piping after the compressor and \addsym{$l_\text{c}$}{Duct length after compressor} the duct length;
+  \item \addsym{$\Pi_{\text{ss}}$}{Coefficients mapping compressor pressure ratio to the rotational speed of and mass flow through compressor}$\left(\alpha,\omega_\text{c}, q_\text{c} \right)$ is a polynomial mapping giving the pressure ratio across the compressor;
+  \item \addsym{$J$}{Compressor inertia} is the inertia of the system;
+  \item \addsym{$\bm{\beta}$}{Coefficients mapping steady-state motor torque to rotational speed and mass flow of compressor} contains the parameters mapping the steady-state torque results from air compression to the mass flow and rotational speed of the compressor;
+  \item \addsym{$\tau_\text{r}$}{Time constant of recycle valve} and \addsym{$u_{\text{r,SP}}$}{Set point of recycle valve} the time constant of the recycle valve and its setpoint, respectively;
+  \item \addsym{$\bm{\gamma}$}{Coefficients mapping mass flow through suction valve to its pressure differential}, \addsym{$\bm{\delta}$}{Coefficients mapping mass flow through recycle valve to its pressure differential} and \addsym{$\bm{\varepsilon}$}{Coefficients mapping mass flow through discharge valve to its pressure differential} are the coefficients mapping mass flow through the suction, recycle and discharge valves, respectively, to the pressure differential across the valve;
+  \item \addsym{$u\ut{s}$}{Position of suction valve} and \addsym{$u\ut{d}$}{Position of discharge valve} are the positions of the suction and discharge valves, respectively;
+  \item \addsym{$p_{\text{in}}$}{Pressure upstream of compressor} and \addsym{$p_{\text{out}}$}{Pressure downstream of compressor} are the pressures upstream and downstream of the compressor, respectively; and
+  \item \addsym{$\bm{x}$}{Compressor state vector} and \addsym{$\bm{f}$}{Compressor state derivative} are vectors representing the state and state derivative of the system, respectively.
 \end{itemize}
 
 The interested reader may refer to \ref{Cortinovis2015} for further information on the identification and validation of this model.
