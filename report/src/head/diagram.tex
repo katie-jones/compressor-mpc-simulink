@@ -45,14 +45,14 @@
   };
 }
 
-\newcommand{\drawshortlegend}[1]{
-  \node[draw=black,thick,rounded corners=2pt] at #1 {%
-    \begin{tabular}{@{}r@{ }l@{}}
-      \raisebox{2pt}{\tikz{\draw[inputcolor, line width=3pt] (0,0) -- (5mm,0);}}&inputs\\
-      \raisebox{2pt}{\tikz{\draw[statecolor, line width=3pt] (0,0) -- (5mm,0);}}&states\\
-    \end{tabular}
-  };
-}
+% \newcommand{\drawshortlegend}[1]{
+  % \node[draw=black,thick,rounded corners=2pt] at #1 {%
+    % \begin{tabular}{@{}r@{ }l@{}}
+      % \raisebox{2pt}{\tikz{\draw[inputcolor, line width=3pt] (0,0) -- (5mm,0);}}&inputs\\
+      % \raisebox{2pt}{\tikz{\draw[statecolor, line width=3pt] (0,0) -- (5mm,0);}}&states\\
+    % \end{tabular}
+  % };
+% }
 
 \newcommand{\drawcomp}{%
     % Tanks
@@ -112,7 +112,10 @@
 
     % Legend
     \iftoggle{compleg}{%
-      \drawshortlegend{($(itank-bl |- rvalve) - (0,1)$)}
+      % boundary conditions
+      \node at ($(ivalve) + (0,2)$) {\bctext{p\ut{a}}};
+      \node at ($(ovalve) + (0,2)$) {\bctext{p\ut{a}}};
+      \drawlegend{($(itank-bl |- rvalve) - (1.5,0)$)}
     }{}
   }{}
 
