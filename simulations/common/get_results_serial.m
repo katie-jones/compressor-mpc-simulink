@@ -125,8 +125,8 @@ ylabel('Cost Function')
 legend('Centralized','Cooperative','Non-cooperative')
 
 if exist('saveplots','var') && (saveplots ~= 0)
-    saveas(fig1,'serial_j.fig');
-    saveas(fig1,'serial_j.pdf');
+    saveas(fig1{1},'serial_j.fig');
+    saveas(fig1{1},'serial_j.pdf');
 end
 
 %% Cost function

@@ -44,51 +44,51 @@ res_ncoop = AddCostFunction(res_ncoop,uwt,ywt);
 
 results = {res_cent, res_coop, res_ncoop};
 
-fig1 = PlotResults(results,'p');
+figs = PlotResults(results,'p');
 title('Tank Output Pressure')
 xlabel('Time [s]')
 ylabel('Pressure [atm]')
 legend('Centralized','Cooperative','Non-cooperative')
 
 if exist('saveplots','var') && (saveplots ~= 0)
-    saveas(fig1,'parallel_p.fig');
-    saveas(fig1,'parallel_p.pdf');
+    saveas(figs{1},'parallel_p.fig');
+%     saveas(figs{1},'parallel_p.pdf');
 end
 
 
-fig1 = PlotResults(results,'sd');
+figs = PlotResults(results,'sd');
 title('Surge Distance')
 xlabel('Time [s]')
 ylabel('Relative Surge Control Distance [%]')
 
 if exist('saveplots','var') && (saveplots ~= 0)
-    saveas(fig1,'parallel_sd.fig');
-    saveas(fig1,'parallel_sd.pdf');
+    saveas(figs{1},'parallel_sd.fig');
+%     saveas(figs{1},'parallel_sd.pdf');
 end
 
 
-fig1 = PlotResults(results,'td');
+figs = PlotResults(results,'td');
 title('Normalized Torque Setting')
 xlabel('Time [s]')
 ylabel('Torque')
 
 if exist('saveplots','var') && (saveplots ~= 0)
-    saveas(fig1,'parallel_td.fig');
-    saveas(fig1,'parallel_td.pdf');
+    saveas(figs{1},'parallel_td.fig');
+%     saveas(figs{1},'parallel_td.pdf');
 end
 
 
-fig1 = PlotResults(results,'ur');
+figs = PlotResults(results,'ur');
 title('Normalized Recycle Valve Opening')
 xlabel('Time [s]')
 ylabel('Valve Opening')
 
 if exist('saveplots','var') && (saveplots ~= 0)
-    saveas(fig1,'parallel_ur.fig');
-    saveas(fig1,'parallel_ur.pdf');
+    saveas(figs{1},'parallel_ur.fig');
+%     saveas(figs{1},'parallel_ur.pdf');
 end
 
-fig1 = figure;
+figs = figure;
 plot(t_dist,u_dist)
 title('Tank Output Valve Opening')
 ylabel('Valve Opening')
@@ -97,14 +97,14 @@ ylim([0, max(u_dist)*1.1])
 
 %% Cost function
 
-fig1 = PlotResults(results,'J');
+figs = PlotResults(results,'J');
 title('Cost Function')
 xlabel('Time [s]')
 ylabel('Cost Function')
 
 if exist('saveplots','var') && (saveplots ~= 0)
-    saveas(fig1,'parallel_j.fig');
-    saveas(fig1,'parallel_j.pdf');
+    saveas(figs{1},'parallel_j.fig');
+%     saveas(figs{1},'parallel_j.pdf');
 end
 
 
