@@ -1,0 +1,67 @@
+\section{Overview}
+
+*** This needs writing\ldots ***
+
+The model predictive controllers presented in this work operate at a sampling rate of $t\ut{s} = \u{50}{ms}$ in order to control the relatively fast dynamics leading to compressor surge.
+
+% The strategy behind model predictive control (MPC) is to, at each time step, calculate an optimal sequence of inputs that minimize a given cost function, based on an analytic model of the system. 
+% The first optimal input from the sequence is then taken and applied, and the optimization is repeated for the next time step. 
+% % The problem is thus formulated as:
+% The system is generally described in state-space as a system of ordinary differential equations as follows:
+
+% \begin{equation}
+  % \begin{split}
+    % \bm{\dot{x}}(t) & = \bm{f}\left( \bm{x}(t), \bm{u}(t) \right)\\
+    % \bm{y}(t) & = \bm{g}\left( \bm{x}(t) \right),
+  % \end{split}
+  % \label{eq:mpc:state-space-general}
+% \end{equation}
+
+% where $\bm{x}$ contains the states of the system, $\bm{u}$ contains the inputs and $\bm{y}$ contains the outputs of the system.
+% The optimal input is then determined by:
+
+
+
+% \begin{equation}
+  % \begin{split}
+    % \bm{U\ut{opt}} & = 
+    % \begin{bmatrix}
+      % \bm{u_1}\\
+      % \bm{u_2}\\
+      % \vdots\\
+      % \bm{u\ut{m}}
+    % \end{bmatrix} = 
+    % % \begin{bmatrix}
+      % % u\ut{1,1} & u\ut{1,2} & \cdots & u\ut{1,n}\\
+      % % u\ut{2,1} & u\ut{2,2} & \cdots & u\ut{2,n}\\
+      % % \vdots\\
+      % % u\ut{m,1} & u\ut{m,2} & \cdots & u\ut{m,n}
+    % % \end{bmatrix}\\
+    % % \bm{u\ut{opt}} & =
+    % \argmin_{\bm{U}\in \mathbb{R}^{m\times n}} J\left( \bm{U}, \bm{Y}\right)\\
+    % \text{s.t. } G\bm{U} \leq \bm{f}
+    % % \bm{x}\left( k+1,\cdots,k+p \right) & = f\left( \bm{x}(k), \bm{u} \right)
+  % \end{split}
+% \end{equation}
+
+
+% where $\bm{U\ut{opt}}$ is the vector containing the next \addsym{$m$}{Move horizon of controller} optimal inputs to the system, $m$ is the move horizon of the controller (or the number of inputs computed in $\bm{U\ut{opt}}$, after which the input is assumed to be held constant),
+% %, $n$ is the number of entries in the input vector 
+% \addsym{$J$}{MPC controller cost function} is the cost function used, and $G$ and $\bm{f}$ are an arbitrary matrix and vector, respectively, that represent the constraints of the system.
+% The dependence of $J$ on $\bm{y}$ can be removed using \eqref{eq:mpc:state-space-general}, leading to an optimization only in $\bm{u\ut{opt}}$.
+% In this work, state constraints or dependence of the cost function on the system state are not treated.
+% % $J$ is expressed only as a function because, in a dense formulation of the MPC problem, any dependence on the state or outputs of the system can be removed using \eqref{eq:mpc:state-space-general}.
+
+% While $\bm{f}$, $\bm{g}$ and $J$ can in general be arbitrary, non-linear functions, such a formulation leads to an optimization problem that can be difficult and computationally expensive to solve using existing numerical solvers.
+% For this reason, the optimization problem is often formulated as a quadratic program (QP) for which many efficient solvers exist.
+% Such a formulation is possible using a linear or linearized state-space model for the system, and a quadratic cost function, and is of the form:
+
+% \begin{equation}
+  % \begin{split}
+  % \bm{\dot{x}} & = A \bm{x} + B\bm{u}\\
+  % \bm{y} & = C\bm{x}\\
+  % J & = \bm{Y}^\intercal Q \bm{Y} + \bm{U}^\intercal R \bm{U}
+% \end{split}
+% \end{equation}
+
+

@@ -1,0 +1,83 @@
+\section{Linearization \& Discretization}
+
+The model used for the MPC controller formulation is the same as that used in Section~\ref{sec:modelling} to simulate the compressor.
+No model mismatch was considered in order to compare the controllers' performance in an ideal scenario.
+In order to generate an optimization in the form of a quadratic program, the system was linearized at each time step about the current states ($\bm{x}_k$) and inputs ($\bm{u}_{k-1}$), and discretized using the 4th order Runge-Kutta method.
+The model at sampling instant $k$ is thus given by:
+
+\begin{equation}
+  \begin{split}
+    \Delta \bm{x}_{k+i+1} & = A_k\Delta \bm{x}_{k+i} + B_k\Delta \bm{u}_{k+i} + \bm{f}\left( \bm{\hat{x}}_{k}, \bm{u}_{k-1} \right)\\
+    \Delta \bm{y}_{k+i} & = C_k\Delta \bm{x}_{k+i}, \qquad
+    i \geq 0,
+    % \Delta \bm{x}_{k+i} & = \bm{x}_{k+i} - \bm{\hat{x}}_k \\
+    % \Delta \bm{u}_{k+i} & = \bm{u}_{k+i} - \bm{u}_{k-1} \\
+    % \Delta \bm{y}_{k+i} & = \bm{y}_{k+i} - \bm{y}_k
+  \end{split}
+\end{equation}
+
+\noindent where $\bm{f}$ is the derivative of the system evaluated at the linearization point, $\bm{\hat{x}}_k$ is the state estimate at time instant $k$, $p$ is the prediction length of the controller, $A_k = A(\bm{\hat{x}}_k, \bm{u}_{k-1})$, $B_k = B(\bm{\hat{x}}_k, \bm{u}_{k-1})$ and $C_k = C(\bm{\hat{x}}_k, \bm{u}_{k-1})$ giving the model linearized about the current operating point, and $\Delta$ refers to the difference relative to the linearization point.
+
+The resulting discrete-time, linear system is then augmented to include both error states as integrators for offset-free control, and delayed input states for the recycle valve.
+One integrator for each output is added, as well as 40 delayed states per recycle valve (giving a total delay of \u{2}{s} for a sampling rate of \u{50}{ms}).
+The augmented system has the following form:
+
+\begin{equation}
+  \begin{split}
+    \Delta \bm{x}_{k+i+1}^a     & =
+\begin{bmatrix}
+      A_k & A_k^{del,state} & 0 \\
+      0 & A^{delay} & 0\\
+      0 & 0 & I_{n\ut{e}\times n\ut{e}}
+    \end{bmatrix}
+    \begin{bmatrix}
+      \Delta \bm{x}_{k+i}\\
+      \bm{u}_{del,i}\\
+      \bm{e}_{i}
+    \end{bmatrix} + 
+\begin{bmatrix}
+      B_k^{delay}\\
+      B^{aug}\\
+      0
+    \end{bmatrix} \bm{u}_{k+i}\\[0.5em]
+    & = A_k^a \Delta \bm{x}_{k+i}^a + B_k^a \Delta \bm{u}_{k+i}\\[0.5em]
+    \Delta \bm{y}_{k+i} & = C_k^a \Delta \bm{x}_{k+i}^a\\[0.5em]
+    & = \begin{bmatrix}
+      C_k & 0 & I_{n\ut{e} \times n\ut{e}}
+    \end{bmatrix}
+    \bm{x}_{k+i}^a,\\
+  \end{split}
+\end{equation}
+
+\noindent where $\Delta \bm{x}_{k+i}^a$ is the augmented state of the system, 
+$\bm{x}_{k+i}$ contains the original states of the system, 
+$\bm{u}_{del,i}$ contains the delayed recycle valve inputs,
+$\bm{e}_i$ contains the integrator states,
+$n\ut{e}$ gives the number of integrator states,
+and $A_k^a$, $B_k^a$ and $C_k^a$ give the augmented, linearized model of the system.
+
+The specific format of the augmented matrices depends on the system being modelled. For a single compressor, for example, the augmented matrices are as follows:
+
+\begin{equation}
+  \begin{split}
+    A_k^a & =
+    \begin{bmatrix}
+      A_k & \begin{bmatrix} B_{k,u\ut{r}} & 0 \end{bmatrix} & 0\matskip{0.5em}
+      0 & \begin{bmatrix} 0 & I_{39\times 39}\\ 0 & 0\end{bmatrix} & 0\matskip{0.5em}
+      0 & 0 & I_{2\times 2}
+    \end{bmatrix}\\[1em]
+    %
+    B_k^a & = 
+    \begin{bmatrix}
+      B_{k,T\ut{d}} & 0\matskip{0.5em}
+      0 & \begin{bmatrix} 0_{39\times 1}\\ 1 \end{bmatrix} \matskip{0.5em}
+      0 & 0
+    \end{bmatrix}\\[1em]
+    %
+    C_k^a & = \begin{bmatrix}
+      C_k & 0 & I_{n\ut{e} \times n\ut{e}}
+    \end{bmatrix}
+  \end{split}
+\end{equation}
+
+
