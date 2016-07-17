@@ -1,5 +1,12 @@
 \renewcommand{\u}[2]{\ensuremath{\SI{#1}{#2}}}
 \newcommand{\mlab}{\texttt{MATLAB}}
 \newcommand{\addsym}[2]{#1\addsymbol{#1}{#2}}
+\newcommand{\addlat}[3]{%
+  \newglossaryentry{#1}{name={#2},description={#3},type={latin}}
+}
+\newcommand{\addgrk}[3]{%
+  \newglossaryentry{#1}{name={#2},description={#3},type={greek},sort={#1}}
+}
+
 \newcommand{\dt}[1]{\ensuremath{\frac{d#1}{dt}}}
 \newcommand{\ut}[1]{\ensuremath{_\text{#1}}}

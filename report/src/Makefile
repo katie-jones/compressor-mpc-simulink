@@ -7,10 +7,10 @@ AUXDIR = $(OUTDIR)/aux
 SOURCE = $(SRCDIR)/main.tex
 TARGET = $(OUTDIR)/jones_thesis.pdf
 
-
 PDF_OUTPUT = $(SOURCE:$(SRCDIR)/%.tex=$(AUXDIR)/%.pdf)
 
 TEXFILES = $(shell find $(SRCDIR) -name "*.tex")
+GLOSSARIESFILES = $(wildcard $(AUXDIR)/*glo)
 
 SUBDIRS := $(sort $(dir $(wildcard $(SRCDIR)/*/)))
 AUXSUBDIRS := $(SUBDIRS:$(SRCDIR)/%=$(AUXDIR)/%)
@@ -37,10 +37,18 @@ $(AUXSUBDIRS):
 $(IMGFILES): | $(AUXSUBDIRS)
 	cp "$@" "$(subst $(SRCDIR),$(AUXDIR),$@)"
 
+glossary: firstrun | $(AUXSUBDIRS)
+	$(eval GLOSSARIESFILES = $(wildcard $(AUXDIR)/*glo))
+	$(foreach x,$(GLOSSARIESFILES), xindy -L english -C utf8 -I xindy -M $(basename $(x)) -t $(x:%glo=%glg) -o $(x:%glo=%gls) $(x); )
+	@rm -f $(PDF_OUTPUT)
+
+firstrun: | $(AUXSUBDIRS)
+	pdflatex --shell-escape  -recorder -output-directory="$(AUXDIR)"  "$(SOURCE)"
+
 clean:
 	rm -rf $(PDF_OUTPUT) $(TARGET)
 
 cleaner: clean
 	rm -rf $(AUXDIR)
 
-.PHONY: all clean cleaner 
+.PHONY: all clean cleaner glossary firstrun
