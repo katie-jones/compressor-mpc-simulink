@@ -1,2 +1,21 @@
 \section{Centralized Control Approach}
+\label{sec:mpc:centralized}
+
+In the centralized control approach, a single MPC controller is used to optimize for all system inputs using a single cost function. At each sampling period, the optimal input is computed using the following algorithm:
+
+\begin{enumerate}
+  \item perform estimation to obtain the augmented state (see Section~\ref{sec:mpc:estimation});
+  \item linearize, discretize and augment non-linear model about the current state estimate and previous inputs, as described in Section~\ref{sec:mpc:linearization};
+  \item generate the prediction matrices using \eqref{eq:mpc:augmented-state-eqs};
+  \item set up the QP problem according to \eqref{eq:mpc:optimization-qp-formulation} and solve using the qpOASES solver;
+  \item apply the optimal input at the first prediction interval to the system.
+\end{enumerate}
+
+For both the parallel and serial compressor systems, the centralized controller solves for 4 inputs (2 per compressor). 
+For the parallel system, the cost function weighted 3 outputs: the surge distance of each compressor, as well as the pressure in the common tank.
+In industrial application, a 4th output could be added to control the load sharing between the compressors, however for the simulation case considered here with two identical compressors it had no effect. 
+The serial system's cost function weighted 4 outputs: the surge distance and output pressure of each compressor.
+
+The primary goal of both controllers was anti-surge control, with process control (i.e. pressure set-point tracking) a secondary goal; the weights assigned to the surge distances were accordingly higher than those given to the pressures.
+For the serial controller, the output pressure of the second (downstream) compressor was also weighted higher than that of the first, which is essentially just an intermediate state with no direct effect on the downstream processes.
 

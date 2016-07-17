@@ -1,2 +1,66 @@
 \section{Distributed Control Approach}
+\label{sec:mpc:distributed}
+
+\subsection{Optimization Problem}
+
+In the distributed MPC approach, the control problem is split into two smaller optimizations, each giving the optimal input for a single compressor, and each solved by a sub-controller.
+The two sub-controllers are assumed to have full state information and the optimizations are set up as QPs, as in \eqref{eq:mpc:optimization-qp-formulation}. The Hessian ($H$) term of the QP is also identical. A slight modification to the linear term -- given for the centralized case in \eqref{eq:mpc:optimization-qp-terms} -- is necessary to account for the fact that the QP is solved for only part of the optimal input vector:
+
+\begin{equation}
+  \begin{split}
+    H\ut{distributed} & = 2\left( W_u + S_{u_k}^\intercal\ W_y\ S_{u_k} \right)\\
+    & = H\ut{centralized}\\
+    g\ut{distributed} & = 2\left( \Delta\bm{\hat{x}}_k^a S_{x_k}^\intercal + \bm{f_k} S_{f_k}^\intercal - \Delta \bm{Y}\ut{ref} + \Delta\bm{U}_{\text{ot},k}\ S_{U_{\text{ot},k}}^\intercal \right)W_y S_{U_k}\\
+    & = g\ut{centralized} + \Delta\bm{U}_{\text{ot},k}\ S_{U_{\text{ot},k}}^\intercal\ W_y\ S_{U_k}
+  \end{split}
+  \label{eq:mpc:distributed-qp-terms}
+\end{equation}
+
+\noindent where $\bm{U}_{\text{ot},k}$ is the optimal input at time step $k$ calculated by the other sub-controller, and \gls{prediction_uother} is the prediction matrix giving the effect of the other sub-controller's inputs on the current outputs $\Delta \bm{Y}_k$.
+
+As stated in \eqref{eq:mpc:distributed-qp-terms} the QP is unsolvable since  $\bm{U}_{\text{ot},k}$ in turn depends on the solution.
+To break this circular dependency, the problem is initially solved with an estimate for $\bm{U}_{\text{ot},k}$ obtained from the previous QP solution.
+The sub-controllers then exchange information about their obtained solution, updating the value of $\bm{U}_{\text{ot},k}$ and re-solving the optimization.
+This procedure is repeated for a fixed number of iterations, after which the optimal solution is sent to the plant.
+The iteration process will not converge for systems that have a high degree of coupling; this effect is discussed in further detail in Section~\ref{sec:results}.
+
+The algorithm used to obtain the optimal input at each time step for a distributed controller is thus as follows:
+
+\begin{enumerate}
+  \item perform estimation to obtain the augmented state (see Section~\ref{sec:mpc:estimation});
+  \item linearize, discretize and augment non-linear model about the current state estimate and previous inputs, as described in Section~\ref{sec:mpc:linearization};
+  \item generate the prediction matrices using \eqref{eq:mpc:augmented-state-eqs};
+  \item set up the QP problems according to \eqref{eq:mpc:optimization-qp-formulation};
+  \item approximate the solution from each sub-controller using the solution from the previous iteration and use it to correct the linear QP terms;
+  \item iteratively solve each QP, updating the approximation of  $\bm{U}_{\text{ot},k}$ after each iteration;
+  \item after a fixed number of iterations, apply the optimal input from each sub-controller at the first prediction interval to the system.
+\end{enumerate}
+
+\subsection{Computational Cost}
+
+The primary advantage of distributed control over centralized control is that it allows the computational cost of the MPC controller to be reduced.
+The QPs can be solved in parallel using a separate thread or even a separate device for each sub-controller.
+Although the method still requires solving several QPs per sub-controller at each time step, they are smaller than the single QP solved by the centralized controller and can often be solved more efficiently.
+In particular, the ``hotstart'' method implemented in the qpOASES QP solver can solve a QP using a previous solution as a starting point, efficiently solving series of QPs in which the Hessian and linear terms change only slightly, further reducing the computational cost of the extra iterations.
+
+Finally, generating the prediction matrices for the sub-controllers' cost functions can be less computationally expensive than for the centralized case, if they use fewer of the outputs, since computing the prediction matrices is $\mathcal{O}(n)$ in the number of outputs used.
+The computational cost could be further reduced by limiting the state information used by each sub-controller to generate its prediction matrices ($\mathcal{O}(n^3)$ in the number of states used), however this approach is not considered here.
+These effects are quantified and discussed further in Section~\ref{sec:results}.
+
+\subsection{Cooperative v. Non-cooperative Control}
+Two different types of distributed controller are considered: cooperative and non-cooperative. 
+In cooperative control, the sub-controllers share a single cost function while in non-cooperative control they have individual cost functions. 
+Non-cooperative control therefore allows the possibility for each sub-controller to consider fewer outputs in the cost function, thereby reducing the computational cost of generating the prediction matrices.
+
+For both the parallel and serial systems, the outputs used in the cooperative controller cost function are the same as those for the centralized case: surge distances from both compressors and the common tank pressure for the parallel case, and surge distances and output pressures for each compressor for the serial case. 
+The weights used for the cooperative case differed slightly, however, from the centralized case as the controller behaviour was not identical.
+
+The non-cooperative controller used fewer outputs in both cases. 
+For the parallel case, each sub-controller weighted the surge distance of its compressor as well as the common tank output pressure.
+For the serial case, an initial controller was designed which considered only the surge distance and output pressure of a single compressor in each sub-controller. 
+This setup did not, however, converge for all simulation cases due to the coupling between the two compressors (see Section~\ref{sec:results}).
+
+A second attempt tried to take the coupling of the specific system into account.
+The sub-controller for the first (upstream) compressor used the surge distance and output pressure from the first compressor as well as the output pressure from the second compressor in its cost function, since its torque input in particular has a strong effect on the second compressor's output pressure.
+The second compressor has a strong effect on the surge distance of the first compressor, which was weighted accordingly in its cost function along with the surge distance and output pressure of the second compressor.
 

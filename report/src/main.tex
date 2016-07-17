@@ -1,4 +1,4 @@
-\documentclass[doubleheaders,titlepage,oneside,openright,12pt]{epflthesis}
+\documentclass[los,noabstract,doubleheaders,titlepage,oneside,openright,12pt]{epflthesis}
 
 \input{head/pkgs.tex}
 \input{head/defs.tex}
@@ -22,7 +22,7 @@ Mehmet Mercangöz (ABB)}
 \title{Distributed model predictive control of compressor systems}
 \submitdate{29 July 2016}
 \school{Ecole polytechnique fédérale de Lausanne}
-\dept{ Mechanical Engineering}
+\dept{Mechanical Engineering}
 \logo{head/ABB_logo_small.png}
 \printlos{%
   \printglossary[type=latin]
@@ -35,13 +35,13 @@ Mehmet Mercangöz (ABB)}
 
 
 % \abstract{\input /abstract} %read from file abstract.tex
-\abstract{~}
+% \abstract{~}
 
 %\acknowledgements{\input head/acknowledgements}
 
 \numberwithin{equation}{chapter}
 
-% \includeonly{modelling/diagram}
+% \includeonly{mpc/mpc}
 
 \begin{document}
 
@@ -50,6 +50,10 @@ Mehmet Mercangöz (ABB)}
 \include{litreview/litreview}
 
 \include{modelling/modelling}
+
+\include{implementation/implementation}
+
+\include{mpc/mpc}
 
 \include{results/results}
 
