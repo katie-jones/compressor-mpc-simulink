@@ -15,7 +15,7 @@ TEXFILES = $(shell find $(SRCDIR) -name "*.tex")
 SUBDIRS := $(sort $(dir $(wildcard $(SRCDIR)/*/)))
 AUXSUBDIRS := $(SUBDIRS:$(SRCDIR)/%=$(AUXDIR)/%)
 
-DEPEXTS:=png pdf jpg jpeg tiff bmp
+DEPEXTS:=png pdf jpg jpeg tiff bmp bib
 BRACKETS:=)|(
 
 DEPEXTENSIONS := ($(subst $(eval) ,$(BRACKETS),$(DEPEXTS)))
@@ -29,7 +29,7 @@ $(TARGET): $(PDF_OUTPUT)
 	cp "$(PDF_OUTPUT)" "$(TARGET)"
 
 $(PDF_OUTPUT): $(IMGFILES) $(TEXFILES) | $(AUXSUBDIRS)
-	@latexmk -outdir=$(AUXDIR) $(notdir $(SOURCE))
+	@latexmk -bibtex -outdir=$(AUXDIR) $(notdir $(SOURCE))
 
 $(AUXSUBDIRS):
 	mkdir -p $@
