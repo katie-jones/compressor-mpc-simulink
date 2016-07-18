@@ -6,59 +6,7 @@ For simplicity, the two compressors are assumed to have identical parameters and
 
 \begin{figure}
   \centering
-  \togglefalse{compleg}
-  \togglefalse{complabel}
-  \resizebox{0.8\linewidth}{!}{%
-    \begin{tikzpicture}
-      % draw first compressor
-      \renewcommand{\complabelsuffix}{,1}
-      \drawcomp
-
-      % Draw second compressor shifted
-      \begin{scope}[yscale=1,xscale=-1,shift={(-25,0)}]
-      \renewcommand{\complabelsuffix}{,2}
-        \drawcomp
-      \end{scope}
-
-      % Increase size of bounding box
-      \useasboundingbox ($(current bounding box.south east) - (0,2)$) rectangle (current bounding box.north west |- 0,17);
-
-    \end{tikzpicture}
-  }
-  \begin{tikzpicture}[overlay]
-    \node[align=center] (origin) at (-6.25,6.0) {Common\\Tank\\\statetext{p_\text{t}}};
-
-    % Coordinates
-    \coordinate (ctank-bl) at ($(origin)-(1.75,1.25)$);
-    \coordinate (ctank-tr) at ($(ctank-bl) + (3.5,2.5)$);
-    \coordinate (ovalve) at ($0.5*(ctank-tr)+0.5*(ctank-tr -| ctank-bl) + (0,\valvewidth) + (0,1)$);
-
-    % Draw common tank and valve
-    \drawtank{(ctank-bl)}{(ctank-tr)}
-    \drawvalve[rotate=90, transform shape]{ovalve}{0.4}
-    \node[below, rotate=90, transform shape, align=center] at ($(ovalve)+(\valveheight,0)$) {Common\\Tank Valve};
-
-    % Draw flow arrows
-    \drawflow[<-]{($(ovalve)-(0,\valvewidth)-(0,0.5*\valvethick)$)}{($(ovalve |- ctank-tr) + (0, 0.5*\tankthick)$)}
-    \drawflow[->]{($(ovalve)+(0,\valvewidth)+(0,0.5*\valvethick)$)}{+(0,1)}
-
-    % Label valve
-    \draw[<-,draw=inputcolor,line width=2pt] ($(ovalve)-(2*\valveheight,0)$) -- ++(-1,0) node[below right]{\inputtext{u_\text{t}}};
-
-    % Legend
-    \drawlegend{($(ovalve)+(3.5,0)$)}
-
-    % Label boundary conditions
-    \node at ($(ovalve)+(0,2)$) {\bctext{p_\text{a}}};
-    \node at ($(origin)+(5,0.5)$) {\bctext{p_\text{a}}};
-    \node at ($(origin)+(-5,0.5)$) {\bctext{p_\text{a}}};
-
-    % Label individual compressors
-    \node[align=center] at ($(origin)-(3,5.5)$) {Compressor 1};
-    \node[align=center] at ($(origin)+(3,-5.5)$) {Compressor 2};
-
-  \end{tikzpicture}
-
+  \input{modelling/diagram_parallel.tex}
   \caption{Diagram of parallel compressor system with inputs and states labelled.}
   \label{fig:mod:parallel}
 \end{figure}
