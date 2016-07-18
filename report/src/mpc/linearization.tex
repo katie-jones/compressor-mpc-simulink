@@ -17,7 +17,7 @@ The model at sampling instant $k$ is thus given by:
   \end{split}
 \end{equation}
 
-\noindent where $\bm{f}$ is the derivative of the system evaluated at the linearization point, $\bm{\hat{x}}_k$ is the state estimate at time instant $k$, $p$ is the prediction length of the controller, $A_k = A(\bm{\hat{x}}_k, \bm{u}_{k-1})$, $B_k = B(\bm{\hat{x}}_k, \bm{u}_{k-1})$ and $C_k = C(\bm{\hat{x}}_k, \bm{u}_{k-1})$ giving the model linearized about the current operating point, and \gls*{Delta} refers to the difference relative to the linearization point.
+\noindent where \gls*{f} is the derivative of the system evaluated at the linearization point, \gls*{xhat} is the state estimate at time instant $k$, \gls*{p} is the prediction length of the controller, $A_k = A(\bm{\hat{x}}_k, \bm{u}_{k-1})$, $B_k = B(\bm{\hat{x}}_k, \bm{u}_{k-1})$ and $C_k = C(\bm{\hat{x}}_k, \bm{u}_{k-1})$ giving the model linearized about the current operating point, and \gls*{Delta} refers to the difference relative to the linearization point.
 
 The resulting discrete-time, linear system is then augmented to include both error states as integrators for offset-free control, and delayed input states for the recycle valve.
 One integrator for each output is added, as well as 40 delayed states per recycle valve (giving a total delay of \u{2}{s} for a sampling rate of \u{50}{ms}).
@@ -25,14 +25,14 @@ The augmented system has the following form:
 
 \begin{equation}
   \begin{split}
-    \Delta \bm{x}_{k+i+1}^a     & =
+    \Delta \bm{\hat{x}}_{k+i+1}^a     & =
     \begin{bmatrix}
       A_k & \begin{bmatrix}B_k^\text{delay} & 0\end{bmatrix} & 0 \\[0.5em]
       0 & \begin{bmatrix} 0 & A^\text{delay} \end{bmatrix} & 0\\[0.5em]
       0 & 0 & I_{n\ut{e}\times n\ut{e}}
     \end{bmatrix}
     \left(\begin{bmatrix}
-      \Delta \bm{x}_{k+i}\\
+      \Delta \bm{\hat{x}}_{k+i}\\
       \begin{bmatrix}
         u_{\text{del},k,1}\\
         \bm{u}_{\text{del},k,2\ldots}\\
@@ -57,18 +57,18 @@ The augmented system has the following form:
       u_{\text{r},k+i}\\
       \Delta T_{\text{d},k+i}
     \end{bmatrix}\\[0.5em]
-    & = A_k^a \left(\Delta \bm{x}_{k+i}^a - \bm{u}_{\text{r},k-1}\right) + B_k^a \Delta \bm{u}_{k+i}\\[0.5em]
+    & = A_k^a \left(\Delta \bm{\hat{x}}_{k+i}^a - \bm{u}_{\text{r},k-1}\right) + B_k^a \Delta \bm{u}_{k+i}\\[0.5em]
     & = \begin{bmatrix}
       C_k & 0 & I_{n\ut{e} \times n\ut{e}}
     \end{bmatrix}
-    \bm{x}_{k+i}^a,\\[0.5em]
-    \Delta \bm{y}_{k+i} & = C_k^a \Delta \bm{x}_{k+i}^a\\[0.5em]
+    \bm{\hat{x}}_{k+i}^a,\\[0.5em]
+    \Delta \bm{y}_{k+i} & = C_k^a \Delta \bm{\hat{x}}_{k+i}^a\\[0.5em]
   \end{split}
   \label{eq:mpc:augmented-state-eqs}
 \end{equation}
 
-\noindent where $\Delta \bm{x}_{k+i}^a$ is the augmented state of the system, 
-$\bm{x}_{k+i}$ contains the original states of the system, 
+\noindent where \glspl*{xaug} is the augmented state of the system, 
+$\bm{\hat{x}}_{k+i}$ contains the original states of the system, 
 $\bm{u}_{del,i}$ contains the delayed recycle valve inputs,
 $u_{\text{r},k-1}$ gives the value of the recycle valve input about which the system was linearized,
 $\bm{e}_i$ contains the integrator states,

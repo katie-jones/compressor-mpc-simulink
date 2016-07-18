@@ -42,6 +42,17 @@
 
 % MPC
 \addgrk{Delta}{\ensuremath{\Delta\left( \cdot \right)}}{Difference in $\left( \cdot \right)$ relative to its value at the linearization point}
+\addlat{xhat}{\ensuremath{\bm{\hat{x}}_k}}{State estimate at time step $k$}
+\addlat{p}{\ensuremath{p}}{Prediction horizon}
+\newglossaryentry{xaug}
+{
+  name={\ensuremath{\Delta \bm{\hat{x}}_{k}^a}},
+  plural={\ensuremath{\Delta \bm{\hat{x}}_{k+i}^a}},
+  description={Augmented state estimated at time step $k$},
+  type={latin}
+}
+% \addlat{xaug}[plural={\ensuremath{\Delta \bm{\hat{x}}_{k+i}^a}}]{\ensuremath{\Delta \bm{\hat{x}}_{k}^a}}{Augmented state estimate at time step $k$}
+% \addlat{system_matrices}{\ensuremath{
 
 % Optimization problem
 \addlat{U}{\ensuremath{U}}{Input sequence of $m$ inputs, stacked along move horizon}

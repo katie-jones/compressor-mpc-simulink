@@ -1,8 +1,8 @@
 \renewcommand{\u}[2]{\ensuremath{\SI{#1}{#2}}}
 \newcommand{\mlab}{\texttt{MATLAB}}
 \newcommand{\addsym}[2]{#1\addsymbol{#1}{#2}}
-\newcommand{\addlat}[3]{%
-  \newglossaryentry{#1}{name={#2},description={#3},type={latin}}
+\newcommand{\addlat}[4][]{%
+  \newglossaryentry{#2}{name={#3},description={#4},type={latin},#1}
 }
 \newcommand{\addgrk}[3]{%
   \newglossaryentry{#1}{name={#2},description={#3},type={greek},sort={#1}}
