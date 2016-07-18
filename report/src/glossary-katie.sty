@@ -1,10 +1,10 @@
 %%
-%% This is file `glossary-list.sty',
+%% This is file `glossary-long.sty',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% glossaries.dtx  (with options: `glossary-list.sty,package')
+%% glossaries.dtx  (with options: `glossary-long.sty,package')
 %% 
 %%  glossaries.dtx
 %%  Copyright 2016 Nicola Talbot
@@ -38,25 +38,35 @@
 %%   Right bracket \]     Circumflex    \^     Underscore    \_
 %%   Grave accent  \`     Left brace    \{     Vertical bar  \|
 %%   Right brace   \}     Tilde         \~}
-\ProvidesPackage{glossary-katie}[2016/01/24 v4.21 (NLCT)]
-\providecommand{\indexspace}{%
-  \par \vskip 10\p@ \@plus 5\p@ \@minus 3\p@ \relax
-}
+\ProvidesPackage{glossary-long}[2016/01/24 v4.21 (NLCT)]
+\RequirePackage{longtable}
+\@ifundefined{glsdescwidth}{%
+  \newlength\glsdescwidth
+  \setlength{\glsdescwidth}{0.6\hsize}
+}{}
+\@ifundefined{glspagelistwidth}{%
+  \newlength\glspagelistwidth
+  \setlength{\glspagelistwidth}{0.1\hsize}
+}{}
 \newglossarystyle{katie}{%
   \renewenvironment{theglossary}%
-    {\begin{description}}{\end{description}}%
+     {\begin{longtable}{lp{12cm}l}}%
+     {\end{longtable}}%
   \renewcommand*{\glossaryheader}{}%
   \renewcommand*{\glsgroupheading}[1]{}%
-  \renewcommand*{\glossentry}[2]{%
-    \item[\glsentryitem{##1}%
-          \glstarget{##1}{\glossentryname{##1}}]
-       \glossentrydesc{##1}\glspostdescription\space}%
-  \renewcommand*{\subglossentry}[3]{%
-    \glssubentryitem{##2}%
-    \glstarget{##2}{\strut}%
-    \glossentrydesc{##2}\glspostdescription\space ##3.}%
-  \renewcommand*{\glsgroupskip}{\ifglsnogroupskip\else\indexspace\fi}%
+  \renewcommand{\glossentry}[2]{%
+    \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}} &
+    \glossentrydesc{##1}\glspostdescription\space & ##2\tabularnewline
+  }%
+  \renewcommand{\subglossentry}[3]{%
+     &
+     \glssubentryitem{##2}%
+     \glstarget{##2}{\strut}\glosentrydesc{##2}\glspostdescription\space
+     ##3\tabularnewline
+  }%
+  \renewcommand*{\glsgroupskip}{\ifglsnogroupskip\else &
+\tabularnewline\fi}%
 }
 \endinput
 %%
-%% End of file `glossary-list.sty'.
+%% End of file `glossary-long.sty'.
