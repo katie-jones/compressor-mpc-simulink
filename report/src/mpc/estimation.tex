@@ -6,10 +6,10 @@ The state estimate is obtained using an observer with a static gain $M$ as follo
 
 \begin{equation}
   \begin{split}
-    \bm{\hat{x}}_{k|k-1}^a & = A_{k-1}^a \left(\Delta \bm{\hat{x}}_{k-1}^a - \bm{u}_{\text{r},k-2}\right) + B_{k-1}^a \Delta \bm{u}_{k-1}\\
-    \bm{\hat{x}}_{k} & = \bm{\hat{x}}_{k|k-1}^a + M \left( \bm{y}_k-\bm{y}_{k-1} - C_k^a \bm{\hat{x}}_{k|k-1}^a \right)
+    \vc{\hat{x}}_{k|k-1}^a & = A_{k-1}^a \left(\Delta \vc{\hat{x}}_{k-1}^a - \vc{u}_{\text{r},k-2}\right) + B_{k-1}^a \Delta \vc{u}_{k-1}\\
+    \vc{\hat{x}}_{k} & = \vc{\hat{x}}_{k|k-1}^a + M \left( \vc{y}_k-\vc{y}_{k-1} - C_k^a \vc{\hat{x}}_{k|k-1}^a \right)
   \end{split}
 \end{equation}
 
-\noindent where $\bm{\hat{x}}_{k|k-1}^a$ is the a priori estimate of $\bm{\hat{x}}_k^a$ and $\bm{u}_{\text{r},k-2}$ is the recycle valve input about which the system was linearized, as defined in \eqref{eq:mpc:augmented-state-eqs}.
+\noindent where $\vc{\hat{x}}_{k|k-1}^a$ is the a priori estimate of $\vc{\hat{x}}_k^a$ and $\vc{u}_{\text{r},k-2}$ is the recycle valve input about which the system was linearized, as defined in \eqref{eq:mpc:augmented-state-eqs}.
 

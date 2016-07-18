@@ -8,23 +8,23 @@ Furthermore, the inlet valve to Compressor 2 has been replaced by the outlet val
 \begin{equation}
   \dt{}
   \begin{bmatrix}
-    \bm{x_1}\\
-    \bm{x_2}\\
+    \vc{x_1}\\
+    \vc{x_2}\\
   \end{bmatrix} =
   \begin{bmatrix}
-    \bm{f_1}\\
-    \bm{f_2}
+    \vc{f_1}\\
+    \vc{f_2}
   \end{bmatrix},
   \label{eq:mod:serial-state-eq}
 \end{equation}
 
-where $\bm{x_i}$ and $\bm{f_i}$ for $i=1,\ 2$ are defined in \eqref{eq:mod:single_comp_states}, and the following constraints are applied representing the interconnection of the two compressors:
+where $\vc{x_i}$ and $\vc{f_i}$ for $i=1,\ 2$ are defined in \eqref{eq:mod:single_comp_states}, and the following constraints are applied representing the interconnection of the two compressors:
 
 \begin{equation}
   \begin{split}
     p\ut{out,1} & = p\ut{s,2}\\
     p\ut{in,2} & = p\ut{d,1}\\
-    \bm{\gamma_2} & = \bm{\varepsilon_1}\\
+    \vc{\gamma_2} & = \vc{\varepsilon_1}\\
     u\ut{s,2} & = u\ut{d,1}.
   \end{split}
   \label{eq:mod:serial-constraints}

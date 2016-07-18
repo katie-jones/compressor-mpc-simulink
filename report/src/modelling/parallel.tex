@@ -69,30 +69,30 @@ The model used has 11 states in total: 5 states for each compressor, as describe
 
 \begin{equation}
   \dt{}\begin{bmatrix}
-    \bm{x_1}\\
-    \bm{x_2}\\
+    \vc{x_1}\\
+    \vc{x_2}\\
     p_\text{t}
   \end{bmatrix}
   =
   \begin{bmatrix}
-    \bm{f_1}\\
-    \bm{f_2}\\
+    \vc{f_1}\\
+    \vc{f_2}\\
     \frac{a^2}{V_\text{t}}\left(q_{\text{d,1}}+q_{\text{d,2}}-q_{\text{d,t}}\right)
   \end{bmatrix},
 \end{equation}
 
 \begin{equation}
   \begin{split}
-    q_{\text{d,1}} & = q_{\text{d,1}}(\bm{\varepsilon_1},\ u_{\text{d},1},\ p_{\text{t}},\ p_{\text{d,1}})\\
-    q_{\text{d,2}} & = q_{\text{d,2}}(\bm{\varepsilon_2},\ u_{\text{\text{d}},2},\ p_{\text{t}},\ p_{\text{d,2}})\\
-    q_{\text{d,t}} & = q_{\text{d,t}}(\bm{\rho},\ u_{\text{t}},\ p_\text{t},\ p_{\text{out}})
+    q_{\text{d,1}} & = q_{\text{d,1}}(\vc{\varepsilon_1},\ u_{\text{d},1},\ p_{\text{t}},\ p_{\text{d,1}})\\
+    q_{\text{d,2}} & = q_{\text{d,2}}(\vc{\varepsilon_2},\ u_{\text{\text{d}},2},\ p_{\text{t}},\ p_{\text{d,2}})\\
+    q_{\text{d,t}} & = q_{\text{d,t}}(\vc{\rho},\ u_{\text{t}},\ p_\text{t},\ p_{\text{out}})
   \end{split}
 \end{equation}
 
 where:
 
 \begin{itemize}
-  \item $\bm{x}$ and $\bm{f}$ are the states and derivatives of a single compressor, defined in \eqref{eq:mod:single_comp_states};
+  \item $\vc{x}$ and $\vc{f}$ are the states and derivatives of a single compressor, defined in \eqref{eq:mod:single_comp_states};
   \item \gls{pt} and \gls{Vt} are the pressure and the volume of the common tank, respectively;
   \item \gls{qdt} is the mass flow across the common tank discharge valve;
   \item \gls{rho} contains the coefficients mapping the mass flow through the common tank discharge valve to the pressure differential across the valve;

@@ -8,7 +8,7 @@
 \addlat{pt}{\ensuremath{p_\text{t}}}{Common tank pressure (parallel system)}
 \addlat{Vt}{\ensuremath{V_\text{t}}}{Common tank volume (parallel system}
 \addlat{qdt}{\ensuremath{q_{\text{d,t}}}}{Mass flow rate through common tank discharge valve (parallel system)}
-\addgrk{rho}{\ensuremath{\bm{\rho}}}{Coefficients mapping mass flow across common tank discharge valve to its pressure differential (parallel system)}
+\addgrk{rho}{\ensuremath{\vc{\rho}}}{Coefficients mapping mass flow across common tank discharge valve to its pressure differential (parallel system)}
 \addlat{ut}{\ensuremath{u_\text{t}}}{Position of common tank discharge valve (parallel system)}
 \addlat{ps}{\ensuremath{p_\text{s}}}{Compressor inlet pressure}
 \addlat{pd}{\ensuremath{p_\text{d}}}{Compressor discharge pressure}
@@ -24,41 +24,41 @@
 \addlat{lc}{\ensuremath{l_\text{c}}}{Duct length after compressor}
 \addgrk{Pi_ss}{\ensuremath{\Pi_{\text{ss}}}}{Coefficients mapping compressor pressure ratio to the rotational speed of and mass flow through compressor}
 \addlat{Jcomp}{\ensuremath{J\ut{comp}}}{Compressor inertia}
-\addgrk{beta}{\ensuremath{\bm{\beta}}}{Coefficients mapping steady-state motor torque to rotational speed and mass flow of compressor}
+\addgrk{beta}{\ensuremath{\vc{\beta}}}{Coefficients mapping steady-state motor torque to rotational speed and mass flow of compressor}
 \addgrk{taur}{\ensuremath{\tau_\text{r}}}{Time constant of recycle valve}
 \addlat{urSP}{\ensuremath{u_{\text{r,SP}}}}{Set point of recycle valve}
-\addgrk{gamma}{\ensuremath{\bm{\gamma}}}{Coefficients mapping mass flow through suction valve to its pressure differential}
-\addgrk{delta_coeff}{\ensuremath{\bm{\delta}}}{Coefficients mapping mass flow through recycle valve to its pressure differential}
-\addgrk{epsilon}{\ensuremath{\bm{\varepsilon}}}{Coefficients mapping mass flow through discharge valve to its pressure differential}
+\addgrk{gamma}{\ensuremath{\vc{\gamma}}}{Coefficients mapping mass flow through suction valve to its pressure differential}
+\addgrk{delta_coeff}{\ensuremath{\vc{\delta}}}{Coefficients mapping mass flow through recycle valve to its pressure differential}
+\addgrk{epsilon}{\ensuremath{\vc{\varepsilon}}}{Coefficients mapping mass flow through discharge valve to its pressure differential}
 \addlat{us}{\ensuremath{u\ut{s}}}{Position of suction valve}
 \addlat{ud}{\ensuremath{u\ut{d}}}{Position of discharge valve}
 \addlat{pin}{\ensuremath{p_{\text{in}}}}{Pressure upstream of compressor}
 \addlat{pout}{\ensuremath{p_{\text{out}}}}{Pressure downstream of compressor}
-\addlat{x}{\ensuremath{\bm{x}}}{Compressor state vector}
-\addlat{f}{\ensuremath{\bm{f}}}{Compressor state derivative}
+\addlat{x}{\ensuremath{\vc{x}}}{Compressor state vector}
+\addlat{f}{\ensuremath{\vc{f}}}{Compressor state derivative}
 \addlat{m}{\ensuremath{m}}{Move horizon of controller}
 \addlat{J}{\ensuremath{J}}{MPC controller cost function}
 \addlat{td}{\ensuremath{T\ut{d}}}{Torque input to compressor}
 
 % MPC
 \addgrk{Delta}{\ensuremath{\Delta\left( \cdot \right)}}{Difference in $\left( \cdot \right)$ relative to its value at the linearization point}
-\addlat{xhat}{\ensuremath{\bm{\hat{x}}_k}}{State estimate at time step $k$}
+\addlat{xhat}{\ensuremath{\vc{\hat{x}}_k}}{State estimate at time step $k$}
 \addlat{p}{\ensuremath{p}}{Prediction horizon}
 \newglossaryentry{xaug}
 {
-  name={\ensuremath{\Delta \bm{\hat{x}}_{k}^a}},
-  plural={\ensuremath{\Delta \bm{\hat{x}}_{k+i}^a}},
+  name={\ensuremath{\Delta \vc{\hat{x}}_{k}^a}},
+  plural={\ensuremath{\Delta \vc{\hat{x}}_{k+i}^a}},
   description={Augmented state estimated at time step $k$},
   type={latin}
 }
-% \addlat{xaug}[plural={\ensuremath{\Delta \bm{\hat{x}}_{k+i}^a}}]{\ensuremath{\Delta \bm{\hat{x}}_{k}^a}}{Augmented state estimate at time step $k$}
+% \addlat{xaug}[plural={\ensuremath{\Delta \vc{\hat{x}}_{k+i}^a}}]{\ensuremath{\Delta \vc{\hat{x}}_{k}^a}}{Augmented state estimate at time step $k$}
 % \addlat{system_matrices}{\ensuremath{
 
 % Optimization problem
 \addlat{U}{\ensuremath{U}}{Input sequence of $m$ inputs, stacked along move horizon}
 \addlat{Y}{\ensuremath{Y}}{Predicted output sequence of $p$ inputs, stacked along prediction horizon}
-\addlat{prediction_matrices}{\ensuremath{S_{U_k}}, \ensuremath{S_{x_k}}, \ensuremath{S_{f_k}}}{Prediction matrices for $\Delta \bm{Y}_k$}
-\addlat{prediction_uother}{\ensuremath{S_{U_{\text{ot},k}}}}{Prediction matrix giving effect of the other sub-controller's inputs on $\Delta \bm{Y}_k$}
+\addlat{prediction_matrices}{\ensuremath{S_{U_k}}, \ensuremath{S_{x_k}}, \ensuremath{S_{f_k}}}{Prediction matrices for $\Delta \vc{Y}_k$}
+\addlat{prediction_uother}{\ensuremath{S_{U_{\text{ot},k}}}}{Prediction matrix giving effect of the other sub-controller's inputs on $\Delta \vc{Y}_k$}
 
 % % observer
 \addlat{M}{\ensuremath{M}}{Static observer gain}

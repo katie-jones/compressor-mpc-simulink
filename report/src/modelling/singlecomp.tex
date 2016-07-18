@@ -41,30 +41,22 @@ The differential equations governing these states are given by:
     \begin{bmatrix}
       \frac{a^2}{V_\text{s}}\left(q_\text{s}+q_\text{r}-q_\text{c}\right)\\
       \frac{a^2}{V_\text{d}}\left(q_\text{c}-q_\text{r}-q_\text{d}\right)\\
-      \frac{A}{l_\text{c}}\left(\Pi_{\text{ss}}\left(\alpha,\ \omega_\text{c},\ q_\text{c} \right)p_\text{s} - p_\text{d}  \right)\\
-      \frac{1}{J\ut{comp}}\left(T_\text{d} - T_\text{c}\left(\bm{\beta},\ \omega_\text{c},\ q_\text{c}\right)\right)\\
+      \frac{A}{l_\text{c}}\left(\Pi_{\text{ss}}\left(\vc{\alpha},\ \omega_\text{c},\ q_\text{c} \right)p_\text{s} - p_\text{d}  \right)\\
+      \frac{1}{J\ut{comp}}\left(T_\text{d} - T_\text{c}\left(\vc{\beta},\ \omega_\text{c},\ q_\text{c}\right)\right)\\
       \frac{1}{\tau_\text{r}}\left(u_\text{r} - u_{\text{r,SP}}\right)
     \end{bmatrix} \\
-    \dt{\bm{x}} & = \bm{f}
+    \dt{\vc{x}} & = \vc{f}
   \end{split}
   \label{eq:mod:single_comp_states}
 \end{equation}
 
 \begin{equation}
   \begin{split}
-    q_\text{s} & = q_\text{s}(\bm{\gamma},\ u_{\text{s}},\ p_\text{s},\ p_{\text{in}})\\
-    q_\text{r} & = q_\text{r}(\bm{\delta},\ u_\text{r},\ p_\text{s},\ p_\text{d})\\
-    q_\text{d} & = q_\text{d}(\bm{\varepsilon},\ u_{\text{d}},\ p_{\text{out}},\ p_\text{d}),
+    q_\text{s} & = q_\text{s}(\vc{\gamma},\ u_{\text{s}},\ p_\text{s},\ p_{\text{in}})\\
+    q_\text{r} & = q_\text{r}(\vc{\delta},\ u_\text{r},\ p_\text{s},\ p_\text{d})\\
+    q_\text{d} & = q_\text{d}(\vc{\varepsilon},\ u_{\text{d}},\ p_{\text{out}},\ p_\text{d}),
   \end{split}
 \end{equation}
-
-% \begin{equation}
-  % \begin{split}
-    % p_{\text{in}} & = p_\text{a}\\
-    % p_{\text{out}} & = p_\text{a}
-  % \end{split}
-  % \label{eq:mod:p_atmospheric}
-% \end{equation}
 
 where:
 
@@ -84,6 +76,4 @@ where:
 \end{itemize}
 
 The interested reader may refer to \cite{Cortinovis2015} for further information on the identification and validation of this model.
-
-
 
