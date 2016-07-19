@@ -3,12 +3,12 @@
   \resizebox{0.8\linewidth}{!}{%
     \begin{tikzpicture}
       % draw first compressor
-      \renewcommand{\complabelsuffix}{,1}
+      \renewcommand{\glsgraph}[1]{\glsentryuseri{#1}}
       \drawcomp
 
       % Draw second compressor shifted
       \begin{scope}[yscale=1,xscale=-1,shift={(-25,0)}]
-      \renewcommand{\complabelsuffix}{,2}
+      \renewcommand{\glsgraph}[1]{\glsentryuserii{#1}}
         \drawcomp
       \end{scope}
 
@@ -18,7 +18,7 @@
     \end{tikzpicture}
   }
   \begin{tikzpicture}[overlay]
-    \node[align=center] (origin) at (-6.25,6.0) {Common\\Tank\\\statetext{p_\text{t}}};
+    \node[align=center] (origin) at (-6.25,6.0) {Common\\Tank\\\statetext{\glsgraph{pt}}};
 
     % Coordinates
     \coordinate (ctank-bl) at ($(origin)-(1.75,1.25)$);
@@ -35,15 +35,15 @@
     \drawflow[->]{($(ovalve)+(0,\valvewidth)+(0,0.5*\valvethick)$)}{+(0,1)}
 
     % Label valve
-    \draw[<-,draw=inputcolor,line width=2pt] ($(ovalve)-(2*\valveheight,0)$) -- ++(-1,0) node[below right]{\inputtext{u_\text{t}}};
+    \draw[<-,draw=inputcolor,line width=2pt] ($(ovalve)-(2*\valveheight,0)$) -- ++(-1,0) node[below right]{\inputtext{\glsgraph{ut}}};
 
     % Legend
     \drawlegend{($(ovalve)+(3.5,0)$)}
 
     % Label boundary conditions
-    \node at ($(ovalve)+(0,2)$) {\bctext{p_\text{a}}};
-    \node at ($(origin)+(5,0.5)$) {\bctext{p_\text{a}}};
-    \node at ($(origin)+(-5,0.5)$) {\bctext{p_\text{a}}};
+    \node at ($(ovalve)+(0,2)$) {\bctext{\glsgraph{pa}}};
+    \node at ($(origin)+(5,0.5)$) {\bctext{\glsgraph{pa}}};
+    \node at ($(origin)+(-5,0.5)$) {\bctext{\glsgraph{pa}}};
 
     % Label individual compressors
     \node[align=center] at ($(origin)-(3,5.5)$) {Compressor 1};

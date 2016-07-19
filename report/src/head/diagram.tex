@@ -4,7 +4,7 @@
 \def\valvewidth{0.5}
 \def\valveheight{0.25}
 \def\valvethick{2pt}
-\newcommand\complabelsuffix{}
+\newcommand{\glsgraph}[1]{\glsentryname{#1}}
 
 \definecolor{tankcolor}{RGB}{55,201,250}
 \definecolor{compcolor}{RGB}{211,231,234}
@@ -18,9 +18,9 @@
 \newtoggle{complabel}\toggletrue{complabel}
 \newtoggle{compfirstvalve}\toggletrue{compfirstvalve}
 
-\def\inputtext#1{\Large\textcolor{inputcolor}{\ensuremath{\bm{#1}}}}
-\def\statetext#1{\Large\textcolor{statecolor}{\ensuremath{\bm{#1}}}}
-\def\bctext#1{\Large\textcolor{bccolor}{\ensuremath{\bm{#1}}}}
+\def\inputtext#1{\Large\textcolor{inputcolor}{#1}}
+\def\statetext#1{\Large\textcolor{statecolor}{#1}}
+\def\bctext#1{\Large\textcolor{bccolor}{#1}}
 
 \newcommand{\drawtank}[2]{
   \draw[line width=\tankthick, draw=tankcolor] #1 rectangle #2;
@@ -79,42 +79,42 @@
   \iftoggle{comptext}{%
     % Nodes
     \iftoggle{complabel}{%
-      \node[above, align=center] at ($(rvalve)+(0,\valveheight)$) {Recycle Valve\\\statetext{q_\text{r\complabelsuffix}}};
+      \node[above, align=center] at ($(rvalve)+(0,\valveheight)$) {Recycle Valve\\\statetext{\glsgraph{qr}}};
       \iftoggle{compfirstvalve}{
         \node[below, rotate=90, transform shape] at ($(ivalve)+(\valveheight,0)$) {Suction Valve};
       }{}
       \node[below, rotate=90, transform shape] at ($(ovalve)+(\valveheight,0)$) {Discharge Valve};
     }{%
-      \node[above, align=center] at ($(rvalve)+(0,\valveheight)$) {\statetext{q_\text{r\complabelsuffix}}};
+      \node[above, align=center] at ($(rvalve)+(0,\valveheight)$) {\statetext{\glsgraph{qr}}};
     }
 
 
     \iftoggle{compfirstvalve}{
-      \draw[<-,draw=inputcolor,line width=2pt] ($(ivalve)-(2*\valveheight,0)$) -- ++(-1,0) node[below]{\inputtext{u_\text{s\complabelsuffix}}};
+      \draw[<-,draw=inputcolor,line width=2pt] ($(ivalve)-(2*\valveheight,0)$) -- ++(-1,0) node[below]{\inputtext{\glsgraph{us}}};
     }{}
 
     \draw[<-,draw=inputcolor,line width=2pt] ($(ovalve)-(2*\valveheight,0)$) -- ++(-1,0) coordinate (x);
-    \node[below] at (x) {\inputtext{u_\text{d\complabelsuffix}}};
+    \node[below] at (x) {\inputtext{\glsgraph{ud}}};
     \draw[<-,draw=inputcolor,line width=2pt] ($(rvalve)-(0,2*\valveheight)$) -- ++(0,-1) coordinate (x);
-    \node[right] at ($(x)+(0,0.5)$) {\inputtext{u_\text{r\complabelsuffix}}};
+    \node[right] at ($(x)+(0,0.5)$) {\inputtext{\glsgraph{ur}}};
     \draw[<-,draw=inputcolor,line width=2pt] (comp-tl |- comp-br) -- ++(-1,0) coordinate (x);
-    \node[above] at (x) {\inputtext{T_\text{d\complabelsuffix}}};
+    \node[above] at (x) {\inputtext{\glsgraph{torque}}};
 
     \iftoggle{complabel}{%
-      \node[align=center] at ($0.5*(itank-tr)+0.5*(itank-bl)$) {Suction\\Tank\\\statetext{p_\text{s\complabelsuffix}}};
-      \node[align=center] at ($0.5*(otank-br)+0.5*(otank-tl)$) {Discharge\\Tank\\\statetext{p_\text{d\complabelsuffix}}};
-      \node[align=center] at ($0.5*(comp-tl)+0.5*(comp-br |- comp-bl)$) {Compressor\\\statetext{\omega_\text{c\complabelsuffix}, q_\text{c\complabelsuffix}}};
+      \node[align=center] at ($0.5*(itank-tr)+0.5*(itank-bl)$) {Suction\\Tank\\\statetext{\glsgraph{ps}}};
+      \node[align=center] at ($0.5*(otank-br)+0.5*(otank-tl)$) {Discharge\\Tank\\\statetext{\glsgraph{pd}}};
+      \node[align=center] at ($0.5*(comp-tl)+0.5*(comp-br |- comp-bl)$) {Compressor\\\statetext{\glsgraph{omegac}, \glsgraph{qc}}};
     }{%
-      \node[align=center] at ($0.5*(itank-tr)+0.5*(itank-bl)$) {\statetext{p_\text{s\complabelsuffix}}};
-      \node[align=center] at ($0.5*(otank-br)+0.5*(otank-tl)$) {\statetext{p_\text{d\complabelsuffix}}};
-      \node[align=center] at ($0.5*(comp-tl)+0.5*(comp-br |- comp-bl)$) {\statetext{\omega_\text{c\complabelsuffix}, q_\text{c\complabelsuffix}}};
+      \node[align=center] at ($0.5*(itank-tr)+0.5*(itank-bl)$) {\statetext{\glsgraph{ps}}};
+      \node[align=center] at ($0.5*(otank-br)+0.5*(otank-tl)$) {\statetext{\glsgraph{pd}}};
+      \node[align=center] at ($0.5*(comp-tl)+0.5*(comp-br |- comp-bl)$) {\statetext{\glsgraph{omegac}, \glsgraph{qc}}};
     }
 
     % Legend
     \iftoggle{compleg}{%
       % boundary conditions
-      \node at ($(ivalve) + (0,2)$) {\bctext{p\ut{a}}};
-      \node at ($(ovalve) + (0,2)$) {\bctext{p\ut{a}}};
+      \node at ($(ivalve) + (0,2)$) {\bctext{\glsgraph{pa}}};
+      \node at ($(ovalve) + (0,2)$) {\bctext{\glsgraph{pa}}};
       \drawlegend{($(itank-bl |- rvalve) - (1.5,0)$)}
     }{}
   }{}

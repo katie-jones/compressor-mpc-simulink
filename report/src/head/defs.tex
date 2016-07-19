@@ -1,18 +1,160 @@
 \renewcommand{\u}[2]{\ensuremath{\SI{#1}{#2}}}
 \newcommand{\mlab}{\texttt{MATLAB}}
+\newcommand{\slink}{\texttt{Simulink}}
+\newcommand{\cpp}{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\relsize{-3}{\textbf{++}}}}
+\newcommand{\eigen}{\texttt{Eigen}}
+
+% string commands
+\newcommand{\ReplaceStr}[2]{%
+  \IfSubStr{#1}{XX}{%
+    \StrSubstitute{#1}{XX}{#2}
+  }{#1}
+}
+
+% glossary shortcuts
+\newcommand{\g}[1]{\gls*{#1}}
+\newcommand{\gi}[1]{\glsuseri*{#1}\glsunset{#1}}
+\newcommand{\gii}[1]{\glsuserii*{#1}\glsunset{#1}}
+\newcommand{\giii}[1]{\glsuseriii*{#1}\glsunset{#1}}
+\newcommand{\giv}[1]{\glsuseriv*{#1}\glsunset{#1}}
+
+\newcommand{\ga}[1]{\glsuseri*{#1}\glsunset{#1}}
+\newcommand{\gb}[1]{\glsuserii*{#1}\glsunset{#1}}
+\newcommand{\gc}[1]{\glsuseriii*{#1}\glsunset{#1}}
+
+\newcommand{\gk}[1]{\gls*{#1}}
+\newcommand{\gpo}[1]{\glsuseri*{#1}\glsunset{#1}}
+\newcommand{\gmo}[1]{\glsuserii*{#1}\glsunset{#1}}
+\newcommand{\gpi}[1]{\glsuseriii*{#1}\glsunset{#1}}
+\newcommand{\gpio}[1]{\glsuseriv*{#1}\glsunset{#1}}
+
+\newcommand{\gentry}[1]{\glsentryname{#1}}
+\newcommand{\gentryi}[1]{\glsentryuseri{#1}}
+\newcommand{\gentryii}[1]{\glsentryuserii{#1}}
+\newcommand{\gentryiii}[1]{\glsentryuseriii{#1}}
+\newcommand{\gentryiv}[1]{\glsentryuseriv{#1}}
+
+\newcommand{\gentrymo}[1]{\glsentryuserii{#1}}
+
 \newcommand{\addsym}[2]{#1\addsymbol{#1}{#2}}
 \newcommand{\addlat}[4][]{%
-  \newglossaryentry{#2}{name={#3},description={#4},type={latin},#1}
+  \ifstrempty{#1}{\def\mysort{#2}}{\def\mysort{#1}}
+  \glssetexpandfield{sortvalue}
+  \newglossaryentry{#2}{name={#3},description={#4},type={latin},sort=\mysort}
 }
-\newcommand{\addgrk}[3]{%
-  \newglossaryentry{#1}{name={#2},description={#3},type={greek},sort={#1}}
+\newcommand{\addgrk}[4][]{%
+  \ifstrempty{#1}{\def\mysort{#2}}{\def\mysort{#1}}
+  \glssetexpandfield{sortvalue}
+  \newglossaryentry{#2}{name={#3},description={#4},type={greek},sort={\mysort}}
 }
+
+\newcommand{\addlatdelta}[4][]{
+  \ifstrempty{#1}{\def\mysort{#2}}{\def\mysort{#1}}
+  \glssetexpandfield{sortvalue}
+  \newglossaryentry{#2}{name={#3},user1={\gentryi{Delta}#3},description={#4},type={latin},sort={\mysort}}
+}
+
+\newcommand{\addlatnumbered}[4][]{%
+  \addglsnumbered{#1}{#2}{#3}{#4}{latin}%
+}
+
+\newcommand{\addgrknumbered}[4]{%
+  \addglsnumbered{#1}{#2}{#3}{#4}{greek}%
+}
+
+\newcommand{\addglsnumbered}[5]{%
+  \saveexpandmode\normalexpandarg
+  \saveexploremode\exploregroups
+  \StrSubstitute{#3}{XX}{}[\myname]%
+  \StrSubstitute{#3}{XX}{,1}[\myuserone]%
+  \StrSubstitute{#3}{XX}{,2}[\myusertwo]%
+  \restoreexpandmode
+  \restoreexploremode
+  \glssetexpandfield{sortvalue}
+  \glssetexpandfield{name}
+%
+  \ifstrempty{#1}{\def\mysort{#2}}{\def\mysort{#1}}
+  \newglossaryentry{#2}%
+  {%
+    name={\myname},%
+    user1={\myuserone},%
+    user2={\myusertwo},%
+    description={#4},%
+    sort={\mysort},%
+    type={#5}%
+  }%
+}
+
+% \newcommand{\addgrknumbered}[3]{%
+  % \saveexpandmode\normalexpandarg
+  % \saveexploremode\exploregroups
+  % \StrSubstitute{#2}{XX}{}[\myname]%
+  % \StrSubstitute{#2}{XX}{,1}[\myuserone]%
+  % \StrSubstitute{#2}{XX}{,2}[\myusertwo]%
+  % \restoreexpandmode
+  % \restoreexploremode
+  % \glssetexpandfield{sortvalue}
+  % \glssetexpandfield{name}
+% %
+  % \newglossaryentry{#1}%
+  % {%
+    % name={\myname},%
+    % user1={\myuserone},%
+    % user2={\myusertwo},%
+    % description={#3},%
+    % sort={#1},
+    % type={greek}%
+  % }%
+% }
+
+\newcommand{\addlatfork}[4][]{%
+  \addglsfork{#1}{#2}{#3}{#4}{latin}%
+}
+
+\newcommand{\addgrkfork}[4][]{%
+  \ifstrempty{#1}{\def\mysort{#2}}{\def\mysort{#1}}
+  \addglsfork{\mysort}{#2}{#3}{#4}{greek}%
+}
+
+\newcommand{\addglsfork}[5]{%
+  \saveexpandmode\normalexpandarg
+  \saveexploremode\exploregroups
+  \StrSubstitute{#3}{XX}{k}[\myname]%
+  \StrSubstitute{#3}{XX}{k+1}[\myuserone]%
+  \StrSubstitute{#3}{XX}{k-1}[\myusertwo]%
+  \StrSubstitute{#3}{XX}{k+i}[\myuserthree]%
+  \StrSubstitute{#3}{XX}{k+i+1}[\myuserfour]%
+  \restoreexpandmode
+  \restoreexploremode
+  \glssetexpandfield{sortvalue}
+  \glssetexpandfield{name}
+%
+  \ifstrempty{#1}{\def\mysort{#2}}{\def\mysort{#1}}
+  \newglossaryentry{#2}%
+  {%
+    name={\myname},%
+    user1={\myuserone},%
+    user2={\myusertwo},%
+    user3={\myuserthree},%
+    user4={\myuserfour},%
+    description={#4},%
+    sort={\mysort},%
+    type={#5}%
+  }%
+}
+
+% underbrace with normal text
+\newcommand{\ubrace}[2]{\underbrace{#1}_{\textstyle #2}}
+
 
 \newcommand{\dt}[1]{\ensuremath{\frac{d#1}{dt}}}
 \newcommand{\ut}[1]{\ensuremath{_\text{#1}}}
 
 % define what to do with vectors
 \newcommand{\vc}[1]{\ensuremath{\bm{#1}}}
+
+% transpose
+\newcommand{\tps}[1]{\ensuremath{#1^\intercal}}
 
 % add argmin operator in math mode
 \DeclareMathOperator*{\argmin}{arg\,min}

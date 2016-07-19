@@ -16,38 +16,38 @@ For simplicity, the two compressors are assumed to have identical parameters and
 The model used has 11 states in total: 5 states for each compressor, as described above, and another state for the pressure in the common tank. It's dynamics are given by:
 
 \begin{equation}
-  \dt{}\begin{bmatrix}
-    \vc{x_1}\\
-    \vc{x_2}\\
-    p_\text{t}
-  \end{bmatrix}
+  \dt{}
+  \ubrace{\begin{bmatrix}
+    \gi{nominalstate}\\
+    \gii{nominalstate}\\
+    \g{pt} 
+  \end{bmatrix}}{\g{parstate}}
   =
-  \begin{bmatrix}
-    \vc{f_1}\\
-    \vc{f_2}\\
-    \frac{a^2}{V_\text{t}}\left(q_{\text{d,1}}+q_{\text{d,2}}-q_{\text{d,t}}\right)
-  \end{bmatrix},
+  \ubrace{\begin{bmatrix}
+    \gi{nominalderiv}\\
+    \gii{nominalderiv}\\
+    \frac{\g{a}^2}{\g{Vt}}\left(\gi{qd}+\gii{qd}-\g{qdt}\right)
+  \end{bmatrix}}{\g{parderiv}},
 \end{equation}
 
 \begin{equation}
   \begin{split}
-    q_{\text{d,1}} & = q_{\text{d,1}}(\vc{\varepsilon_1},\ u_{\text{d},1},\ p_{\text{t}},\ p_{\text{d,1}})\\
-    q_{\text{d,2}} & = q_{\text{d,2}}(\vc{\varepsilon_2},\ u_{\text{\text{d}},2},\ p_{\text{t}},\ p_{\text{d,2}})\\
-    q_{\text{d,t}} & = q_{\text{d,t}}(\vc{\rho},\ u_{\text{t}},\ p_\text{t},\ p_{\text{out}})
+    \gi{qd} & = \gi{qd}(\gi{epsilon},\ \gi{ud},\ \g{pt},\ \gi{pd})\\
+    \gii{qd} & = \gii{qd}(\gii{epsilon},\ \gii{ud},\ \g{pt},\ \gii{pd})\\
+    \g{qdt} & = \g{qdt}(\g{rho},\ \g{ut},\ \g{pt},\ \g{pout})
   \end{split}
 \end{equation}
 
-where:
+\noindent where:
 
 \begin{itemize}
-  \item $\vc{x}$ and $\vc{f}$ are the states and derivatives of a single compressor, defined in \eqref{eq:mod:single_comp_states};
-  \item \gls{pt} and \gls{Vt} are the pressure and the volume of the common tank, respectively;
-  \item \gls{qdt} is the mass flow across the common tank discharge valve;
-  \item \gls{rho} contains the coefficients mapping the mass flow through the common tank discharge valve to the pressure differential across the valve;
-  \item \gls{ut} is the discharge valve opening of the common tank; and
+  \item \g{pt} and \g{Vt} are the pressure and the volume of the common tank, respectively;
+  \item \g{qdt} is the mass flow across the common tank discharge valve;
+  \item \g{rho} contains the coefficients mapping the mass flow through the common tank discharge valve to the pressure differential across the valve;
+  \item \g{ut} is the discharge valve opening of the common tank; and
   \item the subscripts 1 and 2 refer to values for the first and second compressor, respectively.
 \end{itemize}
 
 The inputs to the system are thus the suction, discharge and recycle valve positions for each compressor, the torque input for each compressor, and the common tank discharge valve position.
-The discharge valves linking each compressor to the common tank ($u_{\text{d},1}$ and $u_{\text{d},2}$) are, however, kept in a fully open position in order to reduce the pressure losses in the system.
+The discharge valves linking each compressor to the common tank (\gi{ud} and \gii{ud}) are, however, kept in a fully open position in order to reduce the pressure losses in the system.
 

@@ -2,35 +2,35 @@
 \label{sec:mod:serial}
 
 In the serial compressor system, the two compressors are arranged such that the discharge tank of the first compressor feeds into the suction tank of the second compressor, as shown in Figure~\ref{fig:mod:serial}.
-The inlet pressure of Compressor 1 as well as the outlet pressure of Compressor 2 ($p\ut{in,1}$ and $p\ut{out,2}$) are constrained to be at atmospheric pressure.
+The pressure upstream of Compressor 1 as well as the pressure downstream of Compressor 2 are constrained to be at atmospheric pressure.
 Furthermore, the inlet valve to Compressor 2 has been replaced by the outlet valve of Compressor 1. The state equations for this system are thus given by:
 
 \begin{equation}
   \dt{}
-  \begin{bmatrix}
-    \vc{x_1}\\
-    \vc{x_2}\\
-  \end{bmatrix} =
-  \begin{bmatrix}
-    \vc{f_1}\\
-    \vc{f_2}
-  \end{bmatrix},
+  \ubrace{\begin{bmatrix}
+    \gi{nominalstate}\\
+    \gii{nominalstate}\\
+  \end{bmatrix}}{\g{serialstate}} =
+  \ubrace{\begin{bmatrix}
+    \gi{nominalderiv}\\
+    \gii{nominalderiv}
+  \end{bmatrix}}{\g{serialderiv}},
   \label{eq:mod:serial-state-eq}
 \end{equation}
 
-where $\vc{x_i}$ and $\vc{f_i}$ for $i=1,\ 2$ are defined in \eqref{eq:mod:single_comp_states}, and the following constraints are applied representing the interconnection of the two compressors:
+\noindent where the subscripts 1 and 2 refer to values for the first and second compressor, respectively, and the following constraints are applied representing the interconnection of the two compressors:
 
 \begin{equation}
   \begin{split}
-    p\ut{out,1} & = p\ut{s,2}\\
-    p\ut{in,2} & = p\ut{d,1}\\
-    \vc{\gamma_2} & = \vc{\varepsilon_1}\\
-    u\ut{s,2} & = u\ut{d,1}.
+    \gi{pout} & = \gii{ps}\\
+    \gii{pin} & = \gi{pd}\\
+    \gii{gamma} & = \gi{epsilon}\\
+    \gii{us} & = \gi{ud}.
   \end{split}
   \label{eq:mod:serial-constraints}
 \end{equation}
 
-The valve connecting the two compressors (controlled by $u\ut{d,1}$) is fixed at a fully open position in order to minimize pressure losses in the system.
+The valve connecting the two compressors (controlled by \gi{ud}) is fixed at a fully open position in order to minimize pressure losses in the system.
 
 
 \begin{figure}
@@ -44,7 +44,7 @@ The valve connecting the two compressors (controlled by $u\ut{d,1}$) is fixed at
 
   \resizebox{\linewidth}{!}{%
     \begin{tikzpicture}
-      \renewcommand{\complabelsuffix}{,1}
+      \renewcommand{\glsgraph}[1]{\glsentryuseri{#1}}
       % draw first compressor
       \drawcomp
       % \draw (current bounding box.south west) rectangle (current bounding box.north east);
@@ -52,7 +52,7 @@ The valve connecting the two compressors (controlled by $u\ut{d,1}$) is fixed at
       \togglefalse{compfirstvalve}
 
       \pgfgetlastxy{\xcoord}{\ycoord}
-      \renewcommand{\complabelsuffix}{,2}
+      \renewcommand{\glsgraph}[1]{\glsentryuserii{#1}}
 
       % Draw second compressor shifted
       \begin{scope}[yscale=-1,xscale=1,shift={($(\xcoord,\ycoord) - (0.5*\tankdim,6.65)$)}]
@@ -68,8 +68,8 @@ The valve connecting the two compressors (controlled by $u\ut{d,1}$) is fixed at
     % Label compressors
     \node at ($(origin) - (3.1,0)$) {Compressor 1};
     \node at ($(origin) + (3.1,0)$) {Compressor 2};
-    \node at ($(origin) + (6.2,-0.2)$) {\bctext{p_\text{a}}};
-    \node at ($(origin) - (6.0,-2.7)$) {\bctext{p_\text{a}}};
+    \node at ($(origin) + (6.2,-0.2)$) {\bctext{\glsgraph{pa}}};
+    \node at ($(origin) - (6.0,-2.7)$) {\bctext{\glsgraph{pa}}};
 
     % Legend
     \drawlegend{($(origin)+(4.5,-4)$)}
@@ -77,6 +77,6 @@ The valve connecting the two compressors (controlled by $u\ut{d,1}$) is fixed at
   \end{tikzpicture}
 
 
-  \caption{Diagram of serial compressor system with inputs and states labelled. $p_\text{a}$ represents atmospheric pressure.}
+  \caption{Diagram of serial compressor system with inputs and states labelled. \g{pa} represents atmospheric pressure.}
   \label{fig:mod:serial}
 \end{figure}

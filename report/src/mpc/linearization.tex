@@ -3,21 +3,17 @@
 
 The model used for the MPC controller formulation is the same as that used in Section~\ref{sec:modelling} to simulate the compressor.
 No model mismatch was considered in order to compare the controllers' performance in an ideal scenario.
-In order to generate an optimization in the form of a quadratic program, the system was linearized at each time step about the current states ($\vc{x}_k$) and inputs ($\vc{u}_{k-1}$), and discretized using the 4th order Runge-Kutta method.
+In order to generate an optimization in the form of a quadratic program, the system was linearized at each time step about the current states (\g{xhat}) and inputs (\gmo{ucurr}), and discretized using the 4th order Runge-Kutta method.
 The model at sampling instant $k$ is thus given by:
 
 \begin{equation}
   \begin{split}
-    \Delta \vc{x}_{k+i+1} & = A_k\Delta \vc{x}_{k+i} + B_k\Delta \vc{u}_{k+i} + \vc{f}\left( \vc{\hat{x}}_{k}, \vc{u}_{k-1} \right)\\
-    \Delta \vc{y}_{k+i} & = C_k\Delta \vc{x}_{k+i}, \qquad
-    i \geq 0,
-    % \Delta \vc{x}_{k+i} & = \vc{x}_{k+i} - \vc{\hat{x}}_k \\
-    % \Delta \vc{u}_{k+i} & = \vc{u}_{k+i} - \vc{u}_{k-1} \\
-    % \Delta \vc{y}_{k+i} & = \vc{y}_{k+i} - \vc{y}_k
+    \gi{Delta} \gpio{xhat} & = \gi{sys-mats} \gi{Delta}\gpi{xhat} + \gii{sys-mats} \gi{Delta}\gpi{ucurr} + \g{fcurr}\left( \g{xhat}, \gmo{ucurr} \right)\\
+    \gi{Delta} \gpi{ycurr} & = \giii{sys-mats} \gi{Delta} \gpi{xhat}, \qquad i\geq 0\\
   \end{split}
 \end{equation}
 
-\noindent where \gls*{f} is the derivative of the system evaluated at the linearization point, \gls*{xhat} is the state estimate at time instant $k$, \gls*{p} is the prediction length of the controller, $A_k = A(\vc{\hat{x}}_k, \vc{u}_{k-1})$, $B_k = B(\vc{\hat{x}}_k, \vc{u}_{k-1})$ and $C_k = C(\vc{\hat{x}}_k, \vc{u}_{k-1})$ giving the model linearized about the current operating point, and \gls*{Delta} refers to the difference relative to the linearization point.
+\noindent where \g{fcurr} is the derivative of the system evaluated at the linearization point, \g{xhat} is the state estimate at time instant $k$, \g{p} is the prediction length of the controller, \giv{sys-mats} gives the model linearized about the current operating point, and \g{Delta} refers to the difference in $\left( \cdot \right)$ relative to the linearization point.
 
 The resulting discrete-time, linear system is then augmented to include both error states as integrators for offset-free control, and delayed input states for the recycle valve.
 One integrator for each output is added, as well as 40 delayed states per recycle valve (giving a total delay of \u{2}{s} for a sampling rate of \u{50}{ms}).
@@ -25,81 +21,88 @@ The augmented system has the following form:
 
 \begin{equation}
   \begin{split}
-    \Delta \vc{\hat{x}}_{k+i+1}^a     & =
-    \begin{bmatrix}
-      A_k & \begin{bmatrix}B_k^\text{delay} & 0\end{bmatrix} & 0 \\[0.5em]
-      0 & \begin{bmatrix} 0 & A^\text{delay} \end{bmatrix} & 0\\[0.5em]
+    \gpio{xaug} & = 
+    \ubrace{\begin{bmatrix}
+      \ga{sys-mats} & \begin{bmatrix} \g{Bdelay} & 0\end{bmatrix} & 0 \\[0.5em]
+      0 & \begin{bmatrix} 0 & \g{Adelay} \end{bmatrix} & 0\\[0.5em]
       0 & 0 & I_{n\ut{e}\times n\ut{e}}
-    \end{bmatrix}
-    \left(\begin{bmatrix}
-      \Delta \vc{\hat{x}}_{k+i}\\
+    \end{bmatrix}}{\ga{augsys-mats}}
+    \left( \ubrace{\begin{bmatrix}
+      \gi{Delta} \gpi{xhat}\\
       \begin{bmatrix}
-        u_{\text{del},k,1}\\
-        \vc{u}_{\text{del},k,2\ldots}\\
+        {\gpi{udel}}{\left(1\right)}\\
+        {\gpi{udel}}{\left(2\ldots\right)}\\
       \end{bmatrix}\\
-      \vc{e}_{k+i}
-    \end{bmatrix} -
+      \gpi{integrator}
+    \end{bmatrix}}{\gpi{xaug}} - 
     \begin{bmatrix}
       0\\
       \begin{bmatrix}
         u_{\text{r},k-1}\\
         0\\
       \end{bmatrix}\\
-      0
     \end{bmatrix}
-    \right) + 
-    \begin{bmatrix}
-      B_k^\text{nodelay}\\
-      B^{aug}\\
+    \right)\\
+    & \qquad + 
+    \ubrace{\begin{bmatrix}
+      \g{Bnodelay}\\
+      \g{Baug}\\
       0
-    \end{bmatrix}
-    \begin{bmatrix}
+    \end{bmatrix}}{\gb{augsys-mats}}
+    \ubrace{\begin{bmatrix}
       u_{\text{r},k+i}\\
       \Delta T_{\text{d},k+i}
-    \end{bmatrix}\\[0.5em]
-    & = A_k^a \left(\Delta \vc{\hat{x}}_{k+i}^a - \vc{u}_{\text{r},k-1}\right) + B_k^a \Delta \vc{u}_{k+i}\\[0.5em]
-    & = \begin{bmatrix}
-      C_k & 0 & I_{n\ut{e} \times n\ut{e}}
-    \end{bmatrix}
-    \vc{\hat{x}}_{k+i}^a,\\[0.5em]
-    \Delta \vc{y}_{k+i} & = C_k^a \Delta \vc{\hat{x}}_{k+i}^a\\[0.5em]
+    \end{bmatrix}}{\gpi{deltau}}\\[0.5em]
+    %
+    % & = \gi{augsys-mats} \left( \gpi{xaug} - \vc{u}_{\text{r},k-1} \right) + \gii{augsys-mats} \gpi{deltau}\\[0.5em]
+    % & = A_k^a \left(\Delta \vc{\hat{x}}_{k+i}^a - \vc{u}_{\text{r},k-1}\right) + B_k^a \Delta \vc{u}_{k+i}\\[0.5em]
+    \gi{Delta} \g{ycurr} & = \ubrace{\begin{bmatrix}
+      \gc{sys-mats} & 0 & I_{n\ut{e} \times n\ut{e}}
+    \end{bmatrix}}{\gc{augsys-mats}}
+    \g{xaug}\\[0.5em]
+    % & = \begin{bmatrix}
+      % C_k & 0 & I_{n\ut{e} \times n\ut{e}}
+    % \end{bmatrix}
+    % \vc{\hat{x}}_{k+i}^a,\\[0.5em]
+    % \Delta \vc{y}_{k+i} & = C_k^a \Delta \vc{\hat{x}}_{k+i}^a\\[0.5em]
   \end{split}
   \label{eq:mpc:augmented-state-eqs}
 \end{equation}
 
-\noindent where \glspl*{xaug} is the augmented state of the system, 
-$\vc{\hat{x}}_{k+i}$ contains the original states of the system, 
-$\vc{u}_{del,i}$ contains the delayed recycle valve inputs,
+\noindent where \gpi{xaug} is the augmented state of the system, 
+\gpi{xhat} contains the original states of the system, 
+\gpi{udel} contains the delayed recycle valve inputs,
 $u_{\text{r},k-1}$ gives the value of the recycle valve input about which the system was linearized,
-$\vc{e}_i$ contains the integrator states,
+\gpi{integrator} contains the integrator states,
 $n\ut{e}$ gives the number of integrator states,
-and $A_k^a$, $B_k^a$ and $C_k^a$ give the augmented, linearized model of the system.
-The first component of $\vc{u}_{\text{del},i}$  is multiplied by $B_k^\text{delay}$, and must therefore be corrected by a factor $u_{\text{r},k-1}$, the value about which the system was linearized. 
-The other components of $\vc{u}_{\text{del},k+i}$ are not corrected because they are only multiplied by $A^\text{delay}$ which simply shifts them up a row.
+and \giv{augsys-mats} give the augmented, linearized model of the system.
+
+The first component of \gpi{udel}  is multiplied by \g{Bdelay}, and must therefore be corrected by a factor $u_{\text{r},k-1}$, the value about which the system was linearized. 
+The other components of \gpi{udel} are not corrected because they are only multiplied by \g{Adelay} which simply shifts them up a row.
 
 The specific format of the augmented matrices depends on the system being modelled. For a single compressor, for example, the augmented matrices are as follows:
 
 \begin{equation}
   \begin{split}
-    A_k^a & =
+    \ga{augsys-mats} & =
     \begin{bmatrix}
-      A_k & \begin{bmatrix} B_{k,u\ut{r}} & 0 \end{bmatrix} & 0\matskip{0.5em}
-      0 & \begin{bmatrix} 0 & I_{39\times 39}\\ 0 & 0\end{bmatrix} & 0\matskip{0.5em}
+      \ga{sys-mats} & \begin{bmatrix} B_{k,u\ut{r}} & 0 \end{bmatrix} & 0\\[0.5em]
+      0 & \begin{bmatrix} 0 & I_{39\times 39}\\ 0 & 0\end{bmatrix} & 0\\[0.5em]
       0 & 0 & I_{2\times 2}
     \end{bmatrix}\\[1em]
-    %
-    B_k^a & = 
+%
+    \gb{augsys-mats} & = 
     \begin{bmatrix}
-      B_{k,T\ut{d}} & 0\matskip{0.5em}
-      0 & \begin{bmatrix} 0_{39\times 1}\\ 1 \end{bmatrix} \matskip{0.5em}
+      B_{k,T\ut{d}} & 0\\[0.5em]
+      0 & \begin{bmatrix} 0_{39\times 1}\\ 1 \end{bmatrix} \\[0.5em]
       0 & 0
     \end{bmatrix}\\[1em]
-    %
-    C_k^a & = \begin{bmatrix}
-      C_k & 0 & I_{n\ut{e} \times n\ut{e}}
+%
+    \gc{augsys-mats} & = \begin{bmatrix}
+      \gc{sys-mats} & 0 & I_{n\ut{e} \times n\ut{e}}
     \end{bmatrix},
   \end{split}
 \end{equation}
 
-where $B_{k,u\ut{r}}$ and $B_{k,T\ut{d}}$ are the columns of $B_k$ corresponding to the recycle valve and torque inputs, respectively.
+where $B_{k,u\ut{r}}$ and $B_{k,T\ut{d}}$ are the columns of \gb{sys-mats} corresponding to the recycle valve and torque inputs, respectively.
 

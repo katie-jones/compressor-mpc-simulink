@@ -8,19 +8,19 @@ The two sub-controllers are assumed to have full state information and the optim
 
 \begin{equation}
   \begin{split}
-    H\ut{distributed} & = 2\left( W_u + S_{u_k}^\intercal\ W_y\ S_{u_k} \right)\\
+    H\ut{distributed} & = 2\left( \gi{weights} + \tps{\gi{prediction-matrices}}\ \gii{weights}\ \gi{prediction-matrices} \right)\\
     & = H\ut{centralized}\\
-    g\ut{distributed} & = 2\left( \Delta\vc{\hat{x}}_k^a S_{x_k}^\intercal + \vc{f_k} S_{f_k}^\intercal - \Delta \vc{Y}\ut{ref} + \Delta\vc{U}_{\text{ot},k}\ S_{U_{\text{ot},k}}^\intercal \right)W_y S_{U_k}\\
-    & = g\ut{centralized} + \Delta\vc{U}_{\text{ot},k}\ S_{U_{\text{ot},k}}^\intercal\ W_y\ S_{U_k}
+    g\ut{distributed} & = 2\left( \g{xaug} \tps{\gii{prediction-matrices}} + \g{fcurr} \tps{\giii{prediction-matrices}} - \gi{Yrefk} + \gi{Uother}\ \tps{\g{prediction-uother}} \right)\gii{weights}\ \gi{prediction-matrices}\\
+    & = g\ut{centralized} + \gi{Uother}\ \tps{\g{prediction-uother}} \gii{weights}\ \gi{prediction-matrices}\\
   \end{split}
   \label{eq:mpc:distributed-qp-terms}
 \end{equation}
 
-\noindent where $\vc{U}_{\text{ot},k}$ is the optimal input at time step $k$ calculated by the other sub-controller, and \gls{prediction_uother} is the prediction matrix giving the effect of the other sub-controller's inputs on the current outputs $\Delta \vc{Y}_k$.
+\noindent where \g{Uother} is the optimal input at time step $k$ calculated by the other sub-controller, and \g{prediction-uother} is the prediction matrix giving the effect of the other sub-controller's inputs on the current outputs \gi{Yk}.
 
-As stated in \eqref{eq:mpc:distributed-qp-terms} the QP is unsolvable since  $\vc{U}_{\text{ot},k}$ in turn depends on the solution.
-To break this circular dependency, the problem is initially solved with an estimate for $\vc{U}_{\text{ot},k}$ obtained from the previous QP solution.
-The sub-controllers then exchange information about their obtained solution, updating the value of $\vc{U}_{\text{ot},k}$ and re-solving the optimization.
+As stated in \eqref{eq:mpc:distributed-qp-terms} the QP is unsolvable since \g{Uother} in turn depends on the solution.
+To break this circular dependency, the problem is initially solved with an estimate for \g{Uother} obtained from the previous QP solution.
+The sub-controllers then exchange information about their obtained solution, updating the value of \g{Uother} and re-solving the optimization.
 This procedure is repeated for a fixed number of iterations, after which the optimal solution is sent to the plant.
 The iteration process will not converge for systems that have a high degree of coupling; this effect is discussed in further detail in Section~\ref{sec:results}.
 
@@ -32,7 +32,7 @@ The algorithm used to obtain the optimal input at each time step for a distribut
   \item generate the prediction matrices using \eqref{eq:mpc:augmented-state-eqs};
   \item set up the QP problems according to \eqref{eq:mpc:optimization-qp-formulation};
   \item approximate the solution from each sub-controller using the solution from the previous iteration and use it to correct the linear QP terms;
-  \item iteratively solve each QP, updating the approximation of  $\vc{U}_{\text{ot},k}$ after each iteration;
+  \item iteratively solve each QP, updating the approximation of  \g{Uother} after each iteration;
   \item after a fixed number of iterations, apply the optimal input from each sub-controller at the first prediction interval to the system.
 \end{enumerate}
 

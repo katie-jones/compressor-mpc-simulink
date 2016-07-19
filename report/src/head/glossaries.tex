@@ -1,64 +1,141 @@
 \setglossarystyle{katie}
-\newglossaryentry{TEST}{name={TEST},description={TEST}}
 
 \newglossary*{latin}{Latin Symbols}
 \newglossary*{greek}{Greek Symbols}
 
 \makeglossaries
-\addlat{pt}{\ensuremath{p_\text{t}}}{Common tank pressure (parallel system)}
-\addlat{Vt}{\ensuremath{V_\text{t}}}{Common tank volume (parallel system}
-\addlat{qdt}{\ensuremath{q_{\text{d,t}}}}{Mass flow rate through common tank discharge valve (parallel system)}
-\addgrk{rho}{\ensuremath{\vc{\rho}}}{Coefficients mapping mass flow across common tank discharge valve to its pressure differential (parallel system)}
-\addlat{ut}{\ensuremath{u_\text{t}}}{Position of common tank discharge valve (parallel system)}
-\addlat{ps}{\ensuremath{p_\text{s}}}{Compressor inlet pressure}
-\addlat{pd}{\ensuremath{p_\text{d}}}{Compressor discharge pressure}
-\addlat{qc}{\ensuremath{q_\text{c}}}{Mass flow rate through compressor}
-\addgrk{omegac}{\ensuremath{\omega_\text{c}}}{Rotational speed of the compressor}
-\addlat{qr}{\ensuremath{q_\text{r}}}{Mass flow rate through recycle valve}
+\addlat[pa]{pa}{\ensuremath{p\ut{a}}}{Atmospheric pressure}
+\addlatnumbered{pt}{\ensuremath{p\ut{tXX}}}{Common tank pressure (parallel system)}
+\addlatnumbered{Vt}{\ensuremath{V\ut{tXX}}}{Common tank volume (parallel system}
+\addlatnumbered{qdt}{\ensuremath{q\ut{d,tXX}}}{Mass flow rate through common tank discharge valve (parallel system)}
+\addgrknumbered{rho}{rho}{\ensuremath{\vc{\rho_{XX}}}}{Coefficients mapping mass flow across common tank discharge valve to its pressure differential (parallel system)}
+\addlatnumbered{ut}{\ensuremath{u\ut{tXX}}}{Position of common tank discharge valve (parallel system)}
+\addlatnumbered{ps}{\ensuremath{p\ut{sXX}}}{Compressor suction pressure}
+% \addlatnumbered{pd}{\ensuremath{p\ut{dXX}}}{Compressor discharge pressure}
+\addlatnumbered{qc}{\ensuremath{q\ut{cXX}}}{Mass flow rate through compressor}
+\addgrknumbered{omegac}{omegac}{\ensuremath{\omega\ut{cXX}}}{Rotational speed of the compressor}
+\addlatnumbered{qr}{\ensuremath{q\ut{rXX}}}{Mass flow rate through recycle valve}
 \addlat{a}{\ensuremath{a}}{Speed of sound (\u{340}{m\per s})}
-\addlat{Vs}{\ensuremath{V_\text{s}}}{Compressor suction tank volume}
-\addlat{Vd}{\ensuremath{V_\text{d}}}{Compressor discharge tank volume}
-\addlat{qs}{\ensuremath{q_\text{s}}}{Mass flow rate through suction valve}
-\addlat{qd}{\ensuremath{q_\text{d}}}{Mass flow rate through discharge valve}
+\addlatnumbered{Vs}{\ensuremath{V\ut{sXX}}}{Compressor suction tank volume}
+\addlatnumbered{Vd}{\ensuremath{V\ut{dXX}}}{Compressor discharge tank volume}
+\addlatnumbered{qs}{\ensuremath{q\ut{sXX}}}{Mass flow rate through suction valve}
 \addlat{A}{\ensuremath{A}}{Cross-sectional piping area after compressor}
-\addlat{lc}{\ensuremath{l_\text{c}}}{Duct length after compressor}
-\addgrk{Pi_ss}{\ensuremath{\Pi_{\text{ss}}}}{Coefficients mapping compressor pressure ratio to the rotational speed of and mass flow through compressor}
-\addlat{Jcomp}{\ensuremath{J\ut{comp}}}{Compressor inertia}
-\addgrk{beta}{\ensuremath{\vc{\beta}}}{Coefficients mapping steady-state motor torque to rotational speed and mass flow of compressor}
-\addgrk{taur}{\ensuremath{\tau_\text{r}}}{Time constant of recycle valve}
-\addlat{urSP}{\ensuremath{u_{\text{r,SP}}}}{Set point of recycle valve}
-\addgrk{gamma}{\ensuremath{\vc{\gamma}}}{Coefficients mapping mass flow through suction valve to its pressure differential}
-\addgrk{delta_coeff}{\ensuremath{\vc{\delta}}}{Coefficients mapping mass flow through recycle valve to its pressure differential}
-\addgrk{epsilon}{\ensuremath{\vc{\varepsilon}}}{Coefficients mapping mass flow through discharge valve to its pressure differential}
-\addlat{us}{\ensuremath{u\ut{s}}}{Position of suction valve}
-\addlat{ud}{\ensuremath{u\ut{d}}}{Position of discharge valve}
-\addlat{pin}{\ensuremath{p_{\text{in}}}}{Pressure upstream of compressor}
-\addlat{pout}{\ensuremath{p_{\text{out}}}}{Pressure downstream of compressor}
-\addlat{x}{\ensuremath{\vc{x}}}{Compressor state vector}
-\addlat{f}{\ensuremath{\vc{f}}}{Compressor state derivative}
+\addlatnumbered{lc}{\ensuremath{l\ut{cXX}}}{Duct length after compressor}
+\addgrknumbered{Pi_ss}{Pi_ss}{\ensuremath{\Pi\ut{ssXX}}}{Coefficients mapping compressor pressure ratio to the rotational speed of and mass flow through compressor}
+\addlatnumbered{Jcomp}{\ensuremath{J\ut{compXX}}}{Compressor inertia}
+\addgrknumbered{beta}{beta}{\ensuremath{\vc{\beta_{XX}}}}{Coefficients mapping steady-state motor torque to rotational speed and mass flow of compressor}
+\addgrknumbered{taur}{taur}{\ensuremath{\tau\ut{rXX}}}{Time constant of recycle valve}
+\addlatnumbered{urSP}{\ensuremath{u\ut{r,SPXX}}}{Set point of recycle valve}
+\addgrknumbered{gamma}{gamma}{\ensuremath{\vc{\gamma_{XX}}}}{Coefficients mapping mass flow through suction valve to its pressure differential}
+\addgrknumbered{delta}{delta}{\ensuremath{\vc{\delta_{XX}}}}{Coefficients mapping mass flow through recycle valve to its pressure differential}
+\addlatnumbered{us}{\ensuremath{u\ut{sXX}}}{Position of suction valve}
+\addlatnumbered{pin}{\ensuremath{p\ut{inXX}}}{Pressure upstream of compressor}
+\addlatnumbered{pout}{\ensuremath{p\ut{outXX}}}{Pressure downstream of compressor}
 \addlat{m}{\ensuremath{m}}{Move horizon of controller}
 \addlat{J}{\ensuremath{J}}{MPC controller cost function}
-\addlat{td}{\ensuremath{T\ut{d}}}{Torque input to compressor}
+\addgrknumbered{alpha}{alpha}{\ensuremath{\vc{\alpha_{XX}}}}{Coefficients mapping compressor pressure ratio to compressor speed and mass flow}
+
+
+
+% Modeling/singlecomp
+\addlatnumbered[Td]{torque}{\ensuremath{T\ut{dXX}}}{Torque input to compressor}
+\addlatnumbered{qd}{\ensuremath{q\ut{dXX}}}{Mass flow rate through discharge valve}
+\addlatnumbered{ur}{\ensuremath{u\ut{rXX}}}{Recycle valve opening}
+
+\addlatnumbered[Tc]{airtorque}{\ensuremath{T\ut{cXX}}}{Torque on compressor resulting from air compression}
+\addlatnumbered[xn]{nominalstate}{\ensuremath{\vc{x}\ut{nXX}}}{Nominal state vector for a single compressor}
+\addlatnumbered[fn]{nominalderiv}{\ensuremath{\vc{f}\ut{nXX}}}{Nominal state derivative vector for a single compressor}
+\addgrknumbered{epsilon}{epsilon}{\ensuremath{\vc{\varepsilon}\ut{XX}}}{Coefficients mapping mass flow through discharge valve to its pressure differential}
+\addlatnumbered[ud]{ud}{\ensuremath{u\ut{dXX}}}{Position of discharge valve}
+\addlatnumbered[pd]{pd}{\ensuremath{p\ut{dXX}}}{Compressor discharge pressure}
+
+% Modelling/parallel
+\addlatnumbered[xp]{parstate}{\ensuremath{\vc{x}\ut{pXX}}}{Parallel system state vector}
+\addlatnumbered[fp]{parderiv}{\ensuremath{\vc{f}\ut{pXX}}}{Parallel system state derivative vector}
+
+% modelling/serial
+\addlatnumbered[xs]{serialstate}{\ensuremath{\vc{x}\ut{sXX}}}{Serial system state vector}
+\addlatnumbered[fs]{serialderiv}{\ensuremath{\vc{f}\ut{sXX}}}{Serial system state derivative vector}
+
 
 % MPC
-\addgrk{Delta}{\ensuremath{\Delta\left( \cdot \right)}}{Difference in $\left( \cdot \right)$ relative to its value at the linearization point}
-\addlat{xhat}{\ensuremath{\vc{\hat{x}}_k}}{State estimate at time step $k$}
-\addlat{p}{\ensuremath{p}}{Prediction horizon}
-\newglossaryentry{xaug}
+\newglossaryentry{Delta}
 {
-  name={\ensuremath{\Delta \vc{\hat{x}}_{k}^a}},
-  plural={\ensuremath{\Delta \vc{\hat{x}}_{k+i}^a}},
-  description={Augmented state estimated at time step $k$},
+  name={\ensuremath{\Delta\left( \cdot \right)}},
+  user1={\ensuremath{\Delta}},
+  description={Difference in $\left( \cdot \right)$ relative to its value at the linearization point},
+  sort={Delta},
+  type={greek}
+}
+\addlatfork[xk]{xhat}{\ensuremath{\vc{\hat{x}}_{XX}}}{State estimate at time step $k$}
+\addlatfork[uk]{ucurr}{\ensuremath{\vc{u}_{XX}}}{Input applied at time step $k$}
+\addlatfork[yk]{ycurr}{\ensuremath{\vc{y}_{XX}}}{Output at time step $k$}
+
+% discretized derivative
+\addlatfork[fk]{fcurr}{\ensuremath{\vc{f}_{\text{d},XX}}}{Discretized system derivative at time step $k$}
+
+\newglossaryentry{sys-mats}
+{
+  name={\ensuremath{A_k,\ B_k,\ C_k}},
+  user1={\ensuremath{A_k}},
+  user2={\ensuremath{B_k}},
+  user3={\ensuremath{C_k}},
+  user4={\ensuremath{A_k=A_k\left( \gentry{xhat},\gentrymo{ucurr} \right),\ B_k=B_k\left( \gentry{xhat},\gentrymo{ucurr} \right)} \text{and} \ensuremath{C_k=C_k\left( \gentry{xhat},\gentrymo{ucurr} \right)}},
+  description={Linearized, discretized model matrices},
+  sort={Ak Bk Ck}
   type={latin}
 }
-% \addlat{xaug}[plural={\ensuremath{\Delta \vc{\hat{x}}_{k+i}^a}}]{\ensuremath{\Delta \vc{\hat{x}}_{k}^a}}{Augmented state estimate at time step $k$}
-% \addlat{system_matrices}{\ensuremath{
+\newglossaryentry{augsys-mats}
+{
+  name={\ensuremath{A_k^a,\ B_k^a,\ C_k^a}},
+  user1={\ensuremath{A_k^a}},
+  user2={\ensuremath{B_k^a}},
+  user3={\ensuremath{C_k^a}},
+  user4={\ensuremath{A_k^a=A_k^a\left( \gentry{xhat},\gentrymo{ucurr} \right),\ B_k^a=B_k^a\left( \gentry{xhat},\gentrymo{ucurr} \right)} \text{and} \ensuremath{C_k^a=C_k^a\left( \gentry{xhat},\gentrymo{ucurr} \right)}},
+  description={Linearized, discretized model matrices},
+  sort={Aka Bka Cka}
+  type={latin}
+}
 
-% Optimization problem
-\addlat{U}{\ensuremath{U}}{Input sequence of $m$ inputs, stacked along move horizon}
-\addlat{Y}{\ensuremath{Y}}{Predicted output sequence of $p$ inputs, stacked along prediction horizon}
-\addlat{prediction_matrices}{\ensuremath{S_{U_k}}, \ensuremath{S_{x_k}}, \ensuremath{S_{f_k}}}{Prediction matrices for $\Delta \vc{Y}_k$}
-\addlat{prediction_uother}{\ensuremath{S_{U_{\text{ot},k}}}}{Prediction matrix giving effect of the other sub-controller's inputs on $\Delta \vc{Y}_k$}
+\addlat[p]{p}{\ensuremath{p}}{Prediction horizon}
+\addlatfork[xaug]{xaug}{\ensuremath{\Delta \vc{\hat{x}}_{XX}^a}}{Augmented state estimate at time step $k$}
+\addlatfork[Bdelay]{Bdelay}{\ensuremath{B_{XX}^\text{delay}}}{Columns of \gentryii{sys-mats} corresponding to delayed inputs}
+\addlatfork[Bnodelay]{Bnodelay}{\ensuremath{B_{XX}^\text{nodelay}}}{Columns of \gentryii{sys-mats} corresponding to non-delayed inputs}
+\addlat[Adelay]{Adelay}{\ensuremath{A^\text{delay}}}{Component of the augmented $A$ matrix multiplied by the delayed states}
+\addlatfork[udel]{udel}{\ensuremath{\vc{u}^{\text{delay}}_{XX}}}{Delayed recycle input states at time step $k$}
+\addlatfork[ek]{integrator}{\ensuremath{\vc{e}_{XX}}}{Integrator states of MPC controller}
+\addlat[Baug]{Baug}{\ensuremath{B^\text{aug}}}{Component of the augmented $B$ matrix that outputs the delayed states}
+\addlatfork[uk]{deltau}{\ensuremath{\Delta \vc{u}^\text{a}_{XX}}}{Change in input applied to the system at time step $k$}
 
-% % observer
-\addlat{M}{\ensuremath{M}}{Static observer gain}
+% MPC/optimization
+\addlatdelta[Uk]{Uk}{\ensuremath{U_k}}{Optimal input sequence, stacked over the move horizon, at time step $k$}
+\addlatdelta[Yk]{Yk}{\ensuremath{Y_k}}{Predicted output sequence, stacked over the prediction horizon, at time step $k$}
+\addlatdelta[Yrefk]{Yrefk}{\ensuremath{Y^\text{ref}_k}}{Reference output sequence, stacked over the prediction horizon, at time step $k$}
+\addlatdelta[Uother]{Uother}{\ensuremath{U^\text{ot}_k}}{Input sequence from other distributed controller, stacked over the move horizon, at time step $k$}
+\newglossaryentry{weights}
+{
+  sort={Wu Wy},
+  name={\ensuremath{W_u,\ W_y}},
+  user1={\ensuremath{W_u}},
+  user2={\ensuremath{W_y}},
+  user3={\ensuremath{W_u} \text{and} \ensuremath{W_y}},
+  description={Weighting terms applied to inputs and outputs, respectively}
+}
+
+\addlat[ts]{ts}{\ensuremath{t\ut{s}}}{Sample rate}
+
+\newglossaryentry{prediction-matrices}
+{
+  name={\ensuremath{S_{U_k}}, \ensuremath{S_{x_k}}, \ensuremath{S_{f_k}}},
+  user1={\ensuremath{S_{U_k}}},
+  user2={\ensuremath{S_{x_k}}},
+  user3={\ensuremath{S_{f_k}}},
+  user4={\ensuremath{S_{U_k}}, \ensuremath{S_{x_k}} \text{and} \ensuremath{S_{f_k}}},
+  description={Prediction matrices for \gentryi{Delta}\gentry{Yk}},
+  sort={SUk Sxk Sfk}
+}
+
+\addlat[SUother]{prediction-uother}{\ensuremath{S_{\gentry{Uother}}}}{Prediction matrix giving effect of the other sub-controller's inputs on \gentryi{Yk}}
+
+% observer
+\addlatnumbered[M]{M}{\ensuremath{MXX}}{Static observer gain}
