@@ -4,7 +4,8 @@
 \def\valvewidth{0.5}
 \def\valveheight{0.25}
 \def\valvethick{2pt}
-\newcommand{\glsgraph}[1]{\glsentryname{#1}}
+\newcommand{\glsgraphcmd}[1]{\glsentryname{#1}}
+\newcommand{\glsgraph}[1]{\ensuremath{\bm{\glsgraphcmd{#1}}}}
 
 \definecolor{tankcolor}{RGB}{55,201,250}
 \definecolor{compcolor}{RGB}{211,231,234}

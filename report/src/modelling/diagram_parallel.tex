@@ -3,12 +3,12 @@
   \resizebox{0.8\linewidth}{!}{%
     \begin{tikzpicture}
       % draw first compressor
-      \renewcommand{\glsgraph}[1]{\glsentryuseri{#1}}
+      \renewcommand{\glsgraphcmd}[1]{\glsentryuseri{#1}}
       \drawcomp
 
       % Draw second compressor shifted
       \begin{scope}[yscale=1,xscale=-1,shift={(-25,0)}]
-      \renewcommand{\glsgraph}[1]{\glsentryuserii{#1}}
+      \renewcommand{\glsgraphcmd}[1]{\glsentryuserii{#1}}
         \drawcomp
       \end{scope}
 

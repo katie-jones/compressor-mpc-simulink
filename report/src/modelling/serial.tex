@@ -44,7 +44,7 @@ The valve connecting the two compressors (controlled by \gi{ud}) is fixed at a f
 
   \resizebox{\linewidth}{!}{%
     \begin{tikzpicture}
-      \renewcommand{\glsgraph}[1]{\glsentryuseri{#1}}
+      \renewcommand{\glsgraphcmd}[1]{\glsentryuseri{#1}}
       % draw first compressor
       \drawcomp
       % \draw (current bounding box.south west) rectangle (current bounding box.north east);
@@ -52,7 +52,7 @@ The valve connecting the two compressors (controlled by \gi{ud}) is fixed at a f
       \togglefalse{compfirstvalve}
 
       \pgfgetlastxy{\xcoord}{\ycoord}
-      \renewcommand{\glsgraph}[1]{\glsentryuserii{#1}}
+      \renewcommand{\glsgraphcmd}[1]{\glsentryuserii{#1}}
 
       % Draw second compressor shifted
       \begin{scope}[yscale=-1,xscale=1,shift={($(\xcoord,\ycoord) - (0.5*\tankdim,6.65)$)}]
