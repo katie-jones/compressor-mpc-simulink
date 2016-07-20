@@ -1,9 +1,35 @@
 \section{Implementation}
 \label{sec:mpc:implementation}
 
-For use on embedded systems, and for a more accurate characterization of the computational efficiency of each controller, the controllers were also implemented and tested in C++ using the qpOASES library presented in \cite{Ferreau2014} to solve quadratic programs, and the \eigen{}\cite{Eigen} C++ library to perform linear algebra calculations.
+The simulation was first implemented in \slink{} using the \texttt{ode45} solver for numerical integration of the state equations.
+The MPC controllers were also implemented in \slink{} using \emlab{} scripts.
+The \emlab{} syntax allows C code to be automatically generated and compiled for use in simulation or deployment on embedded systems.
 
+Some steps were taken to decrease the number of computations required, particularly for generating the prediction matrices as this step was found to take over 90\% of the controller's computation time (see Section~\ref{sec:results}).
+To generate these matrices, the terms $\gc{augsys-mats} {\ga{augsys-mats}}^1$, $\gc{augsys-mats} {\ga{augsys-mats}}^2$, \ldots, $\gc{augsys-mats} {\ga{augsys-mats}}^p$ must be calculated, taking the bulk of the computation time.
+To speed this process up, the result of the multiplication $\gc{augsys-mats} {\ga{augsys-mats}}^i$ was saved as an intermediate variable and used to calculate $\gc{augsys-mats} {\ga{augsys-mats}}^{i+1}$.
 
-One of the advantages of the C++ implementation compared to that in \slink{} is that is able to use knowledge of the augmented model structure to multiply the augmented matrices ($A^a$, $B\ut{aug}$ and $C\ut{aug}$) more efficiently.
+For faster computational performance -- particularly on embedded systems -- and for a more accurate characterization of the computational efficiency of each controller, the controllers were also implemented and tested in \cpp{}. 
+The qpOASES library presented in \cite{Ferreau2014} was used to solve quadratic programs, and linear algebra calculations were performed using the \eigen{}\cite{Eigen} \cpp{} library.
 
+One of the advantages of the C++ implementation compared to that in \slink{} is that it is able to use knowledge of the structure of the augmented matrices (\gv{augsys-mats}) to multiply them more efficiently.
+The matrices have both dense sections, corresponding to the non-augmented states, sparse sections, corresponding to the augmented states, and sections which are zero by definition.
+New types were therefore defined for each of the 3 matrices that took this structure into account. 
+For \ga{augsys-mats}, for example, the matrix is as follows (with dimensions for each section for the parallel and serial systems shown in parentheses):
+
+\begin{equation}
+  \ga{augsys-mats} = 
+  \kbordermatrix{%
+    & \mathsmaller{(10-11)} & \mathsmaller{(2)} & \mathsmaller{(78)} & \mathsmaller{(4)} \\
+    & \ga{sys-mats} & \g{Bdelay} & 0 & 0 \\[0.5em]
+    & 0 &  0 & \g{Adelay} & 0\\[0.5em]
+    & 0 & 0 & 0 & I_{4 \times 4}
+  }
+\end{equation}
+
+The \ga{sys-mats} and \g{Bdelay} originate from the non-augmented system and are dense. 
+The \g{Adelay} section, in contrast, is quite sparse: its number of nonzero entries is given by the number of total delayed states, in this case 80, minus the number of inputs that are delayed, in this case 2. 
+All of the nonzero entries are furthermore equal to 1 by definition, since their purpose is to shift a delayed state up one row.
+To take advantage of this structure, both the \ga{sys-mats} and \g{Bdelay} sections are implemented as dense matrices of double values, while \g{Adelay} and $I_{4\times 4}$ are combined into a single sparse matrix of booleans with one entry per column.
+This modification was found to reduce the computation time required for a single controller iteration by a factor of roughly 4 compared to an implementation with fully dense matrices.
 
