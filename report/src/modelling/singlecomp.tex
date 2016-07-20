@@ -4,6 +4,7 @@
 The single compressor unit used in this work, depicted in Figure~\ref{fig:mod:single_comp}, refers to a centrifugal compressor driven by a variable-speed electric motor, with a tank at both the inlet (suction) and outlet (discharge).
 Both the suction and discharge tanks are connected to atmospheric pressure by a valve.
 These suction and discharge valves represent the flow conditions upstream and downstream of the compressor, respectively, such that various flow conditions and disturbances can be simulated by simply changing the position of the valves.
+The artificial disturbances applied using these valves are designed to mimic situations frequently encountered in industrial applications (e.g. shutdown or startup of a downstream compressor).
 A third, recycle (or anti-surge) valve connects the outlet tank to the inlet tank. Its primary purpose is to open when the compressor approaches surge in order to decrease the compressor load and increase the mass flow through the compressor, thus pulling it away from the surge line.
 
 \begin{figure}
@@ -20,9 +21,9 @@ A third, recycle (or anti-surge) valve connects the outlet tank to the inlet tan
 
 The input to the motor driving the compressor is the target motor torque.
 It is assumed that a cascaded regulator maintains the torque at the desired setpoint with a dynamic response fast enough to be neglected at the time scales considered (on the order of 10s of ms).
-Torque is chosen as the input variable as it allows a faster response time compared to motor speed, which would require a second, cascaded speed regulator whose dynamics would not be slow enough to be neglected.
+Torque is chosen as the input variable as it allows a faster response time compared to motor speed, which is generally slower as it requires the use of cascaded torque and speed controllers.
 The inputs to the compressor are thus the positions of the inlet, outlet and recycle valves, as well as the motor torque.
-It should be noted that the torque can be adjusted in time scales on the order of tens of milliseconds while the valves move on the order of seconds.
+It should be noted that the torque can be adjusted in time scales on the order of tens of milliseconds while the valves move on the order of hundreds of milliseconds.
 In particular, the recycle valve has a dead time that varies as a function of the valve opening. For simplification, it was assumed constant and equal to the worst-case dead-time, identified in \cite{Cortinovis2015} to be \u{2}{s}.
 
 
