@@ -17,6 +17,8 @@ td_offset = 0.304;
 u_dist = [0.43, 0.43, 0.33, 0.33];
 t_dist = [0, 50, 50, res_cent.t(end)];
 
+fname_base='serial_';
+
 %% Time responses
 res_cent.sd = [res_cent.y(:,2) - res_cent.yref(2), res_cent.y(:,4) - res_cent.yref(4)];
 res_coop.sd = [res_coop.y(:,2) - res_coop.yref(2), res_coop.y(:,4) - res_coop.yref(4)];
@@ -55,9 +57,13 @@ for i=1:length(figs1)
     legend('Centralized','Cooperative','Non-cooperative')
     xlim(xlims);
     
+    fname=[fname_base,'p',num2str(i)];
+    
     if exist('saveplots','var') && (saveplots ~= 0)
-        saveas(fig1,['serial_p',num2str(i),'.fig']);
-        saveas(fig1,['serial_p',num2str(i),'.pdf']);
+        saveas(fig1,[fname,'.fig']);
+        saveas(fig1,[fname,'.pdf']);
+        matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
+        fname,'.tex'],'width','6cm','figurehandle',fig1,'showInfo',false);
     end
 end
 
@@ -71,9 +77,13 @@ for i=1:length(figs1)
     ylabel('Relative Surge Control Distance [%]')
     xlim(xlims);
     
+    fname=[fname_base,'sd',num2str(i)];
+    
     if exist('saveplots','var') && (saveplots ~= 0)
-        saveas(fig1,['serial_sd',num2str(i),'.fig']);
-        saveas(fig1,['serial_sd',num2str(i),'.pdf']);
+        saveas(fig1,[fname,'.fig']);
+        saveas(fig1,[fname,'.pdf']);
+        matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
+        fname,'.tex'],'width','6cm','figurehandle',fig1,'showInfo',false);
     end
 end
 
@@ -87,9 +97,13 @@ for i=1:length(figs1)
     ylabel('Torque')
     xlim(xlims);
     
+    fname=[fname_base,'td',num2str(i)];
+    
     if exist('saveplots','var') && (saveplots ~= 0)
-        saveas(fig1,['serial_td',num2str(i),'.fig']);
-        saveas(fig1,['serial_td',num2str(i),'.pdf']);
+        saveas(fig1,[fname,'.fig']);
+        saveas(fig1,[fname,'.pdf']);
+        matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
+        fname,'.tex'],'width','6cm','figurehandle',fig1,'showInfo',false);
     end
 end
 
@@ -102,9 +116,13 @@ for i=1:length(figs1)
     ylabel('Valve Opening')
     xlim(xlims);
     
+    fname=[fname_base,'ur',num2str(i)];
+    
     if exist('saveplots','var') && (saveplots ~= 0)
-        saveas(fig1,['serial_ur',num2str(i),'.fig']);
-        saveas(fig1,['serial_ur',num2str(i),'.pdf']);
+        saveas(fig1,[fname,'.fig']);
+        saveas(fig1,[fname,'.pdf']);
+        matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
+        fname,'.tex'],'width','6cm','figurehandle',fig1,'showInfo',false);
     end
 end
 
@@ -124,9 +142,13 @@ xlabel('Time [s]')
 ylabel('Cost Function')
 legend('Centralized','Cooperative','Non-cooperative')
 
+fname=[fname_base,'j'];
+    
 if exist('saveplots','var') && (saveplots ~= 0)
-    saveas(fig1{1},'serial_j.fig');
-    saveas(fig1{1},'serial_j.pdf');
+    saveas(fig1{1},[fname,'.fig']);
+    saveas(fig1{1},[fname,'.pdf']);
+    matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
+    fname,'.tex'],'width','6cm','figurehandle',fig1{1},'showInfo',false);
 end
 
 %% Cost function

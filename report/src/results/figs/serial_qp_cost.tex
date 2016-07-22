@@ -1,0 +1,70 @@
+% This file was created by matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+\definecolor{mycolor3}{rgb}{0.92900,0.69400,0.12500}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=5.706cm,
+height=4.479cm,
+at={(0cm,0cm)},
+scale only axis,
+xmin=1,
+xmax=9,
+xlabel={Number of solver iterations},
+xmajorgrids,
+ymin=0,
+ymax=0.25,
+ylabel={Computational Cost [\%]},
+ymajorgrids,
+axis background/.style={fill=white},
+title style={font=\bfseries},
+title={Computational Cost of Solving QPs as \% of Total},
+legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=left,draw=white!15!black}
+]
+\addplot [color=mycolor1,solid,line width=1.5pt,mark=o,mark options={solid}]
+  table[row sep=crcr]{%
+1	0.0318689232985235\\
+2	0.0318689232985235\\
+3	0.0318689232985235\\
+4	0.0318689232985235\\
+5	0.0318689232985235\\
+6	0.0318689232985235\\
+7	0.0318689232985235\\
+8	0.0318689232985235\\
+9	0.0318689232985235\\
+};
+\addlegendentry{Centralized};
+
+\addplot [color=mycolor2,solid,line width=1.5pt,mark=o,mark options={solid}]
+  table[row sep=crcr]{%
+1	0.0282781328684873\\
+2	0.0060425953442298\\
+3	0.0663440960267981\\
+4	0.0485492129717429\\
+5	0.097174734569012\\
+6	0.0830668006945079\\
+7	0.141879757119644\\
+8	0.115401569249758\\
+9	0.162716955941255\\
+};
+\addlegendentry{Cooperative};
+
+\addplot [color=mycolor3,solid,line width=1.5pt,mark=o,mark options={solid}]
+  table[row sep=crcr]{%
+1	0.0437519189438134\\
+2	0.0733412674799166\\
+3	0.0942271339246764\\
+4	0.109888539582738\\
+5	0.142365413740878\\
+6	0.165460878885316\\
+7	0.187980706557163\\
+8	0.198945473251029\\
+9	0.223703888334995\\
+};
+\addlegendentry{Non-cooperative};
+
+\end{axis}
+\end{tikzpicture}%
