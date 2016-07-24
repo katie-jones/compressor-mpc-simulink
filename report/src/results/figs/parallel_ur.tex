@@ -7,9 +7,9 @@
 \begin{tikzpicture}
 
 \begin{axis}[%
-width=5.77cm,
-height=4.5cm,
-at={(0cm,0cm)},
+width=0.769\linewidth,
+height=0.597\linewidth,
+at={(0\linewidth,0\linewidth)},
 scale only axis,
 xmin=0,
 xmax=500,
@@ -25,7 +25,7 @@ title={Normalized Recycle Valve Opening},
 axis x line*=bottom,
 axis y line*=left
 ]
-\addplot [color=mycolor1,solid,forget plot]
+\addplot [color=mycolor1,solid,line width=1.5pt,forget plot]
   table[row sep=crcr]{%
 0	6.93883000000002e-310\\
 0.5	6.93883000000002e-310\\
@@ -528,10 +528,6 @@ axis y line*=left
 249	0.0594121\\
 249.5	0.0593752\\
 250	0.0593385\\
-};
-\addplot [color=mycolor1,solid,forget plot]
-  table[row sep=crcr]{%
-250	0.0593385\\
 250.5	0.0593019\\
 251	0.0592655\\
 251.5	0.0592293\\
@@ -1032,7 +1028,7 @@ axis y line*=left
 499	0.0553844\\
 499.5	0.0553852\\
 };
-\addplot [color=mycolor2,solid,forget plot]
+\addplot [color=mycolor2,solid,line width=1.5pt,forget plot]
   table[row sep=crcr]{%
 0	6.91844e-310\\
 0.5	6.91844e-310\\
@@ -1535,10 +1531,6 @@ axis y line*=left
 249	0.0596367\\
 249.5	0.0596031\\
 250	0.0595696\\
-};
-\addplot [color=mycolor2,solid,forget plot]
-  table[row sep=crcr]{%
-250	0.0595696\\
 250.5	0.0595362\\
 251	0.059503\\
 251.5	0.0594699\\
@@ -2039,7 +2031,7 @@ axis y line*=left
 499	0.0553622\\
 499.5	0.0553629\\
 };
-\addplot [color=mycolor3,solid,forget plot]
+\addplot [color=mycolor3,solid,line width=1.5pt,forget plot]
   table[row sep=crcr]{%
 0	6.92442000000001e-310\\
 0.5	6.92442000000001e-310\\
@@ -2541,10 +2533,6 @@ axis y line*=left
 248.5	0.0597292\\
 249	0.0596912\\
 249.5	0.0596533\\
-250	0.0596157\\
-};
-\addplot [color=mycolor3,solid,forget plot]
-  table[row sep=crcr]{%
 250	0.0596157\\
 250.5	0.0595782\\
 251	0.0595409\\

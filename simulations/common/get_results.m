@@ -17,7 +17,8 @@ t_dist = [0, 50, 50, res_cent.t(end)];
 
 td_offset = 0.304;
 
-set(0,'defaultaxesfontsize',14)
+fname_base = 'parallel_';
+
 %% Time responses
 
 res_cent.sd = res_cent.y(:,1) - res_cent.yref(1);
@@ -50,9 +51,13 @@ xlabel('Time [s]')
 ylabel('Pressure [atm]')
 legend('Centralized','Cooperative','Non-cooperative')
 
+fname=[fname_base,'p'];
+    
 if exist('saveplots','var') && (saveplots ~= 0)
-    saveas(figs{1},'parallel_p.fig');
-%     saveas(figs{1},'parallel_p.pdf');
+    saveas(figs{1},[fname,'.fig']);
+    saveas(figs{1},[fname,'.pdf']);
+    matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
+    fname,'.tex'],'width','0.8\linewidth','figurehandle',figs{1},'showInfo',false);
 end
 
 
@@ -61,9 +66,13 @@ title('Surge Distance')
 xlabel('Time [s]')
 ylabel('Relative Surge Control Distance [%]')
 
+fname=[fname_base,'sd'];
+    
 if exist('saveplots','var') && (saveplots ~= 0)
-    saveas(figs{1},'parallel_sd.fig');
-%     saveas(figs{1},'parallel_sd.pdf');
+    saveas(figs{1},[fname,'.fig']);
+    saveas(figs{1},[fname,'.pdf']);
+    matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
+    fname,'.tex'],'width','0.8\linewidth','figurehandle',figs{1},'showInfo',false);
 end
 
 
@@ -72,9 +81,13 @@ title('Normalized Torque Setting')
 xlabel('Time [s]')
 ylabel('Torque')
 
+fname=[fname_base,'td'];
+    
 if exist('saveplots','var') && (saveplots ~= 0)
-    saveas(figs{1},'parallel_td.fig');
-%     saveas(figs{1},'parallel_td.pdf');
+    saveas(figs{1},[fname,'.fig']);
+    saveas(figs{1},[fname,'.pdf']);
+    matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
+    fname,'.tex'],'width','0.8\linewidth','figurehandle',figs{1},'showInfo',false);
 end
 
 
@@ -83,9 +96,13 @@ title('Normalized Recycle Valve Opening')
 xlabel('Time [s]')
 ylabel('Valve Opening')
 
+fname=[fname_base,'ur'];
+    
 if exist('saveplots','var') && (saveplots ~= 0)
-    saveas(figs{1},'parallel_ur.fig');
-%     saveas(figs{1},'parallel_ur.pdf');
+    saveas(figs{1},[fname,'.fig']);
+    saveas(figs{1},[fname,'.pdf']);
+    matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
+    fname,'.tex'],'width','0.8\linewidth','figurehandle',figs{1},'showInfo',false);
 end
 
 figs = figure;
@@ -102,9 +119,13 @@ title('Cost Function')
 xlabel('Time [s]')
 ylabel('Cost Function')
 
+fname=[fname_base,'j'];
+    
 if exist('saveplots','var') && (saveplots ~= 0)
-    saveas(figs{1},'parallel_j.fig');
-%     saveas(figs{1},'parallel_j.pdf');
+    saveas(figs{1},[fname,'.fig']);
+    saveas(figs{1},[fname,'.pdf']);
+    matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
+    fname,'.tex'],'width','0.8\linewidth','figurehandle',figs{1},'showInfo',false);
 end
 
 

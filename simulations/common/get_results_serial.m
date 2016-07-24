@@ -63,7 +63,7 @@ for i=1:length(figs1)
         saveas(fig1,[fname,'.fig']);
         saveas(fig1,[fname,'.pdf']);
         matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
-        fname,'.tex'],'width','6cm','figurehandle',fig1,'showInfo',false);
+        fname,'.tex'],'width','0.8\linewidth','figurehandle',fig1,'showInfo',false);
     end
 end
 
@@ -83,7 +83,7 @@ for i=1:length(figs1)
         saveas(fig1,[fname,'.fig']);
         saveas(fig1,[fname,'.pdf']);
         matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
-        fname,'.tex'],'width','6cm','figurehandle',fig1,'showInfo',false);
+        fname,'.tex'],'width','0.8\linewidth','figurehandle',fig1,'showInfo',false);
     end
 end
 
@@ -103,7 +103,7 @@ for i=1:length(figs1)
         saveas(fig1,[fname,'.fig']);
         saveas(fig1,[fname,'.pdf']);
         matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
-        fname,'.tex'],'width','6cm','figurehandle',fig1,'showInfo',false);
+        fname,'.tex'],'width','0.8\linewidth','figurehandle',fig1,'showInfo',false);
     end
 end
 
@@ -122,7 +122,7 @@ for i=1:length(figs1)
         saveas(fig1,[fname,'.fig']);
         saveas(fig1,[fname,'.pdf']);
         matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
-        fname,'.tex'],'width','6cm','figurehandle',fig1,'showInfo',false);
+        fname,'.tex'],'width','0.8\linewidth','figurehandle',fig1,'showInfo',false);
     end
 end
 
@@ -148,7 +148,7 @@ if exist('saveplots','var') && (saveplots ~= 0)
     saveas(fig1{1},[fname,'.fig']);
     saveas(fig1{1},[fname,'.pdf']);
     matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
-    fname,'.tex'],'width','6cm','figurehandle',fig1{1},'showInfo',false);
+    fname,'.tex'],'width','0.8\linewidth','figurehandle',fig1{1},'showInfo',false);
 end
 
 %% Cost function

@@ -7,9 +7,9 @@
 \begin{tikzpicture}
 
 \begin{axis}[%
-width=5.794cm,
-height=4.479cm,
-at={(0cm,0cm)},
+width=0.773\linewidth,
+height=0.597\linewidth,
+at={(0\linewidth,0\linewidth)},
 scale only axis,
 xmin=0,
 xmax=500,
@@ -25,7 +25,7 @@ title={Surge Distance},
 axis x line*=bottom,
 axis y line*=left
 ]
-\addplot [color=mycolor1,solid,forget plot]
+\addplot [color=mycolor1,solid,line width=1.5pt,forget plot]
   table[row sep=crcr]{%
 0	0.0693700000000002\\
 0.5	0.0265199999999997\\
@@ -528,10 +528,6 @@ axis y line*=left
 249	0.0162800000000001\\
 249.5	0.0161199999999999\\
 250	0.0159599999999998\\
-};
-\addplot [color=mycolor1,solid,forget plot]
-  table[row sep=crcr]{%
-250	0.0159599999999998\\
 250.5	0.0158100000000001\\
 251	0.0156499999999999\\
 251.5	0.0155000000000003\\
@@ -1032,7 +1028,7 @@ axis y line*=left
 499	-0.000250000000000306\\
 499.5	-0.000239999999999796\\
 };
-\addplot [color=mycolor2,solid,forget plot]
+\addplot [color=mycolor2,solid,line width=1.5pt,forget plot]
   table[row sep=crcr]{%
 0	0.0693700000000002\\
 0.5	0.02644\\
@@ -1535,10 +1531,6 @@ axis y line*=left
 249	0.0146800000000002\\
 249.5	0.0145400000000002\\
 250	0.0144000000000002\\
-};
-\addplot [color=mycolor2,solid,forget plot]
-  table[row sep=crcr]{%
-250	0.0144000000000002\\
 250.5	0.0142699999999998\\
 251	0.0141299999999998\\
 251.5	0.0140000000000002\\
@@ -2039,7 +2031,7 @@ axis y line*=left
 499	-0.000339999999999563\\
 499.5	-0.000329999999999941\\
 };
-\addplot [color=mycolor3,solid,forget plot]
+\addplot [color=mycolor3,solid,line width=1.5pt,forget plot]
   table[row sep=crcr]{%
 0	0.0693700000000002\\
 0.5	0.0265700000000004\\
@@ -2541,10 +2533,6 @@ axis y line*=left
 248.5	0.0185199999999996\\
 249	0.0183600000000004\\
 249.5	0.0182000000000002\\
-250	0.0180300000000004\\
-};
-\addplot [color=mycolor3,solid,forget plot]
-  table[row sep=crcr]{%
 250	0.0180300000000004\\
 250.5	0.0178700000000003\\
 251	0.0177100000000001\\

@@ -48,27 +48,33 @@ coop_mean_times = mean(coop_times);
 
 %%
 fig=figure; 
-plot(1:N-1,[cent_mean_times(2:end)-cent_mean_times(1), coop_mean_times(2:end)'-coop_mean_times(1), noncoop_mean_times(2:end)'-noncoop_mean_times(1)]/1.0e6,'-o','linewidth',1.5);
+plot(1:N-1,cent_mean_times(2:end)/1.0e6,'-o', 1:N-1, coop_mean_times(2:end)/1e6,...
+    '-*',1:N-1,noncoop_mean_times(2:end)/1e6,'-x','linewidth',1.5);
 grid on
-title('Comparison of Computational Cost')
+% title('Comparison of Average Computational Cost')
+title('Serial System')
 xlabel('Number of solver iterations')
 ylabel('Average computation time [ms]')
-legend('Centralized','Cooperative','Non-cooperative','location','northwest')
+legend('Centralized','Cooperative','Non-cooperative','location','west')
 fig=printplot(fig);
 fname='serial_computation_cost';
 if exist('saveplots','var') && saveplots~=0
     saveas(fig,[fname,'.fig'])
     saveas(fig,[fname,'.pdf'])
     matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
-        fname,'.tex'],'width','6cm','figurehandle',fig,'showInfo',false);
+        fname,'.tex'],'width','0.8\linewidth','figurehandle',fig,'showInfo',false);
 end
 
 fig=figure;
-plot(1:N-1,1 - [cent_mean_times(1)./cent_mean_times(2:end), coop_mean_times(1)./coop_mean_times(2:end)',noncoop_mean_times(1)./noncoop_mean_times(2:end)'] ,'-o','linewidth',1.5);
+plot(1:N-1, 1 - cent_mean_times(1)./cent_mean_times(2:end), '-o',1:N-1,...
+    1- coop_mean_times(1)./coop_mean_times(2:end),'-s',1:N-1,...
+    1-noncoop_mean_times(1)./noncoop_mean_times(2:end),'-+','linewidth',1.5,...
+    'markersize',10);
 grid on
-title('Computational Cost of Solving QPs as % of Total')
+% title({'Relative Computational Cost of QP Solver'})
+title('Serial System')
 xlabel('Number of solver iterations')
-ylabel('Computational Cost [%]')
+ylabel('Computation time [% of total]')
 legend('Centralized','Cooperative','Non-cooperative','location','northwest')
 fig=printplot(fig);
 fname = 'serial_qp_cost';
@@ -76,6 +82,6 @@ if exist('saveplots','var') && saveplots~=0
     saveas(fig,[fname,'.fig'])
     saveas(fig,[fname,'.pdf'])
     matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
-        fname,'.tex'],'width','6cm','figurehandle',fig,'showInfo',false);
+        fname,'.tex'],'width','0.8\linewidth','figurehandle',fig,'showInfo',false);
 end
 
