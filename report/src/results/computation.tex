@@ -29,7 +29,11 @@ The computational cost of the cooperative controller relative to the centralized
 The number of solver iterations for which the cooperative approach requires more computation time than the centralized approach is thus shifted depending on the simulation case considered.
 
 The computation time for the cooperative controller in the serial case has a zig-zag behavior, where increasing the number of solver iterations from an odd number to an even number actually decreases the computation time.
-From \fig{res:qp-compcost}, it is evident that this pattern is a result of the QP solver computation time, however its cause is unclear.
+From \fig{res:qp-compcost}, it is evident that the pattern originates in QP solver computation time, however the reason for this is unclear.
+
+It should be noted that increasing the number of solver iterations above 2 had no measurable effect on performance whatsoever.
+In fact, the convergence of the cost function with increasing solver iterations cannot be visualized as, for the cases considered here, the change after the first iteration is below the minimum value of a 64-bit floating point number at almost all time steps and is recorded as zero.
+The only point at which the decrease can be measured in during the few seconds immediately after the disturbance is applied, though even at this point it is too small to have an effect on controller behavior.
 
 The significant advantage in computation time demonstrated by the non-cooperative controller is a result of the reduced size of its prediction matrices (\giv{prediction-matrices}), which are multiplied as described in \sect{mpc:linearization} to generate the \g{qp}.
 The computational cost of the \g{qp} generation is approximately linear in the number of outputs used, and the non-cooperative approach considers fewer outputs than the centralized or cooperative approaches (see \tab{res:parallel-weights}).
