@@ -5,6 +5,9 @@
 \newcommand{\cpp}{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\relsize{-3}{\textbf{++}}}}
 \newcommand{\eigen}{\texttt{Eigen}}
 
+\newcommand{\fig}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\sect}[1]{Sec.~\ref{sec:#1}}
+
 % string commands
 \newcommand{\ReplaceStr}[2]{%
   \IfSubStr{#1}{XX}{%
@@ -86,28 +89,6 @@
     type={#5}%
   }%
 }
-
-% \newcommand{\addgrknumbered}[3]{%
-  % \saveexpandmode\normalexpandarg
-  % \saveexploremode\exploregroups
-  % \StrSubstitute{#2}{XX}{}[\myname]%
-  % \StrSubstitute{#2}{XX}{,1}[\myuserone]%
-  % \StrSubstitute{#2}{XX}{,2}[\myusertwo]%
-  % \restoreexpandmode
-  % \restoreexploremode
-  % \glssetexpandfield{sortvalue}
-  % \glssetexpandfield{name}
-% %
-  % \newglossaryentry{#1}%
-  % {%
-    % name={\myname},%
-    % user1={\myuserone},%
-    % user2={\myusertwo},%
-    % description={#3},%
-    % sort={#1},
-    % type={greek}%
-  % }%
-% }
 
 \newcommand{\addlatfork}[4][]{%
   \addglsfork{#1}{#2}{#3}{#4}{latin}%
