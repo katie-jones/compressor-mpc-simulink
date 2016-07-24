@@ -21,7 +21,7 @@ In the following plots, the disturbances are applied at \u{50}{s}, after the sys
 
 
 The time response of each controller for the parallel system is shown in \fig{res:parallel-timeresp}.
-The responses obtained using each of the three controllers are virtually identical -- in this case, using a distributed control approach has no performance penalty and a potential decrease in computational cost (see below). 
+The responses obtained using each of the three controllers are virtually identical -- in this case, using a distributed control approach has no performance penalty and a potential decrease in computational cost (see below).
 
 The controller weights used to generate these results are summarized in \tab{res:parallel-weights}.
 
@@ -95,7 +95,7 @@ Once the recycle valve begins to take effect, the torque applied to both compres
 \makeplotstrue
 
 The time response of the serial system is shown in \fig{res:serial-timeresp}.
-A zoomed view of the initial surge distance response is shown in \fig{res:serial-sd-zoom}. 
+A zoomed view of the initial surge distance response is shown in \fig{res:serial-sd-zoom}.
 The controller weights used to generate these results are summarized in \tab{res:serial-weights}.
 
 \begin{table}
@@ -105,14 +105,14 @@ The controller weights used to generate these results are summarized in \tab{res
     \toprule
     & & Centralized & Coop. & Non-coop. 1 & Non-coop. 2 \\
     \midrule
-    \multirow{2}{*}{Torque} & \gi{torque}  & 20 & 40 & 50 & 0 \\
-    & \gii{torque}  & 20  & 40 & 0 & 50 \\
+    \multirow{2}{*}{Torque} & \gi{torque}  & 20 & 41 & 50 & 0 \\
+    & \gii{torque}  & 20  & 25 & 0 & 50 \\
     \multirow{2}{*}{Recycle valve} & \gi{ur}  & 250 & 500 & 1000 & 0 \\
     & \gii{ur}  & 250 & 500 & 0 & 1000 \\
-    \multirow{2}{*}{Surge distance}& \gi{sd}  & 1 & 1 & 1.5 & 0 \\
+    \multirow{2}{*}{Compressor output pressure}& \gi{pd}  & 0.2 & 0.75 & 2 & 0 \\
+    & \gii{pd}  & 1 & 1.5 & 0 & 2 \\
+    \multirow{2}{*}{Surge distance}& \gi{sd}  & 1 & 4 & 1.5 & 0 \\
     & \gii{sd}  & 8 & 8 & 0 & 1.5 \\
-    \multirow{2}{*}{Compressor output pressure}& \gi{pd}  & 0.2 & 0.2 & 2 & 0 \\
-    & \gii{pd}  & 1 & 1 & 0 & 2 \\
     \bottomrule
   \end{tabular}
   \caption{Controller weights used for the serial system. Surge distance is normalized by a factor of 1000 to have similar weight ranges.}
@@ -121,7 +121,7 @@ The controller weights used to generate these results are summarized in \tab{res
 
 In contrast to the parallel case, differences in the controller response and performance can be observed for each of the control approaches.
 The cooperative controller response is qualitatively similar to that of the centralized controller.
-It is, however, somewhat less aggressive in its regulation of the output pressure, evidenced by its less extreme change from high to low torque in the downstream compressor and faster return to the steady state torque value, as shown in \fig{res:serial-timeresp:td2}). 
+It is, however, somewhat less aggressive in its regulation of the output pressure, evidenced by its less extreme change from high to low torque in the downstream compressor and faster return to the steady state torque value, as shown in \fig{res:serial-timeresp:td2}.
 As a result, the output pressure of the downstream compressor has a much lower overshoot than either the centralized or non-cooperative controller.
 
 Similarly, in the upstream compressor, the cooperative controller's torque input -- shown in \fig{res:serial-timeresp:td1} -- is smoother than that of the centralized controller with no uptick near \u{70}{s}, and a faster convergence of both inputs to their steady-state values.
