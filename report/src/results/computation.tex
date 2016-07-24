@@ -1,0 +1,39 @@
+\section{Computational Efficiency}
+\label{sec:results:computation}
+
+The computational cost of the centralized and distributed control approaches was evaluated and is presented in \fig{results:compcost}.
+The computation times for the distributed controllers assume a parallelized implementation where each sub-controller is executed using a separate processor. 
+
+As expected, the non-cooperative controller achieves the lowest computation times for both the parallel and the serial system.
+In both cases, the cooperative controller has a computation time approximately on par with the centralized controller, though slightly lower for few solver iterations.
+
+
+\ifmakeplots
+\begin{figure}
+  \centering
+  {\large\bfseries Controller Computation Time per Iteration\\}
+  \begin{subfigure}{0.75\linewidth}
+    \input{results/figs/parallel_computation_cost.tex}
+  \end{subfigure}
+  \\
+  \begin{subfigure}{0.75\linewidth}
+    \input{results/figs/serial_computation_cost.tex}
+  \end{subfigure}
+  \caption{Average controller computation time per iteration for centralized and distributed controllers, as a function of the number of solver iterations used. It should be noted that performance gains for solver iterations greater than 2 are marginal. Disturbance (described in \sect{results:performance}) is applied at \u{50}{s} and total simulation time is \u{500}{s}.}
+  \label{fig:results:compcost}
+\end{figure}
+
+\begin{figure}
+  \centering
+  {\large\bfseries Computation Time of QP Solver as \% of Total\\}
+  \begin{subfigure}{0.75\linewidth}
+  \input{results/figs/serial_qp_cost.tex}
+  \end{subfigure}
+  \\
+  \begin{subfigure}{0.75\linewidth}
+  \input{results/figs/parallel_qp_cost.tex}
+  \end{subfigure}
+  \caption{Computation time required for QP solver as \% of total controller computation time. Includes time required to update linear term of QP at each solver iteration, as described in \sect{mpc:distributed}. Remaining time is used for generating the initial QP problem. Disturbance (described in \sect{results:performance}) is applied at \u{50}{s} and total simulation time is \u{500}{s}.}
+  \label{fig:results:qp-compcost}
+\end{figure}
+\fi

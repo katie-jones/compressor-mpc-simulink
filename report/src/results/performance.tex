@@ -1,8 +1,34 @@
 \section{Controller Performance}
 \label{sec:results:performance}
 
+\newif\ifmakeplots
+\makeplotsfalse
+
+
+In order to test the controller performance of the various control implementations, a single benchmark disturbance case was chosen.
+It is designed to mimic a typical disturbance downstream of the system such as the shutdown of another compressor downstream.
+The disturbances used were as follows:
+
+\begin{itemize}
+  \item \textbf{parallel}: common tank discharge valve 70\% -> 40\% open;
+  \item \textbf{serial}: downstream compressor discharge vale 39\% -> 29\% open.
+\end{itemize}
+% For the parallel case, this disturbance was a closing of the common tank's discharge valve from 70\% open to 40\% open.
+% For the serial case, the discharge valve of the downstream compressor was closed from 39\% open to 29\% open.
+In the following plots, the disturbances are applied at \u{50}{s}, after the system has reached steady state.
+
+
+\subsection{Parallel System}
+\label{sec:results:performance:parallel}
+
+The time response of each controller for the parallel system is shown in \fig{res:parallel-timeresp}.
+The responses obtained using each of the three controllers are virtually identical -- in this case, using a distributed control approach has no performance penalty and a potential decrease in computational cost (see below). 
+
+
+\ifmakeplots
+
 \begin{figure}
-  \centering
+  {\centering\large\textbf{Parallel System}\\Both Compressors\\[1em]}
   \begin{subfigure}{0.48\linewidth}
     \footnotesize
     \input{results/figs/parallel_p.tex}
@@ -26,42 +52,88 @@
     \input{results/figs/parallel_ur.tex}
     \normalsize
   \end{subfigure}
-  
-  \caption{Comparison of time responses of centralized and distributed controllers for parallel system. Disturbance applied is a closing of the common tank discharge valve from 70\% to 40\% at time \u{50}{s}.}
-  \label{fig:res:parallel_timeresp}
+  \caption{Comparison of time responses of centralized and distributed controllers for parallel system. Distributed controllers use 3 solver iterations (no change in performance for increased iterations -- see \sect{results:computation}). Disturbance applied is a closing of the common tank discharge valve from 70\% to 40\% at time \u{50}{s}.}
+  \label{fig:res:parallel-timeresp}
 \end{figure}
 
+\fi
+
+The disturbance applied has the effect of decreasing the mass flow out of, and increasing the pressure in, the common discharge tank, thus sending both compressors toward surge.
+At this point, the recycle valve opens but with a \u{2}{s} delay.
+During this delay period, the controller also increases the torque applied to the driver, which increases the mass flow through the compressor, quickly pulling it away from the surge line.
+
+The increased torque from both compressors further increases the pressure in the common discharge tank, though the pressure reacts on a much slower time scale than the surge distance.
+Once the recycle valve begins to take effect, the torque applied to both compressors is decreased by the controller in order to bring the discharge pressure back to its setpoint.
 
 
+
+
+
+\subsection{Serial System}
+\label{sec:results:performance:serial}
+\makeplotstrue
+
+The time response of the serial system is shown in \fig{res:serial-timeresp}.
+In contrast to the parallel case, differences in the controller response and performance can be observed for each of the control approaches.
+
+\ifmakeplots
 \begin{figure}
-  \centering
+  {\centering\large\textbf{Serial System}\\ Upstream Compressor\\[1em]}
   \begin{subfigure}{0.48\linewidth}
     \footnotesize
-    \input{results/figs/serial_p.tex}
+    \input{results/figs/serial_p1.tex}
     \normalsize
   \end{subfigure}
   \hfill
   \begin{subfigure}{0.48\linewidth}
     \footnotesize
-    \input{results/figs/serial_sd.tex}
+    \input{results/figs/serial_sd1.tex}
     \normalsize
   \end{subfigure}
   \\
   \begin{subfigure}{0.48\linewidth}
     \footnotesize
-    \input{results/figs/serial_td.tex}
+    \input{results/figs/serial_td1.tex}
     \normalsize
   \end{subfigure}
   \hfill
   \begin{subfigure}{0.48\linewidth}
     \footnotesize
-    \input{results/figs/serial_ur.tex}
+    \input{results/figs/serial_ur1.tex}
     \normalsize
   \end{subfigure}
-  
-  \caption{Comparison of time responses of centralized and distributed controllers for serial system. Disturbance applied is a closing of the downstream compressor's discharge valve from 39\% to 29\% at time \u{50}{s}.}
-  \label{fig:res:serial_timeresp}
 \end{figure}
 
+\begin{figure}
+  \ContinuedFloat
+  {\centering\large\textbf{Serial System}\\ Downstream Compressor\\[1em]}
+  \begin{subfigure}{0.48\linewidth}
+    \footnotesize
+    \input{results/figs/serial_p1.tex}
+    \normalsize
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.48\linewidth}
+    \footnotesize
+    \input{results/figs/serial_sd1.tex}
+    \normalsize
+  \end{subfigure}
+  \\
+  \begin{subfigure}{0.48\linewidth}
+    \footnotesize
+    \input{results/figs/serial_td1.tex}
+    \normalsize
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.48\linewidth}
+    \footnotesize
+    \input{results/figs/serial_ur1.tex}
+    \normalsize
+  \end{subfigure}
+
+  \caption{Comparison of time responses of centralized and distributed controllers for serial system. Disturbance applied is a closing of the downstream compressor's discharge valve from 39\% to 29\% at time \u{42}{s}.}
+  \label{fig:res:serial-timeresp}
+\end{figure}
+\fi
 
 
