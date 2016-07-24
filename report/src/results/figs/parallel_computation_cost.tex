@@ -15,8 +15,8 @@ xmin=1,
 xmax=9,
 xlabel={Number of solver iterations},
 xmajorgrids,
-ymin=0.35,
-ymax=0.6,
+ymin=35,
+ymax=60,
 ylabel={Average computation time [ms]},
 ymajorgrids,
 axis background/.style={fill=white},
@@ -24,45 +24,45 @@ title style={font=\bfseries},
 title={Parallel System},
 legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=left,draw=white!15!black}
 ]
-\addplot [color=mycolor1,solid,line width=1.5pt,mark=o,mark options={solid}]
+\addplot [color=mycolor1,solid,line width=1.5pt,mark size=5.0pt,mark=o,mark options={solid}]
   table[row sep=crcr]{%
-1	0.473\\
-2	0.473\\
-3	0.473\\
-4	0.473\\
-5	0.473\\
-6	0.473\\
-7	0.473\\
-8	0.473\\
-9	0.473\\
+1	47.3\\
+2	47.3\\
+3	47.3\\
+4	47.3\\
+5	47.3\\
+6	47.3\\
+7	47.3\\
+8	47.3\\
+9	47.3\\
 };
 \addlegendentry{Centralized};
 
-\addplot [color=mycolor2,solid,line width=1.5pt,mark=asterisk,mark options={solid}]
+\addplot [color=mycolor2,solid,line width=1.5pt,mark size=3.5pt,mark=square,mark options={solid}]
   table[row sep=crcr]{%
-1	0.4615\\
-2	0.473\\
-3	0.482\\
-4	0.5065\\
-5	0.5045\\
-6	0.5125\\
-7	0.531\\
-8	0.5365\\
-9	0.57\\
+1	46.15\\
+2	47.3\\
+3	48.2\\
+4	50.65\\
+5	50.45\\
+6	51.25\\
+7	53.1\\
+8	53.65\\
+9	57\\
 };
 \addlegendentry{Cooperative};
 
-\addplot [color=mycolor3,solid,line width=1.5pt,mark=x,mark options={solid}]
+\addplot [color=mycolor3,solid,line width=1.5pt,mark size=5.0pt,mark=x,mark options={solid}]
   table[row sep=crcr]{%
-1	0.3545\\
-2	0.3575\\
-3	0.36\\
-4	0.3655\\
-5	0.379\\
-6	0.3955\\
-7	0.4015\\
-8	0.41\\
-9	0.4225\\
+1	35.45\\
+2	35.75\\
+3	36\\
+4	36.55\\
+5	37.9\\
+6	39.55\\
+7	40.15\\
+8	41\\
+9	42.25\\
 };
 \addlegendentry{Non-cooperative};
 

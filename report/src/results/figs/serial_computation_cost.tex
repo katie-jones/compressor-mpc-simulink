@@ -21,10 +21,9 @@ ylabel={Average computation time [ms]},
 ymajorgrids,
 axis background/.style={fill=white},
 title style={font=\bfseries},
-title={Serial System},
-legend style={at={(0.03,0.5)},anchor=west,legend cell align=left,align=left,draw=white!15!black}
+title={Serial System}
 ]
-\addplot [color=mycolor1,solid,line width=1.5pt,mark=o,mark options={solid}]
+\addplot [color=mycolor1,solid,line width=1.5pt,mark size=5.0pt,mark=o,mark options={solid},forget plot]
   table[row sep=crcr]{%
 1	0.5554\\
 2	0.5554\\
@@ -36,9 +35,7 @@ legend style={at={(0.03,0.5)},anchor=west,legend cell align=left,align=left,draw
 8	0.5554\\
 9	0.5554\\
 };
-\addlegendentry{Centralized};
-
-\addplot [color=mycolor2,solid,line width=1.5pt,mark=asterisk,mark options={solid}]
+\addplot [color=mycolor2,solid,line width=1.5pt,mark size=3.5pt,mark=square,mark options={solid},forget plot]
   table[row sep=crcr]{%
 1	0.5163\\
 2	0.50475\\
@@ -50,9 +47,7 @@ legend style={at={(0.03,0.5)},anchor=west,legend cell align=left,align=left,draw
 8	0.56715\\
 9	0.5992\\
 };
-\addlegendentry{Cooperative};
-
-\addplot [color=mycolor3,solid,line width=1.5pt,mark=x,mark options={solid}]
+\addplot [color=mycolor3,solid,line width=1.5pt,mark size=5.0pt,mark=x,mark options={solid},forget plot]
   table[row sep=crcr]{%
 1	0.3257\\
 2	0.3361\\
@@ -64,7 +59,5 @@ legend style={at={(0.03,0.5)},anchor=west,legend cell align=left,align=left,draw
 8	0.3888\\
 9	0.4012\\
 };
-\addlegendentry{Non-cooperative};
-
 \end{axis}
 \end{tikzpicture}%

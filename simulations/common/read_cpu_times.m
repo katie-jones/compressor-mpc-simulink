@@ -44,16 +44,16 @@ noncoop_times = noncoop_times./n_runs;
 cent_times = cent_times./n_runs;
 cent_0_times = cent_0_times./n_runs;
 
-cent_mean_times = [mean(cent_0_times); mean(cent_times)*ones(N-1,1)]/Tsim * Ts;
-noncoop_mean_times = noncoop_times/2/Tsim*Ts;
-coop_mean_times = coop_times/2/Tsim*Ts;
+cent_mean_times = [mean(cent_0_times); mean(cent_times)*ones(N-1,1)]/Tsim * Ts*100;
+noncoop_mean_times = noncoop_times/2/Tsim*Ts*100;
+coop_mean_times = coop_times/2/Tsim*Ts*100;
 % noncoop_mean_times = mean(noncoop_times);
 % coop_mean_times = mean(coop_times);
 
 %%
 fig=figure; 
 plot(1:N-1,cent_mean_times(2:end)/1.0e6,'-o', 1:N-1, coop_mean_times(2:end)/1e6,...
-    '-*',1:N-1,noncoop_mean_times(2:end)/1e6,'-x','linewidth',1.5);
+    '-s',1:N-1,noncoop_mean_times(2:end)/1e6,'-x','linewidth',1.5,'markersize',10);
 grid on
 % title('Controller Computation Time per Iteration')
 title('Parallel System')
@@ -71,8 +71,8 @@ end
 
 fig=figure;
 plot(1:N-1, 1 - cent_mean_times(1)./cent_mean_times(2:end), '-o',1:N-1,...
-    1- coop_mean_times(1)./coop_mean_times(2:end),'-*',1:N-1,...
-    1-noncoop_mean_times(1)./noncoop_mean_times(2:end),'-x','linewidth',1.5);
+    1- coop_mean_times(1)./coop_mean_times(2:end),'-s',1:N-1,...
+    1-noncoop_mean_times(1)./noncoop_mean_times(2:end),'-x','linewidth',1.5,'markersize',10);
 grid on
 % title({'Relative Computation Time of QP Solver','As % of Total'})
 title('Parallel System')

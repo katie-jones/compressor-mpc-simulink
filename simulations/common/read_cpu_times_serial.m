@@ -49,13 +49,13 @@ coop_mean_times = mean(coop_times);
 %%
 fig=figure; 
 plot(1:N-1,cent_mean_times(2:end)/1.0e6,'-o', 1:N-1, coop_mean_times(2:end)/1e6,...
-    '-*',1:N-1,noncoop_mean_times(2:end)/1e6,'-x','linewidth',1.5);
+    '-s',1:N-1,noncoop_mean_times(2:end)/1e6,'-x','linewidth',1.5,'markersize',10);
 grid on
 % title('Comparison of Average Computational Cost')
 title('Serial System')
 xlabel('Number of solver iterations')
 ylabel('Average computation time [ms]')
-legend('Centralized','Cooperative','Non-cooperative','location','west')
+% legend('Centralized','Cooperative','Non-cooperative','location','west')
 fig=printplot(fig);
 fname='serial_computation_cost';
 if exist('saveplots','var') && saveplots~=0
@@ -68,14 +68,14 @@ end
 fig=figure;
 plot(1:N-1, 1 - cent_mean_times(1)./cent_mean_times(2:end), '-o',1:N-1,...
     1- coop_mean_times(1)./coop_mean_times(2:end),'-s',1:N-1,...
-    1-noncoop_mean_times(1)./noncoop_mean_times(2:end),'-+','linewidth',1.5,...
+    1-noncoop_mean_times(1)./noncoop_mean_times(2:end),'-x','linewidth',1.5,...
     'markersize',10);
 grid on
 % title({'Relative Computational Cost of QP Solver'})
 title('Serial System')
 xlabel('Number of solver iterations')
 ylabel('Computation time [% of total]')
-legend('Centralized','Cooperative','Non-cooperative','location','northwest')
+% legend('Centralized','Cooperative','Non-cooperative','location','northwest')
 fig=printplot(fig);
 fname = 'serial_qp_cost';
 if exist('saveplots','var') && saveplots~=0

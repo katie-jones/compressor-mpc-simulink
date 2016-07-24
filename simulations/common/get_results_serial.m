@@ -2,8 +2,6 @@ filename = '/home/katie/school/MasterThesis/cpp/serial/output/cent_output.dat';
 fname_info = '/home/katie/school/MasterThesis/cpp/serial/output/cent_info.dat';
 res_cent = read_cpp_results(filename,fname_info,10,4,4);
 
-n_solver_iterations = 3;
-
 filename = ['/home/katie/school/MasterThesis/cpp/serial/output/coop_output',num2str(n_solver_iterations),'.dat'];
 fname_info = ['/home/katie/school/MasterThesis/cpp/serial/output/coop_info',num2str(n_solver_iterations),'.dat'];
 res_coop = read_cpp_results(filename,fname_info,10,4,4);
@@ -47,6 +45,7 @@ results = {res_cent, res_coop, res_ncoop};
 figs1 = PlotResults(results,'p');
 
 xlims = [0, 320];
+xlims_zoom = [50 80];
 
 for i=1:length(figs1)
     fig1=figs1{i};
@@ -72,7 +71,7 @@ figs1 = PlotResults(results,'sd');
 for i=1:length(figs1)
     fig1 = figs1{i};
     figure(fig1);
-    title('Surge Distance')
+    title('Surge Control Distance')
     xlabel('Time [s]')
     ylabel('Relative Surge Control Distance [%]')
     xlim(xlims);
@@ -85,6 +84,28 @@ for i=1:length(figs1)
         matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
         fname,'.tex'],'width','0.8\linewidth','figurehandle',fig1,'showInfo',false);
     end
+end
+
+
+figs1 = PlotResults(results,'sd',[],1);
+for i=1:length(figs1)
+    fig1 = figs1{i};
+    figure(fig1);
+    title('Surge Control Distance')
+    xlabel('Time [s]')
+    ylabel('Relative Surge Control Distance [%]')
+    xlim(xlims);
+    
+    fname=[fname_base,'sd',num2str(i),'_zoom'];
+    
+    xlim(xlims_zoom)
+    if exist('saveplots','var') && (saveplots ~= 0)
+        saveas(fig1,[fname,'.fig']);
+        saveas(fig1,[fname,'.pdf']);
+        matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
+        fname,'.tex'],'width','0.8\linewidth','figurehandle',fig1,'showInfo',false);
+    end
+    
 end
 
 
