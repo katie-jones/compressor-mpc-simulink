@@ -2,7 +2,7 @@
 \label{sec:results:performance}
 
 \newif\ifmakeplots
-\makeplotsfalse
+\makeplotstrue
 
 
 In order to test the controller performance of the various control implementations, a single benchmark disturbance case was chosen.
@@ -13,16 +13,40 @@ The disturbances used were as follows:
   \item \textbf{parallel}: common tank discharge valve 70\% -> 40\% open;
   \item \textbf{serial}: downstream compressor discharge vale 39\% -> 29\% open.
 \end{itemize}
-% For the parallel case, this disturbance was a closing of the common tank's discharge valve from 70\% open to 40\% open.
-% For the serial case, the discharge valve of the downstream compressor was closed from 39\% open to 29\% open.
 In the following plots, the disturbances are applied at \u{50}{s}, after the system has reached steady state.
 
 
 \subsection{Parallel System}
 \label{sec:results:performance:parallel}
 
+
 The time response of each controller for the parallel system is shown in \fig{res:parallel-timeresp}.
 The responses obtained using each of the three controllers are virtually identical -- in this case, using a distributed control approach has no performance penalty and a potential decrease in computational cost (see below). 
+
+The controller weights used to generate these results are summarized in \tab{res:parallel-weights}.
+
+\begin{table}
+  \centering
+  \footnotesize
+  \begin{tabular}{lccccc}
+    \toprule
+    & & Centralized & Coop. & Non-coop. 1 & Non-coop. 2 \\
+    \midrule
+    \multirow{2}{*}{Torque} & \gi{torque}  & 20 & 19 & 22 & 0 \\
+    & \gii{torque}  & 20  & 19 & 0 & 22 \\
+    \multirow{2}{*}{Recycle valve} & \gi{ur}  & 200 & 190 & 220 & 0 \\
+    & \gii{ur}  & 200 & 190 & 0 & 220 \\
+    \multirow{2}{*}{Surge distance}& \gi{sd}  & 1 & 1 & 1 & 0 \\
+    & \gii{sd}  & 1 & 1 & 0 & 1 \\
+    % \multirow{2}{*}{Compressor output pressure}& \gi{pd}  & 0 & 0 & 0 & 0 \\
+    % & \gii{pd}  &0 & 0 & 0 & 0 \\
+    Common tank pressure & \g{pt}  & 0.5 & 0.42 & 0.6 & 0.6 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Controller weights used for the parallel system. Surge distance is normalized by a factor of 1000 to have similar weight ranges.}
+  \label{tab:res:parallel-weights}
+\end{table}
+
 
 
 \ifmakeplots
@@ -66,15 +90,47 @@ The increased torque from both compressors further increases the pressure in the
 Once the recycle valve begins to take effect, the torque applied to both compressors is decreased by the controller in order to bring the discharge pressure back to its setpoint.
 
 
-
-
-
 \subsection{Serial System}
 \label{sec:results:performance:serial}
 \makeplotstrue
 
 The time response of the serial system is shown in \fig{res:serial-timeresp}.
+A zoomed view of the initial surge distance response is shown in \fig{res:serial-sd-zoom}. 
+The controller weights used to generate these results are summarized in \tab{res:serial-weights}.
+
+\begin{table}
+  \centering
+  \footnotesize
+  \begin{tabular}{lccccc}
+    \toprule
+    & & Centralized & Coop. & Non-coop. 1 & Non-coop. 2 \\
+    \midrule
+    \multirow{2}{*}{Torque} & \gi{torque}  & 20 & 40 & 50 & 0 \\
+    & \gii{torque}  & 20  & 40 & 0 & 50 \\
+    \multirow{2}{*}{Recycle valve} & \gi{ur}  & 250 & 500 & 1000 & 0 \\
+    & \gii{ur}  & 250 & 500 & 0 & 1000 \\
+    \multirow{2}{*}{Surge distance}& \gi{sd}  & 1 & 1 & 1.5 & 0 \\
+    & \gii{sd}  & 8 & 8 & 0 & 1.5 \\
+    \multirow{2}{*}{Compressor output pressure}& \gi{pd}  & 0.2 & 0.2 & 2 & 0 \\
+    & \gii{pd}  & 1 & 1 & 0 & 2 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Controller weights used for the serial system. Surge distance is normalized by a factor of 1000 to have similar weight ranges.}
+  \label{tab:res:serial-weights}
+\end{table}
+
 In contrast to the parallel case, differences in the controller response and performance can be observed for each of the control approaches.
+The cooperative controller response is qualitatively similar to that of the centralized controller.
+It is, however, somewhat less aggressive in its regulation of the output pressure, evidenced by its less extreme change from high to low torque in the downstream compressor and faster return to the steady state torque value, as shown in \fig{res:serial-timeresp:td2}). 
+As a result, the output pressure of the downstream compressor has a much lower overshoot than either the centralized or non-cooperative controller.
+
+Similarly, in the upstream compressor, the cooperative controller's torque input -- shown in \fig{res:serial-timeresp:td1} -- is smoother than that of the centralized controller with no uptick near \u{70}{s}, and a faster convergence of both inputs to their steady-state values.
+Accordingly, the upstream compressor's output pressure also converges faster for the cooperative controller than for the centralized one.
+The surge distances of the centralized and cooperative controllers, however, show an almost identical response for the downstream compressor and a similar response upstream, though that of the cooperative controller has a greater increase near \u{58}{s} (see \fig{res:serial-sd-zoom}).
+
+The non-cooperative controller response has a much different characteristic than that of the centralized controller.
+As shown in \refs{fig:res:serial-timeresp:td1,fig:res:serial-timeresp:td2}, there is no significant initial increase in the torque input to either compressor when the disturbance is applied; as a result, both compressors are pushed further towards surge than in the centralized or cooperative case, and the surge distances are also slower to converge.
+The maximum disturbance to the output pressures of both compressors for the non-cooperative controller is accordingly reduced by approximately 40\% when compared to the centralized case.
 
 \ifmakeplots
 \begin{figure}
@@ -83,56 +139,93 @@ In contrast to the parallel case, differences in the controller response and per
     \footnotesize
     \input{results/figs/serial_p1.tex}
     \normalsize
+    \caption{}
+    \label{fig:res:serial-timeresp:p1}
   \end{subfigure}
   \hfill
   \begin{subfigure}{0.48\linewidth}
     \footnotesize
     \input{results/figs/serial_sd1.tex}
     \normalsize
+    \caption{}
+    \label{fig:res:serial-timeresp:sd1}
   \end{subfigure}
   \\
   \begin{subfigure}{0.48\linewidth}
     \footnotesize
     \input{results/figs/serial_td1.tex}
     \normalsize
+    \caption{}
+    \label{fig:res:serial-timeresp:td1}
   \end{subfigure}
   \hfill
   \begin{subfigure}{0.48\linewidth}
     \footnotesize
     \input{results/figs/serial_ur1.tex}
     \normalsize
+    \caption{}
+    \label{fig:res:serial-timeresp:ur1}
   \end{subfigure}
 \end{figure}
 
 \begin{figure}
   \ContinuedFloat
   {\centering\large\textbf{Serial System}\\ Downstream Compressor\\[1em]}
-  \begin{subfigure}{0.48\linewidth}
+  \begin{subfigure}{0.40\linewidth}
+    \centering
     \footnotesize
-    \input{results/figs/serial_p1.tex}
+    \input{results/figs/serial_p2.tex}
     \normalsize
+    \caption{}
+    \label{fig:res:serial-timeresp:p2}
   \end{subfigure}
   \hfill
-  \begin{subfigure}{0.48\linewidth}
+  \begin{subfigure}{0.40\linewidth}
+    \centering
     \footnotesize
-    \input{results/figs/serial_sd1.tex}
+    \input{results/figs/serial_sd2.tex}
     \normalsize
+    \caption{}
+    \label{fig:res:serial-timeresp:sd2}
   \end{subfigure}
   \\
-  \begin{subfigure}{0.48\linewidth}
+  \begin{subfigure}{0.40\linewidth}
+    \centering
     \footnotesize
-    \input{results/figs/serial_td1.tex}
+    \input{results/figs/serial_td2.tex}
+    \normalsize
+    \caption{}
+    \label{fig:res:serial-timeresp:td2}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.40\linewidth}
+    \centering
+    \footnotesize
+    \input{results/figs/serial_ur2.tex}
+    \normalsize
+    \caption{}
+    \label{fig:res:serial-timeresp:ur2}
+  \end{subfigure}
+
+  \caption{Comparison of time responses of centralized and distributed controllers. Disturbance applied is a closing of the downstream compressor's discharge valve from 39\% to 29\% at time \u{42}{s}.}
+  \label{fig:res:serial-timeresp}
+\end{figure}
+
+\begin{figure}
+  {\centering\large\textbf{Serial System}\\[1em]}
+  \begin{subfigure}{0.40\linewidth}
+    \footnotesize
+    \input{results/figs/serial_sd1_zoom.tex}
     \normalsize
   \end{subfigure}
   \hfill
-  \begin{subfigure}{0.48\linewidth}
+  \begin{subfigure}{0.40\linewidth}
     \footnotesize
-    \input{results/figs/serial_ur1.tex}
+    \input{results/figs/serial_sd2_zoom.tex}
     \normalsize
   \end{subfigure}
-
-  \caption{Comparison of time responses of centralized and distributed controllers for serial system. Disturbance applied is a closing of the downstream compressor's discharge valve from 39\% to 29\% at time \u{42}{s}.}
-  \label{fig:res:serial-timeresp}
+  \caption{Comparison of the initial surge distance time responses of centralized and distributed controllers. Disturbance applied is a closing of the downstream compressor's discharge valve from 39\% to 29\% at time \u{42}{s}.}
+  \label{fig:res:serial-sd-zoom}
 \end{figure}
 \fi
 

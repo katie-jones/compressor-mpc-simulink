@@ -1,12 +1,9 @@
 \section{Computational Efficiency}
 \label{sec:results:computation}
+\makeplotstrue
 
 The computational cost of the centralized and distributed control approaches was evaluated and is presented in \fig{results:compcost}.
 The computation times for the distributed controllers assume a parallelized implementation where each sub-controller is executed using a separate processor. 
-
-As expected, the non-cooperative controller achieves the lowest computation times for both the parallel and the serial system.
-In both cases, the cooperative controller has a computation time approximately on par with the centralized controller, though slightly lower for few solver iterations.
-
 
 \ifmakeplots
 \begin{figure}
@@ -23,17 +20,42 @@ In both cases, the cooperative controller has a computation time approximately o
   \label{fig:results:compcost}
 \end{figure}
 
+\fi
+
+
+As expected, the non-cooperative controller achieves the lowest computation times for both the parallel and the serial system.
+In both cases, the cooperative controller has a computation time approximately on par with the centralized controller, though slightly lower for few solver iterations.
+The computational cost of the cooperative controller relative to the centralized controller is dependent on the operating point: for the parallel system, for example, at the non-disturbed, initial state, a single solver iteration of the cooperative controller requires as much computation time as the centralized controller, but the cooperative controller executes faster at the disturbed operating point.
+The number of solver iterations for which the cooperative approach requires more computation time than the centralized approach is thus shifted depending on the simulation case considered.
+
+The computation time for the cooperative controller in the serial case has a zig-zag behavior, where increasing the number of solver iterations from an odd number to an even number actually decreases the computation time.
+From \fig{res:qp-compcost}, it is evident that this pattern is a result of the QP solver computation time, however its cause is unclear.
+
+The significant advantage in computation time demonstrated by the non-cooperative controller is a result of the reduced size of its prediction matrices (\giv{prediction-matrices}), which are multiplied as described in \sect{mpc:linearization} to generate the \g{qp}.
+The computational cost of the \g{qp} generation is approximately linear in the number of outputs used, and the non-cooperative approach considers fewer outputs than the centralized or cooperative approaches (see \tab{res:parallel-weights}).
+
+For the systems considered here, the QP-generation step has a much higher computational cost than the QP-solving step.
+The percentage of computation time spent on solving QPs (including the time required to update the linear QP term after each solver iteration for the distributed controllers) is shown in \fig{res:qp-compcost}.
+The remaining time is largely ($>99\%$) dedicated to QP generation.
+
+Using between 2 and 3 solver iterations (for the cases considered, using more iterations has a negligible impact on performance), less than 10\% of the total computation time is spent solving QPs for all control approaches. 
+There is thus a limited scope for decreasing the required computation time without decreasing either the number of outputs or states used to generate the QP problem.
+Furthermore, the number of outputs used for the cooperative QP is fixed and cannot be decreased, since the sub-controllers have the same cost function, and for the non-cooperative controller only 2 are used so it cannot be further decreased.
+Further gains in computational efficiency would therefore require a reduced number of states to be considered when generating the QP problem.
+
+\ifmakeplots
 \begin{figure}
   \centering
   {\large\bfseries Computation Time of QP Solver as \% of Total\\}
   \begin{subfigure}{0.75\linewidth}
-  \input{results/figs/serial_qp_cost.tex}
+  \input{results/figs/parallel_qp_cost.tex}
   \end{subfigure}
   \\
   \begin{subfigure}{0.75\linewidth}
-  \input{results/figs/parallel_qp_cost.tex}
+  \input{results/figs/serial_qp_cost.tex}
   \end{subfigure}
   \caption{Computation time required for QP solver as \% of total controller computation time. Includes time required to update linear term of QP at each solver iteration, as described in \sect{mpc:distributed}. Remaining time is used for generating the initial QP problem. Disturbance (described in \sect{results:performance}) is applied at \u{50}{s} and total simulation time is \u{500}{s}.}
-  \label{fig:results:qp-compcost}
+  \label{fig:res:qp-compcost}
 \end{figure}
 \fi
+

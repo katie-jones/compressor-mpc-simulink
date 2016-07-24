@@ -7,6 +7,9 @@
 
 \newcommand{\fig}[1]{Fig.~\ref{fig:#1}}
 \newcommand{\sect}[1]{Sec.~\ref{sec:#1}}
+\newcommand{\tab}[1]{Tab.~\ref{tab:#1}}
+\newcommand{\refs}[1]{\cref{#1}}
+% \crefname{figure}{Fig.}{Figs.}
 
 % string commands
 \newcommand{\ReplaceStr}[2]{%
@@ -158,3 +161,6 @@
 
 % remove header info from glossaries
 \renewcommand{\glsglossarymark}[1]{}
+
+% remove scientific notation from y axes in pgfplots
+\newcommand{\yaxisfixedformat}{yticklabel style={/pgf/number format/fixed}}
