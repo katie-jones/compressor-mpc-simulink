@@ -1,4 +1,4 @@
-\documentclass[los,noabstract,doubleheaders,titlepage,oneside,openright,12pt]{epflthesis}
+\documentclass[los,lof,lot,titlepage,oneside,openright,11pt]{epflthesis}
 
 \input{head/pkgs.tex}
 \input{head/defs.tex}
@@ -24,6 +24,7 @@ Mehmet Mercangöz (ABB)}
 \school{Ecole polytechnique fédérale de Lausanne}
 \dept{Mechanical Engineering}
 \logo{head/ABB_logo_small.png}
+\city{Lausanne}
 \printlos{%
   \printglossary[type=latin]
   \printglossary[type=greek]
@@ -33,15 +34,14 @@ Mehmet Mercangöz (ABB)}
 \input{head/glossaries}
 \input{head/acronyms}
 
-
 % \abstract{\input /abstract} %read from file abstract.tex
-% \abstract{~}
+\abstract{~}
 
 %\acknowledgements{\input head/acknowledgements}
 
 \numberwithin{equation}{chapter}
 
-\includeonly{results/results}
+% \includeonly{intro/intro}
 
 \begin{document}
 
