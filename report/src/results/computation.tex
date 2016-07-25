@@ -3,6 +3,7 @@
 \makeplotstrue
 
 The computational cost of the centralized and distributed control approaches was evaluated and is presented in \fig{results:compcost}.
+\footnote{Tests performed using the \cpp{} implementation described in \sect{mpc:implementation} and run on a Intel\textregistered{} Core\texttrademark{} i5-540M \u{2.53}{\giga\hertz} processor.} 
 The computation times for the distributed controllers assume a parallelized implementation where each sub-controller is executed using a separate processor. 
 
 \ifmakeplots
@@ -16,12 +17,11 @@ The computation times for the distributed controllers assume a parallelized impl
   \begin{subfigure}{0.75\linewidth}
     \input{results/figs/serial_computation_cost.tex}
   \end{subfigure}
-  \caption{Average controller computation time per iteration for centralized and distributed controllers, as a function of the number of solver iterations used. It should be noted that performance gains for solver iterations greater than 2 are marginal. Disturbance (described in \sect{results:performance}) is applied at \u{50}{s} and total simulation time is \u{500}{s}.}
+  \caption[Controller computation time per iteration.]{Average controller computation time per iteration for centralized and distributed controllers, as a function of the number of solver iterations used.It should be noted that performance gains for solver iterations greater than 2 are marginal. Disturbance (described in \sect{results:performance}) is applied at \u{50}{s} and total simulation time is \u{500}{s}.}
   \label{fig:results:compcost}
 \end{figure}
 
 \fi
-
 
 As expected, the non-cooperative controller achieves the lowest computation times for both the parallel and the serial system.
 In both cases, the cooperative controller has a computation time approximately on par with the centralized controller, though slightly lower for few solver iterations.
@@ -41,8 +41,9 @@ The computational cost of the \g{qp} generation is approximately linear in the n
 For the systems considered here, the QP-generation step has a much higher computational cost than the QP-solving step.
 The percentage of computation time spent on solving QPs (including the time required to update the linear QP term after each solver iteration for the distributed controllers) is shown in \fig{res:qp-compcost}.
 The remaining time is largely ($>99\%$) dedicated to QP generation.
+These results are implementation dependent and the computation time required for QP generation could be reduced by using a more efficient linear algebra library that that provided in \eigen{}, however it would still contribute significantly to the total computational cost.
 
-Using between 2 and 3 solver iterations (for the cases considered, using more iterations has a negligible impact on performance), less than 10\% of the total computation time is spent solving QPs for all control approaches. 
+Using 2 or 3 solver iterations (for the cases considered, using more iterations has a negligible impact on performance), less than 10\% of the total computation time is spent solving QPs for all control approaches. 
 There is thus a limited scope for decreasing the required computation time without decreasing either the number of outputs or states used to generate the QP problem.
 Furthermore, the number of outputs used for the cooperative QP is fixed and cannot be decreased, since the sub-controllers have the same cost function, and for the non-cooperative controller only 2 are used so it cannot be further decreased.
 Further gains in computational efficiency would therefore require a reduced number of states to be considered when generating the QP problem.
@@ -58,7 +59,7 @@ Further gains in computational efficiency would therefore require a reduced numb
   \begin{subfigure}{0.75\linewidth}
   \input{results/figs/serial_qp_cost.tex}
   \end{subfigure}
-  \caption{Computation time required for QP solver as \% of total controller computation time. Includes time required to update linear term of QP at each solver iteration, as described in \sect{mpc:distributed}. Remaining time is used for generating the initial QP problem. Disturbance (described in \sect{results:performance}) is applied at \u{50}{s} and total simulation time is \u{500}{s}.}
+  \caption[QP solver computation time.]{Computation time required for QP solver as \% of total controller computation time. Includes time required to update linear term of QP at each solver iteration, as described in \sect{mpc:distributed}. Remaining time is used for generating the initial QP problem. Disturbance (described in \sect{results:performance}) is applied at \u{50}{s} and total simulation time is \u{500}{s}.}
   \label{fig:res:qp-compcost}
 \end{figure}
 \fi

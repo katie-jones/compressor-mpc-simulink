@@ -5,7 +5,7 @@ It is divided into five areas: the development of compressor models used for con
 
 \section{Compressor Models}
 
-Two different modelling approaches are used in industry: black box and gray box. Black box models fit experimental date to a pre-defined model type (e.g. ARX, state space, neural network), whose order is then chosen to give a good fit !!! references. 
+Two different modelling approaches are used in industry: black box and gray box. Black box models fit experimental date to a pre-defined model type (e.g. ARX, state space, neural network), whose order is then chosen to give a good fit. 
 Grey-box modelling uses on a first principles approach, assuming a model structure based on the underlying physics of the system. 
 The parameters of the model are then determined for the specific structure and order given. 
 Here, grey-box models are considered, however black-box models are also commonly used in industry.
@@ -13,7 +13,7 @@ Here, grey-box models are considered, however black-box models are also commonly
 The underlying grey-box model used as the basis for most compressor control applications was developed by Greitzer \cite{Greitzer1976} and expanded by Moore and Greitzer \cite{Moore1985}.
 They model a system consisting of a compressor, plenum and throttle for an inviscid, incompressible flow with constant time-averaged flow around the annulus. 
 The equations are then developed to predict both surge and rotating stall.
-The models are based on the use of compressor maps to characterize the behavior of each individual compressor, as well as parameters describing the up- and downstream processes !!!.
+The models are based on the use of compressor maps to characterize the behavior of each individual compressor, as well as parameters describing the up- and downstream processes.
 The Greitzer model was developed for axial compressors, however it has been shown to be also applicable to centrifugal compressors by Hansen et al. \cite{Hansen1981} 
 
 The Moore-Greitzer model was expanded by Gravdahl and Egeland to include both a close-coupled valve and a non-constant compressor speed for axial and centrifugal compressors \cite{Gravdahl1999}. 
@@ -47,7 +47,7 @@ Similarly, Budinis and Thornhill found that a combined process/anti-surge MPC co
 
 Bentaleb et al. also demonstrated that an MPC controller manipulating both driver speed and the inlet guide vanes could achieve better performance than a PID controller manipulating only the driver speed, though they did not integrate anti-surge control \cite{Bentaleb2014}.
 
-!!! Add Bentaleb thesis + other refs
+% !!! Add Bentaleb thesis + other refs
 
 %\begin{itemize}
   %\item Bentaleb2014
@@ -67,7 +67,7 @@ Bentaleb et al. also demonstrated that an MPC controller manipulating both drive
 %\end{itemize}
 
 \section{Control of Compressor Networks}
-!!! don't talk about load sharing
+% !!! don't talk about load sharing
 
 An MPC controller for two compressors arranged in parallel was developed by Smeulers and Bouman who considered a single controller combining load-sharing for the two compressors as well as performance and anti-surge criteria for each compressor individually \cite{Smeulers1999}. 
 The controller was implemented using linear MPC, where the non-linear model was linearized at each time step to characterize the compressors' non-linear behavior more accurately.

@@ -22,7 +22,6 @@ In the following plots, the disturbances are applied at \u{50}{s}, after the sys
 
 The time response of each controller for the parallel system is shown in \fig{res:parallel-timeresp}.
 The responses obtained using each of the three controllers are virtually identical -- in this case, using a distributed control approach has no performance penalty and a potential decrease in computational cost (see below).
-
 The controller weights used to generate these results are summarized in \tab{res:parallel-weights}.
 
 \begin{table}
@@ -43,7 +42,7 @@ The controller weights used to generate these results are summarized in \tab{res
     Common tank pressure & \g{pt}  & 0.5 & 0.42 & 0.6 & 0.6 \\
     \bottomrule
   \end{tabular}
-  \caption{Controller weights used for the parallel system. Surge distance is normalized by a factor of 1000 to have similar weight ranges.}
+  \caption[Controller weights used for the parallel system.]{Controller weights used for the parallel system. Surge distance is normalized by a factor of 1000 to have similar weight ranges.}
   \label{tab:res:parallel-weights}
 \end{table}
 
@@ -76,7 +75,7 @@ The controller weights used to generate these results are summarized in \tab{res
     \input{results/figs/parallel_ur.tex}
     \normalsize
   \end{subfigure}
-  \caption{Comparison of time responses of centralized and distributed controllers for parallel system. Distributed controllers use 3 solver iterations (no change in performance for increased iterations -- see \sect{results:computation}). Disturbance applied is a closing of the common tank discharge valve from 70\% to 40\% at time \u{50}{s}.}
+  \caption[Time response of parallel system.]{Comparison of time responses of centralized and distributed controllers. Distributed controllers use 3 solver iterations (no change in performance for increased iterations -- see \sect{results:computation}). Disturbance applied is a closing of the common tank discharge valve from 70\% to 40\% at time \u{50}{s}.}
   \label{fig:res:parallel-timeresp}
 \end{figure}
 
@@ -105,17 +104,17 @@ The controller weights used to generate these results are summarized in \tab{res
     \toprule
     & & Centralized & Coop. & Non-coop. 1 & Non-coop. 2 \\
     \midrule
-    \multirow{2}{*}{Torque} & \gi{torque}  & 20 & 41 & 50 & 0 \\
-    & \gii{torque}  & 20  & 25 & 0 & 50 \\
-    \multirow{2}{*}{Recycle valve} & \gi{ur}  & 250 & 500 & 1000 & 0 \\
-    & \gii{ur}  & 250 & 500 & 0 & 1000 \\
-    \multirow{2}{*}{Compressor output pressure}& \gi{pd}  & 0.2 & 0.75 & 2 & 0 \\
-    & \gii{pd}  & 1 & 1.5 & 0 & 2 \\
-    \multirow{2}{*}{Surge distance}& \gi{sd}  & 1 & 4 & 1.5 & 0 \\
-    & \gii{sd}  & 8 & 8 & 0 & 1.5 \\
+    \multirow{2}{*}{Torque} & \gi{torque}  & 20 & 41 & 30 & 0 \\
+    & \gii{torque}  & 20  & 25 & 0 & 30 \\
+    \multirow{2}{*}{Recycle valve} & \gi{ur}  & 250 & 500 & 500 & 0 \\
+    & \gii{ur}  & 250 & 500 & 0 & 500 \\
+    \multirow{2}{*}{Compressor output pressure}& \gi{pd}  & 0.2 & 0.75 & 1.9 & 0 \\
+    & \gii{pd}  & 1 & 1.5 & 0 & 1.9 \\
+    \multirow{2}{*}{Surge distance}& \gi{sd}  & 1 & 4 & 3 & 0 \\
+    & \gii{sd}  & 8 & 8 & 0 & 3 \\
     \bottomrule
   \end{tabular}
-  \caption{Controller weights used for the serial system. Surge distance is normalized by a factor of 1000 to have similar weight ranges.}
+  \caption[Controller weights used for the serial system.]{Controller weights used for the serial system. Surge distance is normalized by a factor of 1000 to have similar weight ranges.}
   \label{tab:res:serial-weights}
 \end{table}
 
@@ -171,7 +170,7 @@ The maximum disturbance to the output pressures of both compressors for the non-
 \begin{figure}
   \ContinuedFloat
   {\centering\large\textbf{Serial System}\\ Downstream Compressor\\[1em]}
-  \begin{subfigure}{0.40\linewidth}
+  \begin{subfigure}{0.48\linewidth}
     \centering
     \footnotesize
     \input{results/figs/serial_p2.tex}
@@ -180,7 +179,7 @@ The maximum disturbance to the output pressures of both compressors for the non-
     \label{fig:res:serial-timeresp:p2}
   \end{subfigure}
   \hfill
-  \begin{subfigure}{0.40\linewidth}
+  \begin{subfigure}{0.48\linewidth}
     \centering
     \footnotesize
     \input{results/figs/serial_sd2.tex}
@@ -189,7 +188,7 @@ The maximum disturbance to the output pressures of both compressors for the non-
     \label{fig:res:serial-timeresp:sd2}
   \end{subfigure}
   \\
-  \begin{subfigure}{0.40\linewidth}
+  \begin{subfigure}{0.48\linewidth}
     \centering
     \footnotesize
     \input{results/figs/serial_td2.tex}
@@ -198,7 +197,7 @@ The maximum disturbance to the output pressures of both compressors for the non-
     \label{fig:res:serial-timeresp:td2}
   \end{subfigure}
   \hfill
-  \begin{subfigure}{0.40\linewidth}
+  \begin{subfigure}{0.48\linewidth}
     \centering
     \footnotesize
     \input{results/figs/serial_ur2.tex}
@@ -207,24 +206,24 @@ The maximum disturbance to the output pressures of both compressors for the non-
     \label{fig:res:serial-timeresp:ur2}
   \end{subfigure}
 
-  \caption{Comparison of time responses of centralized and distributed controllers. Disturbance applied is a closing of the downstream compressor's discharge valve from 39\% to 29\% at time \u{42}{s}.}
+  \caption[Time response of serial system.]{Comparison of time responses of centralized and distributed controllers. Disturbance applied is a closing of the downstream compressor's discharge valve from 39\% to 29\% at time \u{42}{s}.}
   \label{fig:res:serial-timeresp}
 \end{figure}
 
 \begin{figure}
   {\centering\large\textbf{Serial System}\\[1em]}
-  \begin{subfigure}{0.40\linewidth}
+  \begin{subfigure}{0.48\linewidth}
     \footnotesize
     \input{results/figs/serial_sd1_zoom.tex}
     \normalsize
   \end{subfigure}
   \hfill
-  \begin{subfigure}{0.40\linewidth}
+  \begin{subfigure}{0.48\linewidth}
     \footnotesize
     \input{results/figs/serial_sd2_zoom.tex}
     \normalsize
   \end{subfigure}
-  \caption{Comparison of the initial surge distance time responses of centralized and distributed controllers. Disturbance applied is a closing of the downstream compressor's discharge valve from 39\% to 29\% at time \u{42}{s}.}
+  \caption[Zoom of surge distance time response.]{Comparison of the initial surge distance time responses of centralized and distributed controllers. Disturbance applied is a closing of the downstream compressor's discharge valve from 39\% to 29\% at time \u{42}{s}.}
   \label{fig:res:serial-sd-zoom}
 \end{figure}
 \fi
