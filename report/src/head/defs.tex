@@ -4,6 +4,7 @@
 \newcommand{\slink}{\texttt{Simulink}}
 \newcommand{\cpp}{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\relsize{-3}{\textbf{++}}}}
 \newcommand{\eigen}{\texttt{Eigen}}
+\newcommand{\qpoases}{\texttt{qpOASES}}
 
 \newcommand{\fig}[1]{Fig.~\ref{fig:#1}}
 \newcommand{\sect}[1]{Sec.~\ref{sec:#1}}
@@ -18,6 +19,50 @@
   }{#1}
 }
 
+\glsaddkey
+{user7}% key
+{}% default value
+{\glsentryuservii}
+{\Glsentryuservii}
+{\glsuservii}
+{\Glsuservii}
+{\GLSuservii}
+
+\glsaddkey
+{user8}% key
+{}% default value
+{\glsentryuserviii}
+{\Glsentryuserviii}
+{\glsuserviii}
+{\Glsuserviii}
+{\GLSuserviii}
+
+\glsaddkey
+{user9}% key
+{}% default value
+{\glsentryuserix}
+{\Glsentryuserix}
+{\glsuserix}
+{\Glsuserix}
+{\GLSuserix}
+
+\glsaddkey
+{user10}% key
+{}% default value
+{\glsentryuserx}
+{\Glsentryuserx}
+{\glsuserx}
+{\Glsuserx}
+{\GLSuserx}
+
+\glsaddkey
+{user11}% key
+{}% default value
+{\glsentryuserxi}
+{\Glsentryuserxi}
+{\glsuserxi}
+{\Glsuserxi}
+{\GLSuserxi}
 % glossary shortcuts
 \newcommand{\g}[1]{\gls*{#1}}
 \newcommand{\gi}[1]{\glsuseri*{#1}\glsunset{#1}}
@@ -25,6 +70,13 @@
 \newcommand{\giii}[1]{\glsuseriii*{#1}\glsunset{#1}}
 \newcommand{\giv}[1]{\glsuseriv*{#1}\glsunset{#1}}
 \newcommand{\gv}[1]{\glsuserv*{#1}\glsunset{#1}}
+\newcommand{\gvi}[1]{\glsuservi*{#1}\glsunset{#1}}
+\newcommand{\gvii}[1]{\glsuservii*{#1}\glsunset{#1}}
+\newcommand{\gviii}[1]{\glsuserviii*{#1}\glsunset{#1}}
+\newcommand{\gix}[1]{\glsuserix*{#1}\glsunset{#1}}
+\newcommand{\gx}[1]{\glsuserx*{#1}\glsunset{#1}}
+\newcommand{\gxi}[1]{\glsuserxi*{#1}\glsunset{#1}}
+\newcommand{\gpl}[1]{\glspl*{#1}\glsunset{#1}}
 
 \newcommand{\ga}[1]{\glsuseri*{#1}\glsunset{#1}}
 \newcommand{\gb}[1]{\glsuserii*{#1}\glsunset{#1}}
@@ -35,6 +87,8 @@
 \newcommand{\gmo}[1]{\glsuserii*{#1}\glsunset{#1}}
 \newcommand{\gpi}[1]{\glsuseriii*{#1}\glsunset{#1}}
 \newcommand{\gpio}[1]{\glsuseriv*{#1}\glsunset{#1}}
+\newcommand{\gpt}[1]{\glsuserv*{#1}\glsunset{#1}}
+\newcommand{\gpimo}[1]{\glsuservi*{#1}\glsunset{#1}}
 
 \newcommand{\gentry}[1]{\glsentryname{#1}}
 \newcommand{\gentryi}[1]{\glsentryuseri{#1}}
@@ -76,6 +130,8 @@
   \StrSubstitute{#3}{XX}{}[\myname]%
   \StrSubstitute{#3}{XX}{,1}[\myuserone]%
   \StrSubstitute{#3}{XX}{,2}[\myusertwo]%
+  \StrSubstitute{#3}{XX}{,1,k}[\myuserthree]%
+  \StrSubstitute{#3}{XX}{,2,k}[\myuserfour]%
   \restoreexpandmode
   \restoreexploremode
   \glssetexpandfield{sortvalue}
@@ -87,6 +143,58 @@
     name={\myname},%
     user1={\myuserone},%
     user2={\myusertwo},%
+    user3={\myuserthree},%
+    user4={\myuserfour},%
+    description={#4},%
+    sort={\mysort},%
+    type={#5}%
+  }%
+}
+
+\newcommand{\addglswk}[5]{%
+  \saveexpandmode\normalexpandarg
+  \saveexploremode\exploregroups
+  \StrSubstitute{#3}{XX}{}[\myname]%
+  \StrSubstitute{#3}{XX}{,k}[\myuserone]%
+  \StrSubstitute{#3}{XX}{,k+i}[\myusertwo]%
+  \restoreexpandmode
+  \restoreexploremode
+  \glssetexpandfield{sortvalue}
+  \glssetexpandfield{name}
+%
+  \ifstrempty{#1}{\def\mysort{#2}}{\def\mysort{#1}}
+  \newglossaryentry{#2}%
+  {%
+    name={\myname},%
+    user1={\myuserone},%
+    user2={\myusertwo},%
+    description={#4},%
+    sort={\mysort},%
+    type={#5}%
+  }%
+}
+
+\newcommand{\addglsunumbered}[5]{%
+  \saveexpandmode\normalexpandarg
+  \saveexploremode\exploregroups
+  \StrSubstitute{#3}{XX}{}[\myname]%
+  \StrSubstitute{#3}{XX}{1}[\myuserone]%
+  \StrSubstitute{#3}{XX}{2}[\myusertwo]%
+  \StrSubstitute{#3}{XX}{1,k}[\myuserthree]%
+  \StrSubstitute{#3}{XX}{2,k}[\myuserfour]%
+  \restoreexpandmode
+  \restoreexploremode
+  \glssetexpandfield{sortvalue}
+  \glssetexpandfield{name}
+%
+  \ifstrempty{#1}{\def\mysort{#2}}{\def\mysort{#1}}
+  \newglossaryentry{#2}%
+  {%
+    name={\myname},%
+    user1={\myuserone},%
+    user2={\myusertwo},%
+    user3={\myuserthree},%
+    user4={\myuserfour},%
     description={#4},%
     sort={\mysort},%
     type={#5}%
@@ -110,6 +218,8 @@
   \StrSubstitute{#3}{XX}{k-1}[\myusertwo]%
   \StrSubstitute{#3}{XX}{k+i}[\myuserthree]%
   \StrSubstitute{#3}{XX}{k+i+1}[\myuserfour]%
+  \StrSubstitute{#3}{XX}{k+2}[\myuserfive]%
+  \StrSubstitute{#3}{XX}{k+i-1}[\myusersix]%
   \restoreexpandmode
   \restoreexploremode
   \glssetexpandfield{sortvalue}
@@ -123,6 +233,8 @@
     user2={\myusertwo},%
     user3={\myuserthree},%
     user4={\myuserfour},%
+    user5={\myuserfive},%
+    user6={\myusersix},%
     description={#4},%
     sort={\mysort},%
     type={#5}%
@@ -164,3 +276,15 @@
 
 % remove scientific notation from y axes in pgfplots
 \newcommand{\yaxisfixedformat}{yticklabel style={/pgf/number format/fixed}}
+
+% ur aug symbols
+\newcommand{\uraug}{%
+  \ensuremath{ \begin{bmatrix} 0\\ \begin{bmatrix} u_{\text{r},k-1}\\ 0\\ \end{bmatrix}\\ 0\end{bmatrix}}%
+}
+\newcommand{\uraugii}{%
+  \ensuremath{ \begin{bmatrix} 0\\ \begin{bmatrix} u_{\text{r},k-1}\\u_{\text{r},k-1}\\ 0\\ \end{bmatrix}\\ 0\end{bmatrix}}%
+}
+\newcommand{\urauggen}{%
+  \ensuremath{ \begin{bmatrix} 0\\ \begin{bmatrix} u_{\text{r},k-1}\\\vdots \end{bmatrix}\\ 0\end{bmatrix}}%
+}
+

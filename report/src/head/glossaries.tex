@@ -2,18 +2,16 @@
 
 \newglossary*{latin}{Latin Symbols}
 \newglossary*{greek}{Greek Symbols}
-\newglossary*{prog-names}{Names}
+\newglossary*{noprint}{Names}
 
 \makeglossaries
 \addlat[pa]{pa}{\ensuremath{p\ut{a}}}{Atmospheric pressure}
-\addlatnumbered{pt}{\ensuremath{p\ut{tXX}}}{Common tank pressure (parallel system)}
 \addlatnumbered{Vt}{\ensuremath{V\ut{tXX}}}{Common tank volume (parallel system}
 \addlatnumbered{qdt}{\ensuremath{q\ut{d,tXX}}}{Mass flow rate through common tank discharge valve (parallel system)}
 \addgrknumbered{rho}{rho}{\ensuremath{\vc{\rho_{XX}}}}{Coefficients mapping mass flow across common tank discharge valve to its pressure differential (parallel system)}
 \addlatnumbered{ut}{\ensuremath{u\ut{tXX}}}{Position of common tank discharge valve (parallel system)}
 \addlatnumbered{ps}{\ensuremath{p\ut{sXX}}}{Compressor suction pressure}
 % \addlatnumbered{pd}{\ensuremath{p\ut{dXX}}}{Compressor discharge pressure}
-\addlatnumbered{qc}{\ensuremath{q\ut{cXX}}}{Mass flow rate through compressor}
 \addgrknumbered{omegac}{omegac}{\ensuremath{\omega\ut{cXX}}}{Rotational speed of the compressor}
 \addlatnumbered{qr}{\ensuremath{q\ut{rXX}}}{Mass flow rate through recycle valve}
 \addlat{a}{\ensuremath{a}}{Speed of sound (\u{340}{m\per s})}
@@ -22,7 +20,6 @@
 \addlatnumbered{qs}{\ensuremath{q\ut{sXX}}}{Mass flow rate through suction valve}
 \addlat{A}{\ensuremath{A}}{Cross-sectional piping area after compressor}
 \addlatnumbered{lc}{\ensuremath{l\ut{cXX}}}{Duct length after compressor}
-\addgrknumbered{Pi_ss}{Pi_ss}{\ensuremath{\Pi\ut{ssXX}}}{Coefficients mapping compressor pressure ratio to the rotational speed of and mass flow through compressor}
 \addlatnumbered{Jcomp}{\ensuremath{J\ut{compXX}}}{Compressor inertia}
 \addgrknumbered{beta}{beta}{\ensuremath{\vc{\beta_{XX}}}}{Coefficients mapping steady-state motor torque to rotational speed and mass flow of compressor}
 \addgrknumbered{taur}{taur}{\ensuremath{\tau\ut{rXX}}}{Time constant of recycle valve}
@@ -36,27 +33,122 @@
 \addlat{J}{\ensuremath{J}}{MPC controller cost function}
 \addgrknumbered{alpha}{alpha}{\ensuremath{\vc{\alpha_{XX}}}}{Coefficients mapping compressor pressure ratio to compressor speed and mass flow}
 
+% Compressor mass flow
+% \addlatnumbered{qc}{\ensuremath{qc}}{Mass flow rate through compressor}
+\newglossaryentry{qc}
+{
+  name={\ensuremath{q\ut{c}}},
+  user1={\ensuremath{q\ut{c,1}}},
+  user2={\ensuremath{q\ut{c,2}}},
+  user3={\ensuremath{q\ut{c,SL}}},
+  description={Mass flow rate through compressor},
+  sort={qc},
+  type={latin}
+}
+% Compressor pressure ratio
+\newglossaryentry{Pi}
+{
+  name={\ensuremath{\Pi}},
+  user1={\ensuremath{\Pi\ut{ss}}},
+  user2={\ensuremath{\Pi\ut{SL}}},
+  description={Compressor pressure ratio ($\tfrac{\gentry{pd}}{\gentry{ps}}$).},
+  sort={Pi},
+  type={greek}
+}
+
+% Tank pressure
+\newglossaryentry{pt}
+{
+   name={\ensuremath{p\ut{t}}},
+  user1={\ensuremath{p\ut{t,k}}},
+  user2={\ensuremath{p\ut{t,k+i}}},
+  sort={pt},
+  description={Common tank pressure (parallel system)},
+  type={latin}
+}
+% \addlatnumbered{pt}{\ensuremath{p\ut{tXX}}}{Common tank pressure (parallel system)}
+
+% Cost function
+\addlatfork[Jpcen]{Jpcen}{\ensuremath{J\ut{p,XX}^\text{cen}}}{Centralized cost function of parallel system}
+\addlatfork[Jpcoop]{Jpcoop}{\ensuremath{J\ut{p,XX}^\text{coop}}}{Distributed, cooperative cost function of parallel system}
+\addlatfork[Jpncoop]{Jpncoop}{\ensuremath{J\ut{p,XX}^\text{nc}}}{Distributed, non-cooperative cost function of parallel system}
+\addlatfork[Jscen]{Jscen}{\ensuremath{J\ut{s,XX}^\text{cen}}}{Centralized cost function of serial system}
+\addlatfork[Jscoop]{Jscoop}{\ensuremath{J\ut{s,XX}^\text{coop}}}{Distributed, cooperative cost function of serial system}
+\addlatfork[Jsncoop]{Jsncoop}{\ensuremath{J\ut{s,XX}^\text{nc}}}{Distributed, non-cooperative cost function of serial system}
+
+% Weighted outputs/inputs
+\newglossaryentry{ywtd}
+{
+   name={\ensuremath{\vc{y}_{\text{p},k}^{(\cdot)}}},
+  user1={\ensuremath{\vc{y}_{\text{p},k}^\text{cen}}},
+  user2={\ensuremath{\vc{y}_{\text{p},k}^\text{co,1}}},
+  user3={\ensuremath{\vc{y}_{\text{p},k}^\text{co,2}}},
+  user4={\ensuremath{\vc{y}_{\text{p},k}^\text{nc,1}}},
+  user5={\ensuremath{\vc{y}_{\text{p},k}^\text{nc,2}}},
+  user6={\ensuremath{\vc{y}_{\text{s},k}^\text{cen}}},
+  user7={\ensuremath{\vc{y}_{\text{s},k}^\text{co,1}}},
+  user8={\ensuremath{\vc{y}_{\text{s},k}^\text{co,2}}},
+  user9={\ensuremath{\vc{y}_{\text{s},k}^\text{nc,1}}},
+ user10={\ensuremath{\vc{y}_{\text{s},k}^\text{nc,2}}},
+ user11={\ensuremath{\vc{y}_{\text{s},k}^{(\cdot)}}},
+ plural={\ensuremath{\vc{y}_{\text{p},k+i}^\text{cen}}},
+  description={Weighted inputs},
+  type={noprint}
+}
+\newglossaryentry{uwtd}
+{
+   name={\ensuremath{\vc{u}_{\text{p},k}^{(\cdot)}}},
+  user1={\ensuremath{\vc{u}_{\text{p},k}^\text{cen}}},
+  user2={\ensuremath{\vc{u}_{\text{p},k}^\text{co,1}}},
+  user3={\ensuremath{\vc{u}_{\text{p},k}^\text{co,2}}},
+  user4={\ensuremath{\vc{u}_{\text{p},k}^\text{nc,1}}},
+  user5={\ensuremath{\vc{u}_{\text{p},k}^\text{nc,2}}},
+  user6={\ensuremath{\vc{u}_{\text{s},k}^\text{cen}}},
+  user7={\ensuremath{\vc{u}_{\text{s},k}^\text{co,1}}},
+  user8={\ensuremath{\vc{u}_{\text{s},k}^\text{co,2}}},
+  user9={\ensuremath{\vc{u}_{\text{s},k}^\text{nc,1}}},
+ user10={\ensuremath{\vc{u}_{\text{s},k}^\text{nc,2}}},
+ user11={\ensuremath{\vc{u}_{\text{s},k}^{(\cdot)}}},
+ plural={\ensuremath{\vc{u}_{\text{p},k+i}^\text{cen}}},
+  description={Weighted inputs},
+  type={noprint}
+}
+\newglossaryentry{ywts}
+{
+   name={\ensuremath{W\ut{p,y}}},
+  user1={\ensuremath{W\ut{p,y}^\text{cen}}},
+  user2={\ensuremath{W\ut{p,y}^\text{co,1}}},
+  user3={\ensuremath{W\ut{p,y}^\text{co,2}}},
+  user4={\ensuremath{W\ut{p,y}^\text{nc,1}}},
+  user5={\ensuremath{W\ut{p,y}^\text{nc,2}}},
+  user6={\ensuremath{W\ut{s,y}^\text{cen}}},
+  user7={\ensuremath{W\ut{s,y}^\text{co,1}}},
+  user8={\ensuremath{W\ut{s,y}^\text{co,2}}},
+  user9={\ensuremath{W\ut{s,y}^\text{nc,1}}},
+ user10={\ensuremath{W\ut{s,y}^\text{nc,2}}},
+  description={Weights on outputs},
+  type={noprint}
+}
+\newglossaryentry{uwts}
+{
+   name={\ensuremath{W\ut{p,u}}},
+  user1={\ensuremath{W\ut{p,u}^\text{cen}}},
+  user2={\ensuremath{W\ut{p,u}^\text{co,1}}},
+  user3={\ensuremath{W\ut{p,u}^\text{co,2}}},
+  user4={\ensuremath{W\ut{p,u}^\text{nc,1}}},
+  user5={\ensuremath{W\ut{p,u}^\text{nc,2}}},
+  user6={\ensuremath{W\ut{s,u}^\text{cen}}},
+  user7={\ensuremath{W\ut{s,u}^\text{co,1}}},
+  user8={\ensuremath{W\ut{s,u}^\text{co,2}}},
+  user9={\ensuremath{W\ut{s,u}^\text{nc,1}}},
+ user10={\ensuremath{W\ut{s,u}^\text{nc,2}}},
+  description={Weights on outputs},
+  type={noprint}
+}
 
 % Outputs
-\newglossaryentry{sd}
-{
-  name={\ensuremath{\mathit{SD}}},
-  user1={\ensuremath{\mathit{SD}_1}},
-  user2={\ensuremath{\mathit{SD}_2}},
-  sort={SD},
-  description={Surge distance},
-  type={latin}
-}
-\newglossaryentry{scd}
-{
-  name={\ensuremath{\mathit{SCD}}},
-  user1={\ensuremath{\mathit{SCD}_1}},
-  user2={\ensuremath{\mathit{SCD}_2}},
-  sort={SCD},
-  description={Surge control distance},
-  type={latin}
-}
-% \addlatnumbered{sd}{\ensuremath{SD\ut{XX}}}{Surge distance}
+\addglsunumbered{sd}{sd}{\ensuremath{\mathit{SD}_{XX}}}{Surge distance}{latin}
+\addglsunumbered{scd}{scd}{\ensuremath{\mathit{SCD}_{XX}}}{Surge control distance}{latin}
 
 
 % Modeling/singlecomp
@@ -66,19 +158,24 @@
 
 \addlatnumbered[Tc]{airtorque}{\ensuremath{T\ut{cXX}}}{Torque on compressor resulting from air compression}
 \addlatnumbered[xn]{nominalstate}{\ensuremath{\vc{x}\ut{nXX}}}{Nominal state vector for a single compressor}
+\addlatnumbered[yn]{yn}{\ensuremath{\vc{y}\ut{nXX}}}{Nominal output vector for a single compressor}
+\addlatnumbered[un]{un}{\ensuremath{\vc{u}\ut{nXX}}}{Nominal input vector for a single compressor}
 \addlatnumbered[fn]{nominalderiv}{\ensuremath{\vc{f}\ut{nXX}}}{Nominal state derivative vector for a single compressor}
-\addgrknumbered{epsilon}{epsilon}{\ensuremath{\vc{\varepsilon}\ut{XX}}}{Coefficients mapping mass flow through discharge valve to its pressure differential}
+\addglsunumbered{epsilon}{epsilon}{\ensuremath{\vc{\varepsilon}\ut{XX}}}{Coefficients mapping mass flow through discharge valve to its pressure differential}{greek}
 \addlatnumbered[ud]{ud}{\ensuremath{u\ut{dXX}}}{Position of discharge valve}
 \addlatnumbered[pd]{pd}{\ensuremath{p\ut{dXX}}}{Compressor discharge pressure}
 
 % Modelling/parallel
-\addlatnumbered[xp]{parstate}{\ensuremath{\vc{x}\ut{pXX}}}{Parallel system state vector}
-\addlatnumbered[fp]{parderiv}{\ensuremath{\vc{f}\ut{pXX}}}{Parallel system state derivative vector}
+\addglswk{xp}{parstate}{\ensuremath{\vc{x}_{\text{p}XX}}}{Parallel system state vector}{latin}
+\addglswk{yp}{parout}{\ensuremath{\vc{y}_{\text{p}XX}}}{Parallel system output vector}{latin}
+\addglswk{up}{parin}{\ensuremath{\vc{u}_{\text{p}XX}}}{Parallel system input vector}{latin}
+\addglswk{fp}{parderiv}{\ensuremath{\vc{f}_{\text{p}XX}}}{Parallel system state derivative vector}{latin}
 
 % modelling/serial
-\addlatnumbered[xs]{serialstate}{\ensuremath{\vc{x}\ut{sXX}}}{Serial system state vector}
-\addlatnumbered[fs]{serialderiv}{\ensuremath{\vc{f}\ut{sXX}}}{Serial system state derivative vector}
-
+\addglswk{xs}{serialstate}{\ensuremath{\vc{x}_{\text{s}XX}}}{Serial system state vector}{latin}
+\addglswk{ys}{serialout}  {\ensuremath{\vc{y}_{\text{s}XX}}}{Serial system output vector}{latin}
+\addglswk{us}{serialin}   {\ensuremath{\vc{u}_{\text{s}XX}}}{Serial system input vector}{latin}
+\addglswk{fs}{serialderiv}{\ensuremath{\vc{f}_{\text{s}XX}}}{Serial system state derivative vector}{latin}
 
 % MPC
 \newglossaryentry{Delta}
@@ -137,13 +234,15 @@
 \addlatdelta[Uother]{Uother}{\ensuremath{U^\text{ot}_k}}{Input sequence from other distributed controller, stacked over the move horizon, at time step $k$}
 \newglossaryentry{weights}
 {
-  sort={Wu Wy},
-  name={\ensuremath{W_u,\ W_y}},
-  user1={\ensuremath{W_u}},
-  user2={\ensuremath{W_y}},
-  user3={\ensuremath{W_u} \text{and} \ensuremath{W_y}},
-  description={Weighting terms applied to inputs and outputs, respectively}
+  sort={Q R},
+  name={\ensuremath{Q,\ R}},
+  user1={\ensuremath{Q}},
+  user2={\ensuremath{R}},
+  user3={\ensuremath{Q} \text{and} \ensuremath{R}},
+  description={Weighting terms applied to inputs and outputs, respectively},
+  type={latin}
 }
+
 
 \addlat[ts]{ts}{\ensuremath{t\ut{s}}}{Sample rate}
 
@@ -155,10 +254,19 @@
   user3={\ensuremath{S_{f_k}}},
   user4={\ensuremath{S_{U_k}}, \ensuremath{S_{x_k}} \text{and} \ensuremath{S_{f_k}}},
   description={Prediction matrices for \gentryi{Delta}\gentry{Yk}},
-  sort={SUk Sxk Sfk}
+  sort={SUk Sxk Sfk},
+  type={latin}
 }
 
 \addlat[SUother]{prediction-uother}{\ensuremath{S_{\gentry{Uother}}}}{Prediction matrix giving effect of the other sub-controller's inputs on \gentryi{Yk}}
 
 % observer
 \addlatnumbered[M]{M}{\ensuremath{MXX}}{Static observer gain}
+
+% not to print
+\newglossaryentry{uraug}
+{
+  name={\ensuremath{\vc{u}_{\text{r},k-1}^\text{a}}},
+  description={recycle valve value at linearization},
+  type={noprint}
+}

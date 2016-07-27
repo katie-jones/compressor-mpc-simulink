@@ -7,7 +7,7 @@ The sub-problems are then often associated to a particular subsystem.
 
 Because all of the sub-problems are coupled, and the solutions to each affect the other sub-problems, distributed MPC generally takes an iterative approach whereby each sub-controller assumes a value for the other solutions, solves its optimization problem, and communicates its updated solution to the other sub-controllers.
 The process can continue for a fixed number of steps, or until a convergence criterion is satisfied.
-Depending on the degree of coupling, the iterations may or may not converge. For a discussion of convergence in distributed MPC controllers, see \cite{***}.
+Depending on the degree of coupling, the iterations may or may not converge. For a discussion of convergence in distributed MPC controllers, see \cite{Stewart2010}.
 
 The primary advantage of distributed MPC over centralized is the potential for reducing the computation time.
 Although each of the distributed sub-controllers must solve multiple optimizations at each time step, their reduced size means that in many case they still execute faster than the centralized controller.

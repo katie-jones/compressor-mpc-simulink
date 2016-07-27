@@ -13,7 +13,7 @@ For simplicity, the two compressors are assumed to have identical parameters and
 
 
 
-The model used has 11 states in total: 5 states for each compressor, as described above, and another state for the pressure in the common tank. It's dynamics are given by:
+The model used has 11 states in total: 5 states for each compressor, as described above, and another state for the pressure in the common tank. The overall system dynamics are given by:
 
 \begin{equation}
   \dt{}
@@ -50,4 +50,22 @@ The model used has 11 states in total: 5 states for each compressor, as describe
 
 The inputs to the system are thus the suction, discharge and recycle valve positions for each compressor, the torque input for each compressor, and the common tank discharge valve position.
 The discharge valves linking each compressor to the common tank (\gi{ud} and \gii{ud}) are, however, kept in a fully open position in order to reduce the pressure losses in the system.
+The input vector used for control (\g{parin}) contains the torque and recycle valve inputs for each of the two compressors:
+
+\begin{equation}
+  \g{parin} = \begin{bmatrix} \gi{un} \\ \gii{un} \end{bmatrix}.
+\end{equation}
+
+The system outputs are given by:
+
+\begin{equation}
+  \g{parout} =
+  \begin{bmatrix}
+    \gi{yn}\\
+    \gii{yn}\\
+    \g{pt}
+  \end{bmatrix}
+\end{equation}
+
+\noindent where \g{parout} gives the output vector for the parallel system, and \gi{yn} and \gii{yn} are the output vectors of the first and second compressors, respectively.
 

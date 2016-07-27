@@ -4,9 +4,9 @@
 Compressors and compressor systems have long been an active area of research in the control community.
 Their control presents unique challenges: compressors are inherently highly non-linear, multivariable systems with a high degree of coupling, and their operating regime is limited both by the presence of unstable regimes and by physical constraints on the temperature and speeds that can be supported for safe operation.
 The coupling between control loops and constraints, in particular, are difficult to treat using traditional frequency-domain control approaches.
-Current industrial practices implement the controllers in the frequency domain, with added loop decoupling and hand-tuned open-loop control responses near boundaries to address these issues.
+Current industrial practice is to implement the controllers in the frequency domain, with added loop decoupling and hand-tuned open-loop control responses near boundaries to address these issues.
 
-In recent years, model predictive control (MPC) has been proposed as an alternative to frequency-domain approaches that can explicitly consider both the coupling and physical constraints that make compressor control so challenging.
+In recent years, model predictive control (MPC) has been proposed as an alternative to frequency-domain approaches as it can explicitly consider both the coupling and physical constraints that make compressor control so challenging.
 *** some sentences about papers on MPC for compressors ***
 
 The major disadvantage of MPC is the computational complexity inherent in the approach, and the resulting difficulty of executing the controllers at a sampling rate fast enough to handle the relatively fast dynamics observed in compressors. 

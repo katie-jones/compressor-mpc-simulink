@@ -18,7 +18,7 @@ Furthermore, the inlet valve to Compressor 2 has been replaced by the outlet val
   \label{eq:mod:serial-state-eq}
 \end{equation}
 
-\noindent where the subscripts 1 and 2 refer to values for the first and second compressor, respectively, and the following constraints are applied representing the interconnection of the two compressors:
+\noindent where \g{serialstate} and \g{serialderiv} are the state vector and state derivative of the serial system, respectively, and the subscripts 1 and 2 refer to values for the first and second compressor, respectively, and the following constraints are applied representing the interconnection of the two compressors:
 
 \begin{equation}
   \begin{split}
@@ -31,6 +31,11 @@ Furthermore, the inlet valve to Compressor 2 has been replaced by the outlet val
 \end{equation}
 
 The valve connecting the two compressors (controlled by \gi{ud}) is fixed at a fully open position in order to minimize pressure losses in the system.
+The input vector used for control (\g{serialin}) contains the torque and recycle valve inputs for each of the two compressors:
+
+\begin{equation}
+  \g{serialin} = \begin{bmatrix} \gi{un} \\ \gii{un} \end{bmatrix}.
+\end{equation}
 
 
 \begin{figure}
@@ -80,3 +85,17 @@ The valve connecting the two compressors (controlled by \gi{ud}) is fixed at a f
   \caption[Diagram of serial compressor system.]{Diagram of serial compressor system with inputs and states labelled. \g{pa} represents atmospheric pressure.}
   \label{fig:mod:serial}
 \end{figure}
+
+
+The system outputs are given by:
+
+\begin{equation}
+  \g{serialout} =
+  \begin{bmatrix}
+    \gi{yn}\\
+    \gii{yn}
+  \end{bmatrix}
+\end{equation}
+
+\noindent where \g{serialout} gives the output vector for the serial system, and \gi{yn} and \gii{yn} are the output vectors of the upstream and downstream compressors, respectively.
+
