@@ -1,0 +1,159 @@
+\chapter{Generation of Prediction Matrices}
+\label{app:prediction}
+
+The prediction matrices \g{prediction-matrices} are generated based on the linearized model of the compressor system, and the dynamics given by \eqref{eq:mpc:augmented-state-eqs}.
+They should satisfy:
+
+\begin{equation}
+  \gi{Yk} = \gi{prediction-matrices} \gi{Uk} + \gii{prediction-matrices} \g{xaug} + \giii{prediction-matrices} \g{fcurr}\text{,}
+  \label{eq:prediction:definition}
+\end{equation}
+
+
+\noindent where \g{Yk} is the output vector, stacked along the prediction horizon, \g{Uk} contains the input vector, stacked along the move horizon, \g{xaug} is the augmented state of the system and \g{fcurr} is the discretized derivative of the system, evaluated at the linearization point. $\gi{Delta} U\ut{min}$ and $\gi{Delta} U\ut{max}$ contain the input constraints (both absolute bounds and rate constraints).
+
+Defining:
+
+\begin{equation*}
+  \gi{Yk} =
+  \begin{bmatrix}
+    \gi{Delta} \vc{y}_{k+1}\\
+    \gi{Delta} \vc{y}_{k+2}\\
+    \vdots\\
+    \gi{Delta} \vc{y}_{k+p}\\
+  \end{bmatrix} \qquad
+%
+  \gi{Uk} =
+  \begin{bmatrix}
+    \gi{Delta} \vc{u}_{k}\\
+    \gi{Delta} \vc{u}_{k+1}\\
+    \vdots\\
+    \gi{Delta} \vc{u}_{k+m-1}\\
+  \end{bmatrix}
+\end{equation*}
+
+\noindent and substituting \eqref{eq:mpc:augmented-state-eqs} into \eqref{eq:prediction:definition}, we obtain:
+
+\begin{equation*}
+  \begin{split}
+% delta y1
+    \gi{Delta} \gpo{ycurr} & = \gc{augsys-mats} \gpo{xaug}\\
+    & = \gc{augsys-mats} \left[ \ga{augsys-mats} \left( \g{xaug} - \uraug{} \right)
+    + \gb{augsys-mats}\gi{Delta}\g{ucurr} + \g{fcurr} \right]\\[1em]
+  \end{split}
+\end{equation*}
+
+\begin{equation}
+  \begin{split}
+% delta y2
+    \gi{Delta} \gpt{ycurr} & = \gc{augsys-mats} \left[ \ga{augsys-mats}\left( \gpo{xaug} - \uraug{} \right)
+    + \gb{augsys-mats}\gi{Delta}\gpo{ucurr} + \g{fcurr} \right]\\
+  %
+  % & = \gc{augsys-mats} \left[ \left(\ga{augsys-mats}\right)^2 \left( \g{xaug} - \uraug{} \right)
+  % + \ga{augsys-mats} \left( \gb{augsys-mats} \g{deltau} + \g{fcurr} - \uraug{} \right) \right]\\
+  % & \qquad  + \gc{augsys-mats} \gb{augsys-mats}\gpo{deltau} + \gc{augsys-mats} \g{fcurr}\\
+  %
+    & = \gc{augsys-mats} \left(\ga{augsys-mats}\right)^2 \left( \g{xaug} - \uraugii{} \right)
+    + \gc{augsys-mats} \ga{augsys-mats} \left( \gb{augsys-mats} \gi{Delta}\g{ucurr} + \g{fcurr} \right)\\
+    & \qquad + \gc{augsys-mats} \left( \gb{augsys-mats}\gi{Delta}\gpo{ucurr} + \g{fcurr}\right) \\[1em]
+  \end{split}
+  \label{eq:prediction:deltay}
+\end{equation}
+
+\begin{equation*}
+  \begin{split}
+% delta yi
+    \gi{Delta} \gpi{ycurr} & = \gc{augsys-mats} \left(\ga{augsys-mats}\right)^i \left( \g{xaug} - \ubrace{\urauggen{}}{\g{uraug}} \right)
+    + \gc{augsys-mats} \left(\ga{augsys-mats}\right)^{i-1} \left( \gb{augsys-mats} \gi{Delta}\g{ucurr} + \g{fcurr} \right) + \cdots \\
+    & \qquad  \cdots + \gc{augsys-mats} \ga{augsys-mats} \left( \gb{augsys-mats} \gi{Delta}\vc{u}_{k+i-2} + \g{fcurr} \right)
+    + \gc{augsys-mats} \left( \gb{augsys-mats}\gi{Delta}\gpimo{ucurr} + \g{fcurr}\right)
+  \end{split}
+\end{equation*}
+
+\noindent where \gi{Delta}\g{ucurr} is used in place of \g{deltau} because the recycle valve entry in the input vector must be offset by $u_{\text{r},k-1}$, giving the definition of \gi{Delta}\g{ucurr}.
+
+Writing \eqref{eq:prediction:deltay} in matrix form gives:
+
+\begin{equation}
+  \begin{split}
+    \gi{Delta}\g{Yk} & = 
+% Sx
+    \begin{bmatrix*}[l]
+      \gc{augsys-mats} \ga{augsys-mats}\\
+      \gc{augsys-mats} \left(\ga{augsys-mats}\right)^2\\
+      \multicolumn{1}{c}{\vdots}\\
+      \gc{augsys-mats} \left(\ga{augsys-mats}\right)^p\\
+    \end{bmatrix*}
+    \g{xaug} + 
+    \begin{bmatrix*}[l]
+      \gc{augsys-mats} & & \\
+      \gc{augsys-mats} + \gc{augsys-mats}\ga{augsys-mats} & & \\
+      \multicolumn{1}{c}{\vdots} & & \\
+      \gc{augsys-mats} + \gc{augsys-mats}\ga{augsys-mats}\ + & \cdots & +\ \gc{augsys-mats}\left(\ga{augsys-mats}\right)^{p-1}
+    \end{bmatrix*}
+    \g{fcurr} \\
+%
+    & +
+    \begin{bmatrix}
+      \gc{augsys-mats}\gb{augsys-mats} & \multicolumn{2}{c}{\cdots} & 0\\
+      \gc{augsys-mats}\gb{augsys-mats} & \gc{augsys-mats}\ga{augsys-mats}\gb{augsys-mats} & & \multirow{2}{*}{\vdots} \\
+      \vdots & \vdots & \ddots & \\
+      \gc{augsys-mats}\gb{augsys-mats} & \gc{augsys-mats}\ga{augsys-mats}\gb{augsys-mats} & \cdots & \gc{augsys-mats}\left(\ga{augsys-mats}\right)^{p-1}\gb{augsys-mats} \\
+    \end{bmatrix}
+    \begin{bmatrix}
+      \gi{Delta} \vc{u}_{k}\\
+      \gi{Delta} \vc{u}_{k+1}\\
+      \vdots\\
+      \gi{Delta} \vc{u}_{k+p-1}\\
+    \end{bmatrix}
+  \end{split}
+  \label{eq:prediction:pred-mats1}
+\end{equation}
+
+\noindent and considering that the move horizon (\g{m}) is smaller than the prediction horizon (\g{p}), we have:
+
+\begin{equation}
+  \gi{Delta}\vc{u}_{k+i} = \gi{Delta} \vc{u}_{k+m-1}, \qquad \text{for }i \geq \g{m}
+\end{equation}
+
+\noindent simplifying \eqref{eq:prediction:pred-mats1} to:
+
+\begin{equation}
+  \begin{split}
+    & \gi{Delta}\g{Yk} = 
+% Sx
+    \ubrace{%
+      \begin{bmatrix*}[l]
+        \gc{augsys-mats} \ga{augsys-mats}\\
+        \gc{augsys-mats} \left(\ga{augsys-mats}\right)^2\\
+        \multicolumn{1}{c}{\vdots}\\
+        \gc{augsys-mats} \left(\ga{augsys-mats}\right)^p\\
+      \end{bmatrix*}
+    }{\gii{prediction-matrices}}
+    \g{xaug} + 
+    \ubrace{%
+      \begin{bmatrix*}[l]
+        \gc{augsys-mats} & & \\
+        \gc{augsys-mats} + \gc{augsys-mats}\ga{augsys-mats} & & \\
+        \multicolumn{1}{c}{\vdots} & & \\
+        \gc{augsys-mats} + \gc{augsys-mats}\ga{augsys-mats}\ + & \cdots & +\ \gc{augsys-mats}\left(\ga{augsys-mats}\right)^{p-1}
+      \end{bmatrix*}
+    }{\giii{prediction-matrices}}
+    \g{fcurr} \\
+%
+    & +
+    \ubrace{%
+      \begin{bmatrix*}[l]
+        \gc{augsys-mats}\gb{augsys-mats} & & & & & \\
+        \gc{augsys-mats}\gb{augsys-mats} & \gc{augsys-mats}\ga{augsys-mats}\gb{augsys-mats} & & & & \\
+        \multicolumn{2}{c}{\multirow{4}{*}{\vdots}} & \ddots & & 0 & \\
+        & & & \gc{augsys-mats}\left(\ga{augsys-mats}\right)^{m-1}\gb{augsys-mats} & & \\
+        & & & \gc{augsys-mats}\left(\ga{augsys-mats}\right)^{m-1}\gb{augsys-mats}\ +\ \gc{augsys-mats}\left(\ga{augsys-mats}\right)^{m}\gb{augsys-mats} & & \\
+        & & & & \multicolumn{1}{c}{\ddots} & \\
+        \gc{augsys-mats}\gb{augsys-mats} & \gc{augsys-mats}\ga{augsys-mats}\gb{augsys-mats} & \cdots & \gc{augsys-mats}\left(\ga{augsys-mats}\right)^{m-1}\gb{augsys-mats}\ +\ \gc{augsys-mats}\left(\ga{augsys-mats}\right)^{m}\gb{augsys-mats}\ +& \cdots &+\ \gc{augsys-mats}\left(\ga{augsys-mats}\right)^{p-1}\gb{augsys-mats}\\
+      \end{bmatrix*}
+    }{\gi{prediction-matrices}}
+    \gi{Delta}\g{Uk}
+  \end{split}
+  \label{eq:prediction:pred-mats2}
+\end{equation}
