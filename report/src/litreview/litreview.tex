@@ -48,27 +48,9 @@ Similarly, Budinis and Thornhill found that a combined process/anti-surge MPC co
 
 Bentaleb et al. also demonstrated that an MPC controller manipulating both driver speed and the inlet guide vanes could achieve better process performance than a PID controller manipulating only the driver speed \cite{Bentaleb2014}.
 This result was extended by Bentaleb to include the use of a recycle valve to combine process and anti-surge control \cite{Bentaleb2015}.
-% !!! Add Bentaleb thesis + other refs
 
-%\begin{itemize}
-  %\item Bentaleb2014
-  %\item Bohagen2007
-  %\item Boinov2006
-  %\item Budinis2015
-  %\item Cortinovis
-  %\item COTC2010
-  %\item Gravdahl
-  %\item Lin2014
-  %\item Mirsky2012
-  %\item Moghaddam2011
-  %\item Molenaar2007
-  %\item Quartarone2013
-  %\item Shehata2009
-  %\item Zhou2015
-%\end{itemize}
 
 \section{Control of Compressor Networks}
-% !!! don't talk about load sharing
 
 An MPC controller for two compressors arranged in parallel was developed by Smeulers and Bouman who considered a single controller combining load-sharing for the two compressors as well as performance and anti-surge criteria for each compressor individually \cite{Smeulers1999}. 
 The controller was implemented using linear MPC, where the non-linear model was linearized at each time step to characterize the compressors' non-linear behavior more accurately.
@@ -83,10 +65,10 @@ He approximated the efficiency of each compressor using continuous functions and
 As in \cite{Smeulers1999}, linear MPC is implemented by re-linearizing the compressor models at each time step.
 The focus of this work was on the load-sharing algorithm and generating set-points for each compressor; it did not consider the process and surge control of the individual compressors, though constraints were used in the load-sharing formulation to keep both compressors away from the surge line.
 
-Load-sharing schemes based on control approaches other than MPC have also been studied. 
-Blotenberg et al. proposed a load-sharing approach whereby the distance to surge for each of the compressors in parallel is driven to be equal using throttle controllers in order to minimize the opening of the recycle valves \cite{Blotenberg1984}. 
+% Load-sharing schemes based on control approaches other than MPC have also been studied. 
+% Blotenberg et al. proposed a load-sharing approach whereby the distance to surge for each of the compressors in parallel is driven to be equal using throttle controllers in order to minimize the opening of the recycle valves \cite{Blotenberg1984}. 
 
-Xenos et al. used real-time optimization to determine the optimal loading of the compressor network based on compressor efficiency maps updated in real-time, and experimentally found a reduction in power consumption compared to equal load splitting \cite{Xenos2015}.
+% Xenos et al. used real-time optimization to determine the optimal loading of the compressor network based on compressor efficiency maps updated in real-time, and experimentally found a reduction in power consumption compared to equal load splitting \cite{Xenos2015}.
 
 %In CCC presentation (!!!) a load-sharing scheme for parallel compressors based on equal distance to the surge line is described.
 %The control is implemented using a combination of cascaded PID controllers and loop decoupling inputs to reduce the coupling effects between the compressors.
@@ -102,6 +84,22 @@ Xenos et al. used real-time optimization to determine the optimal loading of the
 
 
 
+\section{Distributed MPC}
+\label{sec:lit:dmpc}
+
+An overview of the types of decentralized, distributed and hierarchical control schemes that have been presented in the literature, with a particular focus on MPC approaches, is given by Scattolini \cite{Scattolini2009}.
+Venkat et al. proposed one such scheme: an iterative, cooperative distributed MPC (DMPC) approach for linear systems that achieves optimality at convergence, and for which the intermediate iterates are all feasible and result in closed-loop stability of the overall system \cite{Venkat2005}.
+
+Richards and How present similar results using DMPC for a linear system, with the addition of bounded disturbances to establish a robustness guarantee \cite{Trodden2007}.
+They found significant improvements in computation time compared with the centralized MPC approach, with minimal decrease in performance.
+
+Stewart et al. studied cooperative DMPC for large systems, and established that the cooperative scheme -- unlike a non-cooperative or decentralized approach -- can converge to an optimal solution for arbitrary coupling strengths between the subsystems, and provides a suboptimal but stable and feasible solution at each iteration \cite{Stewart2010}.
+These results were extended to nonlinear systems by Stewart, Wright and Rawling, who proposed a distributed, nonconvex optimizer for solving the resulting optimization problem \cite{Stewart2011}.
+Their implementation did not require the use of centralized coordination between the sub-controllers, an important criteria for many industrial applications.
+
+With the exception of the last work, these results, like much of the literature on distributed MPC, focus only on linear systems. 
+They are therefore not directly applicable to the work done here, as the current model is not linear but rather re-linearized at each time step, however they provide valuable insight into the potential of distributed MPC controllers.
+
 
 \section{Solvers \& Implementation}
 
@@ -114,19 +112,5 @@ Peyrl et al. also found that QPs generated by load-sharing MPC controllers have 
 
 
 
-\section{Distributed MPC}
-\label{sec:lit:dmpc}
 
-An overview of the types of decentralized, distributed and hierarchical control schemes that have been presented in the literature, with a particular focus on MPC approaches, is given by Scattolini \cite{Scattolini2009}.
-Venkat et al. proposed one such scheme: an iterative, cooperative distributed MPC (DMPC) approach for linear systems that achieves optimality at convergence, and for which the intermediate iterates are all feasible and result in closed-loop stability of the overall system \cite{Venkat2005}.
-
-Richards and How present similar results using DMPC for a linear system, with the addition of bounded disturbances to establish a robustness guarantee \cite{Richards2007}.
-They found significant improvements in computation time compared with the centralized MPC approach, with minimal decrease in performance.
-
-Stewart et al. studied cooperative DMPC for large systems, and established that the cooperative scheme -- unlike a non-cooperative or decentralized approach -- can converge to an optimal solution for arbitrary coupling strengths between the subsystems, and provides a suboptimal but stable and feasible solution at each iteration \cite{Stewart2010}.
-These results were extended to nonlinear systems by Stewart, Wright and Rawling, who proposed a distributed, nonconvex optimizer for solving the resulting optimization problem \cite{Stewart2011}.
-Their implementation did not require the use of centralized coordination between the sub-controllers, an important criteria for many industrial applications.
-
-With the exception of the last work, these results, like much of the literature on distributed MPC, focus only on linear systems. 
-They are therefore not directly applicable to the work done here, as the current model is not linear but rather re-linearized at each time step, however they provide valuable insight into the potential of distributed MPC controllers.
-
+\input{litreview/stateoftheart}
