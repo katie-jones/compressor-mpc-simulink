@@ -1,3 +1,5 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include <sstream>
 #include <fstream>
 #include <iostream>
@@ -60,6 +62,13 @@ int main(int argc, char** argv) {
   }
 
   const std::string filename(argv[1]);
+  const std::string tmp_filename = filename + ".tmp";
+
+  if (rename(filename.c_str(),tmp_filename.c_str()) != EXIT_SUCCESS) {
+    std::cerr << "Could not rename file " << filename << ". Exiting." << std::endl;
+    return 1;
+  }
+
   double tmin, tmax;
 
   std::istringstream ss(argv[2]);
@@ -71,9 +80,8 @@ int main(int argc, char** argv) {
 
   std::ifstream infile;
   std::ofstream outfile;
-  std::string output_filename = filename + ".new";
-  infile.open(filename.c_str());
-  outfile.open(output_filename.c_str());
+  infile.open(tmp_filename.c_str());
+  outfile.open(filename.c_str());
 
   // print rest of file
   while (!(infile.eof() || infile.fail())) {
