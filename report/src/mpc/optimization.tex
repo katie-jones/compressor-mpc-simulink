@@ -7,11 +7,22 @@ The optimization problem solved at each time step by the MPC controller is defin
   \begin{split}
     \g{Uk} & = \argmin_{U}\ \gi{Delta} \tps{U}\ \gi{weights}\ \gi{Delta} U + \tps{\left( \gi{Delta}Y - \gi{Delta}\g{Yrefk} \right)} \gii{weights} \left( \gi{Delta}Y - \gi{Delta}\g{Yrefk} \right)\\
     \text{s.t. } & \gi{Delta} U\ut{min} \leq \gi{Delta} U \leq \gi{Delta} U\ut{max}\\
-    & \gi{Delta} Y = \gi{prediction-matrices} \gi{Delta} \g{Uk} + \gii{prediction-matrices} \g{xaug} + \giii{prediction-matrices} \g{fcurr}\text{,}
+    & \gi{Delta} U\ut{r,min} \leq A\ut{rate} \gi{Delta} U \leq \gi{Delta} U\ut{r,max}\\
+    & \gi{Yk} = \gi{prediction-matrices} \gi{Delta} \g{Uk} + \gii{prediction-matrices} \g{xaug} + \giii{prediction-matrices} \g{fcurr}\text{,}
   \end{split}
 \end{equation}
     
-\noindent where \g{Yrefk} is the reference output, \giv{prediction-matrices} are the prediction matrices giving the contribution to \gi{Delta}\g{Yk} of \gi{Delta}\g{Uk}, \g{xaug} and \g{fcurr} respectively, calculated using \eqref{eq:mpc:augmented-state-eqs}, and $\gi{Delta} U\ut{min}$ and $\gi{Delta} U\ut{max}$ contain the input constraints (both absolute bounds and rate constraints).
+\noindent where:
+
+\begin{itemize}
+  \item \g{Uk} contains the optimal input sequence at time step $k$, stacked along the move horizon;
+  \item \g{Yk} contains the output sequence resulting from the input sequence \g{Uk} at time step $k$, stacked along the prediction horizon;
+  \item \g{Yrefk} is the reference output sequence;
+  \item \giii{weights} are the weighting matrices used for the inputs and outputs, respectively;
+  \item \giv{prediction-matrices} are the prediction matrices giving the contribution to \gi{Yk} of \gi{Delta}\g{Uk}, \g{xaug} and \g{fcurr} respectively, calculated using \eqref{eq:mpc:augmented-state-eqs} (see \cref{app:prediction});
+  \item $\gi{Delta} U\ut{min}$, $\gi{Delta} U\ut{max}$, $\gi{Delta} U\ut{r,min}$ $\gi{Delta} U\ut{r,max}$ contain the input bounds and rate constraints; and
+  \item $A\ut{rate}$ is a matrix that is multiplied by \gi{Uk} to obtain the changes in inputs between two successive time steps in the sequence (see below for definition).
+\end{itemize}
 
 The optimization is then converted to a dense formulation by eliminating the dependence on \gi{Delta}\g{Yk} through the equality constraint, yielding the following QP problem:
 
@@ -23,14 +34,12 @@ The optimization is then converted to a dense formulation by eliminating the dep
   \label{eq:mpc:optimization-qp-formulation}
 \end{equation}
 
-\noindent where the QP Hessian matrix and linear term given by:
+\noindent with the QP Hessian matrix and linear term given by:
 
 \begin{equation}
   \begin{split}
     H & = 2\left( \gi{weights} + \tps{\gi{prediction-matrices}}\ \gii{weights}\ \gi{prediction-matrices} \right)\\
-    H & = 2\left( W_u + S_{u_k}^\intercal\ W_y\ S_{u_k} \right)\\
     g & = 2\left( \g{xaug} \tps{\gii{prediction-matrices}} + \g{fcurr} \tps{\giii{prediction-matrices}} - \gi{Delta} \g{Yrefk} \right)\gii{weights} \gi{prediction-matrices}.\\
-    g & = 2\left( \gi{Delta}\vc{\hat{x}}_k^a S_{x_k}^\intercal + \vc{f_k} S_{f_k}^\intercal - \gi{Delta} \vc{Y}\ut{ref} \right)W_y S_{U_k}.
   \end{split}
   \label{eq:mpc:optimization-qp-terms}
 \end{equation}
@@ -39,4 +48,41 @@ The input constraints are determined by combining limits on both the range of th
 The recycle valve has a range of 0--1 with rate constraints (maximum possible change over a single sampling period) of +1/-0.1. 
 The rate is more constrained in the negative direction (i.e. when closing) to prevent a transient re-entry into surge.
 The torque input has a normalized range of $\pm 0.3$ compared to its steady-state value, with rate constraints of $\pm 0.1$.
+
+Since the solution to the QP problem is the change in inputs relative to the previous iteration that should be applied, the constraints are implemented as follows:
+
+\begin{align*}
+  \gi{Delta} U_{\text{min},k} = &
+  \begin{bmatrix} \begin{pmatrix} -0.3 \\ 0 \\ -0.3 \\ 0 \end{pmatrix} - \begin{pmatrix} T_{\text{d},1,k} \\ u_{\text{r},1,k} \\ T_{\text{d},2,k} \\ u_{\text{r},2,k} \end{pmatrix}\\ \vdots \end{bmatrix} 
+  % \qquad
+  &\gi{Delta} U_{\text{max},k} = &
+  \begin{bmatrix} \begin{pmatrix} 0.3 \\ 1 \\ 0.3 \\ 1 \end{pmatrix} - \g{ucurr}\\ \vdots \end{bmatrix}\\
+%
+  \gi{Delta} U_{\text{r,min},k} = &
+  \begin{bmatrix} \begin{pmatrix}-0.1\\ -0.1\\ -0.1\\ -0.1\end{pmatrix}\\ \vdots \end{bmatrix}
+  % \qquad
+  &\gi{Delta} U_{\text{r,max},k} = &
+  \begin{bmatrix} \begin{pmatrix}0.1\\ 1\\ 0.1\\ 1\end{pmatrix}\\ \vdots \end{bmatrix}
+\end{align*}
+
+\noindent where the constraints are repeated \g{m} times for each of the inputs in the sequence \gi{Delta}\g{Uk}.
+The rate constraints are implemented as follows:
+
+\begin{equation*}
+  A\ut{rate} \in \mathbb{R}^{8m\times 4m}, \quad
+  A\ut{rate} = 
+  \begin{bmatrix}
+    1 & 0 & 0 & 0 &  & \\
+    0 & 1 & 0 & 0 &  & \\
+    0 & 0 & 1 & 0 &  & \\
+    0 & 0 & 0 & 1 &  & \\
+    -1& 0 & 0 & 0 & \ddots  & \\
+    0 & -1& 0 & 0 &  & \\
+    0 & 0 &-1 & 0 &  & \\
+    0 & 0 & 0 &-1 &  & \\
+    &  &  &  & \ddots  & \\
+  \end{bmatrix}.
+\end{equation*}
+
+
 

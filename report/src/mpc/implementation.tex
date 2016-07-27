@@ -10,7 +10,7 @@ To generate these matrices, the terms $\gc{augsys-mats} {\ga{augsys-mats}}^1$, $
 To speed this process up, the result of the multiplication $\gc{augsys-mats} {\ga{augsys-mats}}^i$ was saved as an intermediate variable and used to calculate $\gc{augsys-mats} {\ga{augsys-mats}}^{i+1}$.
 
 For faster computational performance -- particularly on embedded systems -- and for a more accurate characterization of the computational efficiency of each controller, the controllers were also implemented and tested in \cpp{}. 
-The qpOASES library presented in \cite{Ferreau2014} was used to solve quadratic programs, and linear algebra calculations were performed using the \eigen{}\cite{eigenweb} \cpp{} library.
+The \qpoases{} library presented in \cite{Ferreau2014} was used to solve quadratic programs, and linear algebra calculations were performed using the \eigen{}\cite{eigenweb} \cpp{} library.
 
 One of the advantages of the C++ implementation compared to that in \slink{} is that it is able to use knowledge of the structure of the augmented matrices (\gv{augsys-mats}) to multiply them more efficiently.
 The matrices have both dense sections, corresponding to the non-augmented states, sparse sections, corresponding to the augmented states, and sections which are zero by definition.

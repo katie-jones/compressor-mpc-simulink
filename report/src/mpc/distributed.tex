@@ -22,7 +22,7 @@ As stated in \eqref{eq:mpc:distributed-qp-terms} the QP is unsolvable since \g{U
 To break this circular dependency, the problem is initially solved with an estimate for \g{Uother} obtained from the previous QP solution.
 The sub-controllers then exchange information about their obtained solution, updating the value of \g{Uother} and re-solving the optimization.
 This procedure is repeated for a fixed number of iterations, after which the optimal solution is sent to the plant.
-The iteration process will not converge for systems that have a high degree of coupling; this effect is discussed in further detail in Section~\ref{sec:results}.
+The iteration process may not converge for systems that have a high degree of coupling; this effect is discussed in further detail in \cite{Stewart2010}.
 
 The algorithm used to obtain the optimal input at each time step for a distributed controller is thus as follows:
 
@@ -41,7 +41,7 @@ The algorithm used to obtain the optimal input at each time step for a distribut
 The primary advantage of distributed control over centralized control is that it allows the computational cost of the MPC controller to be reduced.
 The QPs can be solved in parallel using a separate thread or even a separate device for each sub-controller.
 Although the method still requires solving several QPs per sub-controller at each time step, they are smaller than the single QP solved by the centralized controller and can often be solved more efficiently.
-In particular, the ``hotstart'' method implemented in the qpOASES QP solver can solve a QP using a previous solution as a starting point, efficiently solving series of QPs in which the Hessian and linear terms change only slightly, further reducing the computational cost of the extra iterations.
+In particular, the ``hotstart'' method implemented in the \qpoases{} QP solver can solve a QP using a previous solution as a starting point, efficiently solving series of QPs in which the Hessian and linear terms change only slightly, further reducing the computational cost of the extra iterations.
 
 Finally, generating the prediction matrices for the sub-controllers' cost functions can be less computationally expensive than for the centralized case, if they use fewer of the outputs, since computing the prediction matrices is $\mathcal{O}(n)$ in the number of outputs used.
 The computational cost could be further reduced by limiting the state information used by each sub-controller to generate its prediction matrices ($\mathcal{O}(n^3)$ in the number of states used), however this approach is not considered here.
@@ -53,14 +53,9 @@ In cooperative control, the sub-controllers share a single cost function while i
 Non-cooperative control therefore allows the possibility for each sub-controller to consider fewer outputs in the cost function, thereby reducing the computational cost of generating the prediction matrices.
 
 For both the parallel and serial systems, the outputs used in the cooperative controller cost function are the same as those for the centralized case: surge distances from both compressors and the common tank pressure for the parallel case, and surge distances and output pressures for each compressor for the serial case. 
-The weights used for the cooperative case differed slightly, however, from the centralized case as the controller behaviour was not identical.
+The weights used for the cooperative case differed slightly, however, from the centralized case as the controller behavior was not identical.
 
 The non-cooperative controller used fewer outputs in both cases. 
 For the parallel case, each sub-controller weighted the surge distance of its compressor as well as the common tank output pressure.
-For the serial case, an initial controller was designed which considered only the surge distance and output pressure of a single compressor in each sub-controller. 
-This setup did not, however, converge for all simulation cases due to the coupling between the two compressors (see Section~\ref{sec:results}).
-
-A second attempt tried to take the coupling of the specific system into account.
-The sub-controller for the first (upstream) compressor used the surge distance and output pressure from the first compressor as well as the output pressure from the second compressor in its cost function, since its torque input in particular has a strong effect on the second compressor's output pressure.
-The second compressor has a strong effect on the surge distance of the first compressor, which was weighted accordingly in its cost function along with the surge distance and output pressure of the second compressor.
+For the serial case, only the surge distance and output pressure of a single compressor were considered in each sub-controller. 
 

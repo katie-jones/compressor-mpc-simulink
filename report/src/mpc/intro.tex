@@ -6,7 +6,7 @@ Centralized control is considered too computationally expensive to implement in 
 The model of the compressor systems used in this work is non-linear, however the optimization problem that results from the MPC formulation is in the form of an efficiently-solvable \g{qp} only if a linear model is used.
 In order to take advantage of efficient \g{qp} solvers, a linearized approach is taken in this work whereby the non-linear system is re-linearized at each time step and the resulting linear model used to generate the optimization. 
 
-The following sections described the process used to obtain a linearized model of the system, the formulation of the resulting optimization problem, the details of both the centralized and distributed controllers, and finally the procedure used for state estimation.
+The following sections describe the process used to obtain a linearized model of the system, the formulation of the resulting optimization problem, the details of both the centralized and distributed controllers, and finally the procedure used for state estimation.
 
 The controllers presented in this work combine both anti-surge and process control, with a primary focus on the former. 
 For this reason, they operate at a sampling rate of $\g{ts} = \u{50}{ms}$ in order to control the relatively fast dynamics leading to compressor surge.

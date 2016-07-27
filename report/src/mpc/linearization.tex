@@ -1,9 +1,10 @@
 \section{Linearization \& Discretization}
 \label{sec:mpc:linearization}
 
-The model used for the MPC controller formulation is the same as that used in Section~\ref{sec:modelling} to simulate the compressor.
+The model used for the MPC controller formulation is the same as the one used in Section~\ref{sec:modelling} to simulate the compressor.
 No model mismatch was considered in order to compare the controllers' performance in an ideal scenario.
-In order to generate an optimization in the form of a quadratic program, the system was linearized at each time step about the current states (\g{xhat}) and inputs (\gmo{ucurr}), and discretized using the 4th order Runge-Kutta method.
+In order to generate an optimization in the form of a quadratic program, the system was linearized at each time step about the current states (\g{xhat}) and inputs (\gmo{ucurr}), and discretized using the 4th order Runge-Kutta method, a fixed step-size integration scheme.
+The sampling time (\u{50}{ms}) was used as the step size.
 The model at sampling instant $k$ is thus given by:
 
 \begin{equation}
@@ -16,34 +17,52 @@ The model at sampling instant $k$ is thus given by:
 \noindent where \g{fcurr} is the derivative of the system evaluated at the linearization point, \g{xhat} is the state estimate at time instant $k$, \g{p} is the prediction length of the controller, \giv{sys-mats} gives the model linearized about the current operating point, and \g{Delta} refers to the difference in $\left( \cdot \right)$ relative to the linearization point.
 
 The resulting discrete-time, linear system is then augmented to include both error states as integrators for offset-free control, and delayed input states for the recycle valve.
-One integrator for each output is added, as well as 40 delayed states per recycle valve (giving a total delay of \u{2}{s} for a sampling rate of \u{50}{ms}).
-The augmented system has the following form:
+One integrator for each output is added, as well as 40 delayed states per compressor.
+As discussed in \sect{mod:comp:outputs}, the recycle valve has an input dead time, which is included in the model by adding delayed input states (a total delay of \u{2}{s} with a sampling rate of \u{50}{ms} leads to 40 delayed states per compressor).
+With these additions, the augmented state of the system (\g{xaug}) is given by:
 
 \begin{equation}
+  \g{xaug} =
+  \begin{bmatrix}
+    \gi{Delta} \g{xhat}\\
+    \g{udel}\\
+    \g{integrator}
+  \end{bmatrix},
+  \qquad
+  \g{udel} = \tps{\begin{bmatrix} u_{\text{r},k-n\ut{del}+1} & \cdots & u_{\text{r},k-1} & u_{\text{r},k} \end{bmatrix}}
+%
+  \label{eq:mpc:xaug}
+\end{equation}
+
+\noindent where 
+\g{xhat} contains the original states of the system, 
+\g{udel} contains the delayed recycle valve inputs from the earliest to most recent,
+$n\ut{del}$ is the total number of delayed states and
+\g{integrator} contains the integrator states.
+
+
+The augmented system dynamics are then as follows:
+
+\begin{align}
   \begin{split}
-    \gpio{xaug} & = 
+    \label{eq:mpc:augmented-state-eqs}
+    \gpio{xaug} ={}& 
     \ubrace{\begin{bmatrix}
       \ga{sys-mats} & \begin{bmatrix} \g{Bdelay} & 0\end{bmatrix} & 0 \\[0.5em]
       0 & \begin{bmatrix} 0 & \g{Adelay} \end{bmatrix} & 0\\[0.5em]
       0 & 0 & I_{n\ut{e}\times n\ut{e}}
     \end{bmatrix}}{\ga{augsys-mats}}
-    \left( \ubrace{\begin{bmatrix}
-      \gi{Delta} \gpi{xhat}\\
-      \begin{bmatrix}
-        {\gpi{udel}}{\left(1\right)}\\
-        {\gpi{udel}}{\left(2\ldots\right)}\\
-      \end{bmatrix}\\
-      \gpi{integrator}
-    \end{bmatrix}}{\gpi{xaug}} - 
+    \left( \gpi{xaug} - 
     \begin{bmatrix}
       0\\
       \begin{bmatrix}
         u_{\text{r},k-1}\\
         0\\
       \end{bmatrix}\\
+      0
     \end{bmatrix}
     \right)\\
-    & \qquad + 
+    & + 
     \ubrace{\begin{bmatrix}
       \g{Bnodelay}\\
       \g{Baug}\\
@@ -52,28 +71,26 @@ The augmented system has the following form:
     \ubrace{\begin{bmatrix}
       u_{\text{r},k+i}\\
       \Delta T_{\text{d},k+i}
-    \end{bmatrix}}{\gpi{deltau}}\\[0.5em]
-    %
-    % & = \gi{augsys-mats} \left( \gpi{xaug} - \vc{u}_{\text{r},k-1} \right) + \gii{augsys-mats} \gpi{deltau}\\[0.5em]
-    % & = A_k^a \left(\Delta \vc{\hat{x}}_{k+i}^a - \vc{u}_{\text{r},k-1}\right) + B_k^a \Delta \vc{u}_{k+i}\\[0.5em]
-    \gi{Delta} \g{ycurr} & = \ubrace{\begin{bmatrix}
-      \gc{sys-mats} & 0 & I_{n\ut{e} \times n\ut{e}}
-    \end{bmatrix}}{\gc{augsys-mats}}
-    \g{xaug}\\[0.5em]
-    % & = \begin{bmatrix}
-      % C_k & 0 & I_{n\ut{e} \times n\ut{e}}
-    % \end{bmatrix}
-    % \vc{\hat{x}}_{k+i}^a,\\[0.5em]
-    % \Delta \vc{y}_{k+i} & = C_k^a \Delta \vc{\hat{x}}_{k+i}^a\\[0.5em]
-  \end{split}
-  \label{eq:mpc:augmented-state-eqs}
-\end{equation}
+    \end{bmatrix}}{\gpi{deltau}}
+    + \begin{bmatrix}
+      \g{fcurr}\\ 0 \\ 0
+    \end{bmatrix}
+  \end{split}\\
+% y
+  \gi{Delta} \g{ycurr} ={}& \ubrace{\begin{bmatrix}
+    \gc{sys-mats} & 0 & I_{n\ut{e} \times n\ut{e}}
+  \end{bmatrix}}{\gc{augsys-mats}}
+  \g{xaug}
+  \label{eq:mpc:augmented-output-eqs}
+\end{align}
 
-\noindent where \gpi{xaug} is the augmented state of the system, 
-\gpi{xhat} contains the original states of the system, 
-\gpi{udel} contains the delayed recycle valve inputs,
-$u_{\text{r},k-1}$ gives the value of the recycle valve input about which the system was linearized,
-\gpi{integrator} contains the integrator states,
+
+% \noindent where \gpi{xaug} is the augmented state of the system, 
+% \gpi{xhat} contains the original states of the system, 
+% \gpi{udel} contains the delayed recycle valve inputs,
+% $u_{\text{r},k-1}$ gives the value of the recycle valve input about which the system was linearized,
+% \gpi{integrator} contains the integrator states,
+\noindent where
 $n\ut{e}$ gives the number of integrator states,
 and \giv{augsys-mats} give the augmented, linearized model of the system.
 
@@ -82,27 +99,29 @@ The other components of \gpi{udel} are not corrected because they are only multi
 
 The specific format of the augmented matrices depends on the system being modelled. For a single compressor, for example, the augmented matrices are as follows:
 
-\begin{equation}
-  \begin{split}
-    \ga{augsys-mats} & =
-    \begin{bmatrix}
-      \ga{sys-mats} & \begin{bmatrix} B_{k,u\ut{r}} & 0 \end{bmatrix} & 0\\[0.5em]
-      0 & \begin{bmatrix} 0 & I_{39\times 39}\\ 0 & 0\end{bmatrix} & 0\\[0.5em]
-      0 & 0 & I_{2\times 2}
-    \end{bmatrix}\\[1em]
+\begin{equation*}
+  \ga{augsys-mats} =
+  \begin{bmatrix}
+    \ga{sys-mats} & \begin{bmatrix} B_{k,u\ut{r}} & 0 \end{bmatrix} & 0\\[0.5em]
+    0 & \begin{bmatrix} 0 & I_{39\times 39}\\ 0 & 0\end{bmatrix} & 0\\[0.5em]
+    0 & 0 & I_{2\times 2}
+  \end{bmatrix}
+  \qquad
 %
-    \gb{augsys-mats} & = 
-    \begin{bmatrix}
-      B_{k,T\ut{d}} & 0\\[0.5em]
-      0 & \begin{bmatrix} 0_{39\times 1}\\ 1 \end{bmatrix} \\[0.5em]
-      0 & 0
-    \end{bmatrix}\\[1em]
+  \gb{augsys-mats} = 
+  \begin{bmatrix}
+    B_{k,T\ut{d}} & 0\\[0.5em]
+    0 & \begin{bmatrix} 0_{39\times 1}\\ 1 \end{bmatrix} \\[0.5em]
+    0 & 0
+  \end{bmatrix}\\[1em]
+\end{equation*}
 %
-    \gc{augsys-mats} & = \begin{bmatrix}
-      \gc{sys-mats} & 0 & I_{n\ut{e} \times n\ut{e}}
-    \end{bmatrix},
-  \end{split}
-\end{equation}
+\begin{equation*}
+  \gc{augsys-mats} = \begin{bmatrix}
+    \gc{sys-mats} & 0 & I_{n\ut{e} \times n\ut{e}}
+  \end{bmatrix},
+\end{equation*}
 
 \noindent where $B_{k,u\ut{r}}$ and $B_{k,T\ut{d}}$ are the columns of \gb{sys-mats} corresponding to the recycle valve and torque inputs, respectively.
+The augmented matrices for the parallel and serial systems are constructed in an equivalent manner.
 
