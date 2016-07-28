@@ -10,10 +10,13 @@ It is designed to mimic a typical disturbance downstream of the system such as t
 The disturbances used were as follows:
 
 \begin{itemize}
-  \item \textbf{parallel}: common tank discharge valve 70\% -> 40\% open;
-  \item \textbf{serial}: downstream compressor discharge vale 39\% -> 29\% open.
+  \item \textbf{parallel}: common tank discharge valve (\g{ut}) 70\% -> 40\% open;
+  \item \textbf{serial}: downstream compressor discharge valve (\gii{ud}) 39\% -> 29\% open.
 \end{itemize}
-In the following plots, the disturbances are applied at \u{50}{s}, after the system has reached steady state.
+In the following plots, the disturbances are persistent and applied at \u{50}{s}, after the system has reached steady state.
+
+The distributed controllers in this section were implemented using 3 controller iterations. 
+As discussed in \sect{mpc:distributed:stopping}, this number was determined sufficient for convergence of the applied inputs.
 
 
 \subsection{Parallel System}
@@ -75,13 +78,22 @@ The controller weights used to generate these results are summarized in \tab{res
     \input{results/figs/parallel_ur.tex}
     \normalsize
   \end{subfigure}
-  \caption[Time response of parallel system.]{Comparison of time responses of centralized and distributed controllers. Distributed controllers use 3 solver iterations (no change in performance for increased iterations -- see \sect{results:computation}). Disturbance applied is a closing of the common tank discharge valve from 70\% to 40\% at time \u{50}{s}.}
+  \caption[Time response of parallel system.]{Comparison of time responses of centralized and distributed controllers. Distributed controllers use 3 solver iterations. The disturbance applied is a closing of the common tank discharge valve from 70\% to 40\% at time \u{50}{s}.}
   \label{fig:res:parallel-timeresp}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \footnotesize
+  \input{results/figs/parallel_sd_zoom.tex}
+  \normalsize
+  \caption[Zoomed view of surge distance time response of parallel system.]{Zoomed view of surge distance time response given in \fig{res:parallel-timeresp}. The disturbance applied is a closing of the common tank discharge valve from 70\% to 40\% at time \u{50}{s}.}
+  \label{fig:res:parallel-sd-zoom}
 \end{figure}
 
 \fi
 
-The disturbance applied has the effect of decreasing the mass flow out of, and increasing the pressure in, the common discharge tank, thus sending both compressors toward surge.
+The disturbance applied has the effect of decreasing the mass flow out of, and increasing the pressure in, the common discharge tank, thus pushing both compressors toward surge.
 At this point, the recycle valve opens but with a \u{2}{s} delay.
 During this delay period, the controller also increases the torque applied to the driver, which increases the mass flow through the compressor, quickly pulling it away from the surge line.
 
@@ -206,7 +218,7 @@ The maximum disturbance to the output pressures of both compressors for the non-
     \label{fig:res:serial-timeresp:ur2}
   \end{subfigure}
 
-  \caption[Time response of serial system.]{Comparison of time responses of centralized and distributed controllers. Disturbance applied is a closing of the downstream compressor's discharge valve from 39\% to 29\% at time \u{42}{s}.}
+  \caption[Time response of serial system.]{Comparison of time responses of centralized and distributed controllers. Distributed controllers use 3 solver iterations. Disturbance applied is a closing of the downstream compressor's discharge valve from 39\% to 29\% at time \u{50}{s}.}
   \label{fig:res:serial-timeresp}
 \end{figure}
 
@@ -223,7 +235,8 @@ The maximum disturbance to the output pressures of both compressors for the non-
     \input{results/figs/serial_sd2_zoom.tex}
     \normalsize
   \end{subfigure}
-  \caption[Zoom of surge distance time response.]{Comparison of the initial surge distance time responses of centralized and distributed controllers. Disturbance applied is a closing of the downstream compressor's discharge valve from 39\% to 29\% at time \u{42}{s}.}
+  \caption[Zoom of surge distance time response.]{Zoomed view of surge distance time response given in \fig{res:serial-timeresp}. 
+  Disturbance applied is a closing of the downstream compressor's discharge valve from 39\% to 29\% at time \u{50}{s}.}
   \label{fig:res:serial-sd-zoom}
 \end{figure}
 \fi

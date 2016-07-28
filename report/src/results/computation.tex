@@ -31,7 +31,7 @@ The number of solver iterations for which the cooperative approach requires more
 The computation time for the cooperative controller in the serial case has a zig-zag behavior, where increasing the number of solver iterations from an odd number to an even number actually decreases the computation time.
 From \fig{res:qp-compcost}, it is evident that the pattern originates in QP solver computation time, however the reason for this is unclear.
 
-It should be noted that increasing the number of solver iterations above 2 had no measurable effect on performance whatsoever.
+It should be noted that increasing the number of solver iterations above 3 had no measurable effect on performance (see \sect{mpc:distributed:stopping}).
 In fact, the convergence of the cost function with increasing solver iterations cannot be visualized as, for the cases considered here, the change after the first iteration is below the minimum value of a 64-bit floating point number at almost all time steps and is recorded as zero.
 The only point at which the decrease can be measured in during the few seconds immediately after the disturbance is applied, though even at this point it is too small to have an effect on controller behavior.
 

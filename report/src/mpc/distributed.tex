@@ -27,7 +27,7 @@ The iteration process may not converge for systems that have a high degree of co
 The algorithm used to obtain the optimal input at each time step for a distributed controller is thus as follows:
 
 \begin{enumerate}
-  \item perform estimation to obtain the augmented state (see Section~\ref{sec:mpc:estimation});
+  \item perform estimation to obtain the current estimate of the augmented state vector (see Section~\ref{sec:mpc:estimation});
   \item linearize, discretize and augment non-linear model about the current state estimate and previous inputs, as described in Section~\ref{sec:mpc:linearization};
   \item generate the prediction matrices using \eqref{eq:mpc:augmented-state-eqs};
   \item set up the QP problems according to \eqref{eq:mpc:optimization-qp-formulation};
@@ -35,6 +35,29 @@ The algorithm used to obtain the optimal input at each time step for a distribut
   \item iteratively solve each QP, updating the approximation of  \g{Uother} after each iteration;
   \item after a fixed number of iterations, apply the optimal input from each sub-controller at the first prediction interval to the system.
 \end{enumerate}
+
+\subsection{Stopping Criterion}
+\label{sec:mpc:distributed:stopping}
+
+The distributed optimization problem is iterative and a stopping criterion must therefore be chosen.
+To maintain a relatively constant computation time, the best approach is to choose a fixed number of iterations for which the tradeoff between performance and computational complexity is optimal.
+An alternate approach is to use the change in cost function as a criterion for convergence, however this leads to a variable number of iterations (and thus greater variation in the computation times) and it requires the cost function to be computed at each solver iteration -- adding a non-negligible computational cost.
+\footnote{The cost function used by the QP solver (defined in \eqref{eq:mpc:optimization-qp-formulation}) is not equal to the actual cost function of the control problem (defined in \eqref{eq:mpc:cost-function-centralized}) as terms that do not depend on the optimization variable are excluded. Evaluating the cost function therefore requires \eqref{eq:mpc:cost-function-centralized} to be computed. This computation is relatively expensive since \gi{Delta}\g{Yk} must first be evaluated using the prediction matrices.}
+
+For controllers whose performance is significantly dependent on the number of iterations, this additional cost could be justified, however the present systems' cost functions converge relatively quickly, as shown in \fig{mpc:distributed:cost-function}.
+The average improvement between its value at 3 iterations and the optimal value reached is just 0.03\% for the serial, cooperative controller, for example.
+The other distributed controllers show similar behavior.
+Furthermore, the controllers exhibited no measurable change in performance for solver iterations greater than 3.
+The number of iterations was therefore fixed at 3 for all distributed controllers.
+
+
+\begin{figure}
+  \centering
+  \input{results/figs/serial_dj.tex}
+  \caption{Average reduction in cost function as a function of the number of solver iterations for the serial, cooperative controller. Results are similar for other distributed controllers. 3 iterations were determined to be sufficient for convergence since further gains in the cost function are limited.}
+  \label{fig:mpc:distributed:cost-function}
+\end{figure}
+
 
 \subsection{Computational Cost}
 
@@ -46,16 +69,4 @@ In particular, the ``hotstart'' method implemented in the \qpoases{} QP solver c
 Finally, generating the prediction matrices for the sub-controllers' cost functions can be less computationally expensive than for the centralized case, if they use fewer of the outputs, since computing the prediction matrices is $\mathcal{O}(n)$ in the number of outputs used.
 The computational cost could be further reduced by limiting the state information used by each sub-controller to generate its prediction matrices ($\mathcal{O}(n^3)$ in the number of states used), however this approach is not considered here.
 These effects are quantified and discussed further in Section~\ref{sec:results}.
-
-\subsection{Cooperative v. Non-cooperative Control}
-Two different types of distributed controller are considered: cooperative and non-cooperative. 
-In cooperative control, the sub-controllers share a single cost function while in non-cooperative control they have individual cost functions. 
-Non-cooperative control therefore allows the possibility for each sub-controller to consider fewer outputs in the cost function, thereby reducing the computational cost of generating the prediction matrices.
-
-For both the parallel and serial systems, the outputs used in the cooperative controller cost function are the same as those for the centralized case: surge distances from both compressors and the common tank pressure for the parallel case, and surge distances and output pressures for each compressor for the serial case. 
-The weights used for the cooperative case differed slightly, however, from the centralized case as the controller behavior was not identical.
-
-The non-cooperative controller used fewer outputs in both cases. 
-For the parallel case, each sub-controller weighted the surge distance of its compressor as well as the common tank output pressure.
-For the serial case, only the surge distance and output pressure of a single compressor were considered in each sub-controller. 
 
