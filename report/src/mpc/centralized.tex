@@ -5,7 +5,7 @@ In the centralized control approach, a single MPC controller is used to optimize
 At each sampling period, the optimal input is computed using the following algorithm:
 
 \begin{enumerate}
-  \item perform estimation to obtain the augmented state (see Section~\ref{sec:mpc:estimation});
+  \item perform estimation to obtain the current estimate of the augmented state vector (see Section~\ref{sec:mpc:estimation});
   \item linearize, discretize and augment non-linear model about the current state estimate and previous inputs, as described in Section~\ref{sec:mpc:linearization};
   \item generate the prediction matrices using \eqref{eq:mpc:augmented-state-eqs};
   \item set up the QP problem according to \eqref{eq:mpc:optimization-qp-formulation} and solve using the \qpoases{} solver;

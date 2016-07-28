@@ -1,8 +1,19 @@
-\section{Cost Functions}
+\section{Centralized and Distributed Cost Functions}
 \label{sec:mpc:cost-functions}
 
-The cost functions for the centralized, cooperative and non-cooperative systems differ in the inputs and outputs to which they assign a nonzero weight.
-The centralized controller for the parallel system, for example, uses a cost function (\g{Jpcen}) given by:
+\subsection{Definition}
+
+The cost functions used in an MPC controller combine (generally quadratic) weights on certain inputs and outputs of the system, which determine which variables should be minimized by the optimization.
+The centralized, cooperative and non-cooperative controllers differ in the inputs and outputs to which they assign nonzero weights.
+
+The centralized controller optimizes for all inputs of both compressors and thus assigns weights to each component of the input vector, as well as to all outputs that are to be controlled.
+
+A distributed controller contains multiple sub-controllers, each of which performs its own optimization using its own cost function.
+Two different types of distributed controllers are defined: cooperative and non-cooperative, which differ in how their cost functions are structured.
+In cooperative control, the sub-controllers share a single cost function, while in non-cooperative control they optimize individual cost functions relating to their own subsystems. 
+Non-cooperative control therefore allows the possibility for each sub-controller to consider fewer outputs in the cost function, thereby reducing the computational cost of generating the QP to be solved.
+
+A sample cost function from the centralized controller for the parallel system (\g{Jpcen}) is given by:
 
 \begin{equation}
   \g{Jpcen} = \sum_{i=1}^{p} 
@@ -13,15 +24,14 @@ The centralized controller for the parallel system, for example, uses a cost fun
   \tps{\left(\gpl{uwtd}\right)}
   \gi{uwts}
   \left(\gpl{uwtd}\right)
+  \label{eq:mpc:cost-function-centralized}
 \end{equation}
 
-  % \begin{bmatrix} \gi{sd} & \gii{sd} & \g{pt} \end{bmatrix} 
-
 \noindent where \gi{ywtd}and \gi{uwtd} contain the components of \g{parout} and \g{parin}, respectively, that have a nonzero weight in the centralized controller, and \gi{ywts} and \gi{uwts} are the weighting matrices that assign the relative cost of each of the inputs and outputs. 
-The weighting matrices are tuning parameters for the controllers and can be adjusted to, for example, reduce the aggressiveness of the controller, or assign more weight to a specific output.
+These weighting matrices are tuning parameters for the controllers and can be adjusted to, for example, reduce the aggressiveness of the controller, or assign more weight to a specific output.
 
 Cost functions using analogous weighted input and output vectors, and corresponding weighting matrices are similarly defined for the 5 other controllers.
-The weighted input and output vectors for all controllers are given in \cref{tab:mpc:cost-function:wtdvecs}.
+The weighted input and output vectors for each of the controllers are given in \cref{tab:mpc:cost-function:wtdvecs}.
 
 \begin{table}
   \centering
@@ -32,13 +42,13 @@ The weighted input and output vectors for all controllers are given in \cref{tab
      & & \g{ywtd} & \g{uwtd} & \gxi{ywtd} & \gxi{uwtd}\\[0.2em]
     \midrule
     Centralized & (cen) & $\tps{\begin{bmatrix} \giii{sd} & \giv{sd} & \gi{pt} \end{bmatrix}}$ & \g{parin}
-    & \g{parout} & \g{parin}\\[1em]
+    & \g{serialout} & \g{serialin}\\[1em]
 %
     Cooperative 1 & (co,1) & $\tps{\begin{bmatrix} \giii{sd} & \giv{sd} & \gi{pt} \end{bmatrix}}$ & \gi{un}
-    & \g{parout} & \gi{un}\\[1em]
+    & \g{serialout} & \gi{un}\\[1em]
 %
     Cooperative 2 & (co,2) & $\tps{\begin{bmatrix} \giii{sd} & \giv{sd} & \gi{pt} \end{bmatrix}}$ & \gii{un} 
-    & \g{parout} & \gii{un}\\[1em]
+    & \g{serialout} & \gii{un}\\[1em]
 %
     Non-cooperative 1 & (nc,1) & $\tps{\begin{bmatrix} \giii{sd} & \gi{pt} \end{bmatrix}}$ & \gi{un}
     & \gi{yn} & \gi{un}\\[1em]
@@ -51,43 +61,8 @@ The weighted input and output vectors for all controllers are given in \cref{tab
 \end{table}
 
 
-% \begin{align}
-  % \gi{ywtd} ={}& \tps{\begin{bmatrix} \giii{sd} & \giv{sd} & \gi{pt} \end{bmatrix}}
-  % &\gi{uwtd} ={}& \g{parin}\\
-% %
-  % \gii{ywtd} ={}& \gi{ywtd}
-  % &\gii{uwtd} ={}& \gi{un} = \tps{\begin{bmatrix} \gi{torque} & \gi{ur} \end{bmatrix}}\\
-% %
-  % \giii{ywtd} ={}& \gi{ywtd}
-  % &\giii{uwtd} ={}& \gii{un} = \tps{\begin{bmatrix} \gii{torque} & \gii{ur} \end{bmatrix}}\\
-% %
-  % \giv{ywtd} ={}& \tps{\begin{bmatrix} \giii{sd} & \gi{pt} \end{bmatrix}}
-  % &\giv{uwtd} ={}& \gi{un}\\
-% %
-  % \gv{ywtd} ={}& \tps{\begin{bmatrix} \giv{sd} & \gi{pt} \end{bmatrix}}
-  % &\gv{uwtd} ={}& \gii{un}\\[1em]
-% %
-% %
-  % \gvi{ywtd} ={}& \g{parout}
-  % &\gvi{uwtd} ={}& \g{parin}\\
-% %
-  % \gvii{ywtd} ={}& \gvi{ywtd}
-  % &\gvii{uwtd} ={}& \gi{un}\\% = \tps{\begin{bmatrix} \gi{torque} & \gi{ur} \end{bmatrix}}\\
-% %
-  % \gviii{ywtd} ={}& \gi{ywtd}
-  % &\gviii{uwtd} ={}& \gii{un}\\% = \tps{\begin{bmatrix} \gii{torque} & \gii{ur} \end{bmatrix}}\\
-% %
-  % \gix{ywtd} ={}& \tps{\begin{bmatrix} \giii{sd} & \giii{pd} \end{bmatrix}}
-  % &\gix{uwtd} ={}& \gi{un}\\
-% %
-  % \gx{ywtd} ={}& \tps{\begin{bmatrix} \giv{sd} & \giv{pd} \end{bmatrix}}
-  % &\gx{uwtd} ={}& \gii{un}
-% \end{align}
+\subsection{Choice of Weighted Variables}
 
-
-
-% (the surge distance of each compressor, as well as the pressure in the common tank), 
-% = $\tps{\begin{bmatrix} \gi{sd} & \gii{sd} & \g{pt} \end{bmatrix}}$ 
 The distributed controllers, both cooperative and non-cooperative, have weights only on the inputs corresponding to the compressor they control (either \gi{un} or \gii{un}).
 The centralized controllers optimize for all inputs, and as a result have weights on all inputs from both compressors.
 
@@ -95,7 +70,7 @@ The outputs that are weighted vary depending on the system and type of controlle
 For the parallel system, the controller should maintain the discharge pressure of the common tank at the setpoint while keeping both compressors away from surge.
 Accordingly, the centralized controller assigns weights to the discharge pressure of the common tank and the surge distances of both compressors.
 The cooperative controllers are, by definition, minimizing the same cost function, so they assign weights to the same outputs as the centralized controller.
-In industrial application, a 4th output could be added to both the centralized and cooperative controllers to account for load sharing between the compressors, however for the simulation case considered here with two identical compressors it had no effect. 
+In industrial applications, a 4th output could be added to both the centralized and cooperative controllers to account for load sharing between the compressors, however for the simulation case considered here with two identical compressors such an output would have no effect. 
 
 The non-cooperative controllers minimize two separate cost functions related to their own outputs.
 For this reason, they each assign weight to only one compressor's surge distance and to the process variable (the common tank discharge pressure).
@@ -103,12 +78,12 @@ As for the other controllers, load sharing could be considered by adding weight 
 
 The serial system has similar control requirements to the parallel system: the discharge pressure of the downstream compressor should be maintained at the setpoint and both compressors should be kept out of surge.
 In industry, a load sharing target defining, for example, the desired pressure ratios across each of the compressors would also be given in order to achieve optimal system efficiency.
-Since the two compressors are considered to be identical, the load sharing target was maintaining the same pressure ratio across each compressor. 
-unlike in the parallel system, the two compressors in the serial system are not operating under identical conditions, and this requirement had to be explicitly given as a setpoint for the discharge pressure of the upstream compressor.
+Since the two compressors in this model are considered to be identical, the desired pressure ratios were defined to be equal for both compressors.
+Unlike in the parallel system, the two compressors in the serial system are not operating under identical conditions, and this requirement had to be explicitly specified in the form of a setpoint for the discharge pressure of the upstream compressor.
 
 To achieve these three objectives, the centralized and cooperative controllers weighted both the surge distances and the discharge pressures of both compressors, while the non-cooperative controllers considered the surge distance and discharge pressure of a single compressor.
 
 
-The primary goal of all of the controllers was anti-surge control, with process control (i.e. pressure setpoint tracking) a secondary goal; the surge distances were accordingly assigned higher weights than the pressures.
-For the serial controller, the output pressure of the second (downstream) compressor was also weighted higher than that of the first, since process control is more important that load sharing.
+The primary goal of all of the controllers was anti-surge control, with process control (i.e. pressure setpoint tracking) a secondary consideration; the surge distances were accordingly assigned higher weights than the pressures in each of the cost functions.
+For the serial controller, the output pressure of the second (downstream) compressor was also weighted higher than that of the first to assign more importance to process control over load sharing.
 
