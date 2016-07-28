@@ -44,9 +44,9 @@ noncoop_times = noncoop_times./n_runs;
 cent_times = cent_times./n_runs;
 cent_0_times = cent_0_times./n_runs;
 
-cent_mean_times = [mean(cent_0_times); mean(cent_times)*ones(N-1,1)]/Tsim * Ts*100;
-noncoop_mean_times = noncoop_times/2/Tsim*Ts*100;
-coop_mean_times = coop_times/2/Tsim*Ts*100;
+cent_mean_times = [mean(cent_0_times); mean(cent_times)*ones(N-1,1)]/Tsim * Ts;
+noncoop_mean_times = noncoop_times/2/Tsim*Ts;
+coop_mean_times = coop_times/2/Tsim*Ts;
 % noncoop_mean_times = mean(noncoop_times);
 % coop_mean_times = mean(coop_times);
 

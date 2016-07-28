@@ -2,6 +2,8 @@ filename = '/home/katie/school/MasterThesis/cpp/serial/output/cent_output.dat';
 fname_info = '/home/katie/school/MasterThesis/cpp/serial/output/cent_info.dat';
 res_cent = read_cpp_results(filename,fname_info,10,4,4);
 
+n_solver_iterations = 3;
+
 filename = ['/home/katie/school/MasterThesis/cpp/serial/output/coop_output',num2str(n_solver_iterations),'.dat'];
 fname_info = ['/home/katie/school/MasterThesis/cpp/serial/output/coop_info',num2str(n_solver_iterations),'.dat'];
 res_coop = read_cpp_results(filename,fname_info,10,4,4);
@@ -94,11 +96,10 @@ for i=1:length(figs1)
     title('Surge Control Distance')
     xlabel('Time [s]')
     ylabel('Relative Surge Control Distance [%]')
-    xlim(xlims);
-    
+    xlim(xlims_zoom)
+
     fname=[fname_base,'sd',num2str(i),'_zoom'];
     
-    xlim(xlims_zoom)
     if exist('saveplots','var') && (saveplots ~= 0)
         saveas(fig1,[fname,'.fig']);
         saveas(fig1,[fname,'.pdf']);

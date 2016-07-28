@@ -19,7 +19,6 @@ for n=1:length(inds)
         plottime = results{i}.t;
         plotvars = results{i}.(fname)(:,inds(n));
         p = plot(plottime(1:n_skip:end),plotvars(1:n_skip:end));%,'linestyle',linestyles{i});
-        p.LineStyle = linestyles{i};
     end
     
     figs{n} = printplot(fig);

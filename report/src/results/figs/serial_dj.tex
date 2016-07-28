@@ -1,0 +1,90 @@
+% This file was created by matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+\definecolor{mycolor2}{rgb}{0.85000,0.32500,0.09800}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=0.435\linewidth,
+height=0.336\linewidth,
+at={(0\linewidth,0\linewidth)},
+scale only axis,
+xmin=0,
+xmax=15,
+xlabel={No. Solver Iterations},
+xmajorgrids,
+ymin=-0.4,
+ymax=0,
+ylabel={Reduction in cost function [\%]},
+ymajorgrids,
+\yaxisfixedformat,
+axis background/.style={fill=white},
+title style={font=\bfseries,align=center},
+title={Average Normalized Reduction in Cost Function\\[1ex]Serial Cooperative Controller},
+axis x line*=bottom,
+axis y line*=left,
+legend style={legend cell align=left,align=left,draw=white!15!black}
+]
+\addplot [color=mycolor1,solid,line width=1.5pt]
+  table[row sep=crcr]{%
+1	0\\
+2	-0.351501613218839\\
+3	-0.347839931152752\\
+4	-0.378695334349781\\
+5	-0.371560054624705\\
+6	-0.378510265072551\\
+7	-0.375735021436657\\
+8	-0.377828738041513\\
+9	-0.376830921598539\\
+10	-0.377530570057489\\
+11	-0.377185999069046\\
+12	-0.377416179102001\\
+13	-0.377295424447187\\
+14	-0.377375200097836\\
+15	-0.377337458390244\\
+16	-0.377364595958364\\
+17	-0.377349227668906\\
+18	-0.377360273860182\\
+19	-0.377355015468009\\
+20	-0.37735515497366\\
+};
+\addlegendentry{Compressor 1};
+
+\addplot [color=mycolor2,solid,line width=1.5pt]
+  table[row sep=crcr]{%
+1	0\\
+2	-0.189670745988881\\
+3	-0.2274190261111\\
+4	-0.232549760739897\\
+5	-0.237579028892318\\
+6	-0.237264216933177\\
+7	-0.2385210210162\\
+8	-0.238126599004626\\
+9	-0.238544648969515\\
+10	-0.238369635465122\\
+11	-0.238521073839856\\
+12	-0.23844798425613\\
+13	-0.238495435705717\\
+14	-0.238465167305055\\
+15	-0.238485266779419\\
+16	-0.238480099282162\\
+17	-0.238485130829961\\
+18	-0.238483669025924\\
+19	-0.238485229140346\\
+20	-0.238483271357933\\
+};
+\addlegendentry{Compressor 2};
+
+\addplot [color=black,line width=1.5pt,mark size=7.0pt,only marks,mark=+,mark options={solid}]
+  table[row sep=crcr]{%
+3	-0.347839931152752\\
+};
+\addlegendentry{Operating Point};
+
+\addplot [color=black,line width=1.5pt,mark size=7.0pt,only marks,mark=+,mark options={solid},forget plot]
+  table[row sep=crcr]{%
+3	-0.2274190261111\\
+};
+\end{axis}
+\end{tikzpicture}%

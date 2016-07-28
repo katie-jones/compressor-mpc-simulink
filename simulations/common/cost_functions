@@ -1,0 +1,17 @@
+%% Get data
+folder='/home/katie/school/MasterThesis/cpp/serial/output/';
+f = fopen([folder,'ncoop_J20.dat'],'r');
+A = fscanf(f,'%f',[40,Inf]);
+fclose(f);
+
+J1 = A(1:2:end,:)';
+J2 = A(2:2:end,:)';
+
+j1_zoom = J1(:,1000:1100);
+j2_zoom = J2(:,1000:1100);
+
+%% Make plots
+figure;
+n = 1:length(j1_zoom);
+
+plot(n,j1_zoom(:,1)./j1_zoom(:,20)-1)

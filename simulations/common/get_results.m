@@ -1,3 +1,5 @@
+set(0,'defaultlinelinewidth',1.5)
+
 filename = '/home/katie/school/MasterThesis/cpp/parallel/output/cent_output.dat';
 fname_info = '/home/katie/school/MasterThesis/cpp/parallel/output/cent_info.dat';
 res_cent = read_cpp_results(filename,fname_info,11,4,4);
@@ -52,6 +54,7 @@ ylabel('Pressure [atm]')
 legend('Centralized','Cooperative','Non-cooperative')
 
 fname=[fname_base,'p'];
+xlims_zoom = [50 80];
     
 if exist('saveplots','var') && (saveplots ~= 0)
     saveas(figs{1},[fname,'.fig']);
@@ -72,8 +75,29 @@ if exist('saveplots','var') && (saveplots ~= 0)
     saveas(figs{1},[fname,'.fig']);
     saveas(figs{1},[fname,'.pdf']);
     matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
-    fname,'.tex'],'width','0.8\linewidth','figurehandle',figs{1},'showInfo',false);
+    fname,'.tex'],'width','0.384\linewidth','figurehandle',figs{1},'showInfo',false);
 end
+
+figs1 = PlotResults(results,'sd',[],1);
+for i=1:length(figs1)
+    fig1 = figs1{i};
+    figure(fig1);
+    title('Surge Control Distance')
+    xlabel('Time [s]')
+    ylabel('Relative Surge Control Distance [%]')
+    xlim(xlims_zoom)
+
+    fname=[fname_base,'sd_zoom'];
+    
+    if exist('saveplots','var') && (saveplots ~= 0)
+        saveas(fig1,[fname,'.fig']);
+        saveas(fig1,[fname,'.pdf']);
+        matlab2tikz(['/home/katie/school/MasterThesis/katie-thesis/report/src/results/figs/',...
+        fname,'.tex'],'width','0.8\linewidth','figurehandle',fig1,'showInfo',false);
+    end
+    
+end
+
 
 
 figs = PlotResults(results,'td');
