@@ -2,11 +2,11 @@ The performance and computational cost of distributed MPC for the control of com
 Both cooperative and non-cooperative approaches are considered and compared to the performance achieved with centralized control in the presence of a discharge-side disturbance.
 Two systems, each with two compressors, are studied: one is arranged in parallel configuration and the other in series.
 Due to the high degree of non-linearity of both systems, the models are re-linearized at each time step and a linear, delta MPC formulation is used.
-Hard input constraints are used, however state constraints are not considered and the cost functions used are dependent only on the inputs and outputs, not on the states themselves.
+Hard input constraints are imposed, however state constraints are not considered and the cost functions used are dependent only on the inputs and outputs, not on the states themselves.
 
 The controller is implemented in \slink{} and in \cpp{} using the quadratic program solver \qpoases{}, and the \cpp{} implementation is used to evaluate the computational cost of each control approach.
 For the parallel case, the cooperative and non-cooperative controllers achieved near-identical performance to the centralized controller.
-The cooperative approach had a computation time equal to that of the centralized approach, however the non-cooperative controller reduced the required computation time by 25\%.
+The cooperative approach had a computation time 2\% higher than that of the centralized approach, while the non-cooperative controller reduced the required computation time by 25\%.
 For the serial case, the cooperative controller achieves performance very close to that of the centralized approach, however with only a 10\% reduction in computation time.
 Again, the non-cooperative controller has a computation time 40\% lower than the centralized controller, but in this case sacrificed performance: it showed a 9\% decrease in the minimum surge control distance reached in the downstream compressor.
 

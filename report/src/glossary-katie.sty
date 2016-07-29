@@ -50,12 +50,12 @@
 }{}
 \newglossarystyle{katie}{%
   \renewenvironment{theglossary}%
-     {\begin{longtable}{lp{12cm}l}}%
+     {\begin{longtable}{p{2cm}p{11cm}l}}%
      {\end{longtable}}%
   \renewcommand*{\glossaryheader}{}%
   \renewcommand*{\glsgroupheading}[1]{}%
   \renewcommand{\glossentry}[2]{%
-    \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}} &
+    \glsentryitem{##1}\glstarget{##1}{\raggedright\glossentryname{##1}} &
     \glossentrydesc{##1}\glspostdescription\space & ##2\tabularnewline
   }%
   \renewcommand{\subglossentry}[3]{%

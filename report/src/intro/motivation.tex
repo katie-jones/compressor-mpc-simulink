@@ -1,19 +1,28 @@
 \section{Motivation}
 \label{sec:intro:motivation}
 
+Centrifugal gas compressors are employed in a wide range of industrial applications, particularly for gas transportation, extraction and processing.
+Compression is an inherently energy-intensive process, with well over 90\% of operating costs spent on energy; small improvements in efficiency can therefore have a significant impact on the operating costs.
+At the same time, compressors are critical components in natural gas installations, meaning small downtimes can also have a large economic impact.
+It is therefore important that any gains in efficiency are not achieved at the expense of robustness to disturbances, since the latter could push the compressor out of its safe operating limits and cause significant downtimes.
+These factors make compressor controller development both challenging and crucial for improving their overall efficiency. 
+
 Compressors and compressor systems have long been an active area of research in the control community.
-Their control presents unique challenges: compressors are inherently highly non-linear, multivariable systems with a high degree of coupling, and their operating regime is limited both by the presence of unstable regimes and by physical constraints on the temperature and speeds that can be supported for safe operation.
+The field has transitioned from fixed-speed drivers powering the compressor, to variable-speed gas turbines, to the variable-speed electric drivers used today.
+With this transition comes more possibilities in controller development.
+Fixed-speed drivers required throttling or adjustable guide vanes for process control, in order to achieve a discharge pressure setpoint.
+The advent of variable-speed drivers enabled process control to be achieved by manipulating the driver speed, however the slow dynamics of gas turbines relative to those of the compressor meant that process control and the control loops responsible for safe operation of the system had to be distinct.
+The variable-speed electric drivers that have appeared more recently have much faster dynamics, opening the door for new, multivariable control algorithms that combine process control and limitations on the operating regime into a single controller.
+
+Compressor control presents unique challenges: compressors are inherently highly non-linear, multivariable systems with a high degree of coupling, and their operating regime is limited both by the presence of unstable regimes and by physical constraints on the temperature and speeds that can be supported for safe operation.
 The coupling between control loops and constraints, in particular, are difficult to treat using traditional frequency-domain control approaches.
-Current industrial practice is to implement the controllers in the frequency domain, with added loop decoupling and hand-tuned open-loop control responses near boundaries to address these issues.
+Current industrial practice is to implement the controllers using simple PID controllers, with added loop decoupling and hand-tuned open-loop control responses near boundaries to address these issues.
+Constraints are generally treated using clipping and anti-windup logic, which require further tuning.
+In recent years, with the adoption of electric drivers, model predictive control (MPC) has been proposed as an alternative to frequency-domain approaches as it can explicitly consider both the coupling and physical constraints that make compressor control so challenging.
 
-In recent years, model predictive control (MPC) has been proposed as an alternative to frequency-domain approaches as it can explicitly consider both the coupling and physical constraints that make compressor control so challenging.
-*** some sentences about papers on MPC for compressors ***
-
-The major disadvantage of MPC is the computational complexity inherent in the approach, and the resulting difficulty of executing the controllers at a sampling rate fast enough to handle the relatively fast dynamics observed in compressors. 
+The major disadvantage of MPC compared to conventional control approaches is the computational complexity inherent in the approach, and the resulting difficulty of executing the controllers at a sampling rate fast enough to handle the relatively fast dynamics observed in compressors. 
 In particular, as the number of states and inputs increase -- as for systems of multiple, coupled compressors -- so does the required computation time of an MPC controller.
 This limitation can be overcome using a distributed MPC approach, whereby the optimization problem posed by a multi-compressor system can be divided into sub-problems to be solved at the individual compressor level, with some information exchange to converge to a globally optimal solution. 
 
-In this work, distributed and centralized MPC controllers are designed for a network of 2 compressors, arranged both in parallel and in series. 
-They are then implemented both in \slink{} and in \cpp{} in a manner appropriate for deployment on an embedded system.
-Both the performance and computational efficiency of the distributed MPC controllers are then evaluated with respect to the benchmark established by the centralized controller.
+The scope of this thesis is to evaluate the controller performance and computational cost of a distributed MPC control approach compared to centralized MPC when applied to a parallel and to a serial compressor network, each containing two compressors.
 

@@ -1,9 +1,18 @@
-\section{Distributed MPC}
+\section{Advanced Compressor Control}
 \label{sec:intro:mpc}
 
+The biggest challenges in compressor control systems are handling the interactions between the process variable and surge distance, as well as the input constraints.
+Conventional control systems based on PID controllers use complex loop decoupling and integrator anti-windup terms to correct for these effects, since they cannot be directly considered by a frequency-domain control approach.
+
+MPC is thus a promising approach for compressor control, as it permits both the coupling and the input constraints to be treated explicitly in an optimization problem. 
+One major obstacle that prevents MPC from being implemented, particularly on systems with multiple compressors, is the computation time required to arrive at an optimal solution.
+Compressor controllers have to run at a sampling rate on the order of tens of milliseconds as the dynamics leading to surge are at this time scale.
+As the number of compressors is increased, the size of the optimization problem solved by the MPC controller increases as well, putting a practical limit on the size of the system that can be controlled with the required sampling rate using MPC. 
+
 Distributed MPC differs from standard (centralized) MPC in that the optimization problem is split into smaller sub-problems that can be solved in parallel by several distributed controllers.
-This approach is particularly intuitive when dealing with large systems that combine several distinct but coupled subsystems, as is the case for a compressor network.
+It is particularly intuitive when dealing with large systems that combine several distinct but coupled subsystems, as is the case for a compressor network.
 The sub-problems are then often associated to a particular subsystem.
+Distributed MPC, unlike the centralized version, has the potential to be scaled up to arbitrarily large systems without a significant increase in computation time, making it the natural approach for compressor networks. 
 
 Because all of the sub-problems are coupled, and the solutions to each affect the other sub-problems, distributed MPC generally takes an iterative approach whereby each sub-controller assumes a value for the other solutions, solves its optimization problem, and communicates its updated solution to the other sub-controllers.
 The process can continue for a fixed number of steps, or until a convergence criterion is satisfied.
@@ -11,4 +20,8 @@ Depending on the degree of coupling, the iterations may or may not converge. For
 
 The primary advantage of distributed MPC over centralized is the potential for reducing the computation time.
 Although each of the distributed sub-controllers must solve multiple optimizations at each time step, their reduced size means that in many case they still execute faster than the centralized controller.
+Additionally, its implementation would be closer to what is currently done, and to what is feasible in natural gas installations.
+A single, centralized controller acting on multiple compressors would be difficult to achieve in a large plant.
+With distributed MPC, however, each compressor would have its own hardware, with communication between each of these sub-controllers.
+This is similar to the current practice where process and anti-surge control for each compressor are implemented on separate hardware, and communication between them is used for loop decoupling terms.
 

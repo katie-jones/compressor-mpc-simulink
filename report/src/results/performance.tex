@@ -6,7 +6,7 @@
 
 
 In order to test the controller performance of the various control implementations, a single benchmark disturbance case was chosen.
-It is designed to mimic a typical disturbance downstream of the system such as the shutdown of another compressor downstream.
+It is designed to mimic a typical disturbance downstream of the system such as the shutdown of another compressor.
 The disturbances used were as follows:
 
 \begin{itemize}
@@ -30,6 +30,7 @@ The controller weights used to generate these results are summarized in \tab{res
 \begin{table}
   \centering
   \footnotesize
+  \caption[Controller weights used for the parallel system.]{Controller weights used for the parallel system. Surge distance is normalized by a factor of 1000 to have similar weight ranges.}
   \begin{tabular}{lccccc}
     \toprule
     & & Centralized & Coop. & Non-coop. 1 & Non-coop. 2 \\
@@ -45,7 +46,6 @@ The controller weights used to generate these results are summarized in \tab{res
     Common tank pressure & \g{pt}  & 0.5 & 0.42 & 0.6 & 0.6 \\
     \bottomrule
   \end{tabular}
-  \caption[Controller weights used for the parallel system.]{Controller weights used for the parallel system. Surge distance is normalized by a factor of 1000 to have similar weight ranges.}
   \label{tab:res:parallel-weights}
 \end{table}
 
@@ -100,10 +100,27 @@ During this delay period, the controller also increases the torque applied to th
 The increased torque from both compressors further increases the pressure in the common discharge tank, though the pressure reacts on a much slower time scale than the surge distance.
 Once the recycle valve begins to take effect, the torque applied to both compressors is decreased by the controller in order to bring the discharge pressure back to its setpoint.
 
+The integral squared error (ISE) and integral absolute error (IAE) are shown in \tab{res:performance:par-ise} for all controllers.
+
+\begin{table}
+  \centering
+  \caption{Integral squared error (ISE) and integral absolute error (IAE) measures for parallel controllers.}
+  \begin{tabular}{ccccccc}
+    \toprule
+    & \multicolumn{2}{c}{Centralized} & \multicolumn{2}{c}{Cooperative} & \multicolumn{2}{c}{Non-cooperative}\\
+    \midrule
+    & ISE & IAE & ISE & IAE &ISE & IAE \\
+    \g{torque} & 0.0026 &    0.027 &   0.0026 &    0.028 &   0.0026 &    0.028 \\
+    \g{ur} &  0.00012 &   0.0057 &  0.00011 &   0.0056 &  0.00012 &   0.0059 \\
+    \g{sd} &    0.035 &    0.057 &    0.033 &    0.054 &    0.036 &    0.059 \\
+    \g{pt} &   0.0023 &    0.025 &   0.0024 &    0.026 &   0.0023 &    0.025 \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:res:performance:par-ise}
+\end{table}
 
 \subsection{Serial System}
 \label{sec:results:performance:serial}
-\makeplotstrue
 
 The time response of the serial system is shown in \fig{res:serial-timeresp}.
 A zoomed view of the initial surge distance response is shown in \fig{res:serial-sd-zoom}.
@@ -111,6 +128,7 @@ The controller weights used to generate these results are summarized in \tab{res
 
 \begin{table}
   \centering
+  \caption[Controller weights used for the serial system.]{Controller weights used for the serial system. Surge distance is normalized by a factor of 1000 to have similar weight ranges.}
   \footnotesize
   \begin{tabular}{lccccc}
     \toprule
@@ -126,13 +144,12 @@ The controller weights used to generate these results are summarized in \tab{res
     & \gii{sd}  & 8 & 8 & 0 & 3 \\
     \bottomrule
   \end{tabular}
-  \caption[Controller weights used for the serial system.]{Controller weights used for the serial system. Surge distance is normalized by a factor of 1000 to have similar weight ranges.}
   \label{tab:res:serial-weights}
 \end{table}
 
 In contrast to the parallel case, differences in the controller response and performance can be observed for each of the control approaches.
 The cooperative controller response is qualitatively similar to that of the centralized controller.
-It is, however, somewhat less aggressive in its regulation of the output pressure, evidenced by its less extreme change from high to low torque in the downstream compressor and faster return to the steady state torque value, as shown in \fig{res:serial-timeresp:td2}.
+It is, however, somewhat less aggressive in its regulation of the output pressure, evidenced by its less extreme change from high to low torque in the downstream compressor and faster return to the steady-state torque value, as shown in \fig{res:serial-timeresp:td2}.
 As a result, the output pressure of the downstream compressor has a much lower overshoot than either the centralized or non-cooperative controller.
 
 Similarly, in the upstream compressor, the cooperative controller's torque input -- shown in \fig{res:serial-timeresp:td1} -- is smoother than that of the centralized controller with no uptick near \u{70}{s}, and a faster convergence of both inputs to their steady-state values.
@@ -142,6 +159,29 @@ The surge distances of the centralized and cooperative controllers, however, sho
 The non-cooperative controller response has a much different characteristic than that of the centralized controller.
 As shown in \refs{fig:res:serial-timeresp:td1,fig:res:serial-timeresp:td2}, there is no significant initial increase in the torque input to either compressor when the disturbance is applied; as a result, both compressors are pushed further towards surge than in the centralized or cooperative case, and the surge distances are also slower to converge.
 The maximum disturbance to the output pressures of both compressors for the non-cooperative controller is accordingly reduced by approximately 40\% when compared to the centralized case.
+
+The integral squared error (ISE) and integral absolute error (IAE) are shown in \tab{res:performance:ser-ise} for all controllers.
+
+\begin{table}
+  \centering
+  \caption{Integral squared error (ISE) and integral absolute error (IAE) measures for serial controllers.}
+  \begin{tabular}{ccccccc}
+    \toprule
+    & \multicolumn{2}{c}{Centralized} & \multicolumn{2}{c}{Cooperative} & \multicolumn{2}{c}{Non-cooperative}\\
+    & ISE & IAE & ISE & IAE &ISE & IAE \\
+    \midrule
+    \gi{torque} &   0.0012 &    0.012 &    0.001 &   0.0079 &   0.0015 &    0.019\\
+    \gi{ur} &  8.6e-05 &   0.0037 &  5.6e-05 &   0.0024 &  0.00011 &   0.0053\\
+    \gi{pd} &  0.00096 &    0.011 &   0.0006 &   0.0067 &  0.00081 &    0.014\\
+    \gi{sd} &    0.052 &    0.063 &    0.031 &    0.041 &    0.078 &     0.13\\
+    \gii{torque} &   0.0027 &    0.016 &  0.00095 &   0.0073 &   0.0017 &    0.021\\
+    \gii{ur} &  1.1e-05 &   0.0011 &  2.7e-05 &   0.0016 &  3.2e-05 &   0.0026\\
+    \gii{pd} &  0.00047 &   0.0051 &  0.00058 &   0.0049 &  0.00029 &    0.005\\
+    \gii{sd} &    0.056 &    0.032 &    0.064 &    0.035 &      0.1 &    0.064\\
+    \bottomrule
+  \end{tabular}
+  \label{tab:res:performance:ser-ise}
+\end{table}
 
 \ifmakeplots
 \begin{figure}

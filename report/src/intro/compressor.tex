@@ -5,13 +5,29 @@ Compressor control generally consists of two separate, sometimes competing tasks
 Process control seeks primarily to regulate an output variable of the compressor -- in this report, the output pressure is used, but mass flow or other variables could equally be chosen.
 The manipulated variable used in process control varies depending on the type of compressor studied.
 Gas turbine-driven compressors, for example, may have a valve regulating the fuel flow to the turbine, which can be adjusted by the control system to increase or decrease the compressor speed. 
-For the electric, variable-speed drivers considered here, the manipulated variable is the torque applied by the driver to the compressor, which is adjusted to maintain the output pressure at the desired setpoint.
-A diagram of a sample compressor is shown in \fig{mod:single-comp}.
+For the electric, variable-speed drivers considered in this thesis, the manipulated variable is the torque applied by the driver to the compressor, which is adjusted to maintain the output pressure at the desired setpoint.
+In conventional control systems, process control is implemented using cascaded PID controllers for the discharge pressure, driver speed and driver torque, which operate at different sampling rates to ensure time-scale separation.
 
-Anti-surge control keeps the compressor away from an unstable regime known as surge, which is characterized by unstable oscillations in the mass flow rate through the compressor.
-Surge occurs when the load on the compressor increases, resulting in a reduced and then oscillatory mass flow.
-In extreme cases (known as ``deep surge'') the mass flow can actually become negative.
-Operating in the surge regime can cause serious damage to the compressor.
+A diagram of a compressor with a typical, convention control system is shown in \fig{intro:compressor:diagram}.
+The cascaded process, speed and torque PID controllers and the independent anti-surge controller are depicted.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{intro/diagram.png}
+  \caption{Diagram of compressor with conventional control system \cite{Cortinovis2015}.}
+  \label{fig:intro:compressor:diagram}
+\end{figure}
+
+
+Anti-surge control keeps the compressor away from an unstable regime known as surge, which is characterized by oscillations in the mass flow rate and pressures, as well as increased temperatures and vibrations.
+Surge occurs when the system resistance on the compressor is too high, leading to backflow until the resistance is reduced.
+At this point forward flow is restored, and the compressor enters a limit cycle.
+Surge typically occurs at low mass flow conditions.
+Operating in the surge regime can cause serious damage to the compressor and the surrounding piping system.
+
+Surge is avoided primarily through the use of a recycle valve, which can be opened to allow flow from the discharge to the suction tank of the compressor.
+This simultaneously reduces the discharge pressure and increases the mass flow through the compressor, moving the operating point down and to the right on the compressor map -- away from surge.
+For compressors with electric drivers, the torque input to the driver can also be used to rapidly increase the mass flow through the compressor, thereby temporarily increasing the surge distance.
 
 The conditions leading to surge are determined experimentally and plotted as a line on the compressor map, known as the surge line (SL).
 \footnote{The transition to surge only collapses onto a single line in the compressor map if (quasi\babelhyphen{nobreak})invariant coordinates are used; the transition to surge is then invariant to the inlet conditions. 
@@ -22,6 +38,7 @@ This plot is then used to define a surge distance (\g{sd}) for the compressor, w
 To avoid entering the surge regime, a surge control line (SCL) that is offset from the surge line, and a corresponding surge control distance (\g{scd}) are defined to add a safety margin for the controller.
 The controller should maintain the operating point to the right of the surge control line.
 A compressor map with the surge line and surge distance labeled is shown in \fig{intro:comp-map}.
+From this map, it can be seen that the effect of the recycle valve, which is to increase the mass flow and decrease the pressure ratio, moves the compressor away from surge.
 
 \begin{figure}
   \centering
@@ -32,9 +49,6 @@ A compressor map with the surge line and surge distance labeled is shown in \fig
 
 Although the surge regime should be avoided during compressor operation, often the most efficient operating points (and thus the operating points used in industrial applications) are on or near the surge control line.
 If the compressor enters surge, however, it often triggers a costly shutdown of the system to prevent damaging the machinery.
-The anti-surge controller is therefore crucial in allowing the compressor to maximize efficiency by operating near the surge line, while still rejecting disturbances quickly enough to avoid entering the surge regime.
-
-Surge is avoided primarily through the use of a recycle valve, which can be opened to allow flow from the discharge to the suction tank of the compressor.
-This simultaneously reduces the discharge pressure and increases the mass flow through the compressor, moving the operating point down and to the right on the compressor map -- away from surge.
-For compressors with electric drivers, the torque input to the driver can also be used to rapidly increase the mass flow through the compressor, thereby temporarily increasing the surge distance.
+The anti-surge controller is a crucial safety feature that permits the safe operation of the plant and protects the equipment from damage.
+Furthermore, it is crucial in allowing the compressor to maximize efficiency by operating near the surge line, while still rejecting disturbances quickly enough to avoid entering the surge regime.
 

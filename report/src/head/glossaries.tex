@@ -21,7 +21,7 @@
 \addlat{A}{\ensuremath{A}}{Cross-sectional piping area after compressor}
 \addlatnumbered{lc}{\ensuremath{l\ut{cXX}}}{Duct length after compressor}
 \addlatnumbered{Jcomp}{\ensuremath{J\ut{compXX}}}{Compressor inertia}
-\addgrknumbered{beta}{beta}{\ensuremath{\vc{\beta_{XX}}}}{Coefficients mapping steady-state motor torque to rotational speed and mass flow of compressor}
+\addgrknumbered{beta}{beta}{\ensuremath{\vc{\beta_{XX}}}}{Coefficients mapping steady-state driver torque to rotational speed and mass flow of compressor}
 \addgrknumbered{taur}{taur}{\ensuremath{\tau\ut{rXX}}}{Time constant of recycle valve}
 \addlatnumbered{urSP}{\ensuremath{u\ut{r,SPXX}}}{Set point of recycle valve}
 \addgrknumbered{gamma}{gamma}{\ensuremath{\vc{\gamma_{XX}}}}{Coefficients mapping mass flow through suction valve to its pressure differential}
@@ -51,7 +51,7 @@
   name={\ensuremath{\Pi}},
   user1={\ensuremath{\Pi\ut{ss}}},
   user2={\ensuremath{\Pi\ut{SL}}},
-  description={Compressor pressure ratio ($\tfrac{\gentry{pd}}{\gentry{ps}}$).},
+  description={Compressor pressure ratio ($\tfrac{\gentry{pd}}{\gentry{ps}}$)},
   sort={Pi},
   type={greek}
 }
@@ -174,7 +174,7 @@
 % modelling/serial
 \addglswk{xs}{serialstate}{\ensuremath{\vc{x}_{\text{s}XX}}}{Serial system state vector}{latin}
 \addglswk{ys}{serialout}  {\ensuremath{\vc{y}_{\text{s}XX}}}{Serial system output vector}{latin}
-\addglswk{us}{serialin}   {\ensuremath{\vc{u}_{\text{s}XX}}}{Serial system input vector}{latin}
+\addglswk{user}{serialin}   {\ensuremath{\vc{u}_{\text{s}XX}}}{Serial system input vector}{latin}
 \addglswk{fs}{serialderiv}{\ensuremath{\vc{f}_{\text{s}XX}}}{Serial system state derivative vector}{latin}
 
 % MPC
@@ -201,7 +201,7 @@
   user3={\ensuremath{C_k}},
   user4={\ensuremath{A_k=A_k\left( \gentry{xhat},\gentrymo{ucurr} \right),\ B_k=B_k\left( \gentry{xhat},\gentrymo{ucurr} \right)} \text{and} \ensuremath{C_k=C_k\left( \gentry{xhat},\gentrymo{ucurr} \right)}},
   description={Linearized, discretized model matrices},
-  sort={Ak Bk Ck}
+  sort={AkBkCk},
   type={latin}
 }
 \newglossaryentry{augsys-mats}
@@ -212,8 +212,8 @@
   user3={\ensuremath{C_k^a}},
   user4={\ensuremath{A_k^a=A_k^a\left( \gentry{xhat},\gentrymo{ucurr} \right),\ B_k^a=B_k^a\left( \gentry{xhat},\gentrymo{ucurr} \right)} \text{and} \ensuremath{C_k^a=C_k^a\left( \gentry{xhat},\gentrymo{ucurr} \right)}},
   user5={\ensuremath{A_k^a}, \ensuremath{B_k^a} and \ensuremath{C_k^a}},
-  description={Linearized, discretized model matrices},
-  sort={Aka Bka Cka}
+  description={Linearized, discretized, augmented model matrices},
+  sort={AkaBkaCka},
   type={latin}
 }
 
@@ -225,7 +225,7 @@
 \addlatfork[udel]{udel}{\ensuremath{\vc{u}^{\text{delay}}_{XX}}}{Delayed recycle input states at time step $k$}
 \addlatfork[ek]{integrator}{\ensuremath{\vc{e}_{XX}}}{Integrator states of MPC controller}
 \addlat[Baug]{Baug}{\ensuremath{B^\text{aug}}}{Component of the augmented $B$ matrix that outputs the delayed states}
-\addlatfork[uk]{deltau}{\ensuremath{\Delta \vc{u}^\text{a}_{XX}}}{Change in input applied to the system at time step $k$}
+\addlatfork[duk]{deltau}{\ensuremath{\Delta \vc{u}^\text{a}_{XX}}}{Change in input applied to the system at time step $k$}
 
 % MPC/optimization
 \addlatdelta[Uk]{Uk}{\ensuremath{U_k}}{Optimal input sequence, stacked over the move horizon, at time step $k$}

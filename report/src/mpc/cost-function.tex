@@ -64,7 +64,7 @@ The weighted input and output vectors for each of the controllers are given in \
 \subsection{Choice of Weighted Variables}
 
 The distributed controllers, both cooperative and non-cooperative, have weights only on the inputs corresponding to the compressor they control (either \gi{un} or \gii{un}).
-The centralized controllers optimize for all inputs, and as a result have weights on all inputs from both compressors.
+The centralized controllers optimize for all inputs, and as a result have weights on all inputs of both compressors.
 
 The outputs that are weighted vary depending on the system and type of controller.
 For the parallel system, the controller should maintain the discharge pressure of the common tank at the setpoint while keeping both compressors away from surge.
@@ -83,7 +83,17 @@ Unlike in the parallel system, the two compressors in the serial system are not 
 
 To achieve these three objectives, the centralized and cooperative controllers weighted both the surge distances and the discharge pressures of both compressors, while the non-cooperative controllers considered the surge distance and discharge pressure of a single compressor.
 
+\subsection{Tuning}
+
 
 The primary goal of all of the controllers was anti-surge control, with process control (i.e. pressure setpoint tracking) a secondary consideration; the surge distances were accordingly assigned higher weights than the pressures in each of the cost functions.
 For the serial controller, the output pressure of the second (downstream) compressor was also weighted higher than that of the first to assign more importance to process control over load sharing.
+
+The weights were assigned to react quickly to disturbances in the surge distance and limit the minimum surge distance reached after the disturbances were applied.
+The inputs were weighted in such a way as to prevent the controller from becoming too aggressive and oscillatory.
+The settling time for the discharge pressure in both the parallel and serial systems was not considered directly, however increasing weights on these pressures were found to actually improve the surge distance response.
+
+This effect is due to the fact that MPC is performed on a linearized model, in which the torque input to a compressor has a positive effect on the surge distance.
+In reality, the torque has only a short-term positive effect on the surge distance, after which time the increased discharge pressure causes it to decrease -- an effect that is not well-captured by the linearized models.
+Increasing the weight on the pressures limits this effect by keeping the discharge pressures lower, thus improving the surge distance.
 

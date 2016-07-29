@@ -1,16 +1,18 @@
 \section{Centralized Control Approach}
 \label{sec:mpc:centralized}
 
-In the centralized control approach, a single MPC controller is used to optimize for all system inputs using a single cost function, defined in \sect{mpc:cost-function}.
+In the centralized control approach, a single MPC controller is used to optimize for all system inputs using a single cost function, defined in \sect{mpc:cost-functions}.
 At each sampling period, the optimal input is computed using the following algorithm:
 
 \begin{enumerate}
-  \item perform estimation to obtain the current estimate of the augmented state vector (see Section~\ref{sec:mpc:estimation});
-  \item linearize, discretize and augment non-linear model about the current state estimate and previous inputs, as described in Section~\ref{sec:mpc:linearization};
+  \item perform estimation to obtain the current estimate of the augmented state vector (see \sect{mpc:estimation});
+  \item linearize, discretize and augment non-linear model about the current state estimate and previous inputs, as described in \sect{mpc:linearization};
   \item generate the prediction matrices using \eqref{eq:mpc:augmented-state-eqs};
   \item set up the QP problem according to \eqref{eq:mpc:optimization-qp-formulation} and solve using the \qpoases{} solver;
   \item apply the optimal input at the first prediction interval to the system.
 \end{enumerate}
+
+The algorithm is similar to that depicted in \fig{mpc:distributed:algo} for a distributed controller, although the centralized QP solver does not have an iterative solving process.
 
 For both the parallel and serial compressor systems, the centralized controller solves for 4 inputs (2 per compressor). 
 

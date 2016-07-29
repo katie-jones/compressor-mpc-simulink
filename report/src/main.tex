@@ -1,4 +1,4 @@
-\documentclass[los,lof,lot,titlepage,oneside,openright,11pt]{epflthesis}
+\documentclass[doubleheaders,los,lof,lot,titlepage,oneside,openright,11pt]{epflthesis}
 
 \input{head/pkgs.tex}
 \input{head/defs.tex}
@@ -34,11 +34,19 @@ Mehmet Mercangöz (ABB)}
 \input{head/glossaries}
 \input{head/acronyms}
 
-\abstract{~}
+% allow page breaks in multiline equations
+\allowdisplaybreaks[3]
 
-%\acknowledgements{\input head/acknowledgements}
+\abstract{\input{head/abstract.tex}}
+
+\acknowledgements{\input head/acknowledgements}
 
 \numberwithin{equation}{chapter}
+
+% \includeonly{modelling/modelling,mpc/mpc}
+% \includeonly{results/results}
+% \includeonly{results/results,conclusion/conclusion}
+% \includeonly{intro/intro}
 
 \begin{document}
 
@@ -61,6 +69,7 @@ Mehmet Mercangöz (ABB)}
 
 
 \bibliographystyle{ieeetr}
+\nocite{*}
 \bibliography{end/MasterThesis.bib}
 
 

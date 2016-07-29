@@ -13,3 +13,7 @@ The state estimate is obtained using an observer with a static gain $M$ as follo
 
 \noindent where $\vc{\hat{x}}_{k|k-1}^a$ is the a priori estimate of $\vc{\hat{x}}_k^a$ and $\vc{u}_{\text{r},k-2}$ is the recycle valve input about which the system was linearized, as defined in \eqref{eq:mpc:augmented-state-eqs}.
 
+The observer gain $M$ was computed offline using a Kalman filter based on the linearized model at the design point of the system.
+It is assumed to be constant and not updated at each time step with the new linearized model for simplicity.
+Additionally, in the physical installation, the states are measured directly using sensors and the observer gain is not crucial.
+

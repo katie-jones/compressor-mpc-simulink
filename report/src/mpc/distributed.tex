@@ -27,14 +27,95 @@ The iteration process may not converge for systems that have a high degree of co
 The algorithm used to obtain the optimal input at each time step for a distributed controller is thus as follows:
 
 \begin{enumerate}
-  \item perform estimation to obtain the current estimate of the augmented state vector (see Section~\ref{sec:mpc:estimation});
-  \item linearize, discretize and augment non-linear model about the current state estimate and previous inputs, as described in Section~\ref{sec:mpc:linearization};
+  \item perform estimation to obtain the current estimate of the augmented state vector (see \sect{mpc:estimation});
+  \item linearize, discretize and augment non-linear model about the current state estimate and previous inputs, as described in \sect{mpc:linearization};
   \item generate the prediction matrices using \eqref{eq:mpc:augmented-state-eqs};
   \item set up the QP problems according to \eqref{eq:mpc:optimization-qp-formulation};
   \item approximate the solution from each sub-controller using the solution from the previous iteration and use it to correct the linear QP terms;
   \item iteratively solve each QP, updating the approximation of  \g{Uother} after each iteration;
   \item after a fixed number of iterations, apply the optimal input from each sub-controller at the first prediction interval to the system.
 \end{enumerate}
+
+The algorithm and the iterative solving procedure is depicted in \fig{mpc:distributed:algo}.
+
+
+\newcommand{\blockheight}{0.7}
+\newcommand{\blockwidth}{1.6}
+\def\blockthick{3pt}
+\def\flowthick{2pt}
+\newcommand{\arrowtext}[1]{\large\textbf{#1}}
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    %
+    % Main nodes
+    %
+    \node[align=center] (observer) at (0,0) {Observer \&\\Linearization};
+    \draw[line width=\blockthick, color=black] ($(observer) + (\blockwidth,\blockheight)$) rectangle ($(observer) - (\blockwidth,\blockheight)$);
+    %
+    \node[align=center] (qp-gen) at ($(observer) + 5*(\blockwidth,0)$) {QP Problem\\Generation};
+    \draw[line width=\blockthick, color=black] ($(qp-gen) + (\blockwidth,\blockheight)$) rectangle ($(qp-gen) - (\blockwidth,\blockheight)$);
+    %
+    \node[align=center] (qp-solve) at ($(qp-gen) - 4*(0,\blockheight)$) {QP Solver\\\& Output};
+    \draw[line width=\blockthick, color=black] ($(qp-solve) + (\blockwidth,\blockheight)$) rectangle ($(qp-solve) - (\blockwidth,\blockheight)$);
+    %
+    \node[align=center] (pred) at ($(observer) - 4*(0,\blockheight)$) {State\\ Prediction};
+    \draw[line width=\blockthick, color=black] ($(pred) + (\blockwidth,\blockheight)$) rectangle ($(pred) - (\blockwidth,\blockheight)$);
+    %
+
+    %
+    % Arrows
+    %
+    \draw[<-, line width=\flowthick] ($(observer) - (\blockwidth,0)$) -- ++(-\blockwidth,0) node[above right] {\arrowtext{$\vc{y}$}};
+    \draw[->, line width=\flowthick] ($(observer) + (\blockwidth,0)$)  -- ($(qp-gen) - (\blockwidth,0)$);
+    \draw[->, line width=\flowthick] ($(qp-gen) - (0,\blockheight)$) -- ($(qp-solve) + (0,\blockheight)$);
+    \draw[->, line width=\flowthick] ($(qp-solve) - (\blockwidth,0)$) -- ($(pred) + (\blockwidth,0)$);
+    \draw[->, line width=\flowthick] ($(pred) + (0,\blockheight)$) -- ($(observer) - (0,\blockheight)$);
+    \draw[->, line width=\flowthick] ($0.5*(qp-solve) + 0.5*(pred)$) |- ($(pred) - 2*(0, \blockheight)$) node[left] {\arrowtext{To plant}};
+
+    %
+    % Labels
+    %
+    \node[above] at ($0.5*(observer) + 0.5*(qp-gen)$) {\arrowtext{\g{xaug}, \g{augsys-mats}}};
+    \node[left] at ($0.5*(qp-gen) + 0.5*(qp-solve)$) {\arrowtext{QP}};
+    \node[above] at ($0.5*(pred) + 0.5*(qp-solve)$) {\arrowtext{$\vc{u}$}};
+    \node[right] at ($0.5*(pred) + 0.5*(observer)$) {\arrowtext{$\vc{\hat{x}}_{k|k-1}^a$}};
+
+    %
+    % Distributed
+    %
+    \draw[line width=1pt, dotted] ($(qp-solve) + 1.5*(\blockwidth,\blockheight)$) rectangle ($(qp-solve) - 1.5*(\blockwidth,\blockheight)$);
+    \draw[->,dotted,line width=\flowthick] ($(qp-solve) - 1.5*(0, \blockheight)$) -- ($0.5*(qp-solve) + 0.5*(pred) - 5*(0,\blockheight)$) coordinate (dist);
+
+    \draw[line width=1pt, dotted] ($(dist) - (5,0)$) rectangle ++(9,-6);
+    
+    \node[text width=2cm,align=center] (qp1) at ($(dist) - (1.5,1.5)$) {QP Solver 1};
+    \node[text width=2cm,align=center] (qp2) at ($(dist) + (2.5,-1.5)$) {QP Solver 1};
+    \node[text width=2cm,align=center] (qp3) at ($(qp1) - (0,2.5)$) {QP Solver 2};
+    \node[text width=2cm,align=center] (qp4) at ($(qp2) - (0,2.5)$) {QP Solver 2};
+
+    \draw[line width=\blockthick] ($(qp1) - (1,1)$) rectangle ($(qp1) + (1,1)$);
+    \draw[line width=\blockthick] ($(qp2) - (1,1)$) rectangle ($(qp2) + (1,1)$);
+    \draw[line width=\blockthick] ($(qp3) - (1,1)$) rectangle ($(qp3) + (1,1)$);
+    \draw[line width=\blockthick] ($(qp4) - (1,1)$) rectangle ($(qp4) + (1,1)$);
+
+    \draw[<-,line width=2pt] ($(qp2) + (1,0)$) -- ($(qp2) + (2,0)$) node[right] {QP1};
+    \draw[<-,line width=2pt] ($(qp4) + (1,0)$) -- ($(qp4) + (2,0)$) node[right] {QP2};
+    \draw[->,line width=2pt] ($(qp4) - (1,0)$) node[left] {\arrowtext{\gii{un}}} -- ($(qp1) + (1,0) + (4pt,0)$); 
+    \draw[->,line width=2pt] ($(qp2) - (1,0)$) node[left] {\arrowtext{\gi{un}}} -- ($(qp3) + (1,0) + (4pt,0)$); 
+
+    \draw[->,line width=2pt] ($(qp1) - (1,0)$) node[left] {\arrowtext{\gii{un}}} -- +(-2,-2.5);
+    \draw[->,line width=2pt] ($(qp3) - (1,0)$) node[left] {\arrowtext{\gi{un}}} -- +(-2,2.5);
+
+    \node[left] at ($0.5*(qp1) + 0.5*(qp3) - (2,0)$) {\huge $\bm{\cdots}$};
+
+  \end{tikzpicture}
+  \caption[Controller algorithm.]{Diagram of controller algorithm. Dashed rectangle shows procedure of distributed QP solver.}
+  \label{fig:mpc:distributed:algo}
+\end{figure}
+
+
+
 
 \subsection{Stopping Criterion}
 \label{sec:mpc:distributed:stopping}
@@ -54,7 +135,7 @@ The number of iterations was therefore fixed at 3 for all distributed controller
 \begin{figure}
   \centering
   \input{results/figs/serial_dj.tex}
-  \caption{Average reduction in cost function as a function of the number of solver iterations for the serial, cooperative controller. Results are similar for other distributed controllers. 3 iterations were determined to be sufficient for convergence since further gains in the cost function are limited.}
+  \caption[Average reduction in cost function as a function of the number of solver iterations.]{Average reduction in cost function as a function of the number of solver iterations for the serial, cooperative controller. Results are similar for other distributed controllers. 3 iterations were determined to be sufficient for convergence since further gains in the cost function are limited.}
   \label{fig:mpc:distributed:cost-function}
 \end{figure}
 
@@ -68,5 +149,5 @@ In particular, the ``hotstart'' method implemented in the \qpoases{} QP solver c
 
 Finally, generating the prediction matrices for the sub-controllers' cost functions can be less computationally expensive than for the centralized case, if they use fewer of the outputs, since computing the prediction matrices is $\mathcal{O}(n)$ in the number of outputs used.
 The computational cost could be further reduced by limiting the state information used by each sub-controller to generate its prediction matrices ($\mathcal{O}(n^3)$ in the number of states used), however this approach is not considered here.
-These effects are quantified and discussed further in Section~\ref{sec:results}.
+These effects are quantified and discussed further in \sect{results:computation}.
 

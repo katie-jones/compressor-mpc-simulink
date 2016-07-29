@@ -32,20 +32,18 @@ The computation time for the cooperative controller in the serial case has a zig
 From \fig{res:qp-compcost}, it is evident that the pattern originates in QP solver computation time, however the reason for this is unclear.
 
 It should be noted that increasing the number of solver iterations above 3 had no measurable effect on performance (see \sect{mpc:distributed:stopping}).
-In fact, the convergence of the cost function with increasing solver iterations cannot be visualized as, for the cases considered here, the change after the first iteration is below the minimum value of a 64-bit floating point number at almost all time steps and is recorded as zero.
-The only point at which the decrease can be measured in during the few seconds immediately after the disturbance is applied, though even at this point it is too small to have an effect on controller behavior.
 
 The significant advantage in computation time demonstrated by the non-cooperative controller is a result of the reduced size of its prediction matrices (\giv{prediction-matrices}), which are multiplied as described in \sect{mpc:linearization} to generate the \g{qp}.
 The computational cost of the \g{qp} generation is approximately linear in the number of outputs used, and the non-cooperative approach considers fewer outputs than the centralized or cooperative approaches (see \tab{res:parallel-weights}).
 
 For the systems considered here, the QP-generation step has a much higher computational cost than the QP-solving step.
 The percentage of computation time spent on solving QPs (including the time required to update the linear QP term after each solver iteration for the distributed controllers) is shown in \fig{res:qp-compcost}.
-The remaining time is largely ($>99\%$) dedicated to QP generation.
+The remaining time is largely dedicated to QP generation.
 These results are implementation dependent and the computation time required for QP generation could be reduced by using a more efficient linear algebra library that that provided in \eigen{}, however it would still contribute significantly to the total computational cost.
 
-Using 2 or 3 solver iterations (for the cases considered, using more iterations has a negligible impact on performance), less than 10\% of the total computation time is spent solving QPs for all control approaches. 
+Using 2 or 3 solver iterations, less than 10\% of the total computation time is spent solving QPs for all control approaches. 
 There is thus a limited scope for decreasing the required computation time without decreasing either the number of outputs or states used to generate the QP problem.
-Furthermore, the number of outputs used for the cooperative QP is fixed and cannot be decreased, since the sub-controllers have the same cost function, and for the non-cooperative controller only 2 are used so it cannot be further decreased.
+Furthermore, the number of outputs used for the cooperative QP is fixed and cannot be decreased, since the sub-controllers have the same cost function, and for the non-cooperative controller only 2 outputs are used so it cannot be further decreased.
 Further gains in computational efficiency would therefore require a reduced number of states to be considered when generating the QP problem.
 
 \ifmakeplots

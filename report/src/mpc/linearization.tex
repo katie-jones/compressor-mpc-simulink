@@ -1,7 +1,7 @@
 \section{Linearization \& Discretization}
 \label{sec:mpc:linearization}
 
-The model used for the MPC controller formulation is the same as the one used in Section~\ref{sec:modelling} to simulate the compressor.
+The model used for the MPC controller formulation is the same as the one used in \sect{modelling} to simulate the compressor.
 No model mismatch was considered in order to compare the controllers' performance in an ideal scenario.
 In order to generate an optimization in the form of a quadratic program, the system was linearized at each time step about the current states (\g{xhat}) and inputs (\gmo{ucurr}), and discretized using the 4th order Runge-Kutta method, a fixed step-size integration scheme.
 The sampling time (\u{50}{ms}) was used as the step size.
@@ -14,7 +14,7 @@ The model at sampling instant $k$ is thus given by:
   \end{split}
 \end{equation}
 
-\noindent where \g{fcurr} is the derivative of the system evaluated at the linearization point, \g{xhat} is the state estimate at time instant $k$, \g{p} is the prediction length of the controller, \giv{sys-mats} gives the model linearized about the current operating point, and \g{Delta} refers to the difference in $\left( \cdot \right)$ relative to the linearization point.
+\noindent where \g{fcurr} is the derivative of the system evaluated at the linearization point, \g{xhat} is the state estimate at time instant $k$, \giv{sys-mats}\glsadd{sys-mats} give the model linearized about the current operating point, and \g{Delta} refers to the difference in $\left( \cdot \right)$ relative to the linearization point.
 
 The resulting discrete-time, linear system is then augmented to include both error states as integrators for offset-free control, and delayed input states for the recycle valve.
 One integrator for each output is added, as well as 40 delayed states per compressor.
@@ -92,7 +92,7 @@ The augmented system dynamics are then as follows:
 % \gpi{integrator} contains the integrator states,
 \noindent where
 $n\ut{e}$ gives the number of integrator states,
-and \giv{augsys-mats} give the augmented, linearized model of the system.
+and \giv{augsys-mats}\glsadd{augsys-mats} give the augmented, linearized model of the system.
 
 The first component of \gpi{udel}  is multiplied by \g{Bdelay}, and must therefore be corrected by a factor $u_{\text{r},k-1}$, the value about which the system was linearized. 
 The other components of \gpi{udel} are not corrected because they are only multiplied by \g{Adelay} which simply shifts them up a row.

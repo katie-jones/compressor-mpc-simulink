@@ -5,7 +5,7 @@ The simulation was first implemented in \slink{} using the \texttt{ode45} solver
 The MPC controllers were also implemented in \slink{} using \emlab{} scripts.
 The \emlab{} syntax allows C code to be automatically generated and compiled for use in simulation or deployment on embedded systems.
 
-Some steps were taken to decrease the number of computations required, particularly for generating the prediction matrices.% as this step was found to take over 90\% of the controller's computation time (see Section~\ref{sec:results}).
+Some steps were taken to decrease the number of computations required, particularly for generating the prediction matrices.
 To generate these matrices, the terms $\gc{augsys-mats} {\ga{augsys-mats}}^1$, $\gc{augsys-mats} {\ga{augsys-mats}}^2$, \ldots, $\gc{augsys-mats} {\ga{augsys-mats}}^p$ must be calculated, taking the bulk of the computation time.
 To speed this process up, the result of the multiplication $\gc{augsys-mats} {\ga{augsys-mats}}^i$ was saved as an intermediate variable and used to calculate $\gc{augsys-mats} {\ga{augsys-mats}}^{i+1}$.
 

@@ -1,7 +1,7 @@
 \section{Compressor Model}
 \label{sec:mod:comp}
 
-The single compressor unit used in this work, depicted in Figure~\ref{fig:mod:single-comp}, refers to a centrifugal compressor driven by a variable-speed electric motor, with a tank at both the inlet (suction) and outlet (discharge).
+The single compressor unit used in this work, depicted in \fig{mod:single-comp}, refers to a centrifugal compressor driven by a variable-speed electric driver, with a tank at both the inlet (suction) and outlet (discharge).
 Both the suction and discharge tanks are connected to atmospheric pressure by a valve.
 These suction and discharge valves represent the flow conditions upstream and downstream of the compressor, respectively, such that various flow conditions and disturbances can be simulated by simply changing the position of the valves.
 The artificial disturbances applied using these valves are designed to mimic situations frequently encountered in industrial applications (e.g. shutdown or startup of a downstream compressor).
@@ -57,10 +57,10 @@ The differential equations governing these states are given by:
   \item \g{Vs} and \g{Vd} are the suction and discharge tank volumes, respectively;
   \item \g{qs}, \g{qr}, and \g{qd} are the mass flows across the suction valve, recycle valve, and discharge valve, respectively;
   \item \g{A} is the cross-sectional area of the piping after the compressor and \g{lc} the duct length;
-  \item \gi{Pi}$\left(\g{alpha},\g{omegac}, \g{qc} \right)$ is a polynomial mapping giving the steady-state pressure ratio across the compressor, and \g{alpha} contains the coefficients mapping this ratio to the compressor speed and mass flow;
+  \item \gi{Pi}$\left(\g{alpha},\g{omegac}, \g{qc} \right)$ is the steady-state pressure ratio across the compressor, and \g{alpha} contains the coefficients mapping this ratio to the compressor speed and mass flow;
   \item \g{Jcomp} is the inertia of the system;
   \item \g{beta} contains the parameters mapping the steady-state torque results from air compression to the mass flow and rotational speed of the compressor;
-  \item \g{taur} and \g{urSP} the time constant of the recycle valve and its setpoint, respectively;
+  \item \g{taur} and \g{urSP} are the time constant of the recycle valve and its setpoint, respectively;
   \item \g{gamma}, \g{delta} and \g{epsilon} are the coefficients mapping mass flow through the suction, recycle and discharge valves, respectively, to the pressure differential across the valve;
   \item \g{us} and \g{ud} are the positions of the suction and discharge valves, respectively;
   \item \g{pin} and \g{pout} are the pressures upstream and downstream of the compressor, respectively; and
@@ -73,7 +73,7 @@ The interested reader may refer to \cite{Cortinovis2015} for further information
 
 The inputs to the compressor system are the positions of the suction, discharge and recycle valves, as well as the torque setpoint of the electric driver powering the compressor.
 It is assumed that a cascaded regulator maintains the torque at the desired setpoint with a dynamic response fast enough to be neglected at the time scales considered (on the order of tens of ms).
-Torque is chosen as the input variable as it allows a faster response time compared to motor speed, which is generally slower as it requires the use of cascaded torque and speed controllers.
+Torque is chosen as the input variable as it allows a faster response time compared to driver speed, which is generally slower as it requires the use of cascaded torque and speed controllers.
 It should be noted that the torque can be adjusted in time scales on the order of tens of milliseconds while the valves move on the order of hundreds of milliseconds.
 
 The specific recycle valve being modelled has a dead time between when the input signal is applied and when the valve moves.
