@@ -1,8 +1,0 @@
-*.asv
-*.autosave
-*~
-*.swp
-*.log
-*.mat
-*.swo
-!**/results/**/*.mat
